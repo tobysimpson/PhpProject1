@@ -1,0 +1,32 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 31 Jan 2023, 13:07:29
+    Author     : toby
+*/
+
+* 
+{
+ font-size: 100%;
+ font-family: sans-serif;
+ font-weight: 300;
+}
+
+table, th, td 
+{
+  padding: 5px;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+tr 
+{
+  border-bottom: 1pt solid #dddddd;
+}
+
+th
+{
+  font-weight: bold;
+}
