@@ -20,12 +20,10 @@
             <body>
                 <table>
                     <tr>
-                        <xsl:for-each select="row[1]">
-                            <xsl:for-each select="@*">
-                                <th>
-                                    <xsl:value-of select="name()" />
-                                </th>
-                            </xsl:for-each>
+                        <xsl:for-each select="fld">
+                            <th>
+                                <xsl:value-of select="@name" />
+                            </th>
                         </xsl:for-each>
                     </tr>
                     <xsl:for-each select="row">
