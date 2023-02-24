@@ -2,15 +2,17 @@
 
 class db1 {
 
-// single instance of self shared among all instances
+    // single instance of self shared among all instances
     private static $instance = null;
-// db connection config vars
+    // db connection config vars
     protected $hostname = "localhost";
     protected $username = "root";
     protected $password = "Flowerdb1";
     protected $dbname = "webgame";
-//objects
-    public $conn = null;
+    
+    //objects
+    public $conn    = null;
+    public $usr_id  = null;
 
     /*
      * ========================
@@ -19,24 +21,17 @@ class db1 {
      */
 
     public function __construct() {
-//        $this->connect();
         $this->conn = new mysqli($this->hostname, $this->username, $this->password, $this->dbname);
         if ($this->conn->connect_error) {
             die("connection failed: " . $this->conn->connect_error);
         }
+        $this->$usr_id = $this->usr_identify();
     }
 
     public function __destruct() {
         $this->conn->close();
         $this->conn = null;
     }
-
-//    private function connect() {
-//        $this->conn = new mysqli($this->hostname, $this->username, $this->password, $this->dbname);
-//        if ($this->conn->connect_error) {
-//            die("connection failed: " . $this->conn->connect_error);
-//        }
-//    }
 
     public function hello() {
         echo "hello";
@@ -50,24 +45,51 @@ class db1 {
      */
 
     public function usr_insert($remote_addr, $remote_port, $hostname) {
-        $query = $this->conn->prepare("INSERT INTO usr_info (remote_addr,remote_port,hostname) VALUES (?,?,?);");
-        $query->bind_param("sis", $remote_addr, $remote_port, $hostname);
-        $query->execute();
-        
+        $qry = $this->conn->prepare("INSERT INTO usr_info (remote_addr,remote_port,hostname) VALUES (?,?,?);");
+        $qry->bind_param("sis", $remote_addr, $remote_port, $hostname);
+        $qry->execute();
         return mysqli_insert_id($this->conn);
     }
 
     public function usr_update($usr_id) {
-        $query = $this->conn->prepare("UPDATE usr_info SET usr_updated = LOCALTIMESTAMP() WHERE usr_id = ?;");
-        $query->bind_param("i", $usr_id);
-        $query->execute();
+        $qry = $this->conn->prepare("UPDATE usr_info SET usr_updated = LOCALTIMESTAMP() WHERE usr_id = ?;");
+        $qry->bind_param("i", $usr_id);
+        $qry->execute();
     }
 
-    public function usr_select() {
-        $query = $this->conn->prepare("SELECT * FROM usr_info;");
-        $query->execute();
+    public function usr_identify() {
+        $usr_id = filter_input(INPUT_COOKIE, "usr_id", FILTER_SANITIZE_NUMBER_INT);
+        $remote_addr = filter_input(INPUT_SERVER, "REMOTE_ADDR", FILTER_VALIDATE_IP);
+        $remote_port = filter_input(INPUT_SERVER, "REMOTE_PORT", FILTER_VALIDATE_INT);
+        $hostname = gethostbyaddr($remote_addr);
 
-        $this->res2xml($query->get_result());
+        if (is_null($usr_id)) {
+            $usr_id = $this->usr_insert($remote_addr, $remote_port, $hostname);
+        } else {
+            $this->usr_update($usr_id);
+        }
+        setcookie("usr_id", $usr_id, time() + (30*86400), "/"); // 86400 = 1 day
+
+        return $usr_id;
+    }
+
+    public function usr_select_all() {
+        $qry = $this->conn->prepare("SELECT * FROM usr_info;");
+        $qry->execute();
+        $res = $qry->get_result();
+        $xml = $this->res2dom($res);
+        $res->close();
+
+        header('Content-Type: text/html; charset=UTF-8');
+        $xsl = $this->xml2dom("xsl1.xsl");
+        echo $this->trans($xml, $xsl);
+    }
+
+    public function usr_reset() {
+        $qry1 = $this->conn->prepare("DELETE FROM usr_info;");
+        $qry1->execute();
+        $qry2 = $this->conn->prepare("ALTER TABLE usr_info AUTO_INCREMENT = 1;");
+        $qry2->execute();
     }
 
     /*
@@ -77,58 +99,108 @@ class db1 {
      */
 
     public function item_insert() {
-        $query = $this->conn->prepare("INSERT INTO item_info (item_val1,item_val2) VALUES (RAND(),RAND());");
-//        $query->bind_param("i", $item_id);
-        $query->execute();
+        $qry = $this->conn->prepare("INSERT INTO item_info (item_val1,item_val2) VALUES (RAND(),RAND());");
+//        $qry->bind_param("i", $item_id);
+        $qry->execute();
 
         return mysqli_insert_id($this->conn);
     }
 
     public function item_update($item_id) {
-        $query = $this->conn->prepare("UPDATE item_info SET item_updated = LOCALTIMESTAMP() WHERE item_id = ?;");
-        $query->bind_param("i", $item_id);
-        $query->execute();
+        $qry = $this->conn->prepare("UPDATE item_info SET item_updated = LOCALTIMESTAMP() WHERE item_id = ?;");
+        $qry->bind_param("i", $item_id);
+        $qry->execute();
     }
 
-    public function item_select() {
-        $query = $this->conn->prepare("SELECT * FROM item_info;");
-//        $query->bind_param("i", $item_id);
-        $query->execute();
-        $result = $query->get_result();
+    public function item_select_all() {
+        $qry = $this->conn->prepare("SELECT * FROM item_info;");
+        $qry->execute();
+        $res = $qry->get_result();
+        $xml = $this->res2dom($res);
+        $res->close();
+        
+        header('Content-Type: text/html; charset=UTF-8');
+        $xsl = $this->xml2dom("xsl1.xsl");
+        echo $this->trans($xml, $xsl);
+    }
 
-        $this->res2xml($result);
+    public function item_select($item_id) {
+        $qry = $this->conn->prepare("SELECT * FROM item_info WHERE item_id = ?;");
+        $qry->bind_param("i", $item_id);
+        $qry->execute();
+        $res = $qry->get_result();
+        $xml = $this->res2dom($res);
+        $res->close();
+
+        header('Content-Type: text/xml');
+        $xsl = $this->xml2dom("xsl2.xsl");
+        echo $this->trans($xml, $xsl);
+    }
+    
+    
+    public function item_reset() {
+        $qry1 = $this->conn->prepare("DELETE FROM item_info;");
+        $qry1->execute();
+        $qry2 = $this->conn->prepare("ALTER TABLE item_info AUTO_INCREMENT = 1;");
+        $qry2->execute();
     }
 
     /*
      * ========================
-     * util
+     * xml
      * ========================
      */
 
-    private function res2xml($result) {
+    private function res2dom($res) {
         $dom = new DOMDocument('1.0', 'utf-8');
         $dom->formatOutput = true;
 
-        $xsl = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="xsl1.xsl"');
-        $dom->appendChild($xsl);
-
+//        $xsl = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="xsl1.xsl"');
+//        $dom->appendChild($xsl);
+        //root
         $root = $dom->createElement('root');
         $dom->appendChild($root);
 
-        while ($row = $result->fetch_assoc()) {
-            $node = $dom->createElement('row');
-            foreach ($row as $key => $val) {
-
-                $att = $dom->createAttribute($key); //att
-                $att->value = $val;
-                $node->appendChild($att);
-            }
+        //fields
+        while ($finfo = $res->fetch_field()) {
+            $node = $dom->createElement('fld');
+            $this->addAttribute($dom, $node, "table", $finfo->table);
+            $this->addAttribute($dom, $node, "name", $finfo->name);
+            $this->addAttribute($dom, $node, "type", $finfo->type);
+//            $this->addAttribute($dom, $node, "flags", $finfo->flags);
+//            $this->addAttribute($dom, $node, "max_length", $finfo->max_length);
             $root->appendChild($node);
         }
 
-        header('Content-Type: text/xml');
+        //rows
+        while ($row = $res->fetch_assoc()) {
+            $node = $dom->createElement('row');
+            foreach ($row as $key => $val) {
+                $this->addAttribute($dom, $node, $key, $val);
+            }
+            $root->appendChild($node);
+        }
+        return $dom;
+    }
+    
+    private function xml2dom($filename){
+        $dom = new DOMDocument;
+        $dom->load($filename);
+        return $dom;
+    }
 
-        echo $dom->saveXML(); //dom
+    private function trans($xml, $xsl) {
+
+        $proc = new XSLTProcessor;
+        $proc->importStyleSheet($xsl);
+
+        return $proc->transformToXML($xml);
+    }
+
+    private function addAttribute($dom, $node, $name, $value) {
+        $att = $dom->createAttribute($name);
+        $att->value = (is_null($value)?'NULL':$value);  //handle nulls
+        $node->appendChild($att);
     }
 
     /*

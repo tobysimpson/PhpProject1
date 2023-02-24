@@ -16,7 +16,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 table, th, td 
 {
-  padding: 5px;
+  padding: 6px;
   text-align: center;
   border-collapse: collapse;
 }
