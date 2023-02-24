@@ -5,10 +5,10 @@ class db1 {
     // single instance of self shared among all instances
     private static $instance = null;
     // db connection config vars
-    protected $hostname = "localhost";
-    protected $username = "root";
-    protected $password = "Flowerdb1";
-    protected $dbname = "webgame";
+    private $hostname = "localhost";
+    private $username = "root";
+    private $password = "Flowerdb1";
+    private $dbname = "webgame";
     
     //objects
     public $conn    = null;
@@ -137,7 +137,6 @@ class db1 {
         echo $this->trans($xml, $xsl);
     }
     
-    
     public function item_reset() {
         $qry1 = $this->conn->prepare("DELETE FROM item_info;");
         $qry1->execute();
@@ -210,11 +209,9 @@ class db1 {
      */
 
     public static function getInstance() {
-
         if (!self::$instance instanceof self) {
             self::$instance = new self;
         }
-
         return self::$instance;
     }
 
