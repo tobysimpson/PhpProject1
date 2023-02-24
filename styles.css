@@ -17,7 +17,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 table, th, td 
 {
   padding: 6px;
-  text-align: center;
+  /*text-align: center;*/
   border-collapse: collapse;
 }
 
@@ -28,5 +28,6 @@ tr
 
 th
 {
+  /*text-align: left;*/
   font-weight: bold;
 }

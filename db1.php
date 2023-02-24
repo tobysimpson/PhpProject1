@@ -98,7 +98,7 @@ class db1 {
      * ========================
      */
 
-    public function item_insert() {
+    function item_insert() {
         $qry = $this->conn->prepare("INSERT INTO item_info (item_val1,item_val2) VALUES (RAND(),RAND());");
 //        $qry->bind_param("i", $item_id);
         $qry->execute();
@@ -106,13 +106,13 @@ class db1 {
         return mysqli_insert_id($this->conn);
     }
 
-    public function item_update($item_id) {
+    function item_update($item_id) {
         $qry = $this->conn->prepare("UPDATE item_info SET item_updated = LOCALTIMESTAMP() WHERE item_id = ?;");
         $qry->bind_param("i", $item_id);
         $qry->execute();
     }
 
-    public function item_select_all() {
+    function item_select_all() {
         $qry = $this->conn->prepare("SELECT * FROM item_info;");
         $qry->execute();
         $res = $qry->get_result();
@@ -124,7 +124,7 @@ class db1 {
         echo $this->trans($xml, $xsl);
     }
 
-    public function item_select($item_id) {
+    function item_select($item_id) {
         $qry = $this->conn->prepare("SELECT * FROM item_info WHERE item_id = ?;");
         $qry->bind_param("i", $item_id);
         $qry->execute();
@@ -137,7 +137,7 @@ class db1 {
         echo $this->trans($xml, $xsl);
     }
     
-    public function item_reset() {
+    function item_reset() {
         $qry1 = $this->conn->prepare("DELETE FROM item_info;");
         $qry1->execute();
         $qry2 = $this->conn->prepare("ALTER TABLE item_info AUTO_INCREMENT = 1;");
@@ -150,7 +150,7 @@ class db1 {
      * ========================
      */
 
-    private function res2dom($res) {
+    function res2dom($res) {
         $dom = new DOMDocument('1.0', 'utf-8');
         $dom->formatOutput = true;
 
@@ -182,13 +182,13 @@ class db1 {
         return $dom;
     }
     
-    private function xml2dom($filename){
+    function xml2dom($filename){
         $dom = new DOMDocument;
         $dom->load($filename);
         return $dom;
     }
 
-    private function trans($xml, $xsl) {
+    function trans($xml, $xsl) {
 
         $proc = new XSLTProcessor;
         $proc->importStyleSheet($xsl);
@@ -196,7 +196,7 @@ class db1 {
         return $proc->transformToXML($xml);
     }
 
-    private function addAttribute($dom, $node, $name, $value) {
+    function addAttribute($dom, $node, $name, $value) {
         $att = $dom->createAttribute($name);
         $att->value = (is_null($value)?'NULL':$value);  //handle nulls
         $node->appendChild($att);

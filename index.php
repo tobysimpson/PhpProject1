@@ -20,8 +20,10 @@ $db = new db1();
 
         <div><?php echo "usr_id=", $db->$usr_id;?></div>
         
-        <a href="usr.php">usr_info</a>
-        <a href="itm.php">item_info</a>
+        <a href="index.php">home</a>
+        <a href="user_info.php">user_info</a>
+        <a href="item_info.php">item_info</a>
+
         
         <div id="frm1">
             <input id="item_id" type="text"   value="1">
@@ -29,5 +31,9 @@ $db = new db1();
         </div>
 
         <div id="div1">div1</div>
+        
+        
+        <div><?php $db->usr_select_all(); ?></div>
+        
     </body>
 </html>
