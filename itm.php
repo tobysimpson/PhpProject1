@@ -4,8 +4,6 @@
 require "db1.php";
 $db = new db1();
 
-
-
 //echo "hello",$db->$usr_id;
 //echo "hello",is_null($db->$usr_id);
 
