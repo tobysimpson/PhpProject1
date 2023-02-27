@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <table width="100%">
     <tr>
         <td>
@@ -15,10 +14,7 @@
     </tr>
     <tr>
         <td>
-            <a href="user_info.php">user_info</a>
+            <a href="usr_info.php">usr_info</a>
         </td>
     </tr>
 </table>
-    
-
-

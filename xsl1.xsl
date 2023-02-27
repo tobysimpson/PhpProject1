@@ -19,21 +19,6 @@
             </head>
             <body>
                 <table>
-<!--                    <xsl:for-each select="fld">
-                        <col>
-                            <xsl:attribute name="align">
-                                <xsl:choose>
-                                    <xsl:when test="@type = 7">center</xsl:when>
-                                    <xsl:when test="@type = 4 or @type = 5">right</xsl:when>
-                                    <xsl:when test="substring(@type, 0, 2) = 25">left</xsl:when>
-                                    <xsl:otherwise>right</xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:attribute>
-                            <xsl:attribute name="type">
-                                <xsl:value-of select="@type" />
-                            </xsl:attribute>
-                        </col>
-                    </xsl:for-each>-->
                     <tr>
                         <xsl:for-each select="fld">
                             <th>

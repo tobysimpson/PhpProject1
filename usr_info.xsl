@@ -12,6 +12,7 @@
                 <th>remote_addr</th>
                 <th>remote_port</th>
                 <th>hostname</th>
+                <th></th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
