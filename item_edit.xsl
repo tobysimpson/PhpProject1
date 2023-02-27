@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" 
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:output method="html" encoding="utf-8"/>
+    <xsl:strip-space elements="*"/>
+    <xsl:template match="/root/row">
+        <table>
+            <form action="item_update.php" method="post">
+               <tr>
+                    <td>item_id</td>
+                    <td>
+                        <input type="text" name="item_id" readonly="true">
+                            <xsl:attribute name="value">
+                                <xsl:value-of select="@item_id"/>
+                            </xsl:attribute>
+                        </input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>item_name</td>
+                    <td>
+                        <input type="text" name="item_name" length="20">
+                            <xsl:attribute name="value">
+                                <xsl:value-of select="@item_name"/>
+                            </xsl:attribute>
+                        </input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>item_val1</td>
+                    <td>
+                        <input type="text" name="item_val1">
+                            <xsl:attribute name="value">
+                                <xsl:value-of select="@item_val1"/>
+                            </xsl:attribute>
+                        </input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>item_val2</td>
+                    <td>
+                        <input type="text" name="item_val2">
+                            <xsl:attribute name="value">
+                                <xsl:value-of select="@item_val2"/>
+                            </xsl:attribute>
+                        </input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td><input type="submit"/></td>
+                </tr>
+            </form>
+        </table>
+    </xsl:template>
+</xsl:stylesheet>

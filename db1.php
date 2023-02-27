@@ -160,16 +160,16 @@ class db1 {
         $root = $dom->createElement('root');
         $dom->appendChild($root);
 
-        //fields
-        while ($finfo = $res->fetch_field()) {
-            $node = $dom->createElement('fld');
-            $this->addAttribute($dom, $node, "table", $finfo->table);
-            $this->addAttribute($dom, $node, "name", $finfo->name);
-            $this->addAttribute($dom, $node, "type", $finfo->type);
-//            $this->addAttribute($dom, $node, "flags", $finfo->flags);
-//            $this->addAttribute($dom, $node, "max_length", $finfo->max_length);
-            $root->appendChild($node);
-        }
+//        //fields
+//        while ($finfo = $res->fetch_field()) {
+//            $node = $dom->createElement('fld');
+//            $this->addAttribute($dom, $node, "table", $finfo->table);
+//            $this->addAttribute($dom, $node, "name", $finfo->name);
+//            $this->addAttribute($dom, $node, "type", $finfo->type);
+////            $this->addAttribute($dom, $node, "flags", $finfo->flags);
+////            $this->addAttribute($dom, $node, "max_length", $finfo->max_length);
+//            $root->appendChild($node);
+//        }
 
         //rows
         while ($row = $res->fetch_assoc()) {

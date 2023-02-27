@@ -17,8 +17,24 @@ $db = new db1();
         </script>
     </head>
     <body onload="fn_init();">
-
-        <div><?php echo "usr_id=", $db->$usr_id;?></div>
+        <!-- layout -->
+        <table width="100%">
+            <tr>
+                <td colspan="2">head</td>
+            </tr>
+            <tr>
+                <td width="150px">
+                    <?php
+                        $nav = $db->xml2dom("nav.xml");
+                        echo $nav->saveXML();
+                    ?>
+                </td>
+                <td>body</td>
+            </tr>
+        </table>
+        
+    
+<!--        <div><?php echo "usr_id=", $db->$usr_id;?></div>
         
         <a href="index.php">home</a>
         <a href="user_info.php">user_info</a>
@@ -33,7 +49,7 @@ $db = new db1();
         <div id="div1">div1</div>
         
         
-        <div><?php $db->usr_select_all(); ?></div>
+        <div><?php $db->usr_select_all(); ?></div>-->
         
     </body>
 </html>
