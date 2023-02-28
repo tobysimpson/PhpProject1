@@ -4,7 +4,7 @@
     <xsl:output method="html" encoding="utf-8"/>
     <!--<xsl:strip-space elements="*"/>-->
     <xsl:template match="/root">
-        <table>
+        <table class="table1">
             <tr>
                 <th>item_id</th>
                 <th>item_created</th>
@@ -25,14 +25,14 @@
                     <td>
                         <xsl:value-of select="@item_updated"/>
                     </td>
-                    <td>
+                    <td style="text-align:left">
                         <xsl:value-of select="@item_name"/>
                     </td>
-                    <td>
-                        <xsl:value-of select="@item_val1"/>
+                    <td style="text-align:right">
+                        <xsl:value-of select="format-number(@item_val1, '###,##0.000')"/>
                     </td>
-                    <td>
-                        <xsl:value-of select="@item_val2"/>
+                    <td style="text-align:right">
+                        <xsl:value-of select="format-number(@item_val2, '###,##0.000')"/>
                     </td>
                     <td>
                         <a>

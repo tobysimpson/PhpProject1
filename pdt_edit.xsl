@@ -4,44 +4,34 @@
     <xsl:output method="html" encoding="utf-8"/>
     <xsl:strip-space elements="*"/>
     <xsl:template match="/root/row">
-        <table class="table2">
-            <form action="item_update.php" method="post">
+        <table class="table1">
+            <form action="pdt_update.php" method="post">
                <tr>
-                    <td>item_id</td>
+                    <td>pdt_id</td>
                     <td>
-                        <input type="text" name="item_id" readonly="true">
+                        <input type="text" name="pdt_id" readonly="true">
                             <xsl:attribute name="value">
-                                <xsl:value-of select="@item_id"/>
+                                <xsl:value-of select="@pdt_id"/>
                             </xsl:attribute>
                         </input>
                     </td>
                 </tr>
                 <tr>
-                    <td>item_name</td>
+                    <td>usr_id</td>
                     <td>
-                        <input type="text" name="item_name" length="20">
+                        <input type="text" name="usr_id" readonly="true">
                             <xsl:attribute name="value">
-                                <xsl:value-of select="@item_name"/>
+                                <xsl:value-of select="@usr_id"/>
                             </xsl:attribute>
                         </input>
                     </td>
                 </tr>
                 <tr>
-                    <td>item_val1</td>
+                    <td>pdt_name</td>
                     <td>
-                        <input type="text" name="item_val1">
+                        <input type="text" name="pdt_name" length="20">
                             <xsl:attribute name="value">
-                                <xsl:value-of select="@item_val1"/>
-                            </xsl:attribute>
-                        </input>
-                    </td>
-                </tr>
-                <tr>
-                    <td>item_val2</td>
-                    <td>
-                        <input type="text" name="item_val2">
-                            <xsl:attribute name="value">
-                                <xsl:value-of select="@item_val2"/>
+                                <xsl:value-of select="@pdt_name"/>
                             </xsl:attribute>
                         </input>
                     </td>

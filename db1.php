@@ -201,6 +201,24 @@ class db1 {
         $att->value = (is_null($value)?'NULL':$value);  //handle nulls
         $node->appendChild($att);
     }
+    
+    /*
+     * ========================
+     * util
+     * ========================
+     */
+    
+    function clamp($val, $min, $max){
+        if ($val < $min)
+        {
+            return $min;
+        } 
+        else if ($val > $max) 
+        {
+            return $max;
+        } 
+        return $val;
+    }
 
     /*
      * ========================

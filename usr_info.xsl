@@ -4,7 +4,7 @@
     <xsl:output method="html" encoding="utf-8"/>
     <!--<xsl:strip-space elements="*"/>-->
     <xsl:template match="/root">
-        <table>
+        <table class="table1">
             <tr>
                 <th>usr_id</th>
                 <th>usr_created</th>
@@ -31,7 +31,7 @@
                     <td>
                         <xsl:value-of select="@remote_port"/>
                     </td>
-                    <td>
+                    <td style="text-align:left">
                         <xsl:value-of select="@hostname"/>
                     </td>
                     <td>
