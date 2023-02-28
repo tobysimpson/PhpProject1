@@ -21,7 +21,7 @@
         </td>
     </tr>
     <tr>
-        <th style="text-align:left">pd</th>
+        <th style="text-align:left">game</th>
     </tr>
     <tr>
         <td>

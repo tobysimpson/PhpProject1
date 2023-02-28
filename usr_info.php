@@ -10,7 +10,7 @@ $db = new db1();
     </head>
     <body >
         <!-- layout -->
-        <table width="100%">
+        <table>
             <tr>
                 <td colspan="2">
                     <?php include "lay_head.php"?>

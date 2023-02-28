@@ -4,7 +4,7 @@
     <xsl:output method="html" encoding="utf-8"/>
     <xsl:strip-space elements="*"/>
     <xsl:template match="/root/row">
-        <table class="table1">
+        <table class="table2">
             <form action="pda_update.php" method="post">
                 <tr>
                     <td>pda_id</td>

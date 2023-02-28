@@ -4,9 +4,9 @@
     <xsl:output method="html" encoding="utf-8"/>
     <xsl:strip-space elements="*"/>
     <xsl:template match="/root/row">
-        <table class="table1">
+        <table class="table2">
             <form action="pdt_update.php" method="post">
-               <tr>
+                <tr>
                     <td>pdt_id</td>
                     <td>
                         <input type="text" name="pdt_id" readonly="true">
@@ -40,7 +40,9 @@
                     <td>
                         
                     </td>
-                    <td><input type="submit"/></td>
+                    <td>
+                        <input type="submit"/>
+                    </td>
                 </tr>
             </form>
         </table>
