@@ -25,10 +25,10 @@
                         <xsl:value-of select="@item_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@item_created"/>
+                        <xsl:value-of select="substring(@item_created,0,11)"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@item_updated"/>
+                        <xsl:value-of select="substring(@item_updated,0,11)"/>
                     </td>
                     <td style="text-align:left">
                         <xsl:value-of select="@item_name"/>

@@ -30,12 +30,17 @@
             </tr>
             <tr>
                 <td>
+                    <a href="usr.php?mth=edit">my details</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <a href="usr.php">users (active)</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="usr.php?mth=list_all">users (all)</a>
+                    <a href="usr.php?mth=all">users (all)</a>
                 </td>
             </tr>
             <tr>
@@ -43,12 +48,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="pdt.php">tournaments</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="pda.php?mth=usr">agents (my)</a>
+                    <a href="pdt.php">games (all)</a>
                 </td>
             </tr>
             <tr>

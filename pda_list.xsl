@@ -36,10 +36,10 @@
                         <xsl:value-of select="@usr_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@pda_created"/>
+                        <xsl:value-of select="substring(@pda_created,0,11)"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@pda_updated"/>
+                        <xsl:value-of select="substring(@pda_updated,0,11)"/>
                     </td>
                     <td style="text-align:left">
                         <xsl:value-of select="@pda_name"/>

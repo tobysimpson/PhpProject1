@@ -5,8 +5,8 @@ require "db1.php";
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
-    case "list":
-        pda_list();
+    case "all":
+        pda_all();
         break;
     case "edit":
         pda_edit();
@@ -21,10 +21,10 @@ switch ($mth) {
         pda_usr();
         break;
     default:
-        pda_list();
+        pda_all();
 }
 
-function pda_list() {
+function pda_all() {
     $db = new db1();
     $qry = $db->conn->prepare("SELECT * FROM pda_info;");
     $qry->execute();
@@ -74,8 +74,9 @@ function pda_update() {
 
 function pda_usr() {
     $db = new db1();
+    $usr_id = filter_input(INPUT_GET, "usr_id", FILTER_VALIDATE_INT);
     $qry = $db->conn->prepare("SELECT * FROM pda_info WHERE usr_id = ?;");
-    $qry->bind_param("i", $db->$usr_id);
+    $qry->bind_param("i", $usr_id);
     $qry->execute();
     $res = $qry->get_result();
     $xml = $db->res2dom($res);

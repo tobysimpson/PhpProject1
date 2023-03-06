@@ -14,6 +14,7 @@
                 <th>usr_id</th>
                 <th>usr_created</th>
                 <th>usr_updated</th>
+                <th>usr_name</th>
                 <th>remote_addr</th>
                 <th>remote_port</th>
                 <th>hostname</th>
@@ -25,10 +26,13 @@
                         <xsl:value-of select="@usr_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@usr_created"/>
+                        <xsl:value-of select="substring(@usr_created,0,11)"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@usr_updated"/>
+                        <xsl:value-of select="substring(@usr_updated,0,11)"/>
+                    </td>
+                    <td style="text-align:left">
+                        <xsl:value-of select="@usr_name"/>
                     </td>
                     <td>
                         <xsl:value-of select="@remote_addr"/>
@@ -42,10 +46,19 @@
                     <td>
                         <a>
                             <xsl:attribute name="href">
-                                <xsl:text>usr_qry.php?usr_id=</xsl:text>
+                                <xsl:text>pdt.php?mth=usr&amp;usr_id=</xsl:text>
                                 <xsl:value-of select="@usr_id"/>
                             </xsl:attribute>
-                            <xsl:text>qry</xsl:text>
+                            <xsl:text>games</xsl:text>
+                        </a>
+                    </td>
+                    <td>
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:text>pda.php?mth=usr&amp;usr_id=</xsl:text>
+                                <xsl:value-of select="@usr_id"/>
+                            </xsl:attribute>
+                            <xsl:text>agents</xsl:text>
                         </a>
                     </td>
                 </tr>

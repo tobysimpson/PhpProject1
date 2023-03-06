@@ -13,7 +13,7 @@ function usr_list() {
     $res = $qry->get_result();
     $xml = $db->res2dom($res);
 //    echo $xml->saveXML();
-    $xsl = $db->xml2dom("usr_info.xsl");
+    $xsl = $db->xml2dom("usr_list.xsl");
     echo $db->trans($xml, $xsl);
     $res->close();
 }

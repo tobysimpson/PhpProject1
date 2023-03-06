@@ -92,57 +92,6 @@ class db1 {
         $qry2->execute();
     }
 
-    /*
-     * ========================
-     * item
-     * ========================
-     */
-
-    function item_insert() {
-        $qry = $this->conn->prepare("INSERT INTO item_info (item_val1,item_val2) VALUES (RAND(),RAND());");
-//        $qry->bind_param("i", $item_id);
-        $qry->execute();
-
-        return mysqli_insert_id($this->conn);
-    }
-
-    function item_update($item_id) {
-        $qry = $this->conn->prepare("UPDATE item_info SET item_updated = LOCALTIMESTAMP() WHERE item_id = ?;");
-        $qry->bind_param("i", $item_id);
-        $qry->execute();
-    }
-
-    function item_select_all() {
-        $qry = $this->conn->prepare("SELECT * FROM item_info;");
-        $qry->execute();
-        $res = $qry->get_result();
-        $xml = $this->res2dom($res);
-        $res->close();
-        
-        header('Content-Type: text/html; charset=UTF-8');
-        $xsl = $this->xml2dom("xsl1.xsl");
-        echo $this->trans($xml, $xsl);
-    }
-
-    function item_select($item_id) {
-        $qry = $this->conn->prepare("SELECT * FROM item_info WHERE item_id = ?;");
-        $qry->bind_param("i", $item_id);
-        $qry->execute();
-        $res = $qry->get_result();
-        $xml = $this->res2dom($res);
-        $res->close();
-
-        header('Content-Type: text/xml');
-        $xsl = $this->xml2dom("xsl2.xsl");
-        echo $this->trans($xml, $xsl);
-    }
-    
-    function item_reset() {
-        $qry1 = $this->conn->prepare("DELETE FROM item_info;");
-        $qry1->execute();
-        $qry2 = $this->conn->prepare("ALTER TABLE item_info AUTO_INCREMENT = 1;");
-        $qry2->execute();
-    }
 
     /*
      * ========================

@@ -5,8 +5,8 @@ require "db1.php";
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
-    case "list":
-        pdt_list();
+    case "all":
+        pdt_all();
         break;
     case "edit":
         pdt_edit();
@@ -20,11 +20,14 @@ switch ($mth) {
     case "pda":
         pdt_pda();
         break;
+    case "usr":
+        pdt_usr();
+        break;
     default:
-        pdt_list();
+        pdt_all();
 }
 
-function pdt_list() {
+function pdt_all() {
     $db = new db1();
     $qry = $db->conn->prepare("SELECT * FROM pdt_info;");
     $qry->execute();
@@ -53,7 +56,8 @@ function pdt_insert() {
     $qry = $db->conn->prepare("INSERT INTO pdt_info (usr_id) VALUES (?);");
     $qry->bind_param("i", $db->$usr_id);
     $qry->execute();
-    header("Location: pdt.php");
+    $pdt_id = $db->conn->insert_id;
+    header("Location: pdt.php?mth=edit&pdt_id=".$pdt_id);
 }
 
 function pdt_update() {
@@ -76,6 +80,20 @@ function pdt_pda() {
     $res = $qry->get_result();
     $xml = $db->res2dom($res);
     $xsl = $db->xml2dom("pda_list.xsl");
+    echo $db->trans($xml, $xsl);
+    $res->close();
+}
+
+
+function pdt_usr() {
+    $db = new db1();
+    $usr_id = filter_input(INPUT_GET, "usr_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT * FROM pdt_info WHERE usr_id = ?;");
+    $qry->bind_param("i", $usr_id);
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = $db->res2dom($res);
+    $xsl = $db->xml2dom("pdt_list.xsl");
     echo $db->trans($xml, $xsl);
     $res->close();
 }
