@@ -2,8 +2,13 @@
 <xsl:stylesheet version="1.0" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="utf-8"/>
-    <!--<xsl:strip-space elements="*"/>-->
-    <xsl:template match="/root">
+    <xsl:include href="layout.xsl"/>
+    
+    <xsl:template match="/">
+        <xsl:call-template name="page"/> 
+    </xsl:template>
+
+    <xsl:template match="root">
         <table class="table1">
             <tr>
                 <th>item_id</th>
@@ -37,11 +42,10 @@
                     <td>
                         <a>
                             <xsl:attribute name="href">
-                                <xsl:text>item_edit.php?item_id=</xsl:text>
+                                <xsl:text>item.php?mth=edit&amp;item_id=</xsl:text>
                                 <xsl:value-of select="@item_id"/>
                             </xsl:attribute>
                             <xsl:text>edit</xsl:text>
-                            <!--<xsl:value-of select="@item_id"/>-->
                         </a>
                     </td>
                 </tr>

@@ -40,6 +40,10 @@ th{
     border-bottom: 1pt solid #dddddd;
 }
 
+.table2 th{
+    font-weight: bold;
+}
+
 
 
 

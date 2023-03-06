@@ -8,7 +8,7 @@ $db = new db1();
         <link rel="stylesheet" href="styles.css"/>
         <script src="xmlhttp.js"></script>
     </head>
-    <body >
+    <body>
         <!-- layout -->
         <table width="100%">
             <tr>
@@ -23,11 +23,12 @@ $db = new db1();
                 <!-- body -->
                 <td>
                     <?php
-                    $qry = $db->conn->prepare("SELECT * FROM item_info;");
+                    $qry = $db->conn->prepare("SELECT * FROM pdt_info;");
                     $qry->execute();
                     $res = $qry->get_result();
                     $xml = $db->res2dom($res);
-                    $xsl = $db->xml2dom("item_info.xsl");
+                    echo $xml->saveXML();
+                    $xsl = $db->xml2dom("pdt_info.xsl");
                     echo $db->trans($xml, $xsl);
                     $res->close();
                     ?>

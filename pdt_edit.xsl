@@ -2,10 +2,15 @@
 <xsl:stylesheet version="1.0" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="utf-8"/>
-    <xsl:strip-space elements="*"/>
-    <xsl:template match="/root/row">
+    <xsl:include href="layout.xsl"/>
+    
+    <xsl:template match="/">
+        <xsl:call-template name="page"/> 
+    </xsl:template>    
+    
+    <xsl:template match="root/row">
         <table class="table2">
-            <form action="pdt_update.php" method="post">
+            <form action="pdt.php?mth=update" method="post">
                 <tr>
                     <td>pdt_id</td>
                     <td>

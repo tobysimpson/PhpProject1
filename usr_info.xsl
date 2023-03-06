@@ -2,8 +2,13 @@
 <xsl:stylesheet version="1.0" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="utf-8"/>
-    <!--<xsl:strip-space elements="*"/>-->
-    <xsl:template match="/root">
+    <xsl:include href="layout.xsl"/>
+    
+    <xsl:template match="/">
+        <xsl:call-template name="page"/> 
+    </xsl:template>
+        
+    <xsl:template match="root">
         <table class="table1">
             <tr>
                 <th>usr_id</th>

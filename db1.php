@@ -11,8 +11,8 @@ class db1 {
     private $dbname = "webgame";
     
     //objects
-    public $conn    = null;
-    public $usr_id  = null;
+    public $conn   = null;
+    public $usr_id = null;
 
     /*
      * ========================
@@ -189,10 +189,8 @@ class db1 {
     }
 
     function trans($xml, $xsl) {
-
         $proc = new XSLTProcessor;
         $proc->importStyleSheet($xsl);
-
         return $proc->transformToXML($xml);
     }
 

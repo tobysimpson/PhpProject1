@@ -2,9 +2,14 @@
 <xsl:stylesheet version="1.0" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="utf-8"/>
-    <xsl:strip-space elements="*"/>
-    <xsl:template match="/root">
-        <form action="pdt_insert.php" method="post">
+    <xsl:include href="layout.xsl"/>
+    
+    <xsl:template match="/">
+        <xsl:call-template name="page"/> 
+    </xsl:template>
+    
+    <xsl:template match="root">
+        <form action="pdt.php?mth=insert" method="post">
             <input type="submit" value="add new"/>
         </form>
         <table class="table1">
@@ -37,7 +42,7 @@
                     <td>
                         <a>
                             <xsl:attribute name="href">
-                                <xsl:text>pdt_edit.php?pdt_id=</xsl:text>
+                                <xsl:text>pdt.php?mth=edit&amp;pdt_id=</xsl:text>
                                 <xsl:value-of select="@pdt_id"/>
                             </xsl:attribute>
                             <xsl:text>edit</xsl:text>
@@ -46,13 +51,13 @@
                     <td>
                         <a>
                             <xsl:attribute name="href">
-                                <xsl:text>pdt_pda.php?pdt_id=</xsl:text>
+                                <xsl:text>pdt.php?mth=pda&amp;pdt_id=</xsl:text>
                                 <xsl:value-of select="@pdt_id"/>
                             </xsl:attribute>
                             <xsl:text>agents</xsl:text>
                         </a>
                     </td>
-                    <form action="pda_insert.php" method="post">
+                    <form action="pda.php?mth=insert" method="post">
                         <td>
                             <input type="hidden" name="pdt_id">
                                 <xsl:attribute name="value">

@@ -3,10 +3,15 @@
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="utf-8"/>
     <xsl:strip-space elements="*"/>
-    <xsl:template match="/root">
-<!--        <form action="pda_insert.php" method="post">
-            <input type="submit" value="add new"/>
-        </form>-->
+    
+    <xsl:include href="layout.xsl"/>
+    
+    <xsl:template match="/">
+        <xsl:call-template name="page"/> 
+    </xsl:template>
+        
+        
+    <xsl:template match="root">
         <table class="table1">
             <tr>
                 <th>pda_id</th>
@@ -48,7 +53,7 @@
                     <td>
                         <a>
                             <xsl:attribute name="href">
-                                <xsl:text>pda_edit.php?pda_id=</xsl:text>
+                                <xsl:text>pda.php?mth=edit&amp;pda_id=</xsl:text>
                                 <xsl:value-of select="@pda_id"/>
                             </xsl:attribute>
                             <xsl:text>edit</xsl:text>
