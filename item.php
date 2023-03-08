@@ -8,6 +8,9 @@ switch ($mth) {
     case "list":
         item_list();
         break;
+    case "xml":
+        item_xml();
+        break;
     case "edit":
         item_edit();
         break;
@@ -26,6 +29,19 @@ function item_list() {
     $xml = $db->res2dom($res);
     $xsl = $db->xml2dom("item_list.xsl");
     echo $db->trans($xml, $xsl);
+    $res->close();
+}
+
+function item_xml() {
+    $db = new db1();
+    $qry = $db->conn->prepare("SELECT * FROM item_info;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = $db->res2dom($res);
+//    $xsl = $db->xml2dom("item_list.xsl");
+//    echo $db->trans($xml, $xsl);
+    header('Content-Type: text/xml');
+    echo $xml->saveXML();
     $res->close();
 }
 
