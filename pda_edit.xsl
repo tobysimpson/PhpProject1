@@ -54,21 +54,41 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>pda_val1</td>
+                    <td>pda_p1</td>
                     <td>
-                        <input type="text" name="pda_val1">
+                        <input type="text" name="pda_p1">
                             <xsl:attribute name="value">
-                                <xsl:value-of select="@pda_val1"/>
+                                <xsl:value-of select="@pda_p1"/>
                             </xsl:attribute>
                         </input>
                     </td>
                 </tr>
                 <tr>
-                    <td>pda_val2</td>
+                    <td>pda_p2</td>
                     <td>
-                        <input type="text" name="pda_val2">
+                        <input type="text" name="pda_p2">
                             <xsl:attribute name="value">
-                                <xsl:value-of select="@pda_val2"/>
+                                <xsl:value-of select="@pda_p2"/>
+                            </xsl:attribute>
+                        </input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>pda_p3</td>
+                    <td>
+                        <input type="text" name="pda_p3">
+                            <xsl:attribute name="value">
+                                <xsl:value-of select="@pda_p3"/>
+                            </xsl:attribute>
+                        </input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>pda_p4</td>
+                    <td>
+                        <input type="text" name="pda_p4">
+                            <xsl:attribute name="value">
+                                <xsl:value-of select="@pda_p4"/>
                             </xsl:attribute>
                         </input>
                     </td>

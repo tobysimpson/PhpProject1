@@ -53,12 +53,12 @@
             </tr>
             <tr>
                 <td>
-                    <a href="pdt.php">games (all)</a>
+                    <a href="pdt.php">games</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="pda.php">agents (all)</a>
+                    <a href="pda.php">agents</a>
                 </td>
             </tr>
         </table>

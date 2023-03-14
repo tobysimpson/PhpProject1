@@ -18,6 +18,7 @@
                 <th>usr_id</th>
                 <th>pdt_created</th>
                 <th>pdt_updated</th>
+                <th>usr_name</th>
                 <th>pdt_name</th>
                 <th></th>
                 <th></th>
@@ -35,6 +36,9 @@
                     </td>
                     <td>
                         <xsl:value-of select="substring(@pdt_updated,0,11)"/>
+                    </td>
+                    <td style="text-align:left">
+                        <xsl:value-of select="@usr_name"/>
                     </td>
                     <td style="text-align:left">
                         <xsl:value-of select="@pdt_name"/>

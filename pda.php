@@ -26,7 +26,7 @@ switch ($mth) {
 
 function pda_all() {
     $db = new db1();
-    $qry = $db->conn->prepare("SELECT * FROM pda_info;");
+    $qry = $db->conn->prepare("SELECT pda_info.*, pdt_info.pdt_name, usr_info.usr_name FROM pda_info INNER JOIN pdt_info ON pda_info.pdt_id = pdt_info.pdt_id INNER JOIN usr_info ON usr_info.usr_id = pda_info.usr_id ORDER BY pdt_info.pdt_id, usr_info.usr_name, pda_info.pda_name ASC;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = $db->res2dom($res);
@@ -62,10 +62,12 @@ function pda_update() {
     $pda_id = filter_input(INPUT_POST, "pda_id", FILTER_VALIDATE_INT);
     $pdt_id = filter_input(INPUT_POST, "pdt_id", FILTER_VALIDATE_INT);
     $pda_name = filter_input(INPUT_POST, "pda_name", FILTER_SANITIZE_STRING);
-    $pda_val1 = filter_input(INPUT_POST, "pda_val1", FILTER_VALIDATE_FLOAT);
-    $pda_val2 = filter_input(INPUT_POST, "pda_val2", FILTER_VALIDATE_FLOAT);
-    $qry = $db->conn->prepare("UPDATE pda_info SET pda_updated = LOCALTIMESTAMP(), pda_name = ?, pda_val1 = ?, pda_val2 = ? WHERE pda_id = ? AND usr_id = ?;");
-    $qry->bind_param("sddii", substr($pda_name, 0, 20), $db->clamp($pda_val1, 0, 1), $db->clamp($pda_val2, 0, 1), $pda_id, $db->$usr_id); //clamp [0,1]
+    $pda_p1 = filter_input(INPUT_POST, "pda_p1", FILTER_VALIDATE_FLOAT);
+    $pda_p2 = filter_input(INPUT_POST, "pda_p2", FILTER_VALIDATE_FLOAT);
+    $pda_p3 = filter_input(INPUT_POST, "pda_p3", FILTER_VALIDATE_FLOAT);
+    $pda_p4 = filter_input(INPUT_POST, "pda_p4", FILTER_VALIDATE_FLOAT);
+    $qry = $db->conn->prepare("UPDATE pda_info SET pda_updated = LOCALTIMESTAMP(), pda_name = ?, pda_p1 = ?, pda_p2 = ?, pda_p3 = ?, pda_p4 = ? WHERE pda_id = ? AND usr_id = ?;");
+    $qry->bind_param("sddddii", substr($pda_name, 0, 20), $pda_p1, $pda_p2, $pda_p3, $pda_p4, $pda_id, $db->$usr_id); //clamp [0,1]
     $qry->execute();
     //echo $db->conn->$error;
 //    header("Location: pda.php");
