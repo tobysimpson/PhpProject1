@@ -62,22 +62,24 @@ function pda_update() {
     $pda_id = filter_input(INPUT_POST, "pda_id", FILTER_VALIDATE_INT);
     $pdt_id = filter_input(INPUT_POST, "pdt_id", FILTER_VALIDATE_INT);
     $pda_name = filter_input(INPUT_POST, "pda_name", FILTER_SANITIZE_STRING);
-    $pda_p1 = abs(filter_input(INPUT_POST, "pda_p1", FILTER_VALIDATE_FLOAT));
+    $pda_p1 = filter_input(INPUT_POST, "pda_p1", FILTER_VALIDATE_FLOAT);
     $pda_p2 = filter_input(INPUT_POST, "pda_p2", FILTER_VALIDATE_FLOAT);
     $pda_p3 = filter_input(INPUT_POST, "pda_p3", FILTER_VALIDATE_FLOAT);
     $pda_p4 = filter_input(INPUT_POST, "pda_p4", FILTER_VALIDATE_FLOAT);
         
-    //normailse probs
-    $s1 = $pda_p1 + $pda_p2;
-    $s2 = $pda_p3 + $pda_p4;
-    
-    $pda_p1 /= $s1;
-    $pda_p2 /= $s1;
-    $pda_p3 /= $s2;
-    $pda_p4 /= $s2;
+//    //normailse probs
+//    $s1 = $pda_p1 + $pda_p2;
+//    $s2 = $pda_p3 + $pda_p4;
+//    
+//    $pda_p1 /= $s1;
+//    $pda_p2 /= $s1;
+//    $pda_p3 /= $s2;
+//    
+    echo $db->clamp(2,0,1);
+//    $pda_p4 /= $s2;
  
     $qry = $db->conn->prepare("UPDATE pda_info SET pda_updated = LOCALTIMESTAMP(), pda_name = ?, pda_p1 = ?, pda_p2 = ?, pda_p3 = ?, pda_p4 = ? WHERE pda_id = ? AND usr_id = ?;");
-    $qry->bind_param("sddddii", substr($pda_name, 0, 20), $pda_p1, $pda_p2, $pda_p3, $pda_p4, $pda_id, $db->$usr_id); 
+    $qry->bind_param("sddddii", substr($pda_name, 0, 20), $db->clamp($pda_p1,0,1), $db->clamp($pda_p2,0,1), $db->clamp($pda_p3,0,1), $db->clamp($pda_p4,0,1), $pda_id, $db->$usr_id); 
     $qry->execute();
     
     header("Location: pdt.php?mth=pda&pdt_id=".$pdt_id);

@@ -55,16 +55,16 @@
                         <xsl:value-of select="@pda_name"/>
                     </td>
                     <td>
-                        <xsl:value-of select="format-number(@pda_p1, '###,##0.000')"/>
+                        <xsl:value-of select="format-number(@pda_p1, '###,##0.0000')"/>
                     </td>
                     <td>
-                        <xsl:value-of select="format-number(@pda_p2, '###,##0.000')"/>
+                        <xsl:value-of select="format-number(@pda_p2, '###,##0.0000')"/>
                     </td>
                     <td>
-                        <xsl:value-of select="format-number(@pda_p3, '###,##0.000')"/>
+                        <xsl:value-of select="format-number(@pda_p3, '###,##0.0000')"/>
                     </td>
                     <td>
-                        <xsl:value-of select="format-number(@pda_p4, '###,##0.000')"/>
+                        <xsl:value-of select="format-number(@pda_p4, '###,##0.0000')"/>
                     </td>
                     <td>
                         <a>

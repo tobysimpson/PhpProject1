@@ -21,7 +21,7 @@ default:
 
 function usr_list() {
     $db = new db1();
-    $qry = $db->conn->prepare("SELECT * FROM usr_info WHERE `usr_created` != `usr_updated`;");
+    $qry = $db->conn->prepare("SELECT * FROM usr_info WHERE usr_name IS NOT NULL");
     $qry->execute();
     $res = $qry->get_result();
     $xml = $db->res2dom($res);

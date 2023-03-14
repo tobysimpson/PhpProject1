@@ -20,8 +20,7 @@
                 <th>pdt_updated</th>
                 <th>usr_name</th>
                 <th>pdt_name</th>
-                <th></th>
-                <th></th>
+                <th colspan="4"></th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -59,6 +58,24 @@
                                 <xsl:value-of select="@pdt_id"/>
                             </xsl:attribute>
                             <xsl:text>agents</xsl:text>
+                        </a>
+                    </td>
+                    <td>
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:text>pdt.php?mth=mark&amp;pdt_id=</xsl:text>
+                                <xsl:value-of select="@pdt_id"/>
+                            </xsl:attribute>
+                            <xsl:text>markov</xsl:text>
+                        </a>
+                    </td>
+                    <td>
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:text>pdt.php?mth=eigs&amp;pdt_id=</xsl:text>
+                                <xsl:value-of select="@pdt_id"/>
+                            </xsl:attribute>
+                            <xsl:text>eigs</xsl:text>
                         </a>
                     </td>
                     <form action="pda.php?mth=insert" method="post">

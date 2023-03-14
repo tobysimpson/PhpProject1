@@ -1,6 +1,7 @@
 <?php
 
 require "db1.php";
+include "la4.php";
 
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
@@ -22,6 +23,12 @@ switch ($mth) {
         break;
     case "usr":
         pdt_usr();
+        break;
+    case "mark":
+        pdt_mark();
+        break;
+    case "eigs":
+        pdt_eigs();
         break;
     default:
         pdt_all();
@@ -58,7 +65,7 @@ function pdt_insert() {
     $qry->bind_param("i", $db->$usr_id);
     $qry->execute();
     $pdt_id = $db->conn->insert_id;
-    header("Location: pdt.php?mth=edit&pdt_id=".$pdt_id);
+    header("Location: pdt.php?mth=edit&pdt_id=" . $pdt_id);
 }
 
 function pdt_update() {
@@ -85,7 +92,6 @@ function pdt_pda() {
     $res->close();
 }
 
-
 function pdt_usr() {
     $db = new db1();
     $usr_id = filter_input(INPUT_GET, "usr_id", FILTER_VALIDATE_INT);
@@ -96,5 +102,76 @@ function pdt_usr() {
     $xml = $db->res2dom($res);
     $xsl = $db->xml2dom("pdt_list.xsl");
     echo $db->trans($xml, $xsl);
+    $res->close();
+}
+
+function pdt_mark() {
+    $db = new db1();
+    $pdt_id = filter_input(INPUT_GET, "pdt_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT pdt_id, pda_id1, pda_id2, a11,a12,a13,a14, a21,a22,a23,a24, a31,a32,a33,a34, a41,a42,a43,a44 FROM pdt_mark WHERE pdt_id = ? ORDER BY pda_id1, pda_id2 ASC;");
+    $qry->bind_param("i", $pdt_id);
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = $db->res2dom($res);
+//    echo $xml->saveXML();
+    $xsl = $db->xml2dom("pdt_mark.xsl");
+    echo $db->trans($xml, $xsl);
+    $res->close();
+}
+
+function pdt_eigs() {
+    $db = new db1();
+    $pdt_id = filter_input(INPUT_GET, "pdt_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT pdt_id, pda_id1, pda_id2, a11,a12,a13,a14, a21,a22,a23,a24, a31,a32,a33,a34, a41,a42,a43,a44 FROM pdt_mark WHERE pdt_id = ? ORDER BY pda_id1, pda_id2 ASC;");
+    $qry->bind_param("i", $pdt_id);
+    $qry->execute();
+    $res = $qry->get_result();
+
+    //rows
+    while ($row = $res->fetch_assoc()) {
+        //disp
+        echo $row['pdt_id'], " ", $row['pda_id1'], " ", $row['pda_id2'], "\n";
+        //fill mtx
+//        $a1 = [$row['a11'], $row['a12'], $row['a13'], $row['a14']];
+//        $a2 = [$row['a21'], $row['a22'], $row['a23'], $row['a24']];
+//        $a3 = [$row['a31'], $row['a32'], $row['a33'], $row['a34']];
+//        $a4 = [$row['a41'], $row['a42'], $row['a43'], $row['a44']];
+        
+        //transpose!
+        $a1 = [$row['a11'], $row['a21'], $row['a31'], $row['a41']];
+        $a2 = [$row['a12'], $row['a22'], $row['a32'], $row['a42']];
+        $a3 = [$row['a13'], $row['a23'], $row['a33'], $row['a43']];
+        $a4 = [$row['a14'], $row['a24'], $row['a34'], $row['a44']];
+
+        $A = [$a1, $a2, $a3, $a4];
+
+//        fn_disp4x4($A);
+//        echo "\n";
+//        echo "v\n";
+        $v = [1e0, 1e0, 1e0, 1e0];
+//        $n = fn_nrm($v);
+//        echo $n,"\n";
+//        $v = fn_smul($v,1/$n);
+//        $n = fn_nrm($v);
+//        echo $n,"\n";
+
+
+//        fn_disp4($v);
+//        echo "\n";
+
+//        fn_disp4(fn_Av($A,$v));
+//        echo "loop\n";
+        for ($i = 0; $i < 100; $i++) {
+            $v = fn_Av($A, $v);
+            $n = fn_nrm($v);
+//            echo $n,"\n";
+            $v = fn_smul($v,1e0/$n);
+        }//i
+        
+        fn_disp4($v);
+        echo "\n";
+
+        
+    }//rows
     $res->close();
 }
