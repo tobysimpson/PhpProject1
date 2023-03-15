@@ -131,47 +131,36 @@ function pdt_eigs() {
     while ($row = $res->fetch_assoc()) {
         //disp
         echo $row['pdt_id'], " ", $row['pda_id1'], " ", $row['pda_id2'], "\n";
-        //fill mtx
+//        //fill mtx
 //        $a1 = [$row['a11'], $row['a12'], $row['a13'], $row['a14']];
 //        $a2 = [$row['a21'], $row['a22'], $row['a23'], $row['a24']];
 //        $a3 = [$row['a31'], $row['a32'], $row['a33'], $row['a34']];
 //        $a4 = [$row['a41'], $row['a42'], $row['a43'], $row['a44']];
-        
-        //transpose!
-        $a1 = [$row['a11'], $row['a21'], $row['a31'], $row['a41']];
-        $a2 = [$row['a12'], $row['a22'], $row['a32'], $row['a42']];
-        $a3 = [$row['a13'], $row['a23'], $row['a33'], $row['a43']];
-        $a4 = [$row['a14'], $row['a24'], $row['a34'], $row['a44']];
+        //transpose
+        $a1 = array($row['a11'], $row['a21'], $row['a31'], $row['a41']);
+        $a2 = array($row['a12'], $row['a22'], $row['a32'], $row['a42']);
+        $a3 = array($row['a13'], $row['a23'], $row['a33'], $row['a43']);
+        $a4 = array($row['a14'], $row['a24'], $row['a34'], $row['a44']);
 
-        $A = [$a1, $a2, $a3, $a4];
+        $A = array($a1, $a2, $a3, $a4);
+        fn_disp4x4($A);
+        $v = array(rand(), rand(), rand(), rand());
 
-//        fn_disp4x4($A);
-//        echo "\n";
-//        echo "v\n";
-        $v = [1e0, 1e0, 1e0, 1e0];
-//        $n = fn_nrm($v);
-//        echo $n,"\n";
-//        $v = fn_smul($v,1/$n);
-//        $n = fn_nrm($v);
-//        echo $n,"\n";
-
-
-//        fn_disp4($v);
-//        echo "\n";
-
-//        fn_disp4(fn_Av($A,$v));
-//        echo "loop\n";
-        for ($i = 0; $i < 100; $i++) {
-            $v = fn_Av($A, $v);
-            $n = fn_nrm($v);
-//            echo $n,"\n";
-            $v = fn_smul($v,1e0/$n);
+        //power iteration
+        for ($i = 0; $i < 150; $i++) {
+            $w = fn_Au($A, $v);
+            $w = fn_smul($w, 1e0 / fn_nrm1($w));
+           
+            if(fn_nrm1(fn_esub($v, $w))<1e-15){
+                echo $i," ",fn_nrm1($w)," ",fn_nrm2($w)," ",fn_nrm1(fn_esub($v, $w))," ",fn_nrm2(fn_esub($v, $w)),"\n";
+                break;
+            }
+                    
+            $v = $w;
         }//i
-        
+
         fn_disp4($v);
         echo "\n";
-
-        
     }//rows
     $res->close();
 }
