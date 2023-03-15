@@ -20,6 +20,11 @@
                 <th>pdt_updated</th>
                 <th>usr_name</th>
                 <th>pdt_name</th>
+                <th>pdt_r1</th>
+                <th>pdt_r2</th>
+                <th>pdt_r3</th>
+                <th>pdt_r4</th>
+                <th>pdt_iter</th>
                 <th colspan="4"></th>
             </tr>
             <xsl:for-each select="row">
@@ -42,6 +47,22 @@
                     <td style="text-align:left">
                         <xsl:value-of select="@pdt_name"/>
                     </td>
+                    <td>
+                        <xsl:value-of select="format-number(@pdt_r1, '###,##0.00')"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="format-number(@pdt_r2, '###,##0.00')"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="format-number(@pdt_r3, '###,##0.00')"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="format-number(@pdt_r4, '###,##0.00')"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@pdt_iter"/>
+                    </td>
+                
                     <td>
                         <a>
                             <xsl:attribute name="href">
@@ -87,7 +108,7 @@
                             </input>
                             <input type="submit" value="add agent"/>
                         </td>
-                    </form>
+                    </form> 
                 </tr>
             </xsl:for-each> 
         </table>

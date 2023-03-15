@@ -8,10 +8,9 @@ class db1 {
     private $hostname = "localhost";
     private $username = "root";
     private $password = "Flowerdb1";
-    private $dbname   = "webgame";
-    
+    private $dbname = "webgame";
     //objects
-    public $conn   = null;
+    public $conn = null;
     public $usr_id = null;
 
     /*
@@ -68,7 +67,7 @@ class db1 {
         } else {
             $this->usr_update($usr_id);
         }
-        setcookie("usr_id", $usr_id, time() + (365*86400), "/"); // 86400 = 1 day
+        setcookie("usr_id", $usr_id, time() + (365 * 86400), "/"); // 86400 = 1 day
 
         return $usr_id;
     }
@@ -92,12 +91,36 @@ class db1 {
         $qry2->execute();
     }
 
-
     /*
      * ========================
      * xml
      * ========================
      */
+
+    function res2arr($res) {
+        $arr = array();
+        while ($row = $res->fetch_assoc()) {
+            $arr[] = $row;
+        }
+        return $arr;
+    }
+
+    function arr2dom($arr, $name) {
+        $dom = new DOMDocument('1.0', 'utf-8');
+        $dom->formatOutput = true;
+        $root = $dom->createElement('arr');
+        $this->addAttribute($dom, $root, "name", $name);
+        $dom->appendChild($root);
+
+        foreach ($arr as $row) {
+            $ele = $dom->createElement('row');
+            foreach ($row as $key => $val) {
+                $this->addAttribute($dom, $ele, $key, $val);
+            }
+            $root->appendChild($ele);
+        }
+        return $dom;
+    }
 
     function res2dom($res) {
         $dom = new DOMDocument('1.0', 'utf-8');
@@ -119,7 +142,6 @@ class db1 {
 //            $this->addAttribute($dom, $node, "max_length", $finfo->max_length);
 //            $root->appendChild($node);
 //        }
-
         //rows
         while ($row = $res->fetch_assoc()) {
             $node = $dom->createElement('row');
@@ -130,8 +152,8 @@ class db1 {
         }
         return $dom;
     }
-    
-    function xml2dom($filename){
+
+    function xml2dom($filename) {
         $dom = new DOMDocument;
         $dom->load($filename);
         return $dom;
@@ -143,27 +165,24 @@ class db1 {
         return $proc->transformToXML($xml);
     }
 
-    function addAttribute($dom, $node, $name, $value) {
-        $att = $dom->createAttribute($name);
-        $att->value = (is_null($value)?'NULL':$value);  //handle nulls
-        $node->appendChild($att);
+    function addAttribute($dom, $ele, $key, $value) {
+        $att = $dom->createAttribute($key);
+        $att->value = (is_null($value) ? 'NULL' : $value);  //handle nulls
+        $ele->appendChild($att);
     }
-    
+
     /*
      * ========================
      * util
      * ========================
      */
-    
-    function clamp($val, $min, $max){
-        if ($val < $min)
-        {
+
+    function clamp($val, $min, $max) {
+        if ($val < $min) {
             return $min;
-        } 
-        else if ($val > $max) 
-        {
+        } else if ($val > $max) {
             return $max;
-        } 
+        }
         return $val;
     }
 

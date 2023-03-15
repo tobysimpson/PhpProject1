@@ -72,8 +72,13 @@ function pdt_update() {
     $db = new db1();
     $pdt_id = filter_input(INPUT_POST, "pdt_id", FILTER_VALIDATE_INT);
     $pdt_name = filter_input(INPUT_POST, "pdt_name", FILTER_SANITIZE_STRING);
-    $qry = $db->conn->prepare("UPDATE pdt_info SET pdt_updated = LOCALTIMESTAMP(), pdt_name = ? WHERE pdt_id = ? AND usr_id = ?;");
-    $qry->bind_param("sii", substr($pdt_name, 0, 20), $pdt_id, $db->$usr_id);
+    $pdt_r1 = filter_input(INPUT_POST, "pdt_r1", FILTER_VALIDATE_FLOAT);
+    $pdt_r2 = filter_input(INPUT_POST, "pdt_r2", FILTER_VALIDATE_FLOAT);
+    $pdt_r3 = filter_input(INPUT_POST, "pdt_r3", FILTER_VALIDATE_FLOAT);
+    $pdt_r4 = filter_input(INPUT_POST, "pdt_r4", FILTER_VALIDATE_FLOAT);
+    $pdt_iter = filter_input(INPUT_POST, "pdt_iter", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("UPDATE pdt_info SET pdt_updated = LOCALTIMESTAMP(), pdt_name = ?, pdt_r1 = ?, pdt_r2 = ?, pdt_r3 = ?, pdt_r4 = ?, pdt_iter = ?  WHERE pdt_id = ? AND usr_id = ?;");
+    $qry->bind_param("siiddddi", substr($pdt_name, 0, 20), $pdt_r1, $pdt_r2, $pdt_r3, $pdt_r4, $pdt_iter, $pdt_id, $db->$usr_id);
     $qry->execute();
 //    echo $db->conn->$error;
     header("Location: pdt.php");
@@ -126,16 +131,37 @@ function pdt_eigs() {
     $qry->bind_param("i", $pdt_id);
     $qry->execute();
     $res = $qry->get_result();
+    $arr = $db->res2arr($res);
+    $res->close();
+
+    $xml = $db->arr2dom($arr, "res1");
+//    echo $xml->saveXML();
+    
+    //output
+    $dom = new DOMDocument('1.0', 'utf-8');
+    $dom->formatOutput = true;
+    $root = $dom->createElement('root');
+    $dom->appendChild($root);
+    
+    //import
+    $node = $dom->importNode($xml->firstChild, true);
+    $root->appendChild($node);
+    
+    echo $dom->saveXML();
+    
+    
 
     //rows
-    while ($row = $res->fetch_assoc()) {
-        //disp
-        echo $row['pdt_id'], " ", $row['pda_id1'], " ", $row['pda_id2'], "\n";
-//        //fill mtx
+    foreach ($arr as $row) {
+
+//        echo $row['pdt_id'], " ", $row['pda_id1'], " ", $row['pda_id2'], "\n";
+//        
+        //fill mtx
 //        $a1 = [$row['a11'], $row['a12'], $row['a13'], $row['a14']];
 //        $a2 = [$row['a21'], $row['a22'], $row['a23'], $row['a24']];
 //        $a3 = [$row['a31'], $row['a32'], $row['a33'], $row['a34']];
 //        $a4 = [$row['a41'], $row['a42'], $row['a43'], $row['a44']];
+//        
         //transpose
         $a1 = array($row['a11'], $row['a21'], $row['a31'], $row['a41']);
         $a2 = array($row['a12'], $row['a22'], $row['a32'], $row['a42']);
@@ -143,24 +169,30 @@ function pdt_eigs() {
         $a4 = array($row['a14'], $row['a24'], $row['a34'], $row['a44']);
 
         $A = array($a1, $a2, $a3, $a4);
-        fn_disp4x4($A);
+//        fn_disp4x4($A);
         $v = array(rand(), rand(), rand(), rand());
 
         //power iteration
-        for ($i = 0; $i < 150; $i++) {
+        for ($i = 0; $i < 500; $i++) {
             $w = fn_Au($A, $v);
             $w = fn_smul($w, 1e0 / fn_nrm1($w));
-           
-            if(fn_nrm1(fn_esub($v, $w))<1e-15){
-                echo $i," ",fn_nrm1($w)," ",fn_nrm2($w)," ",fn_nrm1(fn_esub($v, $w))," ",fn_nrm2(fn_esub($v, $w)),"\n";
+            //conv
+            if (fn_nrm1(fn_esub($v, $w)) < 1e-15) {
+//                echo $i," ",fn_nrm1(fn_esub($v, $w)),"\n";
                 break;
             }
-                    
             $v = $w;
         }//i
+//        fn_disp4($v);
+//        echo "\n";
 
-        fn_disp4($v);
-        echo "\n";
+        $w = array(2, 0, 3, 1);
+
+//        echo $row['pdt_id'], " ", $row['pda_id1'], " ", $row['pda_id2'], " ", fn_dot($v, $w), "\n";
+
+        printf("%3d %3d %3d | %e\n", $row['pdt_id'], $row['pda_id1'], $row['pda_id2'], fn_dot($v, $w));
+
+        header("Content-Type: text/plain");
     }//rows
-    $res->close();
+    
 }
