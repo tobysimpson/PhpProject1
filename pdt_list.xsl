@@ -48,16 +48,16 @@
                         <xsl:value-of select="@pdt_name"/>
                     </td>
                     <td>
-                        <xsl:value-of select="format-number(@pdt_r1, '###,##0.00')"/>
+                        <xsl:value-of select="@pdt_r1"/>
                     </td>
                     <td>
-                        <xsl:value-of select="format-number(@pdt_r2, '###,##0.00')"/>
+                        <xsl:value-of select="@pdt_r2"/>
                     </td>
                     <td>
-                        <xsl:value-of select="format-number(@pdt_r3, '###,##0.00')"/>
+                        <xsl:value-of select="@pdt_r3"/>
                     </td>
                     <td>
-                        <xsl:value-of select="format-number(@pdt_r4, '###,##0.00')"/>
+                        <xsl:value-of select="@pdt_r4"/>
                     </td>
                     <td>
                         <xsl:value-of select="@pdt_iter"/>

@@ -51,7 +51,7 @@ function pda_edit() {
 function pda_insert() {
     $db = new db1();
     $pdt_id = filter_input(INPUT_POST, "pdt_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("INSERT INTO pda_info (pdt_id,usr_id) VALUES (?,?);");
+    $qry = $db->conn->prepare("INSERT INTO pda_info (pdt_id,usr_id,pda_p1,pda_p2,pda_p3,pda_p4) VALUES (?,?,RAND(),RAND(),RAND(),RAND());");
     $qry->bind_param("ii", $pdt_id, $db->$usr_id);
     $qry->execute();
     header("Location: pdt.php?mth=pda&pdt_id=".$pdt_id);

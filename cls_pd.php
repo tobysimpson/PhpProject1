@@ -22,7 +22,8 @@ class cls_pd {
     //first eig
     public static function fn_eig1($A) {
         //init
-        $v = array(rand(), rand(), rand(), rand());
+//        $v = array(rand(), rand(), rand(), rand());
+        $v = array(1,2,3,4);
         //normalise
         $v = cls_lin::fn_smul($v, 1e0 / cls_lin::fn_nrm2($v));
         //power iteration

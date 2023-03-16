@@ -79,7 +79,7 @@ function pdt_update() {
     $pdt_r4 = filter_input(INPUT_POST, "pdt_r4", FILTER_VALIDATE_FLOAT);
     $pdt_iter = filter_input(INPUT_POST, "pdt_iter", FILTER_VALIDATE_INT);
     $qry = $db->conn->prepare("UPDATE pdt_info SET pdt_updated = LOCALTIMESTAMP(), pdt_name = ?, pdt_r1 = ?, pdt_r2 = ?, pdt_r3 = ?, pdt_r4 = ?, pdt_iter = ?  WHERE pdt_id = ? AND usr_id = ?;");
-    $qry->bind_param("siiddddi", substr($pdt_name, 0, 20), $pdt_r1, $pdt_r2, $pdt_r3, $pdt_r4, $pdt_iter, $pdt_id, $db->$usr_id);
+    $qry->bind_param("sddddiii", substr($pdt_name, 0, 20), $pdt_r1, $pdt_r2, $pdt_r3, $pdt_r4, $pdt_iter, $pdt_id, $db->$usr_id);
     $qry->execute();
 //    echo $db->conn->$error;
     header("Location: pdt.php");
@@ -194,8 +194,7 @@ function pdt_eig() {
     for ($i = 0; $i < $nt; $i++) {
         $R[$i] = array_combine($keys, $vals);
         $vals = cls_lin::fn_Au($P, $vals);//res
-//        var_dump($vals);
-//        $s[$i] = array_combine("s", $vals);
+        $s[$i]['s'] = array_sum($vals);
         $vals = cls_lin::fn_smul($vals, 1e0 / cls_lin::fn_nrm1($vals));//re-weight
     }
     
