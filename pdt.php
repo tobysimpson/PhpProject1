@@ -1,6 +1,6 @@
 <?php
 
-require "db1.php";
+require_once "db1.php";
 require_once 'cls_lin.php';
 require_once "cls_pd.php";
 
@@ -128,45 +128,84 @@ function pdt_mark() {
 function pdt_eig() {
     $db = new db1();
     $pdt_id = filter_input(INPUT_GET, "pdt_id", FILTER_VALIDATE_INT);
+    //tournament
+    $qry = $db->conn->prepare("SELECT * FROM pdt_info WHERE pdt_id = ?;");
+    $qry->bind_param("i", $pdt_id);
+    $qry->execute();
+    $res = $qry->get_result();
+    $pdt = $db->res2arr($res);
+    $res->close();
+    //agents
     $qry = $db->conn->prepare("SELECT * FROM pda_info WHERE pdt_id = ?;");
     $qry->bind_param("i", $pdt_id);
     $qry->execute();
     $res = $qry->get_result();
-    $arr = $db->res2arr($res);
+    $pda = $db->res2arr($res);
     $res->close();
 
-    $xml = $db->arr2dom($arr, "res1");
+    //debug
+    $xml = $db->arr2dom($pdt, "pdt");
+    echo $xml->saveXML();
+    $xml = $db->arr2dom($pda, "pda");
     echo $xml->saveXML();
 
+    //params (first row)
+    $na = count($pda);
+    $nt = $pdt[0]['pdt_iter'];
+    $r = array($pdt[0]['pdt_r1'], $pdt[0]['pdt_r2'], $pdt[0]['pdt_r3'], $pdt[0]['pdt_r4']);
+
+    //payoff
+    $P = array();
+    $keys = array();
+    $vals = array();
     //tensor agents
-    foreach ($arr as $r1) {
-        $pda_id1 = $r1['pda_id'];
-        $p = array($r1['pda_p1'], $r1['pda_p2'], $r1['pda_p3'], $r1['pda_p4']);
-        foreach ($arr as $r2) {
-            $pda_id2 = $r2['pda_id'];
-            
-            $q = array($r2['pda_p1'], $r2['pda_p2'], $r2['pda_p3'], $r2['pda_p4']);
-            
-            echo $pda_id1," ",$pda_id2,"\n";
-            
-//            cls_pd::fn_disp($p);
-//            echo "\n";
-//            cls_pd::fn_disp($q);
-//            echo "\n";
-            
+    for ($i = 0; $i < $na; $i++) {
+        $p = array($pda[$i]['pda_p1'], $pda[$i]['pda_p2'], $pda[$i]['pda_p3'], $pda[$i]['pda_p4']);
+        for ($j = 0; $j < $na; $j++) {
+            $q = array($pda[$j]['pda_p1'], $pda[$j]['pda_p2'], $pda[$j]['pda_p3'], $pda[$j]['pda_p4']);
             //markov
             $A = cls_pd::fn_mark($p, $q);
-//            cls_pd::fn_disp($A);
-//            echo "\n";
-            //init
-            $v = array(rand(), rand(), rand(), rand());
-            $v = cls_lin::fn_smul($v, 1e0 / cls_lin::fn_nrm2($v));
-//            cls_pd::fn_disp($v);
             //eig
-//            $v = cls_pd::fn_Au($A, $v);
-            $v = cls_pd::fn_eig1($A,$v);
-//            cls_pd::fn_disp($v);
-//            echo "\n";
-        } 
+            $v = cls_pd::fn_eig1($A);
+            //row
+            $keys[$j] = sprintf("r%dc%d", $i, $j);
+//            $keys[$j] = sprintf("r%dc%d",$pda[$i]['pda_id'],$pda[$j]['pda_id']);
+            $vals[$j] = cls_lin::fn_dot($v, $r);
+            //payoff
+            $P[$i] = array_combine($keys, $vals);
+        }
     }
+
+
+    $xml = $db->arr2dom($P, "P");
+    echo $xml->saveXML();
+
+    //init
+    $vals = array_fill(0, $na, 1 / $na);
+    //keys
+    for ($i = 0; $i < $na; $i++) {
+        $keys[$i] = sprintf("a%d", $i);
+    }
+
+    $R = array();
+    $s = array();
+    
+    //loop time
+    for ($i = 0; $i < $nt; $i++) {
+        $R[$i] = array_combine($keys, $vals);
+        $vals = cls_lin::fn_Au($P, $vals);//res
+//        var_dump($vals);
+//        $s[$i] = array_combine("s", $vals);
+        $vals = cls_lin::fn_smul($vals, 1e0 / cls_lin::fn_nrm1($vals));//re-weight
+    }
+    
+//    var_dump($P);
+//    var_dump($R);
+//    var_dump($s);
+    
+    $xml = $db->arr2dom($R, "R");
+    echo $xml->saveXML();
+    $xml = $db->arr2dom($s, "s");
+    echo $xml->saveXML();
+    
 }
