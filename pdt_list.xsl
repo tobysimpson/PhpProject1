@@ -93,10 +93,10 @@
                     <td>
                         <a>
                             <xsl:attribute name="href">
-                                <xsl:text>pdt.php?mth=eigs&amp;pdt_id=</xsl:text>
+                                <xsl:text>pdt.php?mth=eig&amp;pdt_id=</xsl:text>
                                 <xsl:value-of select="@pdt_id"/>
                             </xsl:attribute>
-                            <xsl:text>eigs</xsl:text>
+                            <xsl:text>eig</xsl:text>
                         </a>
                     </td>
                     <form action="pda.php?mth=insert" method="post">

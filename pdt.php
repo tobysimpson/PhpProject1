@@ -1,7 +1,8 @@
 <?php
 
 require "db1.php";
-include "la4.php";
+require_once 'cls_lin.php';
+require_once "cls_pd.php";
 
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
@@ -27,8 +28,8 @@ switch ($mth) {
     case "mark":
         pdt_mark();
         break;
-    case "eigs":
-        pdt_eigs();
+    case "eig":
+        pdt_eig();
         break;
     default:
         pdt_all();
@@ -124,10 +125,10 @@ function pdt_mark() {
     $res->close();
 }
 
-function pdt_eigs() {
+function pdt_eig() {
     $db = new db1();
     $pdt_id = filter_input(INPUT_GET, "pdt_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT pdt_id, pda_id1, pda_id2, a11,a12,a13,a14, a21,a22,a23,a24, a31,a32,a33,a34, a41,a42,a43,a44 FROM pdt_mark WHERE pdt_id = ? ORDER BY pda_id1, pda_id2 ASC;");
+    $qry = $db->conn->prepare("SELECT * FROM pda_info WHERE pdt_id = ?;");
     $qry->bind_param("i", $pdt_id);
     $qry->execute();
     $res = $qry->get_result();
@@ -135,64 +136,37 @@ function pdt_eigs() {
     $res->close();
 
     $xml = $db->arr2dom($arr, "res1");
-//    echo $xml->saveXML();
-    
-    //output
-    $dom = new DOMDocument('1.0', 'utf-8');
-    $dom->formatOutput = true;
-    $root = $dom->createElement('root');
-    $dom->appendChild($root);
-    
-    //import
-    $node = $dom->importNode($xml->firstChild, true);
-    $root->appendChild($node);
-    
-    echo $dom->saveXML();
-    
-    
+    echo $xml->saveXML();
 
-    //rows
-    foreach ($arr as $row) {
-
-//        echo $row['pdt_id'], " ", $row['pda_id1'], " ", $row['pda_id2'], "\n";
-//        
-        //fill mtx
-//        $a1 = [$row['a11'], $row['a12'], $row['a13'], $row['a14']];
-//        $a2 = [$row['a21'], $row['a22'], $row['a23'], $row['a24']];
-//        $a3 = [$row['a31'], $row['a32'], $row['a33'], $row['a34']];
-//        $a4 = [$row['a41'], $row['a42'], $row['a43'], $row['a44']];
-//        
-        //transpose
-        $a1 = array($row['a11'], $row['a21'], $row['a31'], $row['a41']);
-        $a2 = array($row['a12'], $row['a22'], $row['a32'], $row['a42']);
-        $a3 = array($row['a13'], $row['a23'], $row['a33'], $row['a43']);
-        $a4 = array($row['a14'], $row['a24'], $row['a34'], $row['a44']);
-
-        $A = array($a1, $a2, $a3, $a4);
-//        fn_disp4x4($A);
-        $v = array(rand(), rand(), rand(), rand());
-
-        //power iteration
-        for ($i = 0; $i < 500; $i++) {
-            $w = fn_Au($A, $v);
-            $w = fn_smul($w, 1e0 / fn_nrm1($w));
-            //conv
-            if (fn_nrm1(fn_esub($v, $w)) < 1e-15) {
-//                echo $i," ",fn_nrm1(fn_esub($v, $w)),"\n";
-                break;
-            }
-            $v = $w;
-        }//i
-//        fn_disp4($v);
-//        echo "\n";
-
-        $w = array(2, 0, 3, 1);
-
-//        echo $row['pdt_id'], " ", $row['pda_id1'], " ", $row['pda_id2'], " ", fn_dot($v, $w), "\n";
-
-        printf("%3d %3d %3d | %e\n", $row['pdt_id'], $row['pda_id1'], $row['pda_id2'], fn_dot($v, $w));
-
-        header("Content-Type: text/plain");
-    }//rows
-    
+    //tensor agents
+    foreach ($arr as $r1) {
+        $pda_id1 = $r1['pda_id'];
+        $p = array($r1['pda_p1'], $r1['pda_p2'], $r1['pda_p3'], $r1['pda_p4']);
+        foreach ($arr as $r2) {
+            $pda_id2 = $r2['pda_id'];
+            
+            $q = array($r2['pda_p1'], $r2['pda_p2'], $r2['pda_p3'], $r2['pda_p4']);
+            
+            echo $pda_id1," ",$pda_id2,"\n";
+            
+//            cls_pd::fn_disp($p);
+//            echo "\n";
+//            cls_pd::fn_disp($q);
+//            echo "\n";
+            
+            //markov
+            $A = cls_pd::fn_mark($p, $q);
+//            cls_pd::fn_disp($A);
+//            echo "\n";
+            //init
+            $v = array(rand(), rand(), rand(), rand());
+            $v = cls_lin::fn_smul($v, 1e0 / cls_lin::fn_nrm2($v));
+//            cls_pd::fn_disp($v);
+            //eig
+//            $v = cls_pd::fn_Au($A, $v);
+            $v = cls_pd::fn_eig1($A,$v);
+//            cls_pd::fn_disp($v);
+//            echo "\n";
+        } 
+    }
 }
