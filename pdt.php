@@ -181,6 +181,7 @@ function pdt_eig() {
     echo $xml->saveXML();
 
     //init
+    $f = array_fill(0, $na, 1 / $na);
     $vals = array_fill(0, $na, 1 / $na);
     //keys
     for ($i = 0; $i < $na; $i++) {
@@ -189,22 +190,26 @@ function pdt_eig() {
 
     $R = array();
     $s = array();
-    
+
     //loop time
     for ($i = 0; $i < $nt; $i++) {
-        $R[$i] = array_combine($keys, $vals);
-        $vals = cls_lin::fn_Au($P, $vals);//res
+        $R[$i] = array_combine($keys, $f);
+        $vals = cls_lin::fn_Au($P, $f);
         $s[$i]['s'] = array_sum($vals);
-        $vals = cls_lin::fn_smul($vals, 1e0 / cls_lin::fn_nrm1($vals));//re-weight
+        $m = array_sum($vals) / $na; //mean
+        //loop agents
+        for ($j = 0; $j < $na; $j++) {
+            $f[$j] *= $vals[$j] / $m; //updtae
+        }
+//        $vals = cls_lin::fn_smul($vals, 1e0 / cls_lin::fn_nrm1($vals));//re-weight
     }
-    
+
 //    var_dump($P);
 //    var_dump($R);
 //    var_dump($s);
-    
+
     $xml = $db->arr2dom($R, "R");
     echo $xml->saveXML();
     $xml = $db->arr2dom($s, "s");
     echo $xml->saveXML();
-    
 }
