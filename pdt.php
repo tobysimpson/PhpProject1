@@ -182,7 +182,7 @@ function pdt_eig() {
 
     //init
     $f = array_fill(0, $na, 1 / $na);
-    $vals = array_fill(0, $na, 1 / $na);
+//    $vals = array_fill(0, $na, 1 / $na);
     //keys
     for ($i = 0; $i < $na; $i++) {
         $keys[$i] = sprintf("a%d", $i);
@@ -199,9 +199,9 @@ function pdt_eig() {
         $m = array_sum($vals) / $na; //mean
         //loop agents
         for ($j = 0; $j < $na; $j++) {
-            $f[$j] *= $vals[$j] / $m; //updtae
+            $f[$j] *= ($vals[$j] / $m); //update
         }
-//        $vals = cls_lin::fn_smul($vals, 1e0 / cls_lin::fn_nrm1($vals));//re-weight
+        $f = cls_lin::fn_smul($f, 1e0 / cls_lin::fn_nrm1($f));//re-weight
     }
 
 //    var_dump($P);
