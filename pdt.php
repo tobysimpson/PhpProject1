@@ -125,6 +125,7 @@ function pdt_mark() {
     $res->close();
 }
 
+//plays the game
 function pdt_eig() {
     $db = new db1();
     $pdt_id = filter_input(INPUT_GET, "pdt_id", FILTER_VALIDATE_INT);
@@ -142,12 +143,6 @@ function pdt_eig() {
     $res = $qry->get_result();
     $pda = $db->res2arr($res);
     $res->close();
-
-    //debug
-    $xml = $db->arr2dom($pdt, "pdt");
-    echo $xml->saveXML();
-    $xml = $db->arr2dom($pda, "pda");
-    echo $xml->saveXML();
 
     //params (first row)
     $na = count($pda);
@@ -176,10 +171,6 @@ function pdt_eig() {
         }
     }
 
-
-    $xml = $db->arr2dom($P, "P");
-    echo $xml->saveXML();
-
     //init
     $f = array_fill(0, $na, 1 / $na);
 //    $vals = array_fill(0, $na, 1 / $na);
@@ -207,9 +198,31 @@ function pdt_eig() {
 //    var_dump($P);
 //    var_dump($R);
 //    var_dump($s);
+    
+    //master
+    $dom1 = new DOMDocument('1.0', 'utf-8');
+    $dom1->formatOutput = true;
+    $dom1->appendChild($dom1->createElement('root'));
+    //import
+    $dom2 = $db->arr2dom($pdt, "pdt");
+    $node = $dom1->importNode($dom2->firstChild, true);
+    $dom1->documentElement->appendChild($node);
+    //import
+    $dom2 = $db->arr2dom($pda, "pda");
+    $node = $dom1->importNode($dom2->firstChild, true);
+    $dom1->documentElement->appendChild($node);
+    //import
+    $dom2 = $db->arr2dom($P, "P");
+    $node = $dom1->importNode($dom2->firstChild, true);
+    $dom1->documentElement->appendChild($node);
+    //import
+    $dom2 = $db->arr2dom($R, "R");
+    $node = $dom1->importNode($dom2->firstChild, true);
+    $dom1->documentElement->appendChild($node);
+    //import
+    $dom2 = $db->arr2dom($s, "s");
+    $node = $dom1->importNode($dom2->firstChild, true);
+    $dom1->documentElement->appendChild($node);
 
-    $xml = $db->arr2dom($R, "R");
-    echo $xml->saveXML();
-    $xml = $db->arr2dom($s, "s");
-    echo $xml->saveXML();
+    echo $dom1->saveXML();
 }

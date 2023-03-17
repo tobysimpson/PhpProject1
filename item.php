@@ -3,7 +3,6 @@
 require_once "db1.php";
 require_once "cls_xml.php";
 
-
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
@@ -87,8 +86,7 @@ function item_svg() {
     $res = $qry->get_result();
     $arr = $db->res2arr($res);
     $res->close();
-    $dom2 = $db->arr2dom($arr, "item");
-    
+
     $dom2 = cls_xml::array2dom($arr, "item");
 //    echo $dom2->saveXML();
 //main
@@ -108,9 +106,8 @@ function item_svg() {
 
 function item_insert() {
     $db = new db1();
-    $v1 = 2*(rand()/getrandmax())-1;
-//    $v2 = 2*(rand()/getrandmax())-1;
-    $v2 = sin($v1*pi());
+    $v1 = 2 * (rand() / getrandmax()) - 1;
+    $v2 = sin($v1 * pi());
     $qry = $db->conn->prepare("INSERT INTO item_info (item_val1, item_val2) VALUES (?,?);");
     $qry->bind_param("dd", $v1, $v2);
     $qry->execute();
