@@ -1,6 +1,8 @@
 <?php
 
-require "db1.php";
+require_once "db1.php";
+require_once "cls_xml.php";
+
 
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
@@ -86,6 +88,8 @@ function item_svg() {
     $arr = $db->res2arr($res);
     $res->close();
     $dom2 = $db->arr2dom($arr, "item");
+    
+    $dom2 = cls_xml::array2dom($arr, "item");
 //    echo $dom2->saveXML();
 //main
     $dom1 = new DOMDocument('1.0', 'utf-8');

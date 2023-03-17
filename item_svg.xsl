@@ -15,15 +15,14 @@
     
     <xsl:template match="root">
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
-            
-            <!--<svg viewBox="{-$w div 2} {-$h div 2} {$w} {$h}" width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" viewBox="0 {-$h} {$w} {$h}">-->
             <style>* { font-size: 100%; font-family: sans-serif; font-weight: 300; }</style> 
-   
             <!-- title -->
             <g id="title">
-                <circle cx="0" cy="0" r="10" fill="red"/>
-                <text x="0" y="10">
-                    <xsl:text>hello</xsl:text>
+                <circle cx="10" cy="15" r="5" fill="blue"/>
+                <text x="20" y="20">
+                    <a href="index.php">
+                        <xsl:text>hello</xsl:text>
+                    </a>
                 </text>
             </g>
             
@@ -79,35 +78,22 @@
          
                 <g id="key">
                     <text x="0" y="20">
+                        <xsl:text>min, max, range</xsl:text>
+                    </text>
+                    <text x="0" y="40">
                         <xsl:value-of select="format-number($x_min,'0.000')"/>
                         <xsl:text>, </xsl:text>
                         <xsl:value-of select="format-number($x_max,'0.000')"/>
                         <xsl:text>, </xsl:text>
                         <xsl:value-of select="format-number($x_rng,'0.000')"/>
                     </text>
-                    <text x="0" y="40">
+                    <text x="0" y="60">
                         <xsl:value-of select="format-number($y_min,'0.000')"/>
                         <xsl:text>, </xsl:text>
                         <xsl:value-of select="format-number($y_max,'0.000')"/>
                         <xsl:text>, </xsl:text>
                         <xsl:value-of select="format-number($y_rng,'0.000')"/>
                     </text>
-                </g>
-            
-                <g id= "dots">
-                    <xsl:for-each select="res[@name='item']/row">
-                        <xsl:sort select="@item_val1" data-type="number" order="ascending"/>
-                        <xsl:variable name="x" select="format-number($pw * (@item_val1 - $x_min) div $x_rng,'0.000')"/>
-                        <xsl:variable name="y" select="format-number($ph * (1 - (@item_val2 - $y_min) div $y_rng),'0.000')"/>
-                        <circle cx="{$x}" cy="{$y}" r="5" stroke="red" fill="none"/>
-                        <!--                        <text x="{$x}" y="{$y}">
-                            <xsl:text>(</xsl:text>
-                            <xsl:value-of select="format-number(@item_val1,'0.000')"/>
-                            <xsl:text>,</xsl:text>
-                            <xsl:value-of select="format-number(@item_val2,'0.000')"/>
-                            <xsl:text>)</xsl:text>
-                        </text>-->
-                    </xsl:for-each>
                 </g>
 
                 <g id="line1">
@@ -134,6 +120,29 @@
                     </xsl:variable>
                     <path fill="none" stroke="blue" d="{$line1}"/>
                 </g>
+                
+                <g id= "dots">
+                    <xsl:for-each select="res[@name='item']/row">
+                        <xsl:sort select="@item_val1" data-type="number" order="ascending"/>
+                        <xsl:variable name="x" select="format-number($pw * (@item_val1 - $x_min) div $x_rng,'0.000')"/>
+                        <xsl:variable name="y" select="format-number($ph * (1 - (@item_val2 - $y_min) div $y_rng),'0.000')"/>
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:text>item.php?mth=edit&amp;item_id=</xsl:text>
+                                <xsl:value-of select="@item_id"/>
+                            </xsl:attribute>
+                            <circle cx="{$x}" cy="{$y}" r="5" stroke="red" fill="lightgrey"/>
+                        </a>
+                        <!--                        <text x="{$x}" y="{$y}" text-anchor="middle">
+                            <xsl:text>(</xsl:text>
+                            <xsl:value-of select="format-number(@item_val1,'0.000')"/>
+                            <xsl:text>,</xsl:text>
+                            <xsl:value-of select="format-number(@item_val2,'0.000')"/>
+                            <xsl:text>)</xsl:text>
+                        </text>-->
+                    </xsl:for-each>
+                </g>
+                
             </g>
         </svg>
     </xsl:template>
