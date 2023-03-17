@@ -17,6 +17,9 @@ switch ($mth) {
     case "update":
         item_update();
         break;
+    case "svg":
+        item_svg();
+        break;
     default:
         item_list();
 }
@@ -69,6 +72,31 @@ function item_update() {
     $qry = $db->conn->prepare("UPDATE item_info SET item_updated = LOCALTIMESTAMP(), item_name = ?, item_val1 = ?, item_val2 = ? WHERE item_id = ?;");
     $qry->bind_param("sddi", substr($item_name, 0, 20), $item_val1, $item_val2, $item_id);
     $qry->execute();
-
     header("Location: item.php");
+}
+
+function item_svg() {
+    $db = new db1();
+    $qry = $db->conn->prepare("SELECT * FROM item_info;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $arr = $db->res2arr($res);
+    $res->close();
+    $dom2 = $db->arr2dom($arr, "item");
+//    echo $dom2->saveXML();
+   
+    //main
+    $dom1 = new DOMDocument('1.0', 'utf-8');
+    $dom1->formatOutput = true;
+    $dom1->appendChild($dom1->createElement('root'));
+//    echo $dom1->saveXML();
+    
+    //import
+    $node = $dom1->importNode($dom2->firstChild, true);
+    $dom1->documentElement->appendChild($node);
+    echo $dom1->saveXML();
+    
+    //transform
+    $xsl = $db->xml2dom("item_svg.xsl");
+    echo $db->trans($dom1, $xsl);
 }

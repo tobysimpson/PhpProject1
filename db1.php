@@ -108,7 +108,7 @@ class db1 {
     function arr2dom($arr, $name) {
         $dom = new DOMDocument('1.0', 'utf-8');
         $dom->formatOutput = true;
-        $root = $dom->createElement('arr');
+        $root = $dom->createElement('res');
         $this->addAttribute($dom, $root, "name", $name);
         $dom->appendChild($root);
 

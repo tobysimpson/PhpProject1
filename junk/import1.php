@@ -20,5 +20,6 @@ echo $dom2->saveXML();
 
 //import
 $node = $dom1->importNode($dom2->firstChild, true);
+//append
 $dom1->documentElement->appendChild($node);
 echo $dom1->saveXML();
