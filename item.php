@@ -20,6 +20,9 @@ switch ($mth) {
     case "svg":
         item_svg();
         break;
+    case "insert":
+        item_insert();
+        break;
     default:
         item_list();
 }
@@ -56,7 +59,7 @@ function item_edit() {
     $qry->execute();
     $res = $qry->get_result();
     $xml = $db->res2dom($res);
-    //echo $xml->saveXML();
+//echo $xml->saveXML();
     $xsl = $db->xml2dom("item_edit.xsl");
     echo $db->trans($xml, $xsl);
     $res->close();
@@ -68,7 +71,7 @@ function item_update() {
     $item_name = filter_input(INPUT_POST, "item_name", FILTER_SANITIZE_STRING);
     $item_val1 = filter_input(INPUT_POST, "item_val1", FILTER_VALIDATE_FLOAT);
     $item_val2 = filter_input(INPUT_POST, "item_val2", FILTER_VALIDATE_FLOAT);
-    //echo $item_name,$item_id,$item_val1,$item_val2;
+//echo $item_name,$item_id,$item_val1,$item_val2;
     $qry = $db->conn->prepare("UPDATE item_info SET item_updated = LOCALTIMESTAMP(), item_name = ?, item_val1 = ?, item_val2 = ? WHERE item_id = ?;");
     $qry->bind_param("sddi", substr($item_name, 0, 20), $item_val1, $item_val2, $item_id);
     $qry->execute();
@@ -84,19 +87,28 @@ function item_svg() {
     $res->close();
     $dom2 = $db->arr2dom($arr, "item");
 //    echo $dom2->saveXML();
-   
-    //main
+//main
     $dom1 = new DOMDocument('1.0', 'utf-8');
     $dom1->formatOutput = true;
     $dom1->appendChild($dom1->createElement('root'));
 //    echo $dom1->saveXML();
-    
-    //import
+//import
     $node = $dom1->importNode($dom2->firstChild, true);
     $dom1->documentElement->appendChild($node);
     echo $dom1->saveXML();
-    
-    //transform
+
+//transform
     $xsl = $db->xml2dom("item_svg.xsl");
     echo $db->trans($dom1, $xsl);
+}
+
+function item_insert() {
+    $db = new db1();
+    $v1 = 2*(rand()/getrandmax())-1;
+//    $v2 = 2*(rand()/getrandmax())-1;
+    $v2 = sin($v1*pi());
+    $qry = $db->conn->prepare("INSERT INTO item_info (item_val1, item_val2) VALUES (?,?);");
+    $qry->bind_param("dd", $v1, $v2);
+    $qry->execute();
+    header("Location: item.php?mth=list");
 }

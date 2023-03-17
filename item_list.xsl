@@ -2,13 +2,16 @@
 <xsl:stylesheet version="1.0" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="utf-8"/>
-    <xsl:include href="layout.xsl"/>
     
+    <xsl:include href="layout.xsl"/>
     <xsl:template match="/">
         <xsl:call-template name="page"/> 
     </xsl:template>
 
     <xsl:template match="root">
+        <form action="item.php?mth=insert" method="post">
+            <input type="submit" value="add new"/>
+        </form>
         <table class="table1">
             <tr>
                 <th>item_id</th>
@@ -34,10 +37,10 @@
                         <xsl:value-of select="@item_name"/>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="format-number(@item_val1, '###,##0.000')"/>
+                        <xsl:value-of select="format-number(@item_val1, '###,##0.0000')"/>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="format-number(@item_val2, '###,##0.000')"/>
+                        <xsl:value-of select="format-number(@item_val2, '###,##0.0000')"/>
                     </td>
                     <td>
                         <a>
