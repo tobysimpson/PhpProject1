@@ -7,8 +7,7 @@ class cls_usr {
     public static function check() {
         $usr_id = filter_input(INPUT_COOKIE, "usr_id", FILTER_SANITIZE_NUMBER_INT);
         $db = new cls_db();
-//        $qry = $db->conn->prepare("SELECT usr_id FROM usr_info WHERE usr_id = ?;");
-        $qry = $db->conn->prepare("UPDATE usr_info SET usr_updated = LOCALTIMESTAMP() WHERE usr_id = ?;");
+        $qry = $db->conn->prepare("SELECT usr_id FROM usr_info WHERE usr_id = ?;");
         $qry->bind_param("i", $usr_id);
         $qry->execute();
         $res = $qry->get_result();

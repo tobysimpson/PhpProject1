@@ -1,13 +1,14 @@
 <?php
 
-require "db1.php";
+//require "db1.php";
+require_once "cls_db.php";
+require_once "cls_usr.php";
+require_once "cls_xml.php";
+require_once "cls_utl.php";
 
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
-    case "all":
-        pda_all();
-        break;
     case "edit":
         pda_edit();
         break;
@@ -25,40 +26,41 @@ switch ($mth) {
 }
 
 function pda_all() {
-    $db = new db1();
-    $qry = $db->conn->prepare("SELECT pda_info.*, pdt_info.pdt_name, usr_info.usr_name FROM pda_info INNER JOIN pdt_info ON pda_info.pdt_id = pdt_info.pdt_id INNER JOIN usr_info ON usr_info.usr_id = pda_info.usr_id;");
+    $db = new cls_db();
+    $qry = $db->conn->prepare("SELECT * FROM pda_info;");
     $qry->execute();
     $res = $qry->get_result();
-    $xml = $db->res2dom($res);
-    $xsl = $db->xml2dom("pda_list.xsl");
-    echo $db->trans($xml, $xsl);
-    $res->close();
+    $xml = cls_xml::res2dom($res);
+    $xsl = cls_xml::file2dom("pda_list.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
 }
 
 function pda_edit() {
-    $db = new db1();
+    $db = new cls_db();
     $pda_id = filter_input(INPUT_GET, "pda_id", FILTER_VALIDATE_INT);
     $qry = $db->conn->prepare("SELECT * FROM pda_info WHERE pda_id = ?;");
     $qry->bind_param("i", $pda_id);
     $qry->execute();
     $res = $qry->get_result();
-    $xml = $db->res2dom($res);
-    $xsl = $db->xml2dom("pda_edit.xsl");
-    echo $db->trans($xml, $xsl);
+    $xml = cls_xml::res2dom($res);
+    $xsl = cls_xml::file2dom("pda_edit.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
     $res->close();
 }
 
 function pda_insert() {
-    $db = new db1();
+    $usr_id = cls_usr::check();
+    $db = new cls_db();
     $pdt_id = filter_input(INPUT_POST, "pdt_id", FILTER_VALIDATE_INT);
     $qry = $db->conn->prepare("INSERT INTO pda_info (pdt_id,usr_id,pda_p1,pda_p2,pda_p3,pda_p4) VALUES (?,?,RAND(),RAND(),RAND(),RAND());");
-    $qry->bind_param("ii", $pdt_id, $db->$usr_id);
+    $qry->bind_param("ii", $pdt_id, $usr_id);
     $qry->execute();
     header("Location: pdt.php?mth=pda&pdt_id=".$pdt_id);
 }
 
 function pda_update() {
-    $db = new db1();
+    $usr_id = cls_usr::check();
+    $db = new cls_db();
     $pda_id = filter_input(INPUT_POST, "pda_id", FILTER_VALIDATE_INT);
     $pdt_id = filter_input(INPUT_POST, "pdt_id", FILTER_VALIDATE_INT);
     $pda_name = filter_input(INPUT_POST, "pda_name", FILTER_SANITIZE_STRING);
@@ -68,21 +70,21 @@ function pda_update() {
     $pda_p4 = filter_input(INPUT_POST, "pda_p4", FILTER_VALIDATE_FLOAT);
         
     $qry = $db->conn->prepare("UPDATE pda_info SET pda_updated = LOCALTIMESTAMP(), pda_name = ?, pda_p1 = ?, pda_p2 = ?, pda_p3 = ?, pda_p4 = ? WHERE pda_id = ? AND usr_id = ?;");
-    $qry->bind_param("sddddii", substr($pda_name, 0, 20), $db->clamp($pda_p1,0,1), $db->clamp($pda_p2,0,1), $db->clamp($pda_p3,0,1), $db->clamp($pda_p4,0,1), $pda_id, $db->$usr_id); 
+    $qry->bind_param("sddddii", substr($pda_name, 0, 20), cls_utl::clamp($pda_p1,0,1), cls_utl::clamp($pda_p2,0,1), cls_utl::clamp($pda_p3,0,1), cls_utl::clamp($pda_p4,0,1), $pda_id, $usr_id); 
     $qry->execute();
     
     header("Location: pdt.php?mth=pda&pdt_id=".$pdt_id);
 }
 
 function pda_usr() {
-    $db = new db1();
-    $usr_id = filter_input(INPUT_GET, "usr_id", FILTER_VALIDATE_INT);
+    $usr_id = cls_usr::check();
+    $db = new cls_db();
     $qry = $db->conn->prepare("SELECT * FROM pda_info WHERE usr_id = ?;");
     $qry->bind_param("i", $usr_id);
     $qry->execute();
     $res = $qry->get_result();
-    $xml = $db->res2dom($res);
-    $xsl = $db->xml2dom("pda_list.xsl");
-    echo $db->trans($xml, $xsl);
+    $xml = cls_xml::res2dom($res);
+    $xsl = cls_xml::file2dom("pda_list.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
     $res->close();
 }

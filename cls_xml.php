@@ -19,6 +19,29 @@ class cls_xml {
         return $dom;
     }
     
+    public static function file2dom($filename) {
+        $dom = new DOMDocument;
+        $dom->load($filename);
+        return $dom;
+    }
+
+    public static function xsltrans($xml, $xsl) {
+        $proc = new XSLTProcessor;
+        $proc->importStyleSheet($xsl);
+        return $proc->transformToXML($xml);
+    }
+
+    private static function addAttribute($dom, $ele, $key, $val) {
+        $att = $dom->createAttribute($key);
+        $att->value = (is_null($val) ? 'NULL' : $val);  
+        $ele->appendChild($att);
+    }
+    
+    /*
+     * =========================
+     * recordsets
+     * =========================
+     */
     
     public static function res2dom($res) {
         $dom = new DOMDocument('1.0', 'utf-8');
@@ -47,23 +70,13 @@ class cls_xml {
         }
         return $dom;
     }
-
-    public static function file2dom($filename) {
-        $dom = new DOMDocument;
-        $dom->load($filename);
-        return $dom;
-    }
-
-    public static function xsltrans($xml, $xsl) {
-        $proc = new XSLTProcessor;
-        $proc->importStyleSheet($xsl);
-        return $proc->transformToXML($xml);
-    }
-
-    private static function addAttribute($dom, $ele, $key, $val) {
-        $att = $dom->createAttribute($key);
-        $att->value = (is_null($val) ? 'NULL' : $val);  
-        $ele->appendChild($att);
+    
+    public static function res2arr($res) {
+        $arr = array();
+        while ($row = $res->fetch_assoc()) {
+            $arr[] = $row;
+        }
+        return $arr;
     }
 
 }

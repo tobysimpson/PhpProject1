@@ -41,7 +41,6 @@ function usr_all() {
     echo cls_xml::xsltrans($xml, $xsl);
 }
 
-
 function usr_edit() {
     $usr_id = cls_usr::check();
     $db = new cls_db();

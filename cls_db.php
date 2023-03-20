@@ -22,7 +22,7 @@ class cls_db {
         $this->conn->close();
         $this->conn = null;
     }
-
+    
     /*
      * ========================
      * singleton stuff
