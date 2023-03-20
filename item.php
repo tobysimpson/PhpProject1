@@ -87,7 +87,7 @@ function item_svg() {
     $arr = $db->res2arr($res);
     $res->close();
 
-    $dom2 = cls_xml::array2dom($arr, "item");
+    $dom2 = cls_xml::arr2dom($arr, "item");
 //    echo $dom2->saveXML();
 //main
     $dom1 = new DOMDocument('1.0', 'utf-8');

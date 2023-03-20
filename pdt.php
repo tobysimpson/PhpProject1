@@ -3,6 +3,8 @@
 require_once "db1.php";
 require_once 'cls_lin.php';
 require_once "cls_pd.php";
+require_once "cls_xml.php";
+
 
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
@@ -204,23 +206,23 @@ function pdt_eig() {
     $dom1->formatOutput = true;
     $dom1->appendChild($dom1->createElement('root'));
     //import
-    $dom2 = $db->arr2dom($pdt, "pdt");
+    $dom2 = cls_xml::arr2dom($pdt, "pdt");
     $node = $dom1->importNode($dom2->firstChild, true);
     $dom1->documentElement->appendChild($node);
     //import
-    $dom2 = $db->arr2dom($pda, "pda");
+    $dom2 = cls_xml::arr2dom($pda, "pda");
     $node = $dom1->importNode($dom2->firstChild, true);
     $dom1->documentElement->appendChild($node);
     //import
-    $dom2 = $db->arr2dom($P, "P");
+    $dom2 = cls_xml::arr2dom($P, "");
     $node = $dom1->importNode($dom2->firstChild, true);
     $dom1->documentElement->appendChild($node);
     //import
-    $dom2 = $db->arr2dom($R, "R");
+    $dom2 = cls_xml::arr2dom($R, "R");
     $node = $dom1->importNode($dom2->firstChild, true);
     $dom1->documentElement->appendChild($node);
     //import
-    $dom2 = $db->arr2dom($s, "s");
+    $dom2 = cls_xml::arr2dom($s, "s");
     $node = $dom1->importNode($dom2->firstChild, true);
     $dom1->documentElement->appendChild($node);
 

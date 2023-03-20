@@ -21,7 +21,7 @@
                 <circle cx="10" cy="15" r="5" fill="blue"/>
                 <text x="20" y="20">
                     <a href="index.php">
-                        <xsl:text>hello</xsl:text>
+                        <xsl:text>SVG test</xsl:text>
                     </a>
                 </text>
             </g>
@@ -133,7 +133,7 @@
                             </xsl:attribute>
                             <circle cx="{$x}" cy="{$y}" r="5" stroke="red" fill="lightgrey"/>
                         </a>
-                        <!--                        <text x="{$x}" y="{$y}" text-anchor="middle">
+                        <!--<text x="{$x}" y="{$y}" text-anchor="middle">
                             <xsl:text>(</xsl:text>
                             <xsl:value-of select="format-number(@item_val1,'0.000')"/>
                             <xsl:text>,</xsl:text>

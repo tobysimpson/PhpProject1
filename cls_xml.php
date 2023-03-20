@@ -2,7 +2,7 @@
 
 class cls_xml {
 
-    public static function array2dom($arr, $name) {
+    public static function arr2dom($arr, $name) {
         $dom = new DOMDocument('1.0', 'utf-8');
         $dom->formatOutput = true;
         $root = $dom->createElement('res');
