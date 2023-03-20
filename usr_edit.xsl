@@ -10,25 +10,25 @@
     </xsl:template>
     
     
-    <xsl:template match="root/row">
+    <xsl:template match="root">
         <table class="table2">
             <form action="usr.php?mth=update" method="post">
                <tr>
-                    <td>usr_id</td>
+                    <th>usr_id</th>
                     <td>
                         <input type="text" name="usr_id" readonly="true">
                             <xsl:attribute name="value">
-                                <xsl:value-of select="@usr_id"/>
+                                <xsl:value-of select="row/@usr_id"/>
                             </xsl:attribute>
                         </input>
                     </td>
                 </tr>
                 <tr>
-                    <td>usr_name</td>
+                    <th>usr_name</th>
                     <td>
                         <input type="text" name="usr_name" length="20">
                             <xsl:attribute name="value">
-                                <xsl:value-of select="@usr_name"/>
+                                <xsl:value-of select="row/@usr_name"/>
                             </xsl:attribute>
                         </input>
                     </td>

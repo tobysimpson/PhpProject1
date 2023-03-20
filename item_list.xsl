@@ -54,5 +54,9 @@
                 </tr>
             </xsl:for-each> 
         </table>
+        <p/>
+        <form action="item.php?mth=reset" method="post">
+            <input type="submit" value="reset"/>
+        </form>
     </xsl:template>
 </xsl:stylesheet>

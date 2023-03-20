@@ -1,7 +1,7 @@
 <?php
 
 require_once "db1.php";
-require_once 'cls_lin.php';
+require_once 'cls_la.php';
 require_once "cls_pd.php";
 require_once "cls_xml.php";
 
@@ -167,7 +167,7 @@ function pdt_eig() {
             //row
             $keys[$j] = sprintf("r%dc%d", $i, $j);
 //            $keys[$j] = sprintf("r%dc%d",$pda[$i]['pda_id'],$pda[$j]['pda_id']);
-            $vals[$j] = cls_lin::fn_dot($v, $r);
+            $vals[$j] = cls_la::fn_dot($v, $r);
             //payoff
             $P[$i] = array_combine($keys, $vals);
         }
@@ -187,14 +187,14 @@ function pdt_eig() {
     //loop time
     for ($i = 0; $i < $nt; $i++) {
         $R[$i] = array_combine($keys, $f);
-        $vals = cls_lin::fn_Au($P, $f);
+        $vals = cls_la::fn_Au($P, $f);
         $s[$i]['s'] = array_sum($vals);
         $m = array_sum($vals) / $na; //mean
         //loop agents
         for ($j = 0; $j < $na; $j++) {
             $f[$j] *= ($vals[$j] / $m); //update
         }
-        $f = cls_lin::fn_smul($f, 1e0 / cls_lin::fn_nrm1($f));//re-weight
+        $f = cls_la::fn_smul($f, 1e0 / cls_la::fn_nrm1($f));//re-weight
     }
 
 //    var_dump($P);

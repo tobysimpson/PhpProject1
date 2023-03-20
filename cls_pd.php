@@ -25,13 +25,13 @@ class cls_pd {
         $v = array(rand(), rand(), rand(), rand());
 //        $v = array(1,2,3,4);
         //normalise
-        $v = cls_lin::fn_smul($v, 1e0 / cls_lin::fn_nrm2($v));
+        $v = cls_la::fn_smul($v, 1e0 / cls_la::fn_nrm2($v));
         //power iteration
         for ($i = 0; $i < 200; $i++) {
-            $w = cls_lin::fn_Au($A, $v);
-            $w = cls_lin::fn_smul($w, 1e0 / cls_lin::fn_nrm1($w));
+            $w = cls_la::fn_Au($A, $v);
+            $w = cls_la::fn_smul($w, 1e0 / cls_la::fn_nrm1($w));
             //conv
-            if (cls_lin::fn_nrm1(cls_lin::fn_esub($v, $w)) < 1e-15) {
+            if (cls_la::fn_nrm1(cls_la::fn_esub($v, $w)) < 1e-15) {
 //                echo $i, " ", cls_lin::fn_nrm1(cls_lin::fn_esub($v, $w)), "\n";
                 break;
             }

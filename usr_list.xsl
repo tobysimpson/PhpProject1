@@ -16,8 +16,8 @@
                 <th>usr_updated</th>
                 <th>usr_name</th>
 <!--                <th>remote_addr</th>
-                <th>remote_port</th>-->
-                <th>hostname</th>
+                <th>remote_port</th>
+                <th>hostname</th>-->
                 <th colspan="2"></th>
             </tr>
             <xsl:for-each select="row">
@@ -39,10 +39,10 @@
                     </td>
                     <td>
                         <xsl:value-of select="@remote_port"/>
-                    </td>-->
+                    </td>
                     <td style="text-align:left">
                         <xsl:value-of select="@hostname"/>
-                    </td>
+                    </td>-->
                     <td>
                         <a>
                             <xsl:attribute name="href">

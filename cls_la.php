@@ -1,6 +1,6 @@
 <?php
 
-class cls_lin {
+class cls_la {
 
     //scalar mult
     public static function fn_smul($u, $a) {

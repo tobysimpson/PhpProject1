@@ -18,6 +18,35 @@ class cls_xml {
         }
         return $dom;
     }
+    
+    
+    public static function res2dom($res) {
+        $dom = new DOMDocument('1.0', 'utf-8');
+        $dom->formatOutput = true;
+//        $xsl = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="xsl1.xsl"');
+//        $dom->appendChild($xsl);
+        $root = $dom->createElement('root');
+        $dom->appendChild($root);
+//        //fields
+//        while ($finfo = $res->fetch_field()) {
+//            $node = $dom->createElement('fld');
+//            $this->addAttribute($dom, $node, "table", $finfo->table);
+//            $this->addAttribute($dom, $node, "name", $finfo->name);
+//            $this->addAttribute($dom, $node, "type", $finfo->type);
+//            $this->addAttribute($dom, $node, "flags", $finfo->flags);
+//            $this->addAttribute($dom, $node, "max_length", $finfo->max_length);
+//            $root->appendChild($node);
+//        }
+        //rows
+        while ($row = $res->fetch_assoc()) {
+            $node = $dom->createElement('row');
+            foreach ($row as $key => $val) {
+                self::addAttribute($dom, $node, $key, $val);
+            }
+            $root->appendChild($node);
+        }
+        return $dom;
+    }
 
     public static function file2dom($filename) {
         $dom = new DOMDocument;
@@ -31,9 +60,9 @@ class cls_xml {
         return $proc->transformToXML($xml);
     }
 
-    private static function addAttribute($dom, $ele, $key, $value) {
+    private static function addAttribute($dom, $ele, $key, $val) {
         $att = $dom->createAttribute($key);
-        $att->value = (is_null($value) ? 'NULL' : $value);  //handle nulls
+        $att->value = (is_null($val) ? 'NULL' : $val);  
         $ele->appendChild($att);
     }
 

@@ -35,6 +35,11 @@
                     <a href="item.php?mth=svg">item_svg</a>
                 </td>
             </tr>
+<!--            <tr>
+                <td>
+                    <a href="item.php?mth=reset">item_reset</a>
+                </td>
+            </tr>-->
             <tr>
                 <th style="text-align:left">users</th>
             </tr>

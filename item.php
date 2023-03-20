@@ -24,6 +24,9 @@ switch ($mth) {
     case "insert":
         item_insert();
         break;
+    case "reset":
+        item_reset();
+        break;
     default:
         item_list();
 }
@@ -97,7 +100,7 @@ function item_svg() {
 //import
     $node = $dom1->importNode($dom2->firstChild, true);
     $dom1->documentElement->appendChild($node);
-    echo $dom1->saveXML();
+//    echo $dom1->saveXML();
 
 //transform
     $xsl = $db->xml2dom("item_svg.xsl");
@@ -110,6 +113,13 @@ function item_insert() {
     $v2 = sin($v1 * pi());
     $qry = $db->conn->prepare("INSERT INTO item_info (item_val1, item_val2) VALUES (?,?);");
     $qry->bind_param("dd", $v1, $v2);
+    $qry->execute();
+    header("Location: item.php?mth=list");
+}
+
+function item_reset() {
+    $db = new db1();
+    $qry = $db->conn->prepare("DELETE FROM item_info;");
     $qry->execute();
     header("Location: item.php?mth=list");
 }

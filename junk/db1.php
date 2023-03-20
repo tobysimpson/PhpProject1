@@ -11,6 +11,7 @@ class db1 {
     private $dbname = "webgame";
     //objects
     public $conn = null;
+    public $usr_id = null;
 
     /*
      * ========================
@@ -23,7 +24,7 @@ class db1 {
         if ($this->conn->connect_error) {
             die("connection failed: " . $this->conn->connect_error);
         }
-//        $this->$usr_id = $this->usr_identify();
+        $this->$usr_id = $this->usr_identify();
     }
 
     public function __destruct() {
@@ -31,11 +32,29 @@ class db1 {
         $this->conn = null;
     }
 
+    public function hello() {
+        echo "hello";
+        return true;
+    }
+
     /*
      * ========================
      * user
      * ========================
      */
+
+    public function usr_insert($remote_addr, $remote_port, $hostname) {
+        $qry = $this->conn->prepare("INSERT INTO usr_info (remote_addr,remote_port,hostname) VALUES (?,?,?);");
+        $qry->bind_param("sis", $remote_addr, $remote_port, $hostname);
+        $qry->execute();
+        return mysqli_insert_id($this->conn);
+    }
+
+    public function usr_update($usr_id) {
+        $qry = $this->conn->prepare("UPDATE usr_info SET usr_updated = LOCALTIMESTAMP() WHERE usr_id = ?;");
+        $qry->bind_param("i", $usr_id);
+        $qry->execute();
+    }
 
     public function usr_identify() {
         $usr_id = filter_input(INPUT_COOKIE, "usr_id", FILTER_SANITIZE_NUMBER_INT);
@@ -51,19 +70,6 @@ class db1 {
         setcookie("usr_id", $usr_id, time() + (365 * 86400), "/"); // 86400 = 1 day
 
         return $usr_id;
-    }
-
-    public function usr_insert($remote_addr, $remote_port, $hostname) {
-        $qry = $this->conn->prepare("INSERT INTO usr_info (remote_addr,remote_port,hostname) VALUES (?,?,?);");
-        $qry->bind_param("sis", $remote_addr, $remote_port, $hostname);
-        $qry->execute();
-        return mysqli_insert_id($this->conn);
-    }
-
-    public function usr_update($usr_id) {
-        $qry = $this->conn->prepare("UPDATE usr_info SET usr_updated = LOCALTIMESTAMP() WHERE usr_id = ?;");
-        $qry->bind_param("i", $usr_id);
-        $qry->execute();
     }
 
     public function usr_select_all() {
