@@ -1,6 +1,5 @@
 <?php
 
-//require "db1.php";
 require_once "cls_db.php";
 require_once "cls_usr.php";
 require_once "cls_xml.php";
@@ -68,7 +67,7 @@ function pda_update() {
     $pda_p2 = filter_input(INPUT_POST, "pda_p2", FILTER_VALIDATE_FLOAT);
     $pda_p3 = filter_input(INPUT_POST, "pda_p3", FILTER_VALIDATE_FLOAT);
     $pda_p4 = filter_input(INPUT_POST, "pda_p4", FILTER_VALIDATE_FLOAT);
-        
+    //check ownership
     $qry = $db->conn->prepare("UPDATE pda_info SET pda_updated = LOCALTIMESTAMP(), pda_name = ?, pda_p1 = ?, pda_p2 = ?, pda_p3 = ?, pda_p4 = ? WHERE pda_id = ? AND usr_id = ?;");
     $qry->bind_param("sddddii", substr($pda_name, 0, 20), cls_utl::clamp($pda_p1,0,1), cls_utl::clamp($pda_p2,0,1), cls_utl::clamp($pda_p3,0,1), cls_utl::clamp($pda_p4,0,1), $pda_id, $usr_id); 
     $qry->execute();
