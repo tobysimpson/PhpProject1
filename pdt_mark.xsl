@@ -6,7 +6,7 @@
     
     <xsl:include href="layout.xsl"/>
     
-   
+ 
     <xsl:template match="/">
         <xsl:call-template name="page"/> 
     </xsl:template>

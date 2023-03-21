@@ -1,7 +1,23 @@
 <?php
 
 class cls_xml {
+    
+    public static function vec2dom($arr, $name) {
+        $dom = new DOMDocument('1.0', 'utf-8');
+        $dom->formatOutput = true;
+        $root = $dom->createElement('res');
+        self::addAttribute($dom, $root, "name", $name);
+        $dom->appendChild($root);
+        
+        $ele = $dom->createElement('vec');
+        $root->appendChild($ele);
+        for ($i = 0; $i < count($arr); $i++) {
+            self::addAttribute($dom, $ele, "v".$i, $arr[$i]);
+        }
+        return $dom;
+    }
 
+    //2d with keys
     public static function arr2dom($arr, $name) {
         $dom = new DOMDocument('1.0', 'utf-8');
         $dom->formatOutput = true;
@@ -31,7 +47,7 @@ class cls_xml {
         return $proc->transformToXML($xml);
     }
 
-    private static function addAttribute($dom, $ele, $key, $val) {
+    public static function addAttribute($dom, $ele, $key, $val) {
         $att = $dom->createAttribute($key);
         $att->value = (is_null($val) ? 'NULL' : $val);  
         $ele->appendChild($att);

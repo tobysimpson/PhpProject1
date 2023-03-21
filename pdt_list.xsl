@@ -81,7 +81,7 @@
                             <xsl:text>agents</xsl:text>
                         </a>
                     </td>
-                    <td>
+<!--                    <td>
                         <a>
                             <xsl:attribute name="href">
                                 <xsl:text>pdt.php?mth=mark&amp;pdt_id=</xsl:text>
@@ -89,14 +89,14 @@
                             </xsl:attribute>
                             <xsl:text>markov</xsl:text>
                         </a>
-                    </td>
+                    </td>-->
                     <td>
                         <a>
                             <xsl:attribute name="href">
-                                <xsl:text>pdt.php?mth=eig&amp;pdt_id=</xsl:text>
+                                <xsl:text>pdt.php?mth=play&amp;pdt_id=</xsl:text>
                                 <xsl:value-of select="@pdt_id"/>
                             </xsl:attribute>
-                            <xsl:text>eig</xsl:text>
+                            <xsl:text>play</xsl:text>
                         </a>
                     </td>
                     <form action="pda.php?mth=insert" method="post">

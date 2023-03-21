@@ -8,9 +8,6 @@ require_once "cls_xml.php";
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
-    case "all":
-        usr_all();
-        break;
     case "edit":
         usr_edit();
         break;
@@ -23,17 +20,7 @@ switch ($mth) {
 
 function usr_list() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM usr_info WHERE usr_name IS NOT NULL");
-    $qry->execute();
-    $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res);
-    $xsl = cls_xml::file2dom("usr_list.xsl");
-    echo cls_xml::xsltrans($xml, $xsl);
-}
-
-function usr_all() {
-    $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM usr_info;");
+    $qry = $db->conn->prepare("SELECT * FROM usr_info");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);

@@ -35,11 +35,16 @@
                     <a href="item.php?mth=svg">item_svg</a>
                 </td>
             </tr>
-<!--            <tr>
+            <tr>
                 <td>
-                    <a href="item.php?mth=reset">item_reset</a>
+                    <a href="item.php?mth=csv">item_csv</a>
                 </td>
-            </tr>-->
+            </tr>
+            <tr>
+                <td>
+                    <a href="item.php?mth=xls">item_xls</a>
+                </td>
+            </tr>
             <tr>
                 <th style="text-align:left">users</th>
             </tr>
@@ -50,12 +55,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="usr.php">users (active)</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="usr.php?mth=all">users (all)</a>
+                    <a href="usr.php">user list</a>
                 </td>
             </tr>
             <tr>

@@ -12,6 +12,12 @@ switch ($mth) {
     case "xml":
         item_xml();
         break;
+    case "xls":
+        item_xls();
+        break;
+    case "csv":
+        item_csv();
+        break;
     case "edit":
         item_edit();
         break;
@@ -48,11 +54,35 @@ function item_xml() {
     $qry->execute();
     $res = $qry->get_result();
     $xml = $db->res2dom($res);
-//    $xsl = $db->xml2dom("item_list.xsl");
-//    echo $db->trans($xml, $xsl);
     header('Content-Type: text/xml');
     echo $xml->saveXML();
     $res->close();
+}
+
+function item_csv() {
+    $db = new db1();
+    $qry = $db->conn->prepare("SELECT * FROM item_info;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = $db->res2dom($res);
+//    echo $xml->saveXML();
+    $xsl = $db->xml2dom("item_csv.xsl");
+    header("Content-Type: text/plain");
+    echo $db->trans($xml, $xsl);
+}
+
+function item_xls() {
+    $db = new db1();
+    $qry = $db->conn->prepare("SELECT * FROM item_info;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = $db->res2dom($res);
+//    echo $xml->saveXML();
+    $xsl = $db->xml2dom("item_xls.xsl");
+    header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+    header("Content-Disposition: attachment;filename=\"item_info.xlsx\"");
+    header("Cache-Control: max-age=0");
+    echo $db->trans($xml, $xsl);
 }
 
 function item_edit() {

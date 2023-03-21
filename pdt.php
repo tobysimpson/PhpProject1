@@ -6,7 +6,6 @@ require_once "cls_xml.php";
 require_once 'cls_la.php';
 require_once "cls_pd.php";
 
-
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
@@ -31,8 +30,8 @@ switch ($mth) {
     case "mark":
         pdt_mark();
         break;
-    case "eig":
-        pdt_eig();
+    case "play":
+        pdt_play();
         break;
     default:
         pdt_all();
@@ -90,7 +89,7 @@ function pdt_update() {
 function pdt_pda() {
     $db = new cls_db();
     $pdt_id = filter_input(INPUT_GET, "pdt_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT pda_info.*, pdt_info.pdt_name, usr_info.usr_name FROM pda_info INNER JOIN pdt_info ON pda_info.pdt_id = pdt_info.pdt_id INNER JOIN usr_info ON usr_info.usr_id = pda_info.usr_id  WHERE pdt_info.pdt_id = ?;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_pda WHERE pdt_id = ?;");
     $qry->bind_param("i", $pdt_id);
     $qry->execute();
     $res = $qry->get_result();
@@ -103,7 +102,7 @@ function pdt_pda() {
 function pdt_usr() {
     $db = new cls_db();
     $usr_id = filter_input(INPUT_GET, "usr_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM pdt_info WHERE usr_id = ?;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_pdt WHERE pdt_usr_id = ?;");
     $qry->bind_param("i", $usr_id);
     $qry->execute();
     $res = $qry->get_result();
@@ -127,9 +126,15 @@ function pdt_mark() {
 }
 
 //plays the game
-function pdt_eig() {
+function pdt_play() {
     $db = new cls_db();
     $pdt_id = filter_input(INPUT_GET, "pdt_id", FILTER_VALIDATE_INT);
+
+    //master
+    $dom1 = new DOMDocument('1.0', 'utf-8');
+    $dom1->formatOutput = true;
+    $dom1->appendChild($dom1->createElement('root'));
+
     //tournament
     $qry = $db->conn->prepare("SELECT * FROM pdt_info WHERE pdt_id = ?;");
     $qry->bind_param("i", $pdt_id);
@@ -137,6 +142,11 @@ function pdt_eig() {
     $res = $qry->get_result();
     $pdt = cls_xml::res2arr($res);
     $res->close();
+    //import
+    $dom2 = cls_xml::arr2dom($pdt, "pdt");
+    $node = $dom1->importNode($dom2->firstChild, true);
+    $dom1->documentElement->appendChild($node);
+
     //agents
     $qry = $db->conn->prepare("SELECT * FROM pda_info WHERE pdt_id = ?;");
     $qry->bind_param("i", $pdt_id);
@@ -144,6 +154,10 @@ function pdt_eig() {
     $res = $qry->get_result();
     $pda = cls_xml::res2arr($res);
     $res->close();
+    //import
+    $dom2 = cls_xml::arr2dom($pda, "pda");
+    $node = $dom1->importNode($dom2->firstChild, true);
+    $dom1->documentElement->appendChild($node);
 
     //params (first row)
     $na = count($pda);
@@ -154,20 +168,50 @@ function pdt_eig() {
     $P = array();
     $keys = array();
     $vals = array();
+
+    $node = $dom1->createElement("res");
+    cls_xml::addAttribute($dom1, $node, "name", "mark");
+    $dom1->documentElement->appendChild($node);
+
     //tensor agents
     for ($i = 0; $i < $na; $i++) {
         $p = array($pda[$i]['pda_p1'], $pda[$i]['pda_p2'], $pda[$i]['pda_p3'], $pda[$i]['pda_p4']);
+
+        //node
+        $node1 = $dom1->createElement("mrow");
+        cls_xml::addAttribute($dom1, $node1, "pda_id", $pda[$i]['pda_id']);
+        cls_xml::addAttribute($dom1, $node1, "pda_name", $pda[$i]['pda_name']);
+        $node->appendChild($node1);
+
         for ($j = 0; $j < $na; $j++) {
             $q = array($pda[$j]['pda_p1'], $pda[$j]['pda_p2'], $pda[$j]['pda_p3'], $pda[$j]['pda_p4']);
+
+            //node
+            $node2 = $dom1->createElement("mcol");
+            cls_xml::addAttribute($dom1, $node2, "pda_id", $pda[$j]['pda_id']);
+            cls_xml::addAttribute($dom1, $node2, "pda_name", $pda[$j]['pda_name']);
+            $node1->appendChild($node2);
+
             //markov
             $A = cls_pd::fn_mark($p, $q);
+            //import
+            $dom2 = cls_xml::arr2dom($A, "A");
+            $node3 = $dom1->importNode($dom2->firstChild, true);
+            $node2->appendChild($node3);
+
             //eig
             $v = cls_pd::fn_eig1($A);
-            //row
+            //import
+            $dom2 = cls_xml::vec2dom($v, "v");
+            $node3 = $dom1->importNode($dom2->firstChild, true);
+            $node2->appendChild($node3);
+
+            //payoffs
             $keys[$j] = sprintf("r%dc%d", $i, $j);
             $vals[$j] = cls_la::fn_dot($v, $r);
-            //payoff
             $P[$i] = array_combine($keys, $vals);
+            //expected payoff
+            cls_xml::addAttribute($dom1, $node2, "pda_pay", $vals[$j]);
         }
     }
 
@@ -191,25 +235,16 @@ function pdt_eig() {
         for ($j = 0; $j < $na; $j++) {
             $f[$j] *= ($vals[$j] / $m); //update
         }
-        $f = cls_la::fn_smul($f, 1e0 / cls_la::fn_nrm1($f));//re-weight
+        $f = cls_la::fn_smul($f, 1e0 / cls_la::fn_nrm1($f)); //re-weight
     }
 
-    //master
-    $dom1 = new DOMDocument('1.0', 'utf-8');
-    $dom1->formatOutput = true;
-    $dom1->appendChild($dom1->createElement('root'));
-    //import
-    $dom2 = cls_xml::arr2dom($pdt, "pdt");
-    $node = $dom1->importNode($dom2->firstChild, true);
-    $dom1->documentElement->appendChild($node);
-    //import
-    $dom2 = cls_xml::arr2dom($pda, "pda");
-    $node = $dom1->importNode($dom2->firstChild, true);
-    $dom1->documentElement->appendChild($node);
-    //import
-    $dom2 = cls_xml::arr2dom($P, "");
-    $node = $dom1->importNode($dom2->firstChild, true);
-    $dom1->documentElement->appendChild($node);
+
+
+
+//    //import
+//    $dom2 = cls_xml::arr2dom($P, "P");
+//    $node = $dom1->importNode($dom2->firstChild, true);
+//    $dom1->documentElement->appendChild($node);
     //import
     $dom2 = cls_xml::arr2dom($R, "R");
     $node = $dom1->importNode($dom2->firstChild, true);
@@ -220,4 +255,6 @@ function pdt_eig() {
     $dom1->documentElement->appendChild($node);
 
     echo $dom1->saveXML();
+    $xsl = cls_xml::file2dom("pdt_play.xsl");
+    echo cls_xml::xsltrans($dom1, $xsl);
 }
