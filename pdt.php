@@ -40,7 +40,7 @@ switch ($mth) {
 
 function pdt_all() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT pdt_info.*, usr_info.usr_name FROM pdt_info INNER JOIN usr_info ON pdt_info.usr_id = usr_info.usr_id;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_pdt ORDER BY pdt_usr_id,pdt_id;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);

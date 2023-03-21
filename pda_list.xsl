@@ -14,13 +14,13 @@
     <xsl:template match="root">
         <table class="table1">
             <tr>
-                <th>pda_id</th>
-                <th>pda_created</th>
-                <th>pda_updated</th>
                 <th>pdt_id</th>
                 <th>pdt_name</th>
                 <th>usr_id</th>
                 <th>usr_name</th>
+                <th>pda_id</th>
+                <th>pda_created</th>
+                <th>pda_updated</th>
                 <th>pda_name</th>
                 <th>pda_p1</th>
                 <th>pda_p2</th>
@@ -31,6 +31,18 @@
             <xsl:for-each select="row">
                 <tr>
                     <td>
+                        <xsl:value-of select="@pdt_id"/>
+                    </td>
+                    <td style="text-align:left">
+                        <xsl:value-of select="@pdt_name"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@pda_usr_id"/>
+                    </td>
+                    <td style="text-align:left">
+                        <xsl:value-of select="@pda_usr_name"/>
+                    </td>
+                    <td>
                         <xsl:value-of select="@pda_id"/>
                     </td>
                     <td>
@@ -38,18 +50,6 @@
                     </td>
                     <td>
                         <xsl:value-of select="substring(@pda_updated,0,11)"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@pdt_id"/>
-                    </td>
-                    <td style="text-align:left">
-                        <xsl:value-of select="@pdt_name"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@usr_id"/>
-                    </td>
-                    <td style="text-align:left">
-                        <xsl:value-of select="@usr_name"/>
                     </td>
                     <td style="text-align:left">
                         <xsl:value-of select="@pda_name"/>

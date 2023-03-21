@@ -26,7 +26,7 @@ switch ($mth) {
 
 function pda_all() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM pda_info;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_pda ORDER BY pdt_id,pda_usr_id,pda_id;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
@@ -49,12 +49,14 @@ function pda_edit() {
 
 function pda_insert() {
     $usr_id = cls_usr::check();
-    $db = new cls_db();
     $pdt_id = filter_input(INPUT_POST, "pdt_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("INSERT INTO pda_info (pdt_id,usr_id,pda_p1,pda_p2,pda_p3,pda_p4) VALUES (?,?,RAND(),RAND(),RAND(),RAND());");
-    $qry->bind_param("ii", $pdt_id, $usr_id);
-    $qry->execute();
-    header("Location: pdt.php?mth=pda&pdt_id=".$pdt_id);
+    if (!is_null($usr_id)) {
+        $db = new cls_db();
+        $qry = $db->conn->prepare("INSERT INTO pda_info (pdt_id,usr_id,pda_p1,pda_p2,pda_p3,pda_p4) VALUES (?,?,RAND(),RAND(),RAND(),RAND());");
+        $qry->bind_param("ii", $pdt_id, $usr_id);
+        $qry->execute();
+    }
+    header("Location: pdt.php?mth=pda&pdt_id=" . $pdt_id);
 }
 
 function pda_update() {
@@ -69,10 +71,10 @@ function pda_update() {
     $pda_p4 = filter_input(INPUT_POST, "pda_p4", FILTER_VALIDATE_FLOAT);
     //check ownership
     $qry = $db->conn->prepare("UPDATE pda_info SET pda_updated = LOCALTIMESTAMP(), pda_name = ?, pda_p1 = ?, pda_p2 = ?, pda_p3 = ?, pda_p4 = ? WHERE pda_id = ? AND usr_id = ?;");
-    $qry->bind_param("sddddii", substr($pda_name, 0, 20), cls_utl::clamp($pda_p1,0,1), cls_utl::clamp($pda_p2,0,1), cls_utl::clamp($pda_p3,0,1), cls_utl::clamp($pda_p4,0,1), $pda_id, $usr_id); 
+    $qry->bind_param("sddddii", substr($pda_name, 0, 20), cls_utl::clamp($pda_p1, 0, 1), cls_utl::clamp($pda_p2, 0, 1), cls_utl::clamp($pda_p3, 0, 1), cls_utl::clamp($pda_p4, 0, 1), $pda_id, $usr_id);
     $qry->execute();
-    
-    header("Location: pdt.php?mth=pda&pdt_id=".$pdt_id);
+
+    header("Location: pdt.php?mth=pda&pdt_id=" . $pdt_id);
 }
 
 function pda_usr() {

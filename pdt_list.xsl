@@ -14,35 +14,35 @@
         </form>
         <table class="table1">
             <tr>
-                <th>pdt_id</th>
                 <th>usr_id</th>
+                <th>usr_name</th>
+                <th>pdt_id</th>
                 <th>pdt_created</th>
                 <th>pdt_updated</th>
-                <th>usr_name</th>
                 <th>pdt_name</th>
                 <th>pdt_r1</th>
                 <th>pdt_r2</th>
                 <th>pdt_r3</th>
                 <th>pdt_r4</th>
                 <th>pdt_iter</th>
-                <th colspan="4"></th>
+                <th colspan="5"></th>
             </tr>
             <xsl:for-each select="row">
-                <tr>
+                <tr>                    
                     <td>
-                        <xsl:value-of select="@pdt_id"/>
+                        <xsl:value-of select="@pdt_usr_id"/>
+                    </td>
+                    <td style="text-align:left">
+                        <xsl:value-of select="@pdt_usr_name"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@usr_id"/>
+                        <xsl:value-of select="@pdt_id"/>
                     </td>
                     <td>
                         <xsl:value-of select="substring(@pdt_created,0,11)"/>
                     </td>
                     <td>
                         <xsl:value-of select="substring(@pdt_updated,0,11)"/>
-                    </td>
-                    <td style="text-align:left">
-                        <xsl:value-of select="@usr_name"/>
                     </td>
                     <td style="text-align:left">
                         <xsl:value-of select="@pdt_name"/>

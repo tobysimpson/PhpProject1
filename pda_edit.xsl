@@ -14,7 +14,7 @@
         <table class="table2">
             <form action="pda.php?mth=update" method="post">
                 <tr>
-                    <td>pda_id</td>
+                    <th>pda_id</th>
                     <td>
                         <input type="text" name="pda_id" readonly="true">
                             <xsl:attribute name="value">
@@ -24,7 +24,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>pdt_id</td>
+                    <th>pdt_id</th>
                     <td>
                         <input type="text" name="pdt_id" readonly="true">
                             <xsl:attribute name="value">
@@ -34,7 +34,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>usr_id</td>
+                    <th>usr_id</th>
                     <td>
                         <input type="text" name="usr_id" readonly="true">
                             <xsl:attribute name="value">
@@ -44,7 +44,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>pda_name</td>
+                    <th>pda_name</th>
                     <td>
                         <input type="text" name="pda_name" length="20">
                             <xsl:attribute name="value">
@@ -54,7 +54,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>pda_p1</td>
+                    <th>pda_p1</th>
                     <td>
                         <input type="text" name="pda_p1">
                             <xsl:attribute name="value">
@@ -64,7 +64,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>pda_p2</td>
+                    <th>pda_p2</th>
                     <td>
                         <input type="text" name="pda_p2">
                             <xsl:attribute name="value">
@@ -74,7 +74,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>pda_p3</td>
+                    <th>pda_p3</th>
                     <td>
                         <input type="text" name="pda_p3">
                             <xsl:attribute name="value">
@@ -84,7 +84,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>pda_p4</td>
+                    <th>pda_p4</th>
                     <td>
                         <input type="text" name="pda_p4">
                             <xsl:attribute name="value">
