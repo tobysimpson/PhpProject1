@@ -55,7 +55,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="usr.php">user list</a>
+                    <a href="usr.php">users</a>
                 </td>
             </tr>
             <tr>
@@ -69,6 +69,16 @@
             <tr>
                 <td>
                     <a href="pda.php">agents</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="pdt.php?mth=del">games (deleted)</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="pda.php?mth=del">agents (deleted)</a>
                 </td>
             </tr>
         </table>

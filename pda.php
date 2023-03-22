@@ -20,13 +20,26 @@ switch ($mth) {
     case "usr":
         pda_usr();
         break;
+    case "del":
+        pda_del();
+        break;
     default:
         pda_all();
 }
 
 function pda_all() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM vw_pda ORDER BY pdt_id,pda_usr_id,pda_id;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_pda WHERE pda_del = 0 ORDER BY pdt_id,pda_usr_id,pda_id;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res);
+    $xsl = cls_xml::file2dom("pda_list.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
+}
+
+function pda_del() {
+    $db = new cls_db();
+    $qry = $db->conn->prepare("SELECT * FROM vw_pda WHERE pda_del = 1 ORDER BY pdt_id,pda_usr_id,pda_id;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
@@ -69,9 +82,11 @@ function pda_update() {
     $pda_p2 = filter_input(INPUT_POST, "pda_p2", FILTER_VALIDATE_FLOAT);
     $pda_p3 = filter_input(INPUT_POST, "pda_p3", FILTER_VALIDATE_FLOAT);
     $pda_p4 = filter_input(INPUT_POST, "pda_p4", FILTER_VALIDATE_FLOAT);
+    $pda_del = isset($_POST['pda_del']);
+//    var_dump($pda_del);
     //check ownership
-    $qry = $db->conn->prepare("UPDATE pda_info SET pda_updated = LOCALTIMESTAMP(), pda_name = ?, pda_p1 = ?, pda_p2 = ?, pda_p3 = ?, pda_p4 = ? WHERE pda_id = ? AND usr_id = ?;");
-    $qry->bind_param("sddddii", substr($pda_name, 0, 20), cls_utl::clamp($pda_p1, 0, 1), cls_utl::clamp($pda_p2, 0, 1), cls_utl::clamp($pda_p3, 0, 1), cls_utl::clamp($pda_p4, 0, 1), $pda_id, $usr_id);
+    $qry = $db->conn->prepare("UPDATE pda_info SET pda_updated = LOCALTIMESTAMP(), pda_name = ?, pda_p1 = ?, pda_p2 = ?, pda_p3 = ?, pda_p4 = ?,pda_del = ? WHERE pda_id = ? AND usr_id = ?;");
+    $qry->bind_param("sddddiii", substr($pda_name, 0, 20), cls_utl::clamp($pda_p1, 0, 1), cls_utl::clamp($pda_p2, 0, 1), cls_utl::clamp($pda_p3, 0, 1), cls_utl::clamp($pda_p4, 0, 1), $pda_del, $pda_id, $usr_id);//
     $qry->execute();
 
     header("Location: pdt.php?mth=pda&pdt_id=" . $pdt_id);
@@ -80,7 +95,7 @@ function pda_update() {
 function pda_usr() {
     $usr_id = cls_usr::check();
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM pda_info WHERE usr_id = ?;");
+    $qry = $db->conn->prepare("SELECT * FROM pda_info WHERE pda_del = 0 AND usr_id = ?;");
     $qry->bind_param("i", $usr_id);
     $qry->execute();
     $res = $qry->get_result();

@@ -92,6 +92,18 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>pdt_del</th>
+                    <td>
+                        <input type="checkbox" name="pdt_del">
+                            <xsl:if test="@pdt_del=1">
+                                <xsl:attribute name="checked">
+                                    <xsl:text>true</xsl:text>
+                                </xsl:attribute>
+                            </xsl:if>
+                        </input>
+                    </td>
+                </tr>
+                <tr>
                     <td>
                         
                     </td>

@@ -94,6 +94,18 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>pda_del</th>
+                    <td>
+                        <input type="checkbox" name="pda_del">
+                            <xsl:if test="@pda_del=1">
+                                <xsl:attribute name="checked">
+                                    <xsl:text>true</xsl:text>
+                                </xsl:attribute>
+                            </xsl:if>
+                        </input>
+                    </td>
+                </tr>
+                <tr>
                     <td>
                         
                     </td>

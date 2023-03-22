@@ -12,6 +12,9 @@ switch ($mth) {
     case "all":
         pdt_all();
         break;
+    case "del":
+        pdt_del();
+        break;
     case "edit":
         pdt_edit();
         break;
@@ -39,7 +42,17 @@ switch ($mth) {
 
 function pdt_all() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM vw_pdt ORDER BY pdt_usr_id,pdt_id;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_pdt WHERE pdt_del = 0 ORDER BY pdt_usr_id,pdt_id;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res);
+    $xsl = cls_xml::file2dom("pdt_list.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
+}
+
+function pdt_del() {
+    $db = new cls_db();
+    $qry = $db->conn->prepare("SELECT * FROM vw_pdt WHERE pdt_del = 1 ORDER BY pdt_usr_id,pdt_id;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
@@ -80,8 +93,9 @@ function pdt_update() {
     $pdt_r3 = filter_input(INPUT_POST, "pdt_r3", FILTER_VALIDATE_FLOAT);
     $pdt_r4 = filter_input(INPUT_POST, "pdt_r4", FILTER_VALIDATE_FLOAT);
     $pdt_iter = filter_input(INPUT_POST, "pdt_iter", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("UPDATE pdt_info SET pdt_updated = LOCALTIMESTAMP(), pdt_name = ?, pdt_r1 = ?, pdt_r2 = ?, pdt_r3 = ?, pdt_r4 = ?, pdt_iter = ?  WHERE pdt_id = ? AND usr_id = ?;");
-    $qry->bind_param("sddddiii", substr($pdt_name, 0, 20), $pdt_r1, $pdt_r2, $pdt_r3, $pdt_r4, $pdt_iter, $pdt_id, $usr_id);
+    $pdt_del = isset($_POST['pdt_del']);
+    $qry = $db->conn->prepare("UPDATE pdt_info SET pdt_updated = LOCALTIMESTAMP(), pdt_name = ?, pdt_r1 = ?, pdt_r2 = ?, pdt_r3 = ?, pdt_r4 = ?, pdt_iter = ?, pdt_del = ?  WHERE pdt_id = ? AND usr_id = ?;");
+    $qry->bind_param("sddddiiii", substr($pdt_name, 0, 20), $pdt_r1, $pdt_r2, $pdt_r3, $pdt_r4, $pdt_iter, $pdt_del, $pdt_id, $usr_id);
     $qry->execute();
     header("Location: pdt.php");
 }
@@ -89,7 +103,7 @@ function pdt_update() {
 function pdt_pda() {
     $db = new cls_db();
     $pdt_id = filter_input(INPUT_GET, "pdt_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM vw_pda WHERE pdt_id = ?;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_pda WHERE pda_del = 0 AND pdt_id = ?;");
     $qry->bind_param("i", $pdt_id);
     $qry->execute();
     $res = $qry->get_result();
@@ -102,7 +116,7 @@ function pdt_pda() {
 function pdt_usr() {
     $db = new cls_db();
     $usr_id = filter_input(INPUT_GET, "usr_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM vw_pdt WHERE pdt_usr_id = ?;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_pdt WHERE pdt_del = 0 AND pdt_usr_id = ?;");
     $qry->bind_param("i", $usr_id);
     $qry->execute();
     $res = $qry->get_result();
@@ -112,18 +126,6 @@ function pdt_usr() {
     $res->close();
 }
 
-function pdt_mark() {
-    $db = new cls_db();
-    $pdt_id = filter_input(INPUT_GET, "pdt_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT pdt_id, pda_id1, pda_id2, a11,a12,a13,a14, a21,a22,a23,a24, a31,a32,a33,a34, a41,a42,a43,a44 FROM pdt_mark WHERE pdt_id = ? ORDER BY pda_id1, pda_id2 ASC;");
-    $qry->bind_param("i", $pdt_id);
-    $qry->execute();
-    $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res);
-    $xsl = cls_xml::file2dom("pdt_mark.xsl");
-    echo cls_xml::xsltrans($xml, $xsl);
-    $res->close();
-}
 
 //plays the game
 function pdt_play() {
@@ -148,7 +150,7 @@ function pdt_play() {
     $dom1->documentElement->appendChild($node);
 
     //agents
-    $qry = $db->conn->prepare("SELECT * FROM vw_pda WHERE pdt_id = ?;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_pda WHERE pda_del = 0 AND pdt_id = ?;");
     $qry->bind_param("i", $pdt_id);
     $qry->execute();
     $res = $qry->get_result();
