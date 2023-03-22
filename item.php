@@ -79,9 +79,9 @@ function item_xls() {
     $xml = $db->res2dom($res);
 //    echo $xml->saveXML();
     $xsl = $db->xml2dom("item_xls.xsl");
-    header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-    header("Content-Disposition: attachment;filename=\"item_info.xlsx\"");
-    header("Cache-Control: max-age=0");
+//    header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+//    header("Content-Disposition: attachment;filename=\"item_info.xlsx\"");
+//    header("Cache-Control: max-age=0");
     echo $db->trans($xml, $xsl);
 }
 

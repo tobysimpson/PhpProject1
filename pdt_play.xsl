@@ -5,10 +5,13 @@
     <xsl:include href="layout.xsl"/>
     
     <xsl:variable name="w">800</xsl:variable>
-    <xsl:variable name="h">600</xsl:variable>
+    <xsl:variable name="h">500</xsl:variable>
     
-    <xsl:variable name="pw">600</xsl:variable>
+    <xsl:variable name="pw">700</xsl:variable>
     <xsl:variable name="ph">400</xsl:variable>
+
+    <xsl:variable name="ow">20</xsl:variable>
+    <xsl:variable name="oh">20</xsl:variable>
     
     <xsl:template match="/">
         <xsl:call-template name="page"/> 
@@ -20,7 +23,8 @@
             <xsl:apply-templates select="res[@name='pda']"/>
             <xsl:apply-templates select="res[@name='mark']" mode="eig"/>
             <xsl:apply-templates select="res[@name='mark']" mode="pay"/>
-            <xsl:apply-templates select="res[@name='R']"/>
+            <xsl:apply-templates select="res[@name='R']" mode="plot"/>
+            <xsl:apply-templates select="res[@name='R']" mode="rank"/>
             <xsl:apply-templates select="res[@name='s']"/>
         </div>
     </xsl:template>
@@ -188,8 +192,8 @@
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
             <style>* { font-size: 100%; font-family: sans-serif; font-weight: 300; }</style> 
  
-            <g id="plot" transform="translate(20 20)">
-                 vars 
+            <g id="plot" transform="translate({$ow} {$oh})">
+                vars 
                 <xsl:variable name="x_min">0</xsl:variable>
                 <xsl:variable name="x_max">
                     <xsl:value-of select="count(row) - 1"/>
@@ -301,14 +305,16 @@
         </svg>
     </xsl:template>
     
-    <xsl:template match="res[@name='R']">
+    <xsl:template match="res[@name='R']" mode="plot">
         <h1>
             <i>frequencies per generation:</i>
         </h1>
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
             <style>* { font-size: 100%; font-family: sans-serif; font-weight: 300; }</style> 
  
-            <g id="plot" transform="translate(20 20)">
+            <!--<circle cx="{$w}" cy="{$h}" r="10" fill="green"/>-->
+ 
+            <g id="plot" transform="translate({$ow} {$oh})">
                 <!-- vars -->
                 <xsl:variable name="x_min">0</xsl:variable>
                 <xsl:variable name="x_max">
@@ -316,12 +322,14 @@
                 </xsl:variable>
                 <xsl:variable name="y_min">0</xsl:variable>
                 <xsl:variable name="y_max">1</xsl:variable>
-
                 <xsl:variable name="x_rng">
                     <xsl:value-of select="$x_max - $x_min"/>
                 </xsl:variable>
                 <xsl:variable name="y_rng">
                     <xsl:value-of select="$y_max - $y_min"/>
+                </xsl:variable>
+                <xsl:variable name="r_cnt">
+                    <xsl:value-of select="count(row[1]/@*)"/>
                 </xsl:variable>
             
                 <g id="grid">
@@ -333,7 +341,7 @@
                     <line x1="0" y1="{$ph * 1.0}" x2="{$pw}" y2="{$ph * 1.0}" stroke="lightgrey" />
                 </g>
          
-                <g id="key">
+<!--                <g id="key">
                     <text x="0" y="20">
                         <xsl:text>min, max, range</xsl:text>
                     </text>
@@ -351,13 +359,14 @@
                         <xsl:text>, </xsl:text>
                         <xsl:value-of select="format-number($y_rng,'0.000')"/>
                     </text>
-                </g>
+                </g>-->
 
                 <g id="call">
                     <xsl:for-each select="row[1]/@*">
                         <xsl:call-template name="line">
                             <xsl:with-param name="p1" select="//res[@name='R']/row"/>
                             <xsl:with-param name="p2" select="position()"/>
+                            <xsl:with-param name="p3" select="$r_cnt"/>
                             <xsl:with-param name="x_min" select="$x_min"/>
                             <xsl:with-param name="x_rng" select="$x_rng"/>
                             <xsl:with-param name="y_min" select="$y_min"/>
@@ -365,42 +374,6 @@
                         </xsl:call-template>
                     </xsl:for-each>
                 </g>
-
-
-
-                <!--                <g id="line1">
-                    <xsl:variable name="line1">
-                        <xsl:for-each select="row">
-                            <xsl:sort select="@item_val1" data-type="number" order="ascending"/>
-                            <xsl:variable name="x" select="format-number($pw * (position() - 1 - $x_min) div $x_rng,'0.000')"/>
-                            <xsl:variable name="y" select="format-number($ph * (1 - (@s - $y_min) div $y_rng),'0.000')"/>
-                            <xsl:choose>
-                                <xsl:when test="position()=1">
-                                    <xsl:text>M </xsl:text>
-                                    <xsl:value-of select="$x"/>
-                                    <xsl:text>,</xsl:text>
-                                    <xsl:value-of select="$y"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:text> L </xsl:text>
-                                    <xsl:value-of select="$x"/>
-                                    <xsl:text>,</xsl:text>
-                                    <xsl:value-of select="$y"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:for-each>
-                    </xsl:variable>
-                    <path fill="none" stroke="blue" d="{$line1}"/>
-                </g>-->
-                
-                <!--                <g id= "dots">
-                    <xsl:for-each select="row">
-                        <xsl:sort select="@item_val1" data-type="number" order="ascending"/>
-                        <xsl:variable name="x" select="format-number($pw * (position() - 1 - $x_min) div $x_rng,'0.000')"/>
-                        <xsl:variable name="y" select="format-number($ph * (1 - (@s - $y_min) div $y_rng),'0.000')"/>
-                        <circle cx="{$x}" cy="{$y}" r="2" fill="blue"/>
-                    </xsl:for-each>
-                </g>-->
                 
                 <g id="labels">
                     <text x="0" y="{$ph + 20}" text-anchor="middle" alignment-baseline="middle">
@@ -426,11 +399,17 @@
     <xsl:template name="line">
         <xsl:param name="p1"/>
         <xsl:param name="p2"/>
+        <xsl:param name="p3"/>
         <xsl:param name="x_min"/>
         <xsl:param name="x_rng"/>
         <xsl:param name="y_min"/>
         <xsl:param name="y_rng"/>
 
+        <line x1="00" y1="{(20 * $p2) - 10}" x2="20" y2="{(20 * $p2)  - 10}" style="stroke:hsl({240 * $p2 div $p3},100%,50%);stroke-width:2" />
+        <text x="25" y="{(20 * $p2) - 10}" text-anchor="left" alignment-baseline="middle">
+            <xsl:value-of select="/root/res[@name='pda']/row[$p2]/@pda_name"/>
+        </text>
+        
         <xsl:variable name="line1">
             <xsl:for-each select="$p1">
                 <xsl:variable name="x" select="format-number($pw * (position() - 1 - $x_min) div $x_rng,'0.000')"/>
@@ -451,7 +430,52 @@
                 </xsl:choose>
             </xsl:for-each>
         </xsl:variable>
-        <path fill="none" stroke="blue" d="{$line1}"/>
+        <path fill="none" stroke="hsl({240 * $p2 div $p3},100%,50%)" d="{$line1}"/>
+    </xsl:template>
+    
+    
+    <xsl:template match="res[@name='R']" mode="rank">
+        <h1>
+            <i>results:</i>
+        </h1>
+        <table class="table1">
+            <tr>
+                <th>rank</th>
+                <th>pda_id</th>
+                <th>usr_name</th>
+                <th>pda_name</th>
+                <th></th>
+            </tr>
+            <xsl:for-each select="row[last()]/@*">
+                <xsl:sort select="." data-type="number" order="descending"/>
+                <xsl:variable name="pos" select="number(substring(name(),2,10))+1"/>
+                <xsl:variable name="pda" select="/root/res[@name='pda']/row[$pos]"/>
+                <tr>
+                    <td>
+                        <xsl:value-of select="position()"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="$pda/@pda_id"/>
+                    </td>
+                    <td style="text-align:left">
+                        <xsl:value-of select="$pda/@pda_usr_name"/>
+                    </td>
+                    <td style="text-align:left">
+                        <xsl:value-of select="$pda/@pda_name"/>
+                    </td>
+                    <td>
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:text>pda.php?mth=edit&amp;pda_id=</xsl:text>
+                                <xsl:value-of select="$pda/@pda_id"/>
+                            </xsl:attribute>
+                            <xsl:text>edit</xsl:text>
+                        </a>
+                    </td>
+                </tr>
+            </xsl:for-each>
+        </table>
+        <p/>
     </xsl:template>
     
     

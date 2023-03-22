@@ -136,7 +136,7 @@ function pdt_play() {
     $dom1->appendChild($dom1->createElement('root'));
 
     //tournament
-    $qry = $db->conn->prepare("SELECT * FROM pdt_info WHERE pdt_id = ?;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_pdt WHERE pdt_id = ?;");
     $qry->bind_param("i", $pdt_id);
     $qry->execute();
     $res = $qry->get_result();
@@ -148,7 +148,7 @@ function pdt_play() {
     $dom1->documentElement->appendChild($node);
 
     //agents
-    $qry = $db->conn->prepare("SELECT * FROM pda_info WHERE pdt_id = ?;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_pda WHERE pdt_id = ?;");
     $qry->bind_param("i", $pdt_id);
     $qry->execute();
     $res = $qry->get_result();
@@ -239,12 +239,6 @@ function pdt_play() {
     }
 
 
-
-
-//    //import
-//    $dom2 = cls_xml::arr2dom($P, "P");
-//    $node = $dom1->importNode($dom2->firstChild, true);
-//    $dom1->documentElement->appendChild($node);
     //import
     $dom2 = cls_xml::arr2dom($R, "R");
     $node = $dom1->importNode($dom2->firstChild, true);
