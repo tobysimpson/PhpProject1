@@ -405,7 +405,7 @@
         <xsl:param name="y_min"/>
         <xsl:param name="y_rng"/>
 
-        <line x1="00" y1="{(20 * $p2) - 10}" x2="20" y2="{(20 * $p2)  - 10}" style="stroke:hsl({240 * $p2 div $p3},100%,50%);stroke-width:2" />
+        <line x1="00" y1="{(20 * $p2) - 10}" x2="20" y2="{(20 * $p2)  - 10}" style="stroke:hsl({360 * $p2 div $p3},100%,50%);stroke-width:2" />
         <text x="25" y="{(20 * $p2) - 10}" text-anchor="left" alignment-baseline="middle">
             <xsl:value-of select="/root/res[@name='pda']/row[$p2]/@pda_name"/>
         </text>
@@ -430,7 +430,7 @@
                 </xsl:choose>
             </xsl:for-each>
         </xsl:variable>
-        <path fill="none" stroke="hsl({240 * $p2 div $p3},100%,50%)" d="{$line1}"/>
+        <path fill="none" stroke="hsl({360 * $p2 div $p3},100%,50%)" d="{$line1}"/>
     </xsl:template>
     
     
@@ -444,6 +444,7 @@
                 <th>pda_id</th>
                 <th>usr_name</th>
                 <th>pda_name</th>
+                <th>pda_wgt</th>
                 <th></th>
             </tr>
             <xsl:for-each select="row[last()]/@*">
@@ -462,6 +463,9 @@
                     </td>
                     <td style="text-align:left">
                         <xsl:value-of select="$pda/@pda_name"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="format-number(.,'0.000000')"/>
                     </td>
                     <td>
                         <a>

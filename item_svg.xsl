@@ -133,13 +133,17 @@
                             </xsl:attribute>
                             <circle cx="{$x}" cy="{$y}" r="5" stroke="red" fill="lightgrey"/>
                         </a>
-                        <!--<text x="{$x}" y="{$y}" text-anchor="middle">
-                            <xsl:text>(</xsl:text>
+                        <xsl:if test="@item_name!='NULL'">
+                            <text x="{$x}" y="{$y}" text-anchor="middle" alignment-baseline="middle">
+                                <xsl:value-of select="@item_name"/>
+                            </text>
+<!--                            <xsl:text>(</xsl:text>
                             <xsl:value-of select="format-number(@item_val1,'0.000')"/>
                             <xsl:text>,</xsl:text>
                             <xsl:value-of select="format-number(@item_val2,'0.000')"/>
-                            <xsl:text>)</xsl:text>
-                        </text>-->
+                            <xsl:text>)</xsl:text>-->
+                        </xsl:if>
+ 
                     </xsl:for-each>
                 </g>
         

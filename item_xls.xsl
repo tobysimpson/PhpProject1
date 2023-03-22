@@ -1,14 +1,45 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" 
+xmlns="urn:schemas-microsoft-com:office:spreadsheet" 
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+xmlns:msxsl="urn:schemas-microsoft-com:xslt" 
+xmlns:user="urn:my-scripts" 
+xmlns:o="urn:schemas-microsoft-com:office:office" 
+xmlns:x="urn:schemas-microsoft-com:office:excel" 
+xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
 
-<!--
-    Document   : item_xls.xsl
-    Created on : 21 March 2023, 10:23
-    Author     : toby
-    Description:
-        Purpose of transformation follows.
--->
+        <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
+        <xsl:template match="/">
+            <xsl:processing-instruction name="mso-application">progid="Excel.Sheet"</xsl:processing-instruction>
+            <Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" 
+            xmlns:o="urn:schemas-microsoft-com:office:office" 
+            xmlns:x="urn:schemas-microsoft-com:office:excel" 
+            xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" 
+            xmlns:html="http://www.w3.org/TR/REC-html40">
+                <Worksheet ss:Name="Sheet1">
+                    <Table x:FullColumns="1" x:FullRows="1" ss:DefaultRowHeight="15">
+                        <Row>
+                            <Cell>
+                                <Data ss:Type="String">a</Data>
+                            </Cell>
+                            <Cell>
+                                <Data ss:Type="String">b</Data>
+                            </Cell>
+                        </Row>
+                        <Row>
+                            <Cell>
+                                <Data ss:Type="String">c</Data>
+                            </Cell>
+                            <Cell>
+                                <Data ss:Type="String">d</Data>
+                            </Cell>
+                        </Row>
+                    </Table>
+                </Worksheet>
+            </Workbook>
+        </xsl:template>
+</xsl:stylesheet>
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<!--<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output omit-xml-declaration="no" indent="yes"/>
 
     <xsl:template match="/">
@@ -79,4 +110,4 @@
             </Worksheet>
         </Workbook>
     </xsl:template>
-</xsl:stylesheet>
+</xsl:stylesheet>-->
