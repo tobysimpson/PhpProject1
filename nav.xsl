@@ -9,76 +9,6 @@
         </a>
     </xsl:template>    
     
-
-    <xsl:template name="menu">
-        <table width="100%">
-            <tr>
-                <td>
-                    <a href="index.php">home</a>
-                </td>
-            </tr>
-            <tr>
-                <th style="text-align:left">item</th>
-            </tr>
-            <tr>
-                <td>
-                    <a href="item.php">item_list</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="item.php?mth=xml">item_xml</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="item.php?mth=svg">item_svg</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="item.php?mth=csv">item_csv</a>
-                </td>
-            </tr>
-            <tr>
-                <th style="text-align:left">users</th>
-            </tr>
-            <tr>
-                <td>
-                    <a href="usr.php?mth=edit">my details</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="usr.php">users</a>
-                </td>
-            </tr>
-            <tr>
-                <th style="text-align:left">game</th>
-            </tr>
-            <tr>
-                <td>
-                    <a href="pdt.php">games</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="pda.php">agents</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="pdt.php?mth=del">games (deleted)</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="pda.php?mth=del">agents (deleted)</a>
-                </td>
-            </tr>
-        </table>
-    </xsl:template>
-    
     
     <xsl:template name="page">
         <html>
@@ -88,7 +18,7 @@
                 <!--<script src="xmlhttp.js"></script>-->
             </head>
             <body >
-                 <!--layout--> 
+                <!--layout--> 
                 <table width="100%">
                     <tr>
                         <td colspan="2">
@@ -109,5 +39,79 @@
             </body>
         </html>
     </xsl:template>
+    
+
+    <xsl:template name="menu">
+        <table width="100%">
+            <tr>
+                <td>
+                    <a href="index.php">home</a>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:left">users</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="usr.php?mth=edit">my details</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="usr.php">user list</a>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:left">item</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="item.php">item_list</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="item.php?mth=xml">item_xml</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="item.php?mth=csv">item_csv</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="item.php?mth=svg">item_svg</a>
+                </td>
+            </tr>
+
+<!--            <tr>
+                <th style="text-align:left">game1</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="pdt.php">games</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="pda.php">agents</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="pdt.php?mth=del">games (deleted)</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="pda.php?mth=del">agents (deleted)</a>
+                </td>
+            </tr>-->
+        </table>
+    </xsl:template>
+    
+    
+
    
 </xsl:stylesheet>

@@ -2,8 +2,8 @@
 <xsl:stylesheet version="1.0" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="utf-8"/>
+    <xsl:include href="../nav.xsl"/>
     
-    <xsl:include href="layout.xsl"/>
     <xsl:template match="/">
         <xsl:call-template name="page"/> 
     </xsl:template>

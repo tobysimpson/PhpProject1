@@ -3,7 +3,7 @@
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="utf-8"/>
     
-    <xsl:include href="layout.xsl"/>
+    <xsl:include href="../nav.xsl"/>
     
     <xsl:template match="/">
         <xsl:call-template name="page"/> 

@@ -2,7 +2,7 @@
 
 //require_once "db1.php";
 require_once "cls_db.php";
-require_once "cls_usr.php";
+require_once "usr/cls_usr.php";
 require_once "cls_xml.php";
 
 //method
@@ -24,7 +24,7 @@ function usr_list() {
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
-    $xsl = cls_xml::file2dom("usr_list.xsl");
+    $xsl = cls_xml::file2dom("usr/usr_list.xsl");
     echo cls_xml::xsltrans($xml, $xsl);
 }
 
@@ -37,7 +37,7 @@ function usr_edit() {
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
     $res->close();
-    $xsl = cls_xml::file2dom("usr_edit.xsl");
+    $xsl = cls_xml::file2dom("usr/usr_edit.xsl");
     echo cls_xml::xsltrans($xml, $xsl);
 }
 

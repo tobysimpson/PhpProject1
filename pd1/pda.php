@@ -93,9 +93,9 @@ function pda_update() {
 }
 
 function pda_usr() {
-    $usr_id = cls_usr::check();
+    $usr_id = filter_input(INPUT_GET, "usr_id", FILTER_VALIDATE_INT);
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM vw_pda WHERE pda_del = 0 AND pda_usr_id = ? ORDER BY pdt_id,pda_usr_id,pda_id;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_pda WHERE pda_del = 0 AND pda_usr_id = ? ORDER BY pdt_id, pda_usr_id, pda_id;");
     $qry->bind_param("i", $usr_id);
     $qry->execute();
     $res = $qry->get_result();

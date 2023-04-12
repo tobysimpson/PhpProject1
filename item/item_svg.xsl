@@ -8,7 +8,7 @@
     <xsl:variable name="ph">400</xsl:variable>
     <xsl:variable name="pw">600</xsl:variable>
     
-    <xsl:include href="layout.xsl"/>
+    <xsl:include href="../nav.xsl"/>
     <xsl:template match="/">
         <xsl:call-template name="page"/> 
     </xsl:template>
@@ -29,7 +29,7 @@
             <g id="plot" transform="translate(100 100)">
                 <!-- vars -->
                 <xsl:variable name="x_min">
-                    <xsl:for-each select="res[@name='item']/row">
+                    <xsl:for-each select="row">
                         <xsl:sort select="@item_val1" data-type="number" order="ascending"/>
                         <xsl:if test="position() = 1">
                             <xsl:value-of select="@item_val1"/>
@@ -37,7 +37,7 @@
                     </xsl:for-each>
                 </xsl:variable>
                 <xsl:variable name="x_max">
-                    <xsl:for-each select="res[@name='item']/row">
+                    <xsl:for-each select="row">
                         <xsl:sort select="@item_val1" data-type="number" order="descending"/>
                         <xsl:if test="position() = 1">
                             <xsl:value-of select="@item_val1"/>
@@ -45,7 +45,7 @@
                     </xsl:for-each>
                 </xsl:variable>
                 <xsl:variable name="y_min">
-                    <xsl:for-each select="res[@name='item']/row">
+                    <xsl:for-each select="row">
                         <xsl:sort select="@item_val2" data-type="number" order="ascending"/>
                         <xsl:if test="position() = 1">
                             <xsl:value-of select="@item_val2"/>
@@ -53,7 +53,7 @@
                     </xsl:for-each>
                 </xsl:variable>
                 <xsl:variable name="y_max">
-                    <xsl:for-each select="res[@name='item']/row">
+                    <xsl:for-each select="row">
                         <xsl:sort select="@item_val2" data-type="number" order="descending"/>
                         <xsl:if test="position() = 1">
                             <xsl:value-of select="@item_val2"/>
@@ -98,7 +98,7 @@
 
                 <g id="line1">
                     <xsl:variable name="line1">
-                        <xsl:for-each select="res[@name='item']/row">
+                        <xsl:for-each select="row">
                             <xsl:sort select="@item_val1" data-type="number" order="ascending"/>
                             <xsl:variable name="x" select="format-number($pw * (@item_val1 - $x_min) div $x_rng,'0.000')"/>
                             <xsl:variable name="y" select="format-number($ph * (1 - (@item_val2 - $y_min) div $y_rng),'0.000')"/>
@@ -122,7 +122,7 @@
                 </g>
                 
                 <g id= "dots">
-                    <xsl:for-each select="res[@name='item']/row">
+                    <xsl:for-each select="row">
                         <xsl:sort select="@item_val1" data-type="number" order="ascending"/>
                         <xsl:variable name="x" select="format-number($pw * (@item_val1 - $x_min) div $x_rng,'0.000')"/>
                         <xsl:variable name="y" select="format-number($ph * (1 - (@item_val2 - $y_min) div $y_rng),'0.000')"/>

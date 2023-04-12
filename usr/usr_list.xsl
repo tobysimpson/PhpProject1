@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="utf-8"/>
-    <xsl:include href="layout.xsl"/>
+    <xsl:include href="../nav.xsl"/>
     
     <xsl:template match="/">
         <xsl:call-template name="page"/> 
@@ -18,7 +18,7 @@
 <!--                <th>remote_addr</th>
                 <th>remote_port</th>
                 <th>hostname</th>-->
-                <th colspan="2"></th>
+                <!--<th colspan="2"></th>-->
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -42,7 +42,7 @@
                     </td>
                     <td style="text-align:left">
                         <xsl:value-of select="@hostname"/>
-                    </td>-->
+                    </td>
                     <td>
                         <a>
                             <xsl:attribute name="href">
@@ -60,7 +60,7 @@
                             </xsl:attribute>
                             <xsl:text>agents</xsl:text>
                         </a>
-                    </td>
+                    </td>-->
                 </tr>
             </xsl:for-each> 
         </table>

@@ -15,6 +15,8 @@
         <html>
             <head>
                 <link rel="stylesheet" href="styles.css"/>
+                <!--<link rel="stylesheet" href="https://toby.euler.usi.ch/styles.css"/>-->
+                <!--<script src="xmlhttp.js"></script>-->
                 <title></title>
             </head>
             <body>
