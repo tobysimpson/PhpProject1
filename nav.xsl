@@ -84,7 +84,14 @@
                     <a href="item.php?mth=svg">item_svg</a>
                 </td>
             </tr>
-
+            <tr>
+                <th style="text-align:left">res</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="res.php?mth=grid">grid</a>
+                </td>
+            </tr>
 <!--            <tr>
                 <th style="text-align:left">game1</th>
             </tr>
