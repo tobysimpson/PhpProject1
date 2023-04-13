@@ -5,6 +5,12 @@
     <xsl:variable name="h">600</xsl:variable>
     <xsl:variable name="w">800</xsl:variable>
     
+    <xsl:variable name="h1">50</xsl:variable>
+    <xsl:variable name="w1">50</xsl:variable>
+    
+    <xsl:variable name="h2">50</xsl:variable>
+    <xsl:variable name="w2">50</xsl:variable>
+    
     <xsl:include href="../nav.xsl"/>
     
     <xsl:template match="/">
@@ -16,33 +22,41 @@
             <style>* { font-size: 100%; font-family: sans-serif; font-weight: 300; }</style> 
             <!-- title -->
             
-            <circle cx="10" cy="15" r="5" fill="blue"/>
-            <text x="20" y="20">hello</text>
+            <xsl:variable name="n" select="count(root[@name='prc_info']/row)"/>
             
- 
+            <circle cx="10" cy="15" r="5" fill="blue"/>
+            <text x="20" y="20">n=<xsl:value-of select="$n"/></text>
+            
+
             <g id="grids">
                 <xsl:call-template name="hgrid">
-                    <xsl:with-param name="i" select="0" />
+                    <xsl:with-param name="i" select="1" />
                 </xsl:call-template>
             
                 <xsl:call-template name="vgrid">
-                    <xsl:with-param name="i" select="0" />
+                    <xsl:with-param name="i" select="1" />
                 </xsl:call-template>
             </g>
             
 
-            <xsl:call-template name="prc_col">
-                <xsl:with-param name="i" select="1" />
-            </xsl:call-template>
-  
+            <xsl:for-each select="root[@name='prc_info']/row">
+                <xsl:variable name="i" select="@prc_row"/>
+                <xsl:variable name="j" select="@prc_col"/>
+                
+                <rect x="{2*$j*$w1}" y="{2*$i*$h1}" width="{$w1}" height="{$h1}" fill="#EEEEFF" stroke="black" rx="{0.2*$w1}"/>
+                
+                <text x="{(2*$j+0.5)*$w1}" y="{(2*$i+0.5)*$h1}" text-anchor="middle" alignment-baseline="middle">
+                    <xsl:value-of select="@prc_name" />
+                </text>
+            </xsl:for-each>
         </svg>
     </xsl:template>
     
     
     <xsl:template name="hgrid">
         <xsl:param name="i"/>
-        <xsl:if test="$i &lt; 11">
-            <line x1="0" x2="{$w}" y1="{$h *0.1*$i}" y2="{$h *0.1*$i}" stroke="lightgrey" />
+        <xsl:if test="($i*$h1) &lt; $h">
+            <line x1="0" x2="{$w}" y1="{$i*$h1}" y2="{$i*$h1}" stroke="lightgrey" />
             <xsl:call-template name="hgrid">
                 <xsl:with-param name="i" select="$i + 1" />
             </xsl:call-template>
@@ -51,23 +65,9 @@
     
     <xsl:template name="vgrid">
         <xsl:param name="i"/>
-        <xsl:if test="$i &lt; 11">
-            <line y1="0" y2="{$h}" x1="{$w *0.1*$i}" x2="{$w *0.1*$i}" stroke="lightgrey" />
+        <xsl:if test="($i*$w1) &lt; $w">
+            <line y1="0" y2="{$h}" x1="{$i*$w1}" x2="{$i*$w1}" stroke="lightgrey" />
             <xsl:call-template name="vgrid">
-                <xsl:with-param name="i" select="$i + 1" />
-            </xsl:call-template>
-        </xsl:if>
-    </xsl:template>
-    
-    <xsl:template name="prc_col">
-        <xsl:param name="i"/>
-        <xsl:if test="$i &lt; 4">
-            <xsl:for-each select="root[@name='prc_info']/row[@prc_col = $i]">
-                <text x="{20 + $i*40}" y="{40 + position()*20}">
-                    <xsl:value-of select="@prc_name" />
-                </text>
-            </xsl:for-each>
-            <xsl:call-template name="prc_col">
                 <xsl:with-param name="i" select="$i + 1" />
             </xsl:call-template>
         </xsl:if>
