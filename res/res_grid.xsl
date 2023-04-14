@@ -6,7 +6,7 @@
     <xsl:variable name="w">800</xsl:variable>
     
     <xsl:variable name="h1">50</xsl:variable>
-    <xsl:variable name="w1">50</xsl:variable>
+    <xsl:variable name="w1">100</xsl:variable>
     
     <xsl:variable name="h2">50</xsl:variable>
     <xsl:variable name="w2">20</xsl:variable>
@@ -32,46 +32,48 @@
             </text>
             
 
-<!--            <g id="grids">
+            <g id="grids">
                 <xsl:call-template name="hgrid">
                     <xsl:with-param name="i" select="1" />
                 </xsl:call-template>
                 <xsl:call-template name="vgrid">
                     <xsl:with-param name="i" select="1" />
                 </xsl:call-template>
-            </g>-->
+            </g>
             
 
             <g id="prc">
                 <xsl:for-each select="root[@name='prc_info']/row">
                     <xsl:variable name="i" select="@prc_row"/>
-                    <xsl:variable name="j" select="@prc_col"/>
-                    <!-- preceding prods -->
-                    <xsl:variable name="k" select="count(../../root[@name='prd_info']/row[@prd_col &lt; current()/@prc_col])"/>
-                
+                    <xsl:variable name="j" select="@prc_col - 1"/>
+                    <!-- preceding prods + padding -->
+                    <xsl:variable name="k" select="count(../../root[@name='prd_info']/row[@prd_col &lt; current()/@prc_col]) + $j + 1"/>
+                    
                     <xsl:variable name="x" select="$j*$w1 + $k*$w2"/>
             
                     <rect x="{$x}" y="{2*$i*$h1}" width="{$w1}" height="{$h1}" fill="#EEEEFF" stroke="black" rx="{0.05*$w1}"/>
  
-                    <text x="{$x}" y="{(2*$i+0.5)*$h1}" text-anchor="middle" alignment-baseline="middle">
-                        <xsl:value-of select="@prc_name"/>-<xsl:value-of select="@prc_col"/>-<xsl:value-of select="$k"/>
+                    <text x="{$x +0.5*$w1}" y="{(2*$i+0.5)*$h1}" text-anchor="middle" alignment-baseline="middle">
+                        <xsl:value-of select="@prc_name"/>
                     </text>
                 </xsl:for-each>
             </g>
             
             <g id="prd">
                 <xsl:for-each select="root[@name='prd_info']/row">
+                    <xsl:variable name="i" select="@prd_col"/>
                     <xsl:variable name="j" select="@prd_rnk"/>
-                    <!-- preceding procs -->
-                    <xsl:variable name="k" select="count(../../root[@name='prc_info']/row[@prc_col &lt; current()/@prd_col])"/>
-                
-                    <xsl:variable name="x" select="$k*$w1 + $j*$w2"/>
+                    <!-- preceding prods and padding -->
+                    <xsl:variable name="k" select="count(../row[@prd_col &lt; current()/@prd_col]) + $i"/>
+                    <!-- offset + padding -->
+                    <xsl:variable name="x" select="$i*$w1 + $k*$w2 + $j*$w2"/>
+                    <xsl:variable name="y" select="50"/>
                     
                     <line x1="{$x}" x2="{$x}" y1="0" y2="{$h}" stroke="grey"/>
             
- 
-                    <text x="{$x}" y="{$j*$h1}" text-anchor="middle" alignment-baseline="middle">
-                        <xsl:value-of select="@prd_name"/>-<xsl:value-of select="@prd_col"/>-<xsl:value-of select="$k"/>
+
+                    <text x="{$x}" y="{$y}" text-anchor="left" alignment-baseline="bottom"  transform="rotate(-90,{$x},{$y})">
+                        <xsl:value-of select="@prd_name"/>
                     </text>
                 </xsl:for-each>
             </g>
