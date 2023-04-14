@@ -50,6 +50,21 @@ function res_grid() {
     $node = $dom1->importNode($dom2->firstChild, true);
     $dom1->documentElement->appendChild($node);
     
+    //query
+    $qry = $db->conn->prepare("SELECT *, RANK() OVER (PARTITION BY prc_id ORDER BY prd_id) AS sup_rnk FROM prd_sup ;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $dom2 = cls_xml::res2dom($res);
+    $res->close();
+    
+    //label
+    $dom2->documentElement->setAttribute("name", "prd_sup");
+        
+    //import
+    $node = $dom1->importNode($dom2->firstChild, true);
+    $dom1->documentElement->appendChild($node);
+    
+    
     //transform
     echo $dom1->saveXML();
     $xsl = cls_xml::file2dom("res/res_grid.xsl");
