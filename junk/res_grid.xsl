@@ -26,6 +26,23 @@
             <xsl:variable name="n1" select="count(root[@name='prc_info']/row[@prc_col = 1])"/>
             <xsl:variable name="n2" select="count(root[@name='prd_info']/row[@prd_col = 2])"/>
             
+<!--            <circle cx="10" cy="15" r="5" fill="blue"/>
+            <text x="20" y="20">
+                <xsl:value-of select="$n1"/>,
+                <xsl:value-of select="$n2"/>
+            </text>-->
+            
+
+<!--            <g id="grids">
+                <xsl:call-template name="hgrid">
+                    <xsl:with-param name="i" select="1" />
+                </xsl:call-template>
+                <xsl:call-template name="vgrid">
+                    <xsl:with-param name="i" select="1" />
+                </xsl:call-template>
+            </g>-->
+            
+
             <g id="process">
                 <xsl:for-each select="root[@name='prc_info']/row">
                     <xsl:variable name="i" select="@prc_row"/>
@@ -42,7 +59,6 @@
                     </text>
                 </xsl:for-each>
             </g>
-            
             
             <g id="product">
                 <xsl:for-each select="root[@name='prd_info']/row">
@@ -63,7 +79,7 @@
             
             
             <g id="supply">
-                <xsl:for-each select="root[@name='vw_sup']/row">
+                <xsl:for-each select="root[@name='prd_sup']/row">
                     <xsl:variable name="prc" select="../../root[@name='prc_info']/row[@prc_id = current()/@prc_id]"/>
                     <xsl:variable name="prd" select="../../root[@name='prd_info']/row[@prd_id = current()/@prd_id]"/>
                     
@@ -87,7 +103,7 @@
             
             
             <g id="demand">
-                <xsl:for-each select="root[@name='vw_dem']/row">
+                <xsl:for-each select="root[@name='prd_dem']/row">
                     <xsl:variable name="prc" select="../../root[@name='prc_info']/row[@prc_id = current()/@prc_id]"/>
                     <xsl:variable name="prd" select="../../root[@name='prd_info']/row[@prd_id = current()/@prd_id]"/>
                     
@@ -111,6 +127,27 @@
             
             
         </svg>
+    </xsl:template>
+    
+    
+    <xsl:template name="hgrid">
+        <xsl:param name="i"/>
+        <xsl:if test="($i*$h1) &lt; $h">
+            <line x1="0" x2="{$w}" y1="{$i*$h1}" y2="{$i*$h1}" stroke="lightgrey" />
+            <xsl:call-template name="hgrid">
+                <xsl:with-param name="i" select="$i + 1" />
+            </xsl:call-template>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template name="vgrid">
+        <xsl:param name="i"/>
+        <xsl:if test="($i*$w1) &lt; $w">
+            <line y1="0" y2="{$h}" x1="{$i*$w1}" x2="{$i*$w1}" stroke="lightgrey" />
+            <xsl:call-template name="vgrid">
+                <xsl:with-param name="i" select="$i + 1" />
+            </xsl:call-template>
+        </xsl:if>
     </xsl:template>
     
 </xsl:stylesheet>

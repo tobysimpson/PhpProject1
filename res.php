@@ -22,6 +22,9 @@ switch ($mth) {
     case "grid":
         res_grid();
         break;
+    case "table":
+        res_table();
+        break;
     default:
         res_list();
 }
@@ -82,7 +85,7 @@ function res_insert() {
  */
 
 
-function res_grid() {
+function res_table() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     
@@ -95,7 +98,8 @@ function res_grid() {
     $dom1->documentElement->setAttribute("res_id", $res_id);
     
     //query
-    $qry = $db->conn->prepare("SELECT * FROM prc_info;");
+    $qry = $db->conn->prepare("SELECT * FROM prc_info WHERE res_id = ?;");
+    $qry->bind_param("i", $res_id);
     $qry->execute();
     $res = $qry->get_result();
     $dom2 = cls_xml::res2dom($res);
@@ -109,7 +113,8 @@ function res_grid() {
     $dom1->documentElement->appendChild($node);
     
     //query
-    $qry = $db->conn->prepare("SELECT *, RANK() OVER (PARTITION BY prd_col ORDER BY prd_id) AS prd_rnk FROM prd_info;");
+    $qry = $db->conn->prepare("SELECT *, RANK() OVER (PARTITION BY prd_col ORDER BY prd_id) AS prd_rnk FROM prd_info WHERE res_id = ?;");
+    $qry->bind_param("i", $res_id);
     $qry->execute();
     $res = $qry->get_result();
     $dom2 = cls_xml::res2dom($res);
@@ -123,7 +128,7 @@ function res_grid() {
     $dom1->documentElement->appendChild($node);
     
     //query
-    $qry = $db->conn->prepare("SELECT *, RANK() OVER (PARTITION BY prc_id ORDER BY prd_id) AS sup_rnk FROM prd_sup WHERE res_id = ?;");
+    $qry = $db->conn->prepare("SELECT *, RANK() OVER (PARTITION BY prc_id ORDER BY prd_id) AS sup_rnk FROM vw_sup WHERE res_id = ?;");
     $qry->bind_param("i", $res_id);
     $qry->execute();
     $res = $qry->get_result();
@@ -131,14 +136,14 @@ function res_grid() {
     $res->close();
     
     //label
-    $dom2->documentElement->setAttribute("name", "prd_sup");
+    $dom2->documentElement->setAttribute("name", "vw_sup");
         
     //import
     $node = $dom1->importNode($dom2->firstChild, true);
     $dom1->documentElement->appendChild($node);
     
     //query
-    $qry = $db->conn->prepare("SELECT *, RANK() OVER (PARTITION BY prc_id ORDER BY prd_id) AS dem_rnk FROM prd_dem WHERE res_id = ?;");
+    $qry = $db->conn->prepare("SELECT *, RANK() OVER (PARTITION BY prc_id ORDER BY prd_id) AS dem_rnk FROM vw_dem WHERE res_id = ?;");
     $qry->bind_param("i", $res_id);
     $qry->execute();
     $res = $qry->get_result();
@@ -146,7 +151,86 @@ function res_grid() {
     $res->close();
     
     //label
-    $dom2->documentElement->setAttribute("name", "prd_dem");
+    $dom2->documentElement->setAttribute("name", "vw_dem");
+        
+    //import
+    $node = $dom1->importNode($dom2->firstChild, true);
+    $dom1->documentElement->appendChild($node);
+    
+    
+    //transform
+    echo $dom1->saveXML();
+    $xsl = cls_xml::file2dom("res/res_table.xsl");
+    echo cls_xml::xsltrans($dom1, $xsl);
+}
+
+function res_grid() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    
+    //master
+    $dom1 = new DOMDocument('1.0', 'utf-8');
+    $dom1->formatOutput = true;
+    $dom1->appendChild($dom1->createElement('root'));
+    
+    //label
+    $dom1->documentElement->setAttribute("res_id", $res_id);
+    
+    //query
+    $qry = $db->conn->prepare("SELECT * FROM prc_info WHERE res_id = ?;");
+    $qry->bind_param("i", $res_id);
+    $qry->execute();
+    $res = $qry->get_result();
+    $dom2 = cls_xml::res2dom($res);
+    $res->close();
+    
+    //label
+    $dom2->documentElement->setAttribute("name", "prc_info");
+        
+    //import
+    $node = $dom1->importNode($dom2->firstChild, true);
+    $dom1->documentElement->appendChild($node);
+    
+    //query
+    $qry = $db->conn->prepare("SELECT *, RANK() OVER (PARTITION BY prd_col ORDER BY prd_id) AS prd_rnk FROM prd_info WHERE res_id = ?;");
+    $qry->bind_param("i", $res_id);
+    $qry->execute();
+    $res = $qry->get_result();
+    $dom2 = cls_xml::res2dom($res);
+    $res->close();
+    
+    //label
+    $dom2->documentElement->setAttribute("name", "prd_info");
+        
+    //import
+    $node = $dom1->importNode($dom2->firstChild, true);
+    $dom1->documentElement->appendChild($node);
+    
+    //query
+    $qry = $db->conn->prepare("SELECT *, RANK() OVER (PARTITION BY prc_id ORDER BY prd_id) AS sup_rnk FROM vw_sup WHERE res_id = ?;");
+    $qry->bind_param("i", $res_id);
+    $qry->execute();
+    $res = $qry->get_result();
+    $dom2 = cls_xml::res2dom($res);
+    $res->close();
+    
+    //label
+    $dom2->documentElement->setAttribute("name", "vw_sup");
+        
+    //import
+    $node = $dom1->importNode($dom2->firstChild, true);
+    $dom1->documentElement->appendChild($node);
+    
+    //query
+    $qry = $db->conn->prepare("SELECT *, RANK() OVER (PARTITION BY prc_id ORDER BY prd_id) AS dem_rnk FROM vw_dem WHERE res_id = ?;");
+    $qry->bind_param("i", $res_id);
+    $qry->execute();
+    $res = $qry->get_result();
+    $dom2 = cls_xml::res2dom($res);
+    $res->close();
+    
+    //label
+    $dom2->documentElement->setAttribute("name", "vw_dem");
         
     //import
     $node = $dom1->importNode($dom2->firstChild, true);
@@ -158,3 +242,81 @@ function res_grid() {
     $xsl = cls_xml::file2dom("res/res_grid.xsl");
     echo cls_xml::xsltrans($dom1, $xsl);
 }
+
+
+//function res_grid() {
+//    $db = new cls_db();
+//    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+//    
+//    //master
+//    $dom1 = new DOMDocument('1.0', 'utf-8');
+//    $dom1->formatOutput = true;
+//    $dom1->appendChild($dom1->createElement('root'));
+//    
+//    //label
+//    $dom1->documentElement->setAttribute("res_id", $res_id);
+//    
+//    //query
+//    $qry = $db->conn->prepare("SELECT * FROM prc_info;");
+//    $qry->execute();
+//    $res = $qry->get_result();
+//    $dom2 = cls_xml::res2dom($res);
+//    $res->close();
+//    
+//    //label
+//    $dom2->documentElement->setAttribute("name", "prc_info");
+//        
+//    //import
+//    $node = $dom1->importNode($dom2->firstChild, true);
+//    $dom1->documentElement->appendChild($node);
+//    
+//    //query
+//    $qry = $db->conn->prepare("SELECT *, RANK() OVER (PARTITION BY prd_col ORDER BY prd_id) AS prd_rnk FROM prd_info;");
+//    $qry->execute();
+//    $res = $qry->get_result();
+//    $dom2 = cls_xml::res2dom($res);
+//    $res->close();
+//    
+//    //label
+//    $dom2->documentElement->setAttribute("name", "prd_info");
+//        
+//    //import
+//    $node = $dom1->importNode($dom2->firstChild, true);
+//    $dom1->documentElement->appendChild($node);
+//    
+//    //query
+//    $qry = $db->conn->prepare("SELECT *, RANK() OVER (PARTITION BY prc_id ORDER BY prd_id) AS sup_rnk FROM prd_sup WHERE res_id = ?;");
+//    $qry->bind_param("i", $res_id);
+//    $qry->execute();
+//    $res = $qry->get_result();
+//    $dom2 = cls_xml::res2dom($res);
+//    $res->close();
+//    
+//    //label
+//    $dom2->documentElement->setAttribute("name", "prd_sup");
+//        
+//    //import
+//    $node = $dom1->importNode($dom2->firstChild, true);
+//    $dom1->documentElement->appendChild($node);
+//    
+//    //query
+//    $qry = $db->conn->prepare("SELECT *, RANK() OVER (PARTITION BY prc_id ORDER BY prd_id) AS dem_rnk FROM prd_dem WHERE res_id = ?;");
+//    $qry->bind_param("i", $res_id);
+//    $qry->execute();
+//    $res = $qry->get_result();
+//    $dom2 = cls_xml::res2dom($res);
+//    $res->close();
+//    
+//    //label
+//    $dom2->documentElement->setAttribute("name", "prd_dem");
+//        
+//    //import
+//    $node = $dom1->importNode($dom2->firstChild, true);
+//    $dom1->documentElement->appendChild($node);
+//    
+//    
+//    //transform
+//    echo $dom1->saveXML();
+//    $xsl = cls_xml::file2dom("res/res_grid.xsl");
+//    echo cls_xml::xsltrans($dom1, $xsl);
+//}

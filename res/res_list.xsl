@@ -14,7 +14,7 @@
                 <th>res_id</th>
                 <th>res_name</th>
                 <th>res_n1</th>
-                <th colspan="2"></th>
+                <th colspan="3"></th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -43,6 +43,15 @@
                                 <xsl:value-of select="@res_id"/>
                             </xsl:attribute>
                             <xsl:text>grid</xsl:text>
+                        </a>
+                    </td>
+                    <td>
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:text>res.php?mth=table&amp;res_id=</xsl:text>
+                                <xsl:value-of select="@res_id"/>
+                            </xsl:attribute>
+                            <xsl:text>table</xsl:text>
                         </a>
                     </td>
                 </tr>
