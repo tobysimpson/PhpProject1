@@ -85,11 +85,11 @@
                 </td>
             </tr>
             <tr>
-                <th style="text-align:left">res</th>
+                <th style="text-align:left">game</th>
             </tr>
             <tr>
                 <td>
-                    <a href="res.php?mth=grid">grid</a>
+                    <a href="res.php?mth=list">res_list</a>
                 </td>
             </tr>
 <!--            <tr>
