@@ -57,6 +57,15 @@
                     <td>
                         <a>
                             <xsl:attribute name="href">
+                                <xsl:text>res.php?mth=init&amp;res_id=</xsl:text>
+                                <xsl:value-of select="@res_id"/>
+                            </xsl:attribute>
+                            <xsl:text>init</xsl:text>
+                        </a>
+                    </td>
+                    <td>
+                        <a>
+                            <xsl:attribute name="href">
                                 <xsl:text>res.php?mth=step&amp;res_id=</xsl:text>
                                 <xsl:value-of select="@res_id"/>
                             </xsl:attribute>

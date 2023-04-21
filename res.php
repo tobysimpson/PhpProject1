@@ -28,6 +28,9 @@ switch ($mth) {
     case "hist":
         res_hist();
         break;
+    case "init":
+        res_init();
+        break;
     case "step":
         res_step();
         break;
@@ -187,33 +190,29 @@ function res_hist() {
     echo cls_xml::xsltrans($dom1, $xsl);
 }
 
+
+function res_init() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    
+    //query
+    $qry = $db->conn->prepare("CALL sp_hist_init(?);");
+    $qry->bind_param("i", $res_id);
+    $qry->execute();
+
+    header("Location: res.php?mth=list");
+}
+
 function res_step() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     
     //query
-    $qry = $db->conn->prepare("SELECT * FROM vw_sup WHERE res_id = ?;");
+    $qry = $db->conn->prepare("CALL sp_hist_step(?);");
     $qry->bind_param("i", $res_id);
     $qry->execute();
-    $res = $qry->get_result();
-    
-    $sup = cls_xml::res2arr($res);
-    $res->close();
-    
-    var_dump($sup);
 
-    
-    //query
-    $qry = $db->conn->prepare("SELECT * FROM vw_dem WHERE res_id = ?;");
-    $qry->bind_param("i", $res_id);
-    $qry->execute();
-    $res = $qry->get_result();
-    
-    $dem = cls_xml::res2arr($res);
-    $res->close();
-    
-    var_dump($dem);
-   
+    header("Location: res.php?mth=list");
 }
 
 
