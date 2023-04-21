@@ -14,7 +14,7 @@
                 <th>res_id</th>
                 <th>res_name</th>
                 <th>res_n1</th>
-                <th colspan="3"></th>
+                <th colspan="5"></th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -24,7 +24,7 @@
                     <td style="text-align:left">
                         <xsl:value-of select="@res_name"/>
                     </td>
-                    <td style="text-align:right">
+                    <td>
                         <xsl:value-of select="@res_n1"/>
                     </td>
                     <td>
@@ -52,6 +52,24 @@
                                 <xsl:value-of select="@res_id"/>
                             </xsl:attribute>
                             <xsl:text>table</xsl:text>
+                        </a>
+                    </td>
+                    <td>
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:text>res.php?mth=step&amp;res_id=</xsl:text>
+                                <xsl:value-of select="@res_id"/>
+                            </xsl:attribute>
+                            <xsl:text>step</xsl:text>
+                        </a>
+                    </td>
+                    <td>
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:text>res.php?mth=hist&amp;res_id=</xsl:text>
+                                <xsl:value-of select="@res_id"/>
+                            </xsl:attribute>
+                            <xsl:text>hist</xsl:text>
                         </a>
                     </td>
                 </tr>
