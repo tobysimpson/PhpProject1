@@ -7,6 +7,9 @@ require_once "cls_xml.php";
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
+    case "list":
+        prd_list();
+        break;
     case "dem":
         prd_dem();
         break;
@@ -25,11 +28,11 @@ switch ($mth) {
     case "prd_sup_update":
         prd_sup_update();
         break;
-    case "insert":
-        prd_insert();
+    case "hist":
+        prd_hist();
         break;
     default:
-        prd_dem();
+        prd_list();
 }
 
 /*
@@ -37,6 +40,17 @@ switch ($mth) {
  *  admin
  * =========================
  */
+
+function prd_list() {
+    $db = new cls_db();
+    $qry = $db->conn->prepare("SELECT * FROM prd_info;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res);
+    $xsl = cls_xml::file2dom("prd/prd_list.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
+    $res->close();
+}
 
 function prd_dem() {
     $db = new cls_db();
@@ -113,4 +127,25 @@ function prd_sup_update() {
     $qry->bind_param("ddii", $v1, $v2, $prd_id, $prc_id);
     $qry->execute();
     header("Location: prd.php?mth=sup");
+}
+
+
+/*
+ * =========================
+ *  disp
+ * =========================
+ */
+
+function prd_hist() {
+    $db = new cls_db();
+    $prd_id = filter_input(INPUT_GET, "prd_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT * FROM prd_hist WHERE prd_id = ?;");
+    $qry->bind_param("i", $prd_id);
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res);
+    echo $xml->saveXML();
+    $xsl = cls_xml::file2dom("prd/prd_hist.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
+    $res->close();
 }

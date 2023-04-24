@@ -13,9 +13,7 @@
             <tr>
                 <th>res_id</th>
                 <th>prd_id</th>
-                <th>prc_id</th>
-                <th>v1</th>
-                <th>v2</th>
+                <th>prd_name</th>
                 <th colspan="1"></th>
             </tr>
             <xsl:for-each select="row">
@@ -26,22 +24,16 @@
                     <td>
                         <xsl:value-of select="@prd_id"/>
                     </td>
-                    <td>
-                        <xsl:value-of select="@prc_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@v1"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@v2"/>
+                    <td style="text-align:left;">
+                        <xsl:value-of select="@prd_name"/>
                     </td>
                     <td>
                         <a>
                             <xsl:attribute name="href">
-                                <xsl:text>prd.php?mth=edit&amp;prd_id=</xsl:text>
+                                <xsl:text>prd.php?mth=hist&amp;prd_id=</xsl:text>
                                 <xsl:value-of select="@prd_id"/>
                             </xsl:attribute>
-                            <xsl:text>edit</xsl:text>
+                            <xsl:text>hist</xsl:text>
                         </a>
                     </td>
                 </tr>

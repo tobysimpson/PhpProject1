@@ -94,6 +94,11 @@
             </tr>
             <tr>
                 <td>
+                    <a href="prd.php?mth=list">prd_list</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <a href="prc.php?mth=list">prc_list</a>
                 </td>
             </tr>

@@ -78,7 +78,15 @@
                     <xsl:variable name="y"  select="format-number($prc/@prc_row*$h1 + $prc/@prc_row*$h2 + current()/@sup_rnk*$dh,'0.00')"/>
 
                     <line x1="{$x1}" x2="{$x2}" y1="{$y}" y2="{$y}" stroke="grey"/>
-                    <circle cx="{$x1}" cy="{$y}" r="3" stroke="grey" fill="white"/>
+                    <a>
+                        <xsl:attribute name="href">
+                            <xsl:text>prd.php?mth=prd_sup_edit&amp;prd_id=</xsl:text>
+                            <xsl:value-of select="@prd_id"/>
+                            <xsl:text>&amp;prc_id=</xsl:text>
+                            <xsl:value-of select="@prc_id"/>
+                        </xsl:attribute>
+                        <circle cx="{$x1}" cy="{$y}" r="4" stroke="grey" fill="white"/>
+                    </a>
                     <circle cx="{$x2}" cy="{$y}" r="3" fill="grey"/>
                     
                 </xsl:for-each>
@@ -102,7 +110,16 @@
                     <xsl:variable name="y"  select="format-number($prc/@prc_row*$h1 + $prc/@prc_row*$h2 + current()/@dem_rnk*$dh,'0.00')"/>
                     
                     <line x1="{$x1}" x2="{$x2}" y1="{$y}" y2="{$y}" stroke="grey"/>
-                    <circle cx="{$x1}" cy="{$y}" r="3" stroke="grey" fill="white"/>
+                    <a>
+                        <xsl:attribute name="href">
+                            <xsl:text>prd.php?mth=prd_dem_edit&amp;prd_id=</xsl:text>
+                            <xsl:value-of select="@prd_id"/>
+                            <xsl:text>&amp;prc_id=</xsl:text>
+                            <xsl:value-of select="@prc_id"/>
+                        </xsl:attribute>
+                        <circle cx="{$x1}" cy="{$y}" r="4" stroke="grey" fill="white"/>
+                    </a>
+                   
                     <circle cx="{$x2}" cy="{$y}" r="3" fill="grey"/>
                     
                 </xsl:for-each>
