@@ -92,29 +92,21 @@
                     <a href="res.php?mth=list">res_list</a>
                 </td>
             </tr>
-<!--            <tr>
-                <th style="text-align:left">game1</th>
-            </tr>
             <tr>
                 <td>
-                    <a href="pdt.php">games</a>
+                    <a href="prc.php?mth=list">prc_list</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="pda.php">agents</a>
+                    <a href="prd.php?mth=dem">prd_dem</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="pdt.php?mth=del">games (deleted)</a>
+                    <a href="prd.php?mth=sup">prd_sup</a>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <a href="pda.php?mth=del">agents (deleted)</a>
-                </td>
-            </tr>-->
         </table>
     </xsl:template>
     
