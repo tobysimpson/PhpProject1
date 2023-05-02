@@ -11,16 +11,12 @@
     <xsl:template match="root">
         <table class="table1">
             <tr>
-                <th>res_id</th>
                 <th>prc_id</th>
                 <th>prc_name</th>
                 <th colspan="2"></th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
-                    <td>
-                        <xsl:value-of select="@res_id"/>
-                    </td>
                     <td>
                         <xsl:value-of select="@prc_id"/>
                     </td>

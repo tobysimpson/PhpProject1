@@ -14,7 +14,7 @@
                 <th>res_id</th>
                 <th>prd_id</th>
                 <th>prd_name</th>
-                <th colspan="1"></th>
+                <th colspan="2"></th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -28,13 +28,10 @@
                         <xsl:value-of select="@prd_name"/>
                     </td>
                     <td>
-                        <a>
-                            <xsl:attribute name="href">
-                                <xsl:text>prd.php?mth=hist&amp;prd_id=</xsl:text>
-                                <xsl:value-of select="@prd_id"/>
-                            </xsl:attribute>
-                            <xsl:text>hist</xsl:text>
-                        </a>
+                        <a href="prd.php?mth=hist&amp;prd_id={@prd_id}">hist</a>
+                    </td>
+                    <td>
+                        <img style="width:auto; height:50;" src="prd.php?mth=hist&amp;prd_id={@prd_id}"/>
                     </td>
                 </tr>
             </xsl:for-each> 

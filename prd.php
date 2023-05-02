@@ -80,7 +80,7 @@ function prd_dem_edit() {
     $db = new cls_db();
     $prd_id = filter_input(INPUT_GET, "prd_id", FILTER_VALIDATE_INT);
     $prc_id = filter_input(INPUT_GET, "prc_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM prd_dem WHERE prd_id = ? AND prc_id = ?;");
+    $qry = $db->conn->prepare("SELECT * FROM prc_dem WHERE prd_id = ? AND prc_id = ?;");
     $qry->bind_param("ii", $prd_id, $prc_id);
     $qry->execute();
     $res = $qry->get_result();
@@ -96,7 +96,7 @@ function prd_dem_update() {
     $prc_id = filter_input(INPUT_POST, "prc_id", FILTER_VALIDATE_INT);
     $v1 = filter_input(INPUT_POST, "v1", FILTER_VALIDATE_FLOAT);
     $v2 = filter_input(INPUT_POST, "v2", FILTER_VALIDATE_FLOAT);
-    $qry = $db->conn->prepare("UPDATE prd_dem SET v1 = ?, v2 = ? WHERE prd_id = ? AND prc_id = ?;");
+    $qry = $db->conn->prepare("UPDATE prc_dem SET v1 = ?, v2 = ? WHERE prd_id = ? AND prc_id = ?;");
     $qry->bind_param("ddii", $v1, $v2, $prd_id, $prc_id);
     $qry->execute();
     header("Location: prd.php?mth=prd_dem");
@@ -107,7 +107,7 @@ function prd_sup_edit() {
     $db = new cls_db();
     $prd_id = filter_input(INPUT_GET, "prd_id", FILTER_VALIDATE_INT);
     $prc_id = filter_input(INPUT_GET, "prc_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM prd_sup WHERE prd_id = ? AND prc_id = ?;");
+    $qry = $db->conn->prepare("SELECT * FROM prc_sup WHERE prd_id = ? AND prc_id = ?;");
     $qry->bind_param("ii", $prd_id, $prc_id);
     $qry->execute();
     $res = $qry->get_result();
@@ -123,7 +123,7 @@ function prd_sup_update() {
     $prc_id = filter_input(INPUT_POST, "prc_id", FILTER_VALIDATE_INT);
     $v1 = filter_input(INPUT_POST, "v1", FILTER_VALIDATE_FLOAT);
     $v2 = filter_input(INPUT_POST, "v2", FILTER_VALIDATE_FLOAT);
-    $qry = $db->conn->prepare("UPDATE prd_sup SET v1 = ?, v2 = ? WHERE prd_id = ? AND prc_id = ?;");
+    $qry = $db->conn->prepare("UPDATE prc_sup SET v1 = ?, v2 = ? WHERE prd_id = ? AND prc_id = ?;");
     $qry->bind_param("ddii", $v1, $v2, $prd_id, $prc_id);
     $qry->execute();
     header("Location: prd.php?mth=sup");
@@ -144,8 +144,9 @@ function prd_hist() {
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
-    echo $xml->saveXML();
+//    echo $xml->saveXML();
     $xsl = cls_xml::file2dom("prd/prd_hist.xsl");
     echo cls_xml::xsltrans($xml, $xsl);
+    header("Content-Type: image/svg+xml");
     $res->close();
 }

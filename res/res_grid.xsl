@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>
 
     <xsl:variable name="h">600</xsl:variable>
@@ -11,22 +11,22 @@
     <xsl:variable name="h2">30</xsl:variable>
     <xsl:variable name="w2">30</xsl:variable>
     
-    <xsl:include href="../nav.xsl"/>
+<!--    <xsl:include href="../nav.xsl"/>
     
     <xsl:template match="/">
         <xsl:call-template name="page"/> 
-    </xsl:template>
+    </xsl:template>-->
     
         
     <xsl:template match="root">
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
             <style>text { font-size: 100%; font-family: sans-serif; font-weight: 300; }</style> 
      
-            <xsl:variable name="n1" select="count(root[@name='prc_info']/row[@prc_col = 1])"/>
+            <xsl:variable name="n1" select="count(root[@name='vw_prc']/row[@prc_col = 1])"/>
             <xsl:variable name="n2" select="count(root[@name='prd_info']/row[@prd_col = 2])"/>
             
             <g id="process">
-                <xsl:for-each select="root[@name='prc_info']/row">
+                <xsl:for-each select="root[@name='vw_prc']/row">
                     <xsl:variable name="i" select="@prc_row"/>
                     <xsl:variable name="j" select="@prc_col - 1"/>
                     <xsl:variable name="k" select="count(../../root[@name='prd_info']/row[@prd_col &lt; current()/@prc_col])"/>
@@ -63,7 +63,7 @@
             
             <g id="supply">
                 <xsl:for-each select="root[@name='vw_sup']/row">
-                    <xsl:variable name="prc" select="../../root[@name='prc_info']/row[@prc_id = current()/@prc_id]"/>
+                    <xsl:variable name="prc" select="../../root[@name='vw_prc']/row[@prc_id = current()/@prc_id]"/>
                     <xsl:variable name="prd" select="../../root[@name='prd_info']/row[@prd_id = current()/@prd_id]"/>
                     
                     <xsl:variable name="k1" select="count(../../root[@name='prd_info']/row[@prd_col &lt; $prc/@prc_col])"/>
@@ -88,14 +88,13 @@
                         <circle cx="{$x1}" cy="{$y}" r="4" stroke="grey" fill="white"/>
                     </a>
                     <circle cx="{$x2}" cy="{$y}" r="3" fill="grey"/>
-                    
                 </xsl:for-each>
             </g>
             
             
             <g id="demand">
                 <xsl:for-each select="root[@name='vw_dem']/row">
-                    <xsl:variable name="prc" select="../../root[@name='prc_info']/row[@prc_id = current()/@prc_id]"/>
+                    <xsl:variable name="prc" select="../../root[@name='vw_prc']/row[@prc_id = current()/@prc_id]"/>
                     <xsl:variable name="prd" select="../../root[@name='prd_info']/row[@prd_id = current()/@prd_id]"/>
                     
                     <xsl:variable name="k1" select="count(../../root[@name='prd_info']/row[@prd_col &lt; $prc/@prc_col])"/>

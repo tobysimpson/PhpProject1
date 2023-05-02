@@ -14,7 +14,7 @@
                 <th>res_id</th>
                 <th>res_name</th>
                 <th>res_n1</th>
-                <th colspan="5"></th>
+                <th colspan="7"></th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -28,60 +28,27 @@
                         <xsl:value-of select="@res_n1"/>
                     </td>
                     <td>
-                        <a>
-                            <xsl:attribute name="href">
-                                <xsl:text>res.php?mth=edit&amp;res_id=</xsl:text>
-                                <xsl:value-of select="@res_id"/>
-                            </xsl:attribute>
-                            <xsl:text>edit</xsl:text>
-                        </a>
+                        <a href="res.php?mth=edit&amp;res_id={@res_id}">edit</a>
                     </td>
                     <td>
-                        <a>
-                            <xsl:attribute name="href">
-                                <xsl:text>res.php?mth=grid&amp;res_id=</xsl:text>
-                                <xsl:value-of select="@res_id"/>
-                            </xsl:attribute>
-                            <xsl:text>grid</xsl:text>
-                        </a>
+                        <a href="res.php?mth=grid&amp;res_id={@res_id}">grid</a>
                     </td>
                     <td>
-                        <a>
-                            <xsl:attribute name="href">
-                                <xsl:text>res.php?mth=table&amp;res_id=</xsl:text>
-                                <xsl:value-of select="@res_id"/>
-                            </xsl:attribute>
-                            <xsl:text>table</xsl:text>
-                        </a>
+                        <a href="res.php?mth=disp&amp;res_id={@res_id}">disp</a>
                     </td>
                     <td>
-                        <a>
-                            <xsl:attribute name="href">
-                                <xsl:text>res.php?mth=init&amp;res_id=</xsl:text>
-                                <xsl:value-of select="@res_id"/>
-                            </xsl:attribute>
-                            <xsl:text>init</xsl:text>
-                        </a>
+                        <a href="res.php?mth=init&amp;res_id={@res_id}">init</a>
                     </td>
                     <td>
-                        <a>
-                            <xsl:attribute name="href">
-                                <xsl:text>res.php?mth=step&amp;res_id=</xsl:text>
-                                <xsl:value-of select="@res_id"/>
-                            </xsl:attribute>
-                            <xsl:text>step</xsl:text>
-                        </a>
+                        <a href="res.php?mth=step&amp;res_id={@res_id}">step</a>
                     </td>
                     <td>
-                        <a>
-                            <xsl:attribute name="href">
-                                <xsl:text>res.php?mth=hist&amp;res_id=</xsl:text>
-                                <xsl:value-of select="@res_id"/>
-                            </xsl:attribute>
-                            <xsl:text>hist</xsl:text>
-                        </a>
+                        <a href="res.php?mth=trunc&amp;res_id={@res_id}">trunc</a>
                     </td>
-                </tr>
+                    <td>
+                        <a href="res.php?mth=hist&amp;res_id={@res_id}">hist</a>
+                    </td>
+                </tr>   
             </xsl:for-each> 
         </table>
     </xsl:template>

@@ -104,14 +104,15 @@
             </tr>
             <tr>
                 <td>
-                    <a href="prd.php?mth=dem">prd_dem</a>
+                    <a href="prd.php?mth=sup">prc_sup</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="prd.php?mth=sup">prd_sup</a>
+                    <a href="prd.php?mth=dem">prc_dem</a>
                 </td>
             </tr>
+
         </table>
     </xsl:template>
     

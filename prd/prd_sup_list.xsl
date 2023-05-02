@@ -30,10 +30,10 @@
                         <xsl:value-of select="@prc_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@v1"/>
+                        <xsl:value-of select="format-number(@v1,'0.0000')"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@v2"/>
+                        <xsl:value-of select="format-number(@v2,'0.0000')"/>
                     </td>
                     <td>
                         <a>

@@ -2,16 +2,16 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>
 
-    <xsl:variable name="h">600</xsl:variable>
-    <xsl:variable name="w">800</xsl:variable>
+    <xsl:variable name="h">200</xsl:variable>
+    <xsl:variable name="w">600</xsl:variable>
     
-    <xsl:variable name="ph">400</xsl:variable>
+    <xsl:variable name="ph">200</xsl:variable>
     <xsl:variable name="pw">600</xsl:variable>
     
-    <xsl:include href="../nav.xsl"/>
+<!--    <xsl:include href="../nav.xsl"/>
     <xsl:template match="/">
         <xsl:call-template name="page"/> 
-    </xsl:template>
+    </xsl:template>-->
     
     <xsl:template match="root">
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
@@ -26,7 +26,7 @@
                 </text>
             </g>-->
             
-            <g id="plot" transform="translate(100,100)"> 
+            <g id="plot" transform="translate(00,00)"> 
                 <xsl:variable name="t_tot">
                     <xsl:value-of select="count(row)+1"/>
                 </xsl:variable>
@@ -101,7 +101,7 @@
                     <line x1="0" y1="{$ph * 1.0}" x2="{$pw}" y2="{$ph * 1.0}" stroke="lightgrey" />
                 </g>
          
-                <g id="key">
+<!--                <g id="key">
                     <text x="0" y="20">
                         <xsl:value-of select="$t_tot"/>
                         <xsl:text>, </xsl:text>
@@ -128,13 +128,13 @@
                         <xsl:text>, </xsl:text>
                         <xsl:value-of select="format-number($q_rng,'0.000')"/>
                     </text>
-                </g>
+                </g>-->
                 
                 <g id="bar1">
                     <xsl:for-each select="row">
                         <xsl:sort select="@t" data-type="number" order="ascending"/>
                         <xsl:variable name="x" select="format-number($pw * (@t - $t_min) div $t_rng,'0.000')"/>
-                        <xsl:variable name="y" select="format-number($ph * (1 - (@qty - $q_min) div $q_rng),'0.000')"/>
+                        <xsl:variable name="y" select="format-number($ph * (@qty - $q_min) div $q_rng,'0.000')"/>
                         <rect x="{$x - ($t_w div 2)}" y="{$ph - $y}" width="{$t_w}" height="{$y}" fill="#EEEEFF"/>
                     </xsl:for-each>
                 </g>
@@ -166,7 +166,7 @@
                 
 
                                 
-                <g id="line2">
+<!--                <g id="line2">
                     <xsl:variable name="line2">
                         <xsl:for-each select="row">
                             <xsl:sort select="@t" data-type="number" order="ascending"/>
@@ -189,7 +189,7 @@
                         </xsl:for-each>
                     </xsl:variable>
                     <path fill="none" stroke="red" d="{$line2}"/>
-                </g>
+                </g>-->
                 
 
             </g>
