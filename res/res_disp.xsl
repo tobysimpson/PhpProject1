@@ -9,13 +9,9 @@
     </xsl:template>
 
     <xsl:template match="root">
-        
+        <a href="res.php?mth=step&amp;res_id={row/@res_id}">step</a>
         <table>
             <tr>
-                <td id="grid">
-                    <!-- works but is shit -->
-                    <!--<object style="width:1000; height:600;" type="image/svg+xml" data="res.php?mth=grid&amp;res_id={row/@res_id}"/>--> 
-                </td>
                 <td id="prd">
                     <table class="table1">
                         <tr>

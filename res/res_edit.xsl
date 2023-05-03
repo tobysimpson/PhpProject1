@@ -13,7 +13,7 @@
     <xsl:template match="root/row">
         <table class="table2">
             <form action="res.php?mth=update" method="post">
-               <tr>
+                <tr>
                     <th>res_id</th>
                     <td>
                         <input type="text" name="res_id" readonly="true">
@@ -26,28 +26,82 @@
                 <tr>
                     <th>res_name</th>
                     <td>
-                        <input type="text" name="res_name" length="20">
-                            <xsl:attribute name="value">
-                                <xsl:value-of select="@res_name"/>
-                            </xsl:attribute>
-                        </input>
+                        <input type="text" name="res_name" length="20" value="{@res_name}"/>
                     </td>
                 </tr>
                 <tr>
                     <th>res_n1</th>
                     <td>
-                        <input type="text" name="res_n1">
-                            <xsl:attribute name="value">
-                                <xsl:value-of select="@res_n1"/>
-                            </xsl:attribute>
-                        </input>
+                        <input type="text" name="res_n1" value="{@res_n1}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>tmp_base</th>
+                    <td>
+                        <input type="text" name="res_n1" value="{@tmp_base}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>tmp_trend</th>
+                    <td>
+                        <input type="text" name="res_n1" value="{@tmp_trend}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>tmp_osc</th>
+                    <td>
+                        <input type="text" name="res_n1" value="{@tmp_osc}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>tmp_phase</th>
+                    <td>
+                        <input type="text" name="res_n1" value="{@tmp_phase}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>tmp_noise</th>
+                    <td>
+                        <input type="text" name="res_n1" value="{@tmp_noise}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>wnd_base</th>
+                    <td>
+                        <input type="text" name="res_n1" value="{@wnd_base}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>wnd_trend</th>
+                    <td>
+                        <input type="text" name="res_n1" value="{@wnd_trend}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>wnd_osc</th>
+                    <td>
+                        <input type="text" name="res_n1" value="{@wnd_osc}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>wnd_phase</th>
+                    <td>
+                        <input type="text" name="res_n1" value="{@wnd_phase}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>wnd_noise</th>
+                    <td>
+                        <input type="text" name="res_n1" value="{@wnd_noise}"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         
                     </td>
-                    <td><input type="submit"/></td>
+                    <td>
+                        <input type="submit"/>
+                    </td>
                 </tr>
             </form>
         </table>

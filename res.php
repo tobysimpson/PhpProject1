@@ -138,7 +138,7 @@ function res_step() {
     $qry->bind_param("i", $res_id);
     $qry->execute();
 
-    header("Location: res.php?mth=list");
+    header("Location: res.php?mth=disp&res_id=".$res_id);
 }
 
 
