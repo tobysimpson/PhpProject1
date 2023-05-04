@@ -235,20 +235,70 @@ function res_grid() {
     header("Content-Type: image/svg+xml");
 }
 
+//function res_disp() {
+//    $db = new cls_db();
+//    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+//
+//    //query
+//    $qry = $db->conn->prepare("SELECT * FROM prd_info WHERE res_id = ?;");
+//    $qry->bind_param("i", $res_id);
+//    $qry->execute();
+//    $res = $qry->get_result();
+//    $dom1 = cls_xml::res2dom($res);
+//    $res->close();
+//
+//    //transform
+////    echo $dom1->saveXML();
+//    $xsl = cls_xml::file2dom("res/res_disp.xsl");
+//    echo cls_xml::xsltrans($dom1, $xsl);
+//}
+
+
 function res_disp() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+
+    //master
+    $dom1 = new DOMDocument('1.0', 'utf-8');
+    $dom1->formatOutput = true;
+    $dom1->appendChild($dom1->createElement('root'));
+
+    //label
+    $dom1->documentElement->setAttribute("res_id", $res_id);
 
     //query
     $qry = $db->conn->prepare("SELECT * FROM prd_info WHERE res_id = ?;");
     $qry->bind_param("i", $res_id);
     $qry->execute();
     $res = $qry->get_result();
-    $dom1 = cls_xml::res2dom($res);
+    $dom2 = cls_xml::res2dom($res);
     $res->close();
 
+    //label
+    $dom2->documentElement->setAttribute("name", "prd_info");
+
+    //import
+    $node = $dom1->importNode($dom2->firstChild, true);
+    $dom1->documentElement->appendChild($node);
+
+    //query
+    $qry = $db->conn->prepare("SELECT * FROM vw_met_dem WHERE res_id = ?;");
+    $qry->bind_param("i", $res_id);
+    $qry->execute();
+    $res = $qry->get_result();
+    $dom2 = cls_xml::res2dom($res);
+    $res->close();
+
+    //label
+    $dom2->documentElement->setAttribute("name", "met_dem");
+
+    //import
+    $node = $dom1->importNode($dom2->firstChild, true);
+    $dom1->documentElement->appendChild($node);
+
+
     //transform
-//    echo $dom1->saveXML();
+    echo $dom1->saveXML();
     $xsl = cls_xml::file2dom("res/res_disp.xsl");
     echo cls_xml::xsltrans($dom1, $xsl);
 }
