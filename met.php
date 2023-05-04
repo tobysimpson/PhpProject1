@@ -12,8 +12,11 @@ switch ($mth) {
     case "step":
         met_step();
         break;
-    case "hist":
-        met_hist();
+    case "tmp_plot":
+        tmp_plot();
+        break;
+    case "wnd_plot":
+        wnd_plot();
         break;
     default:
         met_hist();
@@ -25,7 +28,7 @@ switch ($mth) {
  * =========================
  */
 
-function met_hist() {
+function tmp_plot() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
 
@@ -39,7 +42,26 @@ function met_hist() {
 
     //transform
 //    echo $dom1->saveXML();
-    $xsl = cls_xml::file2dom("met/met_hist.xsl");
+    $xsl = cls_xml::file2dom("met/tmp_plot.xsl");
+    echo cls_xml::xsltrans($dom1, $xsl);
+    header("Content-Type: image/svg+xml");
+}
+
+function wnd_plot() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+
+    //query
+    $qry = $db->conn->prepare("SELECT * FROM met_hist WHERE res_id = ?;");
+    $qry->bind_param("i", $res_id);
+    $qry->execute();
+    $res = $qry->get_result();
+    $dom1 = cls_xml::res2dom($res);
+    $res->close();
+
+    //transform
+//    echo $dom1->saveXML();
+    $xsl = cls_xml::file2dom("met/wnd_plot.xsl");
     echo cls_xml::xsltrans($dom1, $xsl);
     header("Content-Type: image/svg+xml");
 }

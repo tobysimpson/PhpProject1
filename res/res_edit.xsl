@@ -38,61 +38,61 @@
                 <tr>
                     <th>tmp_base</th>
                     <td>
-                        <input type="text" name="res_n1" value="{@tmp_base}"/>
+                        <input type="text" name="tmp_base" value="{@tmp_base}"/>
                     </td>
                 </tr>
                 <tr>
                     <th>tmp_trend</th>
                     <td>
-                        <input type="text" name="res_n1" value="{@tmp_trend}"/>
+                        <input type="text" name="tmp_trend" value="{@tmp_trend}"/>
                     </td>
                 </tr>
                 <tr>
                     <th>tmp_osc</th>
                     <td>
-                        <input type="text" name="res_n1" value="{@tmp_osc}"/>
+                        <input type="text" name="tmp_osc" value="{@tmp_osc}"/>
                     </td>
                 </tr>
                 <tr>
                     <th>tmp_phase</th>
                     <td>
-                        <input type="text" name="res_n1" value="{@tmp_phase}"/>
+                        <input type="text" name="tmp_phase" value="{@tmp_phase}"/>
                     </td>
                 </tr>
                 <tr>
                     <th>tmp_noise</th>
                     <td>
-                        <input type="text" name="res_n1" value="{@tmp_noise}"/>
+                        <input type="text" name="tmp_noise" value="{@tmp_noise}"/>
                     </td>
                 </tr>
                 <tr>
                     <th>wnd_base</th>
                     <td>
-                        <input type="text" name="res_n1" value="{@wnd_base}"/>
+                        <input type="text" name="wnd_base" value="{@wnd_base}"/>
                     </td>
                 </tr>
                 <tr>
                     <th>wnd_trend</th>
                     <td>
-                        <input type="text" name="res_n1" value="{@wnd_trend}"/>
+                        <input type="text" name="wnd_trend" value="{@wnd_trend}"/>
                     </td>
                 </tr>
                 <tr>
                     <th>wnd_osc</th>
                     <td>
-                        <input type="text" name="res_n1" value="{@wnd_osc}"/>
+                        <input type="text" name="wnd_osc" value="{@wnd_osc}"/>
                     </td>
                 </tr>
                 <tr>
                     <th>wnd_phase</th>
                     <td>
-                        <input type="text" name="res_n1" value="{@wnd_phase}"/>
+                        <input type="text" name="wnd_phase" value="{@wnd_phase}"/>
                     </td>
                 </tr>
                 <tr>
                     <th>wnd_noise</th>
                     <td>
-                        <input type="text" name="res_n1" value="{@wnd_noise}"/>
+                        <input type="text" name="wnd_noise" value="{@wnd_noise}"/>
                     </td>
                 </tr>
                 <tr>

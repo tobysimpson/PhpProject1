@@ -22,7 +22,10 @@
                     <table>
                         <tr>
                             <td>
-                                <img style="width:auto; height:80;" src="met.php?mth=hist&amp;res_id={row/@res_id}"/>
+                                <img style="width:auto; height:200;" src="met.php?mth=tmp_plot&amp;res_id={row/@res_id}"/>
+                            </td>
+                            <td>
+                                <img style="width:auto; height:200;" src="met.php?mth=wnd_plot&amp;res_id={row/@res_id}"/>
                             </td>
                         </tr>
                     </table>
