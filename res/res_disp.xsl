@@ -9,8 +9,25 @@
     </xsl:template>
 
     <xsl:template match="root">
-        <a href="res.php?mth=step&amp;res_id={row/@res_id}">step</a>
+        
+        <a href="res.php?mth=step&amp;res_id={row/@res_id}">res_step</a>
+        <xsl:text> </xsl:text>
+        <a href="met.php?mth=init&amp;res_id={row/@res_id}">met_init</a>
+        <xsl:text> </xsl:text>
+        <a href="met.php?mth=step&amp;res_id={row/@res_id}">met_step</a>
+        <p/>
         <table>
+            <tr>
+                <td id="met">
+                    <table>
+                        <tr>
+                            <td>
+                                <img style="width:auto; height:80;" src="met.php?mth=hist&amp;res_id={row/@res_id}"/>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
             <tr>
                 <td id="prd">
                     <table class="table1">
