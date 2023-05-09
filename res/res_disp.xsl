@@ -11,9 +11,9 @@
 
     <xsl:template match="root"> 
         
-        <!--        <script>
+<!--        <script>
             <xsl:text>setTimeout(function(){window.location.replace('met.php?mth=step&amp;res_id=</xsl:text>
-            <xsl:value-of select="row/@res_id"/>
+            <xsl:value-of select="@res_id"/>
             <xsl:text>')}, 5000);</xsl:text>
         </script>-->
         
@@ -32,11 +32,15 @@
                         <tr>
                             <td>
                                 <!--<img src="met.php?mth=tmp_plot&amp;res_id={row/@res_id}"/>-->
-                                <object type="image/svg+xml" data="met.php?mth=tmp_plot&amp;res_id={@res_id}" style="width:700; height:300;"/>
+                                <object type="image/svg+xml" data="met.php?mth=tmp_plot&amp;res_id={@res_id}" style="width:600; height:300;"/>
                             </td>
                             <td>
                                 <!--<img src="met.php?mth=wnd_plot&amp;res_id={row/@res_id}"/>-->
-                                <object type="image/svg+xml" data="met.php?mth=wnd_plot&amp;res_id={@res_id}" style="width:700; height:300;"/>
+                                <object type="image/svg+xml" data="met.php?mth=wnd_plot&amp;res_id={@res_id}" style="width:600; height:300;"/>
+                            </td>
+                            <td>
+                                <!--<img src="met.php?mth=wnd_plot&amp;res_id={row/@res_id}"/>-->
+                                <object type="image/svg+xml" data="met.php?mth=cld_plot&amp;res_id={@res_id}" style="width:600; height:300;"/>
                             </td>
                         </tr>
                     </table>

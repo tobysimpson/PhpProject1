@@ -12,43 +12,45 @@
         <table class="table1">
             <tr>
                 <th>res_id</th>
-                <th>res_name</th>
-                <th>res_n1</th>
-                <th colspan="7"></th>
+                <th>sto_id</th>
+                <th>sto_name</th>
+                <th>sto_base</th>
+                <th>sto_trend</th>
+                <th>sto_osc</th>
+                <th>sto_sig</th>
+                <th>sto_rev</th>
+                <th colspan="1"></th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
                     <td>
                         <xsl:value-of select="@res_id"/>
                     </td>
-                    <td style="text-align:left">
-                        <xsl:value-of select="@res_name"/>
+                    <td>
+                        <xsl:value-of select="@sto_id"/>
+                    </td>
+                    <td style="text-align:left;">
+                        <xsl:value-of select="@sto_name"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@res_n1"/>
+                        <xsl:value-of select="@sto_base"/>
                     </td>
                     <td>
-                        <a href="res.php?mth=edit&amp;res_id={@res_id}">edit</a>
+                        <xsl:value-of select="@sto_trend"/>
                     </td>
                     <td>
-                        <a href="res.php?mth=grid&amp;res_id={@res_id}">grid</a>
+                        <xsl:value-of select="@sto_osc"/>
                     </td>
                     <td>
-                        <a href="res.php?mth=disp&amp;res_id={@res_id}">disp</a>
+                        <xsl:value-of select="@sto_sig"/>
                     </td>
                     <td>
-                        <a href="sto.php?mth=init&amp;res_id={@res_id}">init</a>
+                        <xsl:value-of select="@sto_rev"/>
                     </td>
                     <td>
-                        <a href="sto.php?mth=step&amp;res_id={@res_id}">step</a>
+                        <object type="image/svg+xml" data="sto.php?mth=sto_plot&amp;sto_id={@sto_id}" style="width:400; height:120;"/>
                     </td>
-                    <td>
-                        <a href="res.php?mth=trunc&amp;res_id={@res_id}">trunc</a>
-                    </td>
-                    <td>
-                        <a href="sto.php?mth=list&amp;res_id={@res_id}">sto</a>
-                    </td>
-                </tr>   
+                </tr>
             </xsl:for-each> 
         </table>
     </xsl:template>

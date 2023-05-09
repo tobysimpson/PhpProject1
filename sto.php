@@ -6,23 +6,17 @@ require_once "cls_xml.php";
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
+    case "list":
+        sto_list();
+        break;
     case "init":
-        met_init();
+        sto_init();
         break;
     case "step":
-        met_step();
+        sto_step();
         break;
-    case "tmp_plot":
-        tmp_plot();
-        break;
-    case "wnd_plot":
-        wnd_plot();
-        break;
-    case "wnd_plot":
-        wnd_plot();
-        break;
-    case "cld_plot":
-        cld_plot();
+    case "sto_plot":
+        sto_plot();
         break;
     case "dem_plot":
         dem_plot();
@@ -31,7 +25,7 @@ switch ($mth) {
         dem_agg();
         break;
     default:
-        met_hist();
+        sto_hist();
 }
 
 /*
@@ -40,13 +34,58 @@ switch ($mth) {
  * =========================
  */
 
-function tmp_plot() {
+function sto_list() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
 
     //query
-    $qry = $db->conn->prepare("SELECT * FROM met_hist WHERE res_id = ?;");
+    $qry = $db->conn->prepare("SELECT * FROM sto_info WHERE res_id = ? AND sto_id <> 3;");
     $qry->bind_param("i", $res_id);
+    $qry->execute();
+    $res = $qry->get_result();
+    $dom1 = cls_xml::res2dom($res);
+    $res->close();
+    
+    //transform
+//    echo $dom1->saveXML();
+    $xsl = cls_xml::file2dom("sto/sto_list.xsl");
+    echo cls_xml::xsltrans($dom1, $xsl);
+}
+
+
+function sto_init() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+
+    //query
+    $qry = $db->conn->prepare("CALL sp_sto_init(?);");
+    $qry->bind_param("i", $res_id);
+    $qry->execute();
+
+    header("Location: res.php?mth=list&res_id=" . $res_id);
+}
+
+function sto_step() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+
+    //query
+    $qry = $db->conn->prepare("CALL sp_sto_step(?);");
+    $qry->bind_param("i", $res_id);
+
+    for ($i = 0; $i <= 90; $i++) {
+        $qry->execute();
+    }
+    header("Location: res.php?mth=list&res_id=" . $res_id);
+}
+
+function sto_plot() {
+    $db = new cls_db();
+    $sto_id = filter_input(INPUT_GET, "sto_id", FILTER_VALIDATE_INT);
+
+    //query
+    $qry = $db->conn->prepare("SELECT sto_id, t, v1 FROM sto_hist WHERE sto_id = ?;");
+    $qry->bind_param("i", $sto_id);
     $qry->execute();
     $res = $qry->get_result();
     $dom1 = cls_xml::res2dom($res);
@@ -54,81 +93,17 @@ function tmp_plot() {
 
     //transform
 //    echo $dom1->saveXML();
-    $xsl = cls_xml::file2dom("met/tmp_plot.xsl");
+    $xsl = cls_xml::file2dom("sto/sto_plot.xsl");
     echo cls_xml::xsltrans($dom1, $xsl);
     header("Content-Type: image/svg+xml");
 }
-
-function wnd_plot() {
-    $db = new cls_db();
-    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-
-    //query
-    $qry = $db->conn->prepare("SELECT * FROM met_hist WHERE res_id = ?;");
-    $qry->bind_param("i", $res_id);
-    $qry->execute();
-    $res = $qry->get_result();
-    $dom1 = cls_xml::res2dom($res);
-    $res->close();
-
-    //transform
-//    echo $dom1->saveXML();
-    $xsl = cls_xml::file2dom("met/wnd_plot.xsl");
-    echo cls_xml::xsltrans($dom1, $xsl);
-    header("Content-Type: image/svg+xml");
-}
-
-function cld_plot() {
-    $db = new cls_db();
-    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-
-    //query
-    $qry = $db->conn->prepare("SELECT * FROM met_hist WHERE res_id = ?;");
-    $qry->bind_param("i", $res_id);
-    $qry->execute();
-    $res = $qry->get_result();
-    $dom1 = cls_xml::res2dom($res);
-    $res->close();
-
-    //transform
-//    echo $dom1->saveXML();
-    $xsl = cls_xml::file2dom("met/cld_plot.xsl");
-    echo cls_xml::xsltrans($dom1, $xsl);
-    header("Content-Type: image/svg+xml");
-}
-
-
-function met_init() {
-    $db = new cls_db();
-    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-
-    //query
-    $qry = $db->conn->prepare("CALL sp_met_init(?);");
-    $qry->bind_param("i", $res_id);
-    $qry->execute();
-
-    header("Location: res.php?mth=disp&res_id=".$res_id);
-}
-
-function met_step() {
-    $db = new cls_db();
-    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-
-    //query
-    $qry = $db->conn->prepare("CALL sp_met_step(?);");
-    $qry->bind_param("i", $res_id);
-    $qry->execute();
-
-    header("Location: res.php?mth=disp&res_id=".$res_id);
-}
-
 
 function dem_plot() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "dem_id", FILTER_VALIDATE_INT);
 
     //query
-    $qry = $db->conn->prepare("SELECT * FROM vw_met_dem_hist WHERE dem_id = ?;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_sto_dem_hist WHERE dem_id = ?;");
     $qry->bind_param("i", $res_id);
     $qry->execute();
     $res = $qry->get_result();
@@ -147,7 +122,7 @@ function dem_agg() {
     $prd_id = filter_input(INPUT_GET, "prd_id", FILTER_VALIDATE_INT);
 
     //query
-    $qry = $db->conn->prepare("SELECT * FROM vw_met_dem_agg WHERE prd_id = ?;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_sto_dem_agg WHERE prd_id = ?;");
     $qry->bind_param("i", $prd_id);
     $qry->execute();
     $res = $qry->get_result();

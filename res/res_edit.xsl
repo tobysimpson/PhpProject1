@@ -11,8 +11,8 @@
     
     
     <xsl:template match="root/row">
-        <table class="table2">
-            <form action="res.php?mth=update" method="post">
+        <form action="res.php?mth=update" method="post">
+            <table class="table2">
                 <tr>
                     <th>res_id</th>
                     <td>
@@ -35,10 +35,28 @@
                         <input type="text" name="res_n1" value="{@res_n1}"/>
                     </td>
                 </tr>
+               
+                <tr>
+                    <td><input type="submit"/></td>
+                    <td></td>
+                </tr>
+            </table>
+                
+<!--            <table class="table2">
                 <tr>
                     <th>tmp_base</th>
                     <td>
                         <input type="text" name="tmp_base" value="{@tmp_base}"/>
+                    </td>
+                    
+                    <th>wnd_base</th>
+                    <td>
+                        <input type="text" name="wnd_base" value="{@wnd_base}"/>
+                    </td>
+                    
+                    <th>cld_base</th>
+                    <td>
+                        <input type="text" name="cld_base" value="{@cld_base}"/>
                     </td>
                 </tr>
                 <tr>
@@ -46,11 +64,27 @@
                     <td>
                         <input type="text" name="tmp_trend" value="{@tmp_trend}"/>
                     </td>
+                    <th>wnd_trend</th>
+                    <td>
+                        <input type="text" name="wnd_trend" value="{@wnd_trend}"/>
+                    </td>
+                    <th>cld_trend</th>
+                    <td>
+                        <input type="text" name="cld_trend" value="{@cld_trend}"/>
+                    </td>
                 </tr>
                 <tr>
                     <th>tmp_osc</th>
                     <td>
                         <input type="text" name="tmp_osc" value="{@tmp_osc}"/>
+                    </td>
+                    <th>wnd_osc</th>
+                    <td>
+                        <input type="text" name="wnd_osc" value="{@wnd_osc}"/>
+                    </td>
+                    <th>cld_osc</th>
+                    <td>
+                        <input type="text" name="cld_osc" value="{@cld_osc}"/>
                     </td>
                 </tr>
                 <tr>
@@ -58,52 +92,31 @@
                     <td>
                         <input type="text" name="tmp_phase" value="{@tmp_phase}"/>
                     </td>
+                    <th>wnd_phase</th>
+                    <td>
+                        <input type="text" name="wnd_phase" value="{@wnd_phase}"/>
+                    </td>      
+                    <th>cld_phase</th>
+                    <td>
+                        <input type="text" name="cld_phase" value="{@cld_phase}"/>
+                    </td>
                 </tr>
                 <tr>
                     <th>tmp_noise</th>
                     <td>
                         <input type="text" name="tmp_noise" value="{@tmp_noise}"/>
                     </td>
-                </tr>
-                <tr>
-                    <th>wnd_base</th>
-                    <td>
-                        <input type="text" name="wnd_base" value="{@wnd_base}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <th>wnd_trend</th>
-                    <td>
-                        <input type="text" name="wnd_trend" value="{@wnd_trend}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <th>wnd_osc</th>
-                    <td>
-                        <input type="text" name="wnd_osc" value="{@wnd_osc}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <th>wnd_phase</th>
-                    <td>
-                        <input type="text" name="wnd_phase" value="{@wnd_phase}"/>
-                    </td>
-                </tr>
-                <tr>
                     <th>wnd_noise</th>
                     <td>
                         <input type="text" name="wnd_noise" value="{@wnd_noise}"/>
                     </td>
-                </tr>
-                <tr>
+                    <th>cld_noise</th>
                     <td>
-                        
-                    </td>
-                    <td>
-                        <input type="submit"/>
+                        <input type="text" name="cld_noise" value="{@cld_noise}"/>
                     </td>
                 </tr>
-            </form>
-        </table>
+            </table>-->
+            
+        </form>
     </xsl:template>
 </xsl:stylesheet>

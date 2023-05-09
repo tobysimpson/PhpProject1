@@ -3,10 +3,10 @@
     <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>
 
     <xsl:variable name="h">300</xsl:variable>
-    <xsl:variable name="w">700</xsl:variable>
+    <xsl:variable name="w">600</xsl:variable>
     
     <xsl:variable name="ph">200</xsl:variable>
-    <xsl:variable name="pw">600</xsl:variable>
+    <xsl:variable name="pw">500</xsl:variable>
     
     <!--    <xsl:include href="../nav.xsl"/>
     <xsl:template match="/">

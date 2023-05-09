@@ -17,7 +17,7 @@
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
             <style>* { font-size: 100%; font-family: sans-serif; font-weight: 300; }</style>
              
-            <text x="0" y="20" alignment-baseline="hanging" style="font-weight: bold;">wind</text>
+            <text x="0" y="20" alignment-baseline="hanging" style="font-weight: bold;">cloud</text>
             
             <g id="plot" transform="translate(0,40)"> 
                 <xsl:variable name="t_min">
@@ -40,17 +40,17 @@
                 
                 <xsl:variable name="v_min">
                     <xsl:for-each select="row">
-                        <xsl:sort select="@wnd_v1" data-type="number" order="ascending"/>
+                        <xsl:sort select="@cld_v1" data-type="number" order="ascending"/>
                         <xsl:if test="position() = 1">
-                            <xsl:value-of select="@wnd_v1"/>
+                            <xsl:value-of select="@cld_v1"/>
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:variable>
                 <xsl:variable name="v_max">
                     <xsl:for-each select="row">
-                        <xsl:sort select="@wnd_v1" data-type="number" order="descending"/>
+                        <xsl:sort select="@cld_v1" data-type="number" order="descending"/>
                         <xsl:if test="position() = 1">
-                            <xsl:value-of select="@wnd_v1"/>
+                            <xsl:value-of select="@cld_v1"/>
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:variable>
@@ -103,8 +103,8 @@
                     <text x="{$pw}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
                         <xsl:value-of select="format-number($t_max,'0')"/>
                     </text>
-                    <text x="{$pw + 10}" y="{format-number($ph * (1 - (row[last()]/@wnd_v1 - $v_min) div $v_rng),'0.0')}" alignment-baseline="middle" style="font-weight: bold;">
-                        <xsl:value-of select="format-number(row[last()]/@wnd_v1,'0.000')"/>
+                    <text x="{$pw + 10}" y="{format-number($ph * (1 - (row[last()]/@cld_v1 - $v_min) div $v_rng),'0.0')}" alignment-baseline="middle" style="font-weight: bold;">
+                        <xsl:value-of select="format-number(row[last()]/@cld_v1,'0.000')"/>
                     </text>
                 </g>
                 
@@ -116,7 +116,7 @@
                         <xsl:for-each select="row">
                             <xsl:sort select="@t" data-type="number" order="ascending"/>
                             <xsl:variable name="x" select="format-number($pw * (@t - $t_min) div $t_rng,'0')"/>
-                            <xsl:variable name="y" select="format-number($ph * (1 - (@wnd_v1 - $v_min) div $v_rng),'0')"/>
+                            <xsl:variable name="y" select="format-number($ph * (1 - (@cld_v1 - $v_min) div $v_rng),'0')"/>
                             <xsl:choose>
                                 <xsl:when test="position()=1">
                                     <xsl:text>M </xsl:text>

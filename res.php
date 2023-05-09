@@ -76,15 +76,35 @@ function res_update() {
     $res_name = filter_input(INPUT_POST, "res_name", FILTER_SANITIZE_STRING);
     $res_n1 = filter_input(INPUT_POST, "res_n1", FILTER_VALIDATE_FLOAT);
 
-    $tmp_base = filter_input(INPUT_POST, "tmp_base", FILTER_VALIDATE_FLOAT);
-    $tmp_trend = filter_input(INPUT_POST, "tmp_trend", FILTER_VALIDATE_FLOAT);
-    $tmp_osc = filter_input(INPUT_POST, "tmp_osc", FILTER_VALIDATE_FLOAT);
-    $tmp_phase = filter_input(INPUT_POST, "tmp_phase", FILTER_VALIDATE_FLOAT);
-    $tmp_noise = filter_input(INPUT_POST, "tmp_noise", FILTER_VALIDATE_FLOAT);
+//    $tmp_base = filter_input(INPUT_POST, "tmp_base", FILTER_VALIDATE_FLOAT);
+//    $tmp_trend = filter_input(INPUT_POST, "tmp_trend", FILTER_VALIDATE_FLOAT);
+//    $tmp_osc = filter_input(INPUT_POST, "tmp_osc", FILTER_VALIDATE_FLOAT);
+//    $tmp_phase = filter_input(INPUT_POST, "tmp_phase", FILTER_VALIDATE_FLOAT);
+//    $tmp_noise = filter_input(INPUT_POST, "tmp_noise", FILTER_VALIDATE_FLOAT);
+//    
+//    $wnd_base = filter_input(INPUT_POST, "wnd_base", FILTER_VALIDATE_FLOAT);
+//    $wnd_trend = filter_input(INPUT_POST, "wnd_trend", FILTER_VALIDATE_FLOAT);
+//    $wnd_osc = filter_input(INPUT_POST, "wnd_osc", FILTER_VALIDATE_FLOAT);
+//    $wnd_phase = filter_input(INPUT_POST, "wnd_phase", FILTER_VALIDATE_FLOAT);
+//    $wnd_noise = filter_input(INPUT_POST, "wnd_noise", FILTER_VALIDATE_FLOAT);
+//    
+//    $cld_base = filter_input(INPUT_POST, "cld_base", FILTER_VALIDATE_FLOAT);
+//    $cld_trend = filter_input(INPUT_POST, "cld_trend", FILTER_VALIDATE_FLOAT);
+//    $cld_osc = filter_input(INPUT_POST, "cld_osc", FILTER_VALIDATE_FLOAT);
+//    $cld_phase = filter_input(INPUT_POST, "cld_phase", FILTER_VALIDATE_FLOAT);
+//    $cld_noise = filter_input(INPUT_POST, "cld_noise", FILTER_VALIDATE_FLOAT);
 
 //echo $res_name,$res_id,$res_val1,$res_val2;
-    $qry = $db->conn->prepare("UPDATE res_info SET res_name = ?, res_n1 = ?, tmp_base = ?, tmp_trend = ?, tmp_osc = ?, tmp_phase = ?, tmp_noise = ? WHERE res_id = ?;");
-    $qry->bind_param("sidddddi", substr($res_name, 0, 20), $res_n1, $tmp_base, $tmp_trend, $tmp_osc, $tmp_phase, $tmp_noise, $res_id);
+    $qry = $db->conn->prepare("UPDATE res_info SET res_name = ?, res_n1 = ? WHERE res_id = ?;");
+//            . "tmp_base = ?, tmp_trend = ?, tmp_osc = ?, tmp_phase = ?, tmp_noise = ?"
+//            . "wnd_base = ?, wnd_trend = ?, wnd_osc = ?, wnd_phase = ?, wnd_noise = ?"
+//            . "cld_base = ?, cld_trend = ?, cld_osc = ?, cld_phase = ?, cld_noise = ?"
+//            . " WHERE res_id = ?;");
+    $qry->bind_param("sii", substr($res_name, 0, 20), $res_n1, $res_id);
+//            $tmp_base, $tmp_trend, $tmp_osc, $tmp_phase, $tmp_noise, 
+//            $wnd_base, $wnd_trend, $wnd_osc, $wnd_phase, $wnd_noise, 
+//            $cld_base, $cld_trend, $cld_osc, $cld_phase, $cld_noise, 
+//            $res_id);
     $qry->execute();
     header("Location: res.php");
 }
