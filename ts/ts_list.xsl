@@ -13,13 +13,16 @@
             <tr>
                 <th>res_id</th>
                 <th>grp_id</th>
-                <th>sto_id</th>
-                <th>sto_name</th>
-<!--                <th>sto_base</th>
-                <th>sto_trend</th>
-                <th>sto_osc</th>
-                <th>sto_sig</th>
-                <th>sto_rev</th>-->
+                <th>ts_id</th>
+                <th>ts_name</th>
+                <th>ts_base</th>
+                <th>ts_trend</th>
+                <th>ts_osc</th>
+                <th>ts_freq</th>
+                <th>ts_phase</th>
+                <th>ts_stdev</th>
+                <th>ts_lo</th>
+                <th>ts_hi</th>
                 <th colspan="1"></th>
             </tr>
             <xsl:for-each select="row">
@@ -31,28 +34,37 @@
                         <xsl:value-of select="@grp_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@sto_id"/>
+                        <xsl:value-of select="@ts_id"/>
                     </td>
                     <td style="text-align:left;">
-                        <xsl:value-of select="@sto_name"/>
-                    </td>
-<!--                    <td>
-                        <xsl:value-of select="@sto_base"/>
+                        <xsl:value-of select="@ts_name"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@sto_trend"/>
+                        <xsl:value-of select="@ts_base"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@sto_osc"/>
+                        <xsl:value-of select="@ts_trend"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@sto_sig"/>
+                        <xsl:value-of select="@ts_osc"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@sto_rev"/>
-                    </td>-->
+                        <xsl:value-of select="@ts_freq"/>
+                    </td>
                     <td>
-                        <object type="image/svg+xml" data="sto.php?mth=sto_plot&amp;sto_id={@sto_id}" style="width:400; height:120;"/>
+                        <xsl:value-of select="@ts_phase"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@ts_stdev"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@ts_lo"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@ts_hi"/>
+                    </td>
+                    <td>
+                        <object type="image/svg+xml" data="ts.php?mth=plot&amp;ts_id={@ts_id}" style="width:400; height:120;"/>
                     </td>
                 </tr>
             </xsl:for-each> 

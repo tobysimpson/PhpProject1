@@ -40,17 +40,17 @@
                 
                 <xsl:variable name="v_min">
                     <xsl:for-each select="row">
-                        <xsl:sort select="@v2" data-type="number" order="ascending"/>
+                        <xsl:sort select="@prx" data-type="number" order="ascending"/>
                         <xsl:if test="position() = 1">
-                            <xsl:value-of select="@v2"/>
+                            <xsl:value-of select="@prx"/>
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:variable>
                 <xsl:variable name="v_max">
                     <xsl:for-each select="row">
-                        <xsl:sort select="@v2" data-type="number" order="descending"/>
+                        <xsl:sort select="@prx" data-type="number" order="descending"/>
                         <xsl:if test="position() = 1">
-                            <xsl:value-of select="@v2"/>
+                            <xsl:value-of select="@prx"/>
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:variable>
@@ -104,18 +104,46 @@
                     <text x="{$pw}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
                         <xsl:value-of select="format-number($t_max,'0')"/>
                     </text>
-                    <text x="{$pw + 10}" y="{format-number($ph * (1 - (row[last()]/@v2 - $v_min) div $v_rng),'0.0')}" alignment-baseline="middle" style="font-weight: bold;">
-                        <xsl:value-of select="format-number(row[last()]/@v2,'0.000')"/>
+                    <text x="{$pw + 10}" y="{format-number($ph * (1 - (row[last()]/@prx - $v_min) div $v_rng),'0.0')}" alignment-baseline="middle" style="font-weight: bold;">
+                        <xsl:value-of select="format-number(row[last()]/@prx,'0.000')"/>
                     </text>
                 </g>
                 
+
+
+                <g id="line2">
+                    <xsl:variable name="line2">
+                        <xsl:for-each select="row">
+                            <xsl:sort select="@t" data-type="number" order="ascending"/>
+                            <xsl:variable name="x" select="format-number($pw * (@t - $t_min) div $t_rng,'0')"/>
+                            <xsl:variable name="y" select="format-number($ph * (1 - @r2),'0')"/>
+                            <xsl:choose>
+                                <xsl:when test="position()=1">
+                                    <xsl:text>M </xsl:text>
+                                    <xsl:value-of select="$x"/>
+                                    <xsl:text>,</xsl:text>
+                                    <xsl:value-of select="$y"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:text> L </xsl:text>
+                                    <xsl:value-of select="$x"/>
+                                    <xsl:text>,</xsl:text>
+                                    <xsl:value-of select="$y"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <path fill="none" stroke="red" d="{$line2}"/>
+                </g>
+                
+                <circle cx="{$pw}" cy="{format-number($ph * (1 - (row[last()]/@r2)),'0')}" r="2" fill="red"/> 
 
                 <g id="line1">
                     <xsl:variable name="line1">
                         <xsl:for-each select="row">
                             <xsl:sort select="@t" data-type="number" order="ascending"/>
                             <xsl:variable name="x" select="format-number($pw * (@t - $t_min) div $t_rng,'0')"/>
-                            <xsl:variable name="y" select="format-number($ph * (1 - (@v2 - $v_min) div $v_rng),'0')"/>
+                            <xsl:variable name="y" select="format-number($ph * (1 - (@prx - $v_min) div $v_rng),'0')"/>
                             <xsl:choose>
                                 <xsl:when test="position()=1">
                                     <xsl:text>M </xsl:text>
@@ -135,8 +163,7 @@
                     <path fill="none" stroke="blue" d="{$line1}"/>
                 </g>
                 
-
-                <circle cx="{$pw}" cy="{format-number($ph * (1 - (row[last()]/@v2 - $v_min) div $v_rng),'0')}" r="2" fill="blue"/> 
+                <circle cx="{$pw}" cy="{format-number($ph * (1 - (row[last()]/@prx - $v_min) div $v_rng),'0')}" r="2" fill="blue"/> 
               
             </g>
         </svg>

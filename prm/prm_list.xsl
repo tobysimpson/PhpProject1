@@ -12,46 +12,49 @@
         <table class="table1">
             <tr>
                 <th>res_id</th>
-                <th>res_name</th>
-                <th>res_n1</th>
-                <th colspan="8"></th>
+                <th>grp_id</th>
+                <th>prm_id</th>
+                <th>prm_name</th>
+<!--                <th>prm_base</th>
+                <th>prm_trend</th>
+                <th>prm_osc</th>
+                <th>prm_sig</th>
+                <th>prm_rev</th>-->
+                <th colspan="1"></th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
                     <td>
                         <xsl:value-of select="@res_id"/>
                     </td>
-                    <td style="text-align:left">
-                        <xsl:value-of select="@res_name"/>
+                    <td>
+                        <xsl:value-of select="@grp_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@res_n1"/>
+                        <xsl:value-of select="@prm_id"/>
+                    </td>
+                    <td style="text-align:left;">
+                        <xsl:value-of select="@prm_name"/>
+                    </td>
+<!--                    <td>
+                        <xsl:value-of select="@prm_base"/>
                     </td>
                     <td>
-                        <a href="res.php?mth=edit&amp;res_id={@res_id}">edit</a>
+                        <xsl:value-of select="@prm_trend"/>
                     </td>
                     <td>
-                        <a href="res.php?mth=grid&amp;res_id={@res_id}">grid</a>
+                        <xsl:value-of select="@prm_osc"/>
                     </td>
                     <td>
-                        <a href="res.php?mth=disp&amp;res_id={@res_id}">disp</a>
+                        <xsl:value-of select="@prm_sig"/>
                     </td>
                     <td>
-                        <a href="sto.php?mth=init&amp;res_id={@res_id}">init</a>
-                    </td>
+                        <xsl:value-of select="@prm_rev"/>
+                    </td>-->
                     <td>
-                        <a href="sto.php?mth=step&amp;res_id={@res_id}">step</a>
+                        <object type="image/svg+xml" data="prm.php?mth=prm_plot&amp;prm_id={@prm_id}" style="width:400; height:120;"/>
                     </td>
-                    <td>
-                        <a href="sto.php?mth=list&amp;res_id={@res_id}">sto_list</a>
-                    </td>
-                    <td>
-                        <a href="prm.php?mth=list&amp;res_id={@res_id}">prm_list</a>
-                    </td>
-                    <td>
-                        <a href="ts.php?mth=list&amp;res_id={@res_id}">ts_list</a>
-                    </td>
-                </tr>   
+                </tr>
             </xsl:for-each> 
         </table>
     </xsl:template>
