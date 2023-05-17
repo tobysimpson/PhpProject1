@@ -46,7 +46,7 @@ function ts_plot() {
     $ts_id = filter_input(INPUT_GET, "ts_id", FILTER_VALIDATE_INT);
 
     //query
-    $qry = $db->conn->prepare("SELECT t,v1 FROM vw_ts2 WHERE ts_id = ? ORDER BY t;");
+    $qry = $db->conn->prepare("SELECT t,v1 FROM vw_ts WHERE ts_id = ? ORDER BY t;");
     $qry->bind_param("i", $ts_id);
     $qry->execute();
     $res = $qry->get_result();
