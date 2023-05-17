@@ -31,25 +31,16 @@
                         <a href="res.php?mth=edit&amp;res_id={@res_id}">edit</a>
                     </td>
                     <td>
-                        <a href="res.php?mth=grid&amp;res_id={@res_id}">grid</a>
-                    </td>
-                    <td>
-                        <a href="res.php?mth=disp&amp;res_id={@res_id}">disp</a>
-                    </td>
-                    <td>
-                        <a href="sto.php?mth=init&amp;res_id={@res_id}">init</a>
-                    </td>
-                    <td>
-                        <a href="sto.php?mth=step&amp;res_id={@res_id}">step</a>
-                    </td>
-                    <td>
-                        <a href="sto.php?mth=list&amp;res_id={@res_id}">sto_list</a>
-                    </td>
-                    <td>
-                        <a href="prm.php?mth=list&amp;res_id={@res_id}">prm_list</a>
-                    </td>
-                    <td>
                         <a href="ts.php?mth=list&amp;res_id={@res_id}">ts_list</a>
+                    </td>
+                    <td>
+                        <a href="dem.php?mth=list&amp;res_id={@res_id}">dem_list</a>
+                    </td>
+                    <td>
+                        <a href="sup.php?mth=list&amp;res_id={@res_id}">sup_list</a>
+                    </td>
+                    <td>
+                        <a href="prd.php?mth=list&amp;res_id={@res_id}">prd_list</a>
                     </td>
                 </tr>   
             </xsl:for-each> 

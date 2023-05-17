@@ -94,10 +94,10 @@
             </tr>
             <tr>
                 <td>
-                    <a href="prd.php?mth=list">prd_list</a>
+                    <a href="prd.php?mth=all">prd_all</a>
                 </td>
             </tr>
-            <tr>
+<!--            <tr>
                 <td>
                     <a href="prc.php?mth=list">prc_list</a>
                 </td>
@@ -111,7 +111,7 @@
                 <td>
                     <a href="prd.php?mth=dem">prc_dem</a>
                 </td>
-            </tr>
+            </tr>-->
 
         </table>
     </xsl:template>

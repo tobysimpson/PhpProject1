@@ -104,9 +104,9 @@
                     <text x="{$pw}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
                         <xsl:value-of select="format-number($t_max,'0')"/>
                     </text>
-                    <text x="{$pw + 10}" y="{format-number($ph * (1 - (row[last()]/@v1 - $v_min) div $v_rng),'0.0')}" alignment-baseline="middle" style="font-weight: bold;">
+<!--                    <text x="{$pw + 10}" y="{format-number($ph * (1 - (row[last()]/@v1 - $v_min) div $v_rng),'0.0')}" alignment-baseline="middle" style="font-weight: bold;">
                         <xsl:value-of select="format-number(row[last()]/@v1,'0.000')"/>
-                    </text>
+                    </text>-->
                 </g>
                 
 
@@ -136,7 +136,7 @@
                 </g>
                 
 
-                <circle cx="{$pw}" cy="{format-number($ph * (1 - (row[last()]/@v1 - $v_min) div $v_rng),'0')}" r="2" fill="blue"/> 
+                <!--<circle cx="{$pw}" cy="{format-number($ph * (1 - (row[last()]/@v1 - $v_min) div $v_rng),'0')}" r="2" fill="blue"/>--> 
               
             </g>
         </svg>

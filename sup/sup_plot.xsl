@@ -38,19 +38,20 @@
                     </xsl:for-each>
                 </xsl:variable>
                 
-                <xsl:variable name="v_min">
-                    <xsl:for-each select="row">
-                        <xsl:sort select="@v2" data-type="number" order="ascending"/>
+                <xsl:variable name="v_min" select="0">
+<!--                    <xsl:for-each select="row">
+                        <xsl:sort select="@v1" data-type="number" order="ascending"/>
                         <xsl:if test="position() = 1">
-                            <xsl:value-of select="@v2"/>
+                            <xsl:value-of select="@v1"/>
                         </xsl:if>
-                    </xsl:for-each>
+                    </xsl:for-each>-->
                 </xsl:variable>
-                <xsl:variable name="v_max">
+                
+                <xsl:variable name="v_max" >
                     <xsl:for-each select="row">
-                        <xsl:sort select="@v2" data-type="number" order="descending"/>
+                        <xsl:sort select="@v1" data-type="number" order="descending"/>
                         <xsl:if test="position() = 1">
-                            <xsl:value-of select="@v2"/>
+                            <xsl:value-of select="@v1"/>
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:variable>
@@ -93,10 +94,10 @@
                 
                 <g id="labels">
                     <text x="{$pw + 10}" y="0" alignment-baseline="middle">
-                        <xsl:value-of select="format-number($v_max,'0.000')"/>
+                        <xsl:value-of select="format-number($v_max,'0')"/>
                     </text>
                     <text x="{$pw + 10}" y="{$ph}" alignment-baseline="middle">
-                        <xsl:value-of select="format-number($v_min,'0.000')"/>
+                        <xsl:value-of select="format-number($v_min,'0')"/>
                     </text>
                     <text x="0" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
                         <xsl:value-of select="format-number($t_min,'0')"/>
@@ -104,9 +105,9 @@
                     <text x="{$pw}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
                         <xsl:value-of select="format-number($t_max,'0')"/>
                     </text>
-                    <text x="{$pw + 10}" y="{format-number($ph * (1 - (row[last()]/@v2 - $v_min) div $v_rng),'0.0')}" alignment-baseline="middle" style="font-weight: bold;">
-                        <xsl:value-of select="format-number(row[last()]/@v2,'0.000')"/>
-                    </text>
+<!--                    <text x="{$pw + 10}" y="{format-number($ph * (1 - (row[last()]/@v1 - $v_min) div $v_rng),'0.0')}" alignment-baseline="middle" style="font-weight: bold;">
+                        <xsl:value-of select="format-number(row[last()]/@v1,'0.000')"/>
+                    </text>-->
                 </g>
                 
 
@@ -115,7 +116,7 @@
                         <xsl:for-each select="row">
                             <xsl:sort select="@t" data-type="number" order="ascending"/>
                             <xsl:variable name="x" select="format-number($pw * (@t - $t_min) div $t_rng,'0')"/>
-                            <xsl:variable name="y" select="format-number($ph * (1 - (@v2 - $v_min) div $v_rng),'0')"/>
+                            <xsl:variable name="y" select="format-number($ph * (1 - (@v1 - $v_min) div $v_rng),'0')"/>
                             <xsl:choose>
                                 <xsl:when test="position()=1">
                                     <xsl:text>M </xsl:text>
@@ -132,11 +133,11 @@
                             </xsl:choose>
                         </xsl:for-each>
                     </xsl:variable>
-                    <path fill="none" stroke="blue" d="{$line1}"/>
+                    <path fill="none" stroke="blue" d="{$line1}" stroke-width="0.25"/>
                 </g>
                 
 
-                <circle cx="{$pw}" cy="{format-number($ph * (1 - (row[last()]/@v2 - $v_min) div $v_rng),'0')}" r="2" fill="blue"/> 
+                <!--<circle cx="{$pw}" cy="{format-number($ph * (1 - (row[last()]/@v1 - $v_min) div $v_rng),'0')}" r="2" fill="blue"/>--> 
               
             </g>
         </svg>

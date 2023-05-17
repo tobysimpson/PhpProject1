@@ -12,14 +12,11 @@
         <table class="table1">
             <tr>
                 <th>res_id</th>
-                <th>grp_id</th>
-                <th>prm_id</th>
-                <th>prm_name</th>
-<!--                <th>prm_base</th>
-                <th>prm_trend</th>
-                <th>prm_osc</th>
-                <th>prm_sig</th>
-                <th>prm_rev</th>-->
+                <th>prd_id</th>
+                <th>prd_name</th>
+                <th>sup_id</th>
+                <th>ts_id</th>
+                <th>ts_name</th>
                 <th colspan="1"></th>
             </tr>
             <xsl:for-each select="row">
@@ -28,31 +25,22 @@
                         <xsl:value-of select="@res_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@grp_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@prm_id"/>
+                        <xsl:value-of select="@prd_id"/>
                     </td>
                     <td style="text-align:left;">
-                        <xsl:value-of select="@prm_name"/>
-                    </td>
-<!--                    <td>
-                        <xsl:value-of select="@prm_base"/>
+                        <xsl:value-of select="@prd_name"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@prm_trend"/>
+                        <xsl:value-of select="@sup_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@prm_osc"/>
+                        <xsl:value-of select="@ts_id"/>
+                    </td>
+                    <td style="text-align:left;">
+                        <xsl:value-of select="@ts_name"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@prm_sig"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@prm_rev"/>
-                    </td>-->
-                    <td>
-                        <object type="image/svg+xml" data="prm.php?mth=prm_plot&amp;prm_id={@prm_id}" style="width:400; height:120;"/>
+                        <object type="image/svg+xml" data="sup.php?mth=plot&amp;sup_id={@sup_id}" style="width:400; height:120;"/>
                     </td>
                 </tr>
             </xsl:for-each> 

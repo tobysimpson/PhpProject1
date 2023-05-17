@@ -7,11 +7,17 @@ require_once "cls_xml.php";
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
+    case "all":
+        prd_all();
+        break;
     case "list":
         prd_list();
         break;
     case "dem":
         prd_dem();
+        break;
+    case "dem_plot":
+        prd_dem_plot();
         break;
     case "sup":
         prd_sup();
@@ -32,7 +38,7 @@ switch ($mth) {
         prd_hist();
         break;
     default:
-        prd_list();
+        prd_list_all();
 }
 
 /*
@@ -41,7 +47,7 @@ switch ($mth) {
  * =========================
  */
 
-function prd_list() {
+function prd_all() {
     $db = new cls_db();
     $qry = $db->conn->prepare("SELECT * FROM prd_info;");
     $qry->execute();
@@ -52,13 +58,41 @@ function prd_list() {
     $res->close();
 }
 
-function prd_dem() {
+function prd_list() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM vw_dem;");
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT * FROM prd_info WHERE res_id = ?;");
+    $qry->bind_param("i", $res_id);
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
-    $xsl = cls_xml::file2dom("prd/prd_dem_list.xsl");
+    $xsl = cls_xml::file2dom("prd/prd_list.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
+    $res->close();
+}
+
+function prd_dem() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT * FROM vw_prd_dem WHERE res_id = ?;");
+    $qry->bind_param("i", $res_id);
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res);
+    $xsl = cls_xml::file2dom("prd/prd_dem.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
+    $res->close();
+}
+
+function prd_dem_plot() {
+    $db = new cls_db();
+    $dem_id = filter_input(INPUT_GET, "dem_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT * FROM vw_ts_dem WHERE dem_id = ?;");
+    $qry->bind_param("i", $dem_id);
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res);
+    $xsl = cls_xml::file2dom("prd/dem_plot.xsl");
     echo cls_xml::xsltrans($xml, $xsl);
     $res->close();
 }
