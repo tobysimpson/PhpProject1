@@ -12,15 +12,15 @@
         <table class="table1">
             <tr>
                 <th>res_id</th>
-                <th>grp_id</th>
                 <th>ts_id</th>
+                <th>ts_typ</th>
                 <th>ts_name</th>
                 <th>ts_base</th>
                 <th>ts_trend</th>
                 <th>ts_osc</th>
                 <th>ts_freq</th>
                 <th>ts_phase</th>
-                <th>ts_stdev</th>
+                <th>ts_dev</th>
                 <th>ts_lo</th>
                 <th>ts_hi</th>
                 <th colspan="1"></th>
@@ -31,10 +31,10 @@
                         <xsl:value-of select="@res_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@grp_id"/>
+                        <xsl:value-of select="@ts_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@ts_id"/>
+                        <xsl:value-of select="@ts_typ"/>
                     </td>
                     <td style="text-align:left;">
                         <xsl:value-of select="@ts_name"/>
@@ -55,7 +55,7 @@
                         <xsl:value-of select="@ts_phase"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@ts_stdev"/>
+                        <xsl:value-of select="@ts_dev"/>
                     </td>
                     <td>
                         <xsl:value-of select="@ts_lo"/>

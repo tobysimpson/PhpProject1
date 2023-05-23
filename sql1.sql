@@ -1,12 +1,26 @@
+WITH
+    recursive cte(ts_id, ts_sup) AS(
+    SELECT
+        ts_map.ts_id,
+        ts_map.ts_sup
+    FROM
+        ts_map
+    WHERE
+        (ts_map.ts_sup IS NULL)
+    UNION ALL
 SELECT
-    `webgame`.`vw_dem_ts`.`prd_id` AS `prd_id`,
-    `webgame`.`vw_dem_ts`.`t` AS `t`,
-    SUM(`webgame`.`vw_dem_ts`.`v1`) AS `v1`
+    p.ts_id,
+    p.ts_sup
 FROM
-    `webgame`.`vw_dem_ts`
-GROUP BY
-    `webgame`.`vw_dem_ts`.`prd_id`,
-    `webgame`.`vw_dem_ts`.`t`
-ORDER BY
-    `webgame`.`vw_dem_ts`.`prd_id`,
-    `webgame`.`vw_dem_ts`.`t`
+    (
+        ts_map p
+    JOIN cte ON
+        ((p.ts_sup = cte.ts_id))
+    )
+)
+SELECT
+    cte.ts_id,
+    cte.ts_sup
+FROM
+    cte
+           

@@ -63,6 +63,11 @@
                 <xsl:variable name="v_rng">
                     <xsl:value-of select="$v_max - $v_min"/>
                 </xsl:variable>
+                
+                <xsl:variable name="t_w">
+                    <xsl:value-of select="format-number($pw div $t_rng,'0.00')"/>
+                </xsl:variable>
+                
             
                 <g id="grid">
                     <line x1="0" y1="{$ph * 0.0}" x2="{$pw}" y2="{$ph * 0.0}" stroke="lightgrey" />
@@ -110,6 +115,15 @@
                     </text>-->
                 </g>
                 
+                
+                <g id="bar1">
+                    <xsl:for-each select="row">
+                        <xsl:sort select="@t" data-type="number" order="ascending"/>
+                        <xsl:variable name="x" select="format-number($pw * (@t - $t_min) div $t_rng,'0')"/>
+                        <xsl:variable name="y" select="format-number($ph * (1 - (@v1 - $v_min) div $v_rng),'0')"/>
+                        <rect x="{$x - ($t_w div 2)}" y="{$ph - $y}" width="{$t_w}" height="{$y}" fill="#EEEEFF"/>
+                    </xsl:for-each>
+                </g>
 
                 <g id="line1">
                     <xsl:variable name="line1">
@@ -136,7 +150,6 @@
                     <path fill="none" stroke="blue" d="{$line1}" stroke-width="0.25"/>
                 </g>
                 
-
                 <!--<circle cx="{$pw}" cy="{format-number($ph * (1 - (row[last()]/@v1 - $v_min) div $v_rng),'0')}" r="2" fill="blue"/>--> 
               
             </g>
