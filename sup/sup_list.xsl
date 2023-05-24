@@ -40,7 +40,7 @@
                         <xsl:value-of select="@ts_name"/>
                     </td>
                     <td>
-                        <object type="image/svg+xml" data="sup.php?mth=plot&amp;sup_id={@sup_id}" style="width:400; height:120;"/>
+                        <object type="image/svg+xml" data="sup.php?mth=plot&amp;sup_id={@sup_id}" style="width:600; height:200;"/>
                     </td>
                 </tr>
             </xsl:for-each> 

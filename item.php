@@ -30,6 +30,9 @@ switch ($mth) {
     case "reset":
         item_reset();
         break;
+    case "test":
+        item_test();
+        break;
     default:
         item_list();
 }
@@ -124,4 +127,17 @@ function item_reset() {
     $qry = $db->conn->prepare("DELETE FROM item_info;");
     $qry->execute();
     header("Location: item.php?mth=list");
+}
+
+
+function item_test() {
+    $db = new cls_db();
+    $qry = $db->conn->prepare("SELECT * FROM item_info;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res);
+    echo $xml->saveXML();
+    $xsl = cls_xml::file2dom("item/item_test.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
+    $res->close();
 }

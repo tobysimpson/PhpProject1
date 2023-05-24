@@ -54,7 +54,7 @@ function ts_plot() {
     $res->close();
 
     //transform
-    echo $dom1->saveXML();
+//    echo $dom1->saveXML();
     $xsl = cls_xml::file2dom("ts/ts_plot.xsl");
     echo cls_xml::xsltrans($dom1, $xsl);
     header("Content-Type: image/svg+xml");

@@ -85,6 +85,11 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <a href="item.php?mth=test">item_test</a>
+                </td>
+            </tr>
+            <tr>
                 <th style="text-align:left">game</th>
             </tr>
             <tr>
@@ -97,7 +102,7 @@
                     <a href="prd.php?mth=all">prd_all</a>
                 </td>
             </tr>
-<!--            <tr>
+            <!--            <tr>
                 <td>
                     <a href="prc.php?mth=list">prc_list</a>
                 </td>

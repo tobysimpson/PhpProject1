@@ -14,15 +14,15 @@
                 <th>res_id</th>
                 <th>ts_id</th>
                 <th>ts_typ</th>
-                <th>ts_name</th>
-                <th>ts_base</th>
+                <th style="text-align:left;">ts_name</th>
+<!--                <th>ts_base</th>
                 <th>ts_trend</th>
                 <th>ts_osc</th>
                 <th>ts_freq</th>
                 <th>ts_phase</th>
                 <th>ts_dev</th>
                 <th>ts_lo</th>
-                <th>ts_hi</th>
+                <th>ts_hi</th>-->
                 <th colspan="1"></th>
             </tr>
             <xsl:for-each select="row">
@@ -39,7 +39,7 @@
                     <td style="text-align:left;">
                         <xsl:value-of select="@ts_name"/>
                     </td>
-                    <td>
+<!--                    <td>
                         <xsl:value-of select="@ts_base"/>
                     </td>
                     <td>
@@ -62,9 +62,9 @@
                     </td>
                     <td>
                         <xsl:value-of select="@ts_hi"/>
-                    </td>
+                    </td>-->
                     <td>
-                        <object type="image/svg+xml" data="ts.php?mth=plot&amp;ts_id={@ts_id}" style="width:400; height:120;"/>
+                        <object type="image/svg+xml" data="ts.php?mth=plot&amp;ts_id={@ts_id}" style="width:600; height:200;"/>
                     </td>
                 </tr>
             </xsl:for-each> 

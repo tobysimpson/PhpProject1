@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" 
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    
+    <!--<xsl:copy-of select="node()"/>-->
+    
+    <xsl:template name="min">
+        <xsl:param name="nodes" />
+        <xsl:value-of select="number($nodes[not($nodes &lt; .)])" />
+    </xsl:template>
+    
+    <xsl:template name="max">
+        <xsl:param name="nodes" />
+        <xsl:value-of select="number($nodes[not($nodes &gt; .)])" />
+    </xsl:template>
+    
+    
+    <xsl:template name="min0">
+        <xsl:param name="nodes" />
+        <xsl:variable name="min">
+            <xsl:call-template name="min">
+                <xsl:with-param name="nodes" select="$nodes" />
+            </xsl:call-template>
+        </xsl:variable>
+        <xsl:choose>
+            <xsl:when test="$min &gt; 0">
+                <xsl:value-of select="0" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$min" />
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+
+
+    <xsl:template name="key">
+        <g id="key">
+            <text x="0" y="40">
+                <xsl:value-of select="format-number($tmin,'0.00')"/>
+                <xsl:text>, </xsl:text>
+                <xsl:value-of select="format-number($tmax,'0.00')"/>
+                <xsl:text>, </xsl:text>
+                <xsl:value-of select="format-number($trng,'0.00')"/>
+            </text>
+            <text x="0" y="60">
+                <xsl:value-of select="format-number($vmin,'0.00')"/>
+                <xsl:text>, </xsl:text>
+                <xsl:value-of select="format-number($vmax,'0.00')"/>
+                <xsl:text>, </xsl:text>
+                <xsl:value-of select="format-number($vrng,'0.00')"/>
+            </text>
+        </g>
+    </xsl:template>
+    
+    <xsl:template name="zero">
+        <g id="zero">
+            <xsl:if test="$vmin != 0">
+                    
+                <text x="{$pw + 10}" y="{$pzro}" alignment-baseline="middle">
+                    <xsl:value-of select="format-number(0,'0.00')"/>
+                </text>
+                <line x1="0" y1="{$pzro}" x2="{$pw}" y2="{$pzro}" stroke="lightgrey" />
+            </xsl:if>
+        </g>
+    </xsl:template>
+
+    
+    <xsl:template name="dots">
+        <g id="dots">
+            <xsl:for-each select="row">
+                <xsl:sort select="@t" data-type="number" order="ascending"/>
+                <xsl:variable name="x" select="format-number($pw * (@t - $tmin) div $trng,'0.0')"/>
+                <xsl:variable name="y" select="format-number($ph * (1 - (@v1 - $vmin) div $vrng),'0.0')"/>
+                <circle cx="{$x}" cy="{$y}" r="1" fill="blue"/>
+            </xsl:for-each>
+        </g>
+    </xsl:template>
+    
+    
+    <xsl:template name="line">
+        <xsl:variable name="line1">
+            <xsl:for-each select="row">
+                <xsl:sort select="@t" data-type="number" order="ascending"/>
+                <xsl:variable name="x" select="format-number($pw * (@t - $tmin) div $trng,'0.0')"/>
+                <xsl:variable name="y" select="format-number($ph * (1 - (@v1 - $vmin) div $vrng),'0.0')"/>
+                <xsl:choose>
+                    <xsl:when test="position()=1">
+                        <xsl:text>M </xsl:text>
+                        <xsl:value-of select="$x"/>
+                        <xsl:text>,</xsl:text>
+                        <xsl:value-of select="$y"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:text> L </xsl:text>
+                        <xsl:value-of select="$x"/>
+                        <xsl:text>,</xsl:text>
+                        <xsl:value-of select="$y"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:variable>
+        <g id="line">
+            <path fill="none" stroke="blue" d="{$line1}" stroke-width="0.5"/>
+        </g>
+    </xsl:template>
+    
+    
+    <xsl:template name="polyline">
+        <xsl:variable name="points">
+            <xsl:for-each select="row">
+                <xsl:sort select="@t" data-type="number" order="ascending"/>
+                <xsl:variable name="x" select="format-number($pw * (@t - $tmin) div $trng,'0.0')"/>
+                <xsl:variable name="y" select="format-number($ph * (1 - (@v1 - $vmin) div $vrng),'0.0')"/>
+                
+                <xsl:choose>
+                    <xsl:when test="position()=1">
+                        <xsl:text>0,</xsl:text>
+                        <xsl:value-of select="$pzro"/>
+                        <xsl:text> </xsl:text>
+                        <xsl:value-of select="$x"/>
+                        <xsl:text>,</xsl:text>
+                        <xsl:value-of select="$y"/>
+                        <xsl:text> </xsl:text>
+                    </xsl:when>
+                    <xsl:when test="position()=last()">
+                        <xsl:value-of select="$x"/>
+                        <xsl:text>,</xsl:text>
+                        <xsl:value-of select="$y"/>
+                        <xsl:text> </xsl:text>
+                        <xsl:value-of select="$pw"/>
+                        <xsl:text>,</xsl:text>
+                        <xsl:value-of select="$pzro"/>
+                        <xsl:text> </xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$x"/>
+                        <xsl:text>,</xsl:text>
+                        <xsl:value-of select="$y"/>
+                        <xsl:text> </xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:variable>
+        <g id="polyline">
+            <polyline points="{$points}" fill="#EEEEFF" stroke="none" />
+        </g>
+    </xsl:template>
+  
+    
+</xsl:stylesheet>

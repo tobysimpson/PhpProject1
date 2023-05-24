@@ -48,6 +48,7 @@ function dem_plot() {
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
+//    echo $xml->saveXML();
     $xsl = cls_xml::file2dom("dem/dem_plot.xsl");
     echo cls_xml::xsltrans($xml, $xsl);
     $res->close();
