@@ -109,6 +109,7 @@
                 
                 
                 <xsl:call-template name="polyline"/>
+                <!--<xsl:call-template name="bars"/>-->
                 <xsl:call-template name="zero"/>
                 <xsl:call-template name="line"/>
                 <!--<xsl:call-template name="dots"/>-->

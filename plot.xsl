@@ -112,7 +112,6 @@
                 <xsl:sort select="@t" data-type="number" order="ascending"/>
                 <xsl:variable name="x" select="format-number($pw * (@t - $tmin) div $trng,'0.0')"/>
                 <xsl:variable name="y" select="format-number($ph * (1 - (@v1 - $vmin) div $vrng),'0.0')"/>
-                
                 <xsl:choose>
                     <xsl:when test="position()=1">
                         <xsl:text>0,</xsl:text>
@@ -144,6 +143,19 @@
         </xsl:variable>
         <g id="polyline">
             <polyline points="{$points}" fill="#EEEEFF" stroke="none" />
+        </g>
+    </xsl:template>
+    
+    
+    <xsl:template name="bars">
+        <g id="bars">
+            <xsl:for-each select="row">
+                <xsl:sort select="@t" data-type="number" order="ascending"/>
+                <xsl:variable name="x" select="format-number($pw * (@t - $tmin) div $trng,'0.0')"/>
+                <xsl:variable name="y" select="format-number($ph * (1 - (@v1 - $vmin) div $vrng),'0.0')"/>
+                <!--<circle cx="{$x}" cy="{$y}" r="1" fill="blue"/>-->
+                <line x1="{$x}" y1="{$pzro}" x2="{$x}" y2="{$y}" stroke="#4444FF" stroke-width="0.1"/>
+            </xsl:for-each>
         </g>
     </xsl:template>
   

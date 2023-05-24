@@ -95,12 +95,13 @@
                 </g>-->
                 
                 
-                <!--                <g id="bar1">
+<!--                <g id="bar1">
                     <xsl:for-each select="row">
                         <xsl:sort select="@t" data-type="number" order="ascending"/>
                         <xsl:variable name="x" select="format-number($pw * (@t - $t_min) div $t_rng,'0')"/>
                         <xsl:variable name="y" select="format-number($ph * (1 - (@v1 - $v_min) div $v_rng),'0')"/>
                         <rect x="{$x - ($t_w div 2)}" y="{$ph - $y}" width="{$t_w}" height="{$y}" fill="#EEEEFF"/>
+                        <line x1="{$x}" y1="{$pzro}" x2="{$x}" y2="{$y}" stroke="#EEEEFF"/>
                     </xsl:for-each>
                 </g>-->
                 
