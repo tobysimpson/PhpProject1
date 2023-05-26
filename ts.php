@@ -24,11 +24,8 @@ switch ($mth) {
 
 function ts_list() {
     $db = new cls_db();
-    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-
     //query
-    $qry = $db->conn->prepare("SELECT * FROM ts_info WHERE res_id = ?;");
-    $qry->bind_param("i", $res_id);
+    $qry = $db->conn->prepare("SELECT * FROM ts_info ORDER BY res_id,ts_id;");
     $qry->execute();
     $res = $qry->get_result();
     $dom1 = cls_xml::res2dom($res);

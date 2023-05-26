@@ -29,9 +29,7 @@ switch ($mth) {
 
 function dem_list() {
     $db = new cls_db();
-    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM vw_dem WHERE res_id = ?;");
-    $qry->bind_param("i", $res_id);
+    $qry = $db->conn->prepare("SELECT * FROM vw_dem;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);

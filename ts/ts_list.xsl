@@ -15,14 +15,6 @@
                 <th>ts_id</th>
                 <th>ts_typ</th>
                 <th style="text-align:left;">ts_name</th>
-<!--                <th>ts_base</th>
-                <th>ts_trend</th>
-                <th>ts_osc</th>
-                <th>ts_freq</th>
-                <th>ts_phase</th>
-                <th>ts_dev</th>
-                <th>ts_lo</th>
-                <th>ts_hi</th>-->
                 <th colspan="1"></th>
             </tr>
             <xsl:for-each select="row">
@@ -37,37 +29,16 @@
                         <xsl:value-of select="@ts_typ"/>
                     </td>
                     <td style="text-align:left;">
-                        <xsl:value-of select="@ts_name"/>
+                        <a href="#" onclick="fn_get('ts.php?mth=plot&amp;ts_id={@ts_id}',disp);"><xsl:value-of select="@ts_name"/></a>
                     </td>
 <!--                    <td>
-                        <xsl:value-of select="@ts_base"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@ts_trend"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@ts_osc"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@ts_freq"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@ts_phase"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@ts_dev"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@ts_lo"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@ts_hi"/>
-                    </td>-->
-                    <td>
                         <object type="image/svg+xml" data="ts.php?mth=plot&amp;ts_id={@ts_id}" style="width:600; height:200;"/>
-                    </td>
+                    </td>-->
                 </tr>
             </xsl:for-each> 
         </table>
+        
+        <div id="disp"></div>
+        
     </xsl:template>
 </xsl:stylesheet>

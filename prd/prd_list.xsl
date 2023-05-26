@@ -14,8 +14,8 @@
                 <th>res_id</th>
                 <th>prd_id</th>
                 <th>prd_name</th>
-                <th>supplied</th>
-                <th>load</th>
+                <th>supply</th>
+                <th>demand</th>
                 <th colspan="2"></th>
             </tr>
             <xsl:for-each select="row">
@@ -29,20 +29,21 @@
                     <td style="text-align:left;">
                         <xsl:value-of select="@prd_name"/>
                     </td>
-<!--                    <td>
-                        <a href="prd.php?mth=hist&amp;prd_id={@prd_id}">hist</a>
-                    </td>-->
-<!--                    <td>
-                        <img style="width:auto; height:50;" src="prd.php?mth=hist&amp;prd_id={@prd_id}"/>
-                    </td>-->
                     <td>
+                        <a href="#" onclick="fn_get('sup.php?mth=agg&amp;prd_id={@prd_id}',disp);">supply</a>
+                    </td>
+                    <td>
+                        <a href="#" onclick="fn_get('dem.php?mth=agg&amp;prd_id={@prd_id}',disp);">demand</a>
+                    </td>
+                    <!--                    <td>
                         <object type="image/svg+xml" data="sup.php?mth=agg&amp;prd_id={@prd_id}" style="width:400; height:120;"/>
                     </td>
                     <td>
                         <object type="image/svg+xml" data="dem.php?mth=agg&amp;prd_id={@prd_id}" style="width:400; height:120;"/>
-                    </td>
+                    </td>-->
                 </tr>
             </xsl:for-each> 
         </table>
+        <div id="disp"></div>
     </xsl:template>
 </xsl:stylesheet>

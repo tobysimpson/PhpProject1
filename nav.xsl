@@ -15,7 +15,7 @@
             <head>
                 <title></title>
                 <link rel="stylesheet" href="https://toby.euler.usi.ch/styles.css"/>
-                <!--<script src="xmlhttp.js"></script>-->
+                <script src="xmlhttp.js"></script>
             </head>
             <body >
                 <!--layout--> 
@@ -94,12 +94,27 @@
             </tr>
             <tr>
                 <td>
-                    <a href="res.php?mth=list">res_list</a>
+                    <a href="ts.php?mth=list">ts_list</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="prd.php?mth=all">prd_all</a>
+                    <a href="sup.php?mth=list">sup_list</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="dem.php?mth=list">dem_list</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="prd.php?mth=list">prd_list</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="res.php?mth=list">res_list</a>
                 </td>
             </tr>
             <!--            <tr>

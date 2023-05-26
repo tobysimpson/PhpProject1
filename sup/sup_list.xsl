@@ -15,9 +15,13 @@
                 <th>prd_id</th>
                 <th>prd_name</th>
                 <th>sup_id</th>
-                <th>ts_id</th>
-                <th>ts_name</th>
-                <th colspan="1"></th>
+                <th>sup_mrt</th>
+                <th>sup_cap</th>
+                <th>sup_name</th>
+                <th>avl_id</th>
+                <th>avl_name</th>
+                <th>prc_id</th>
+                <th>prc_name</th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -34,16 +38,32 @@
                         <xsl:value-of select="@sup_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@ts_id"/>
-                    </td>
-                    <td style="text-align:left;">
-                        <xsl:value-of select="@ts_name"/>
+                        <xsl:value-of select="@sup_mrt"/>
                     </td>
                     <td>
-                        <object type="image/svg+xml" data="sup.php?mth=plot&amp;sup_id={@sup_id}" style="width:600; height:200;"/>
+                        <xsl:value-of select="@sup_cap"/>
                     </td>
+                    <td style="text-align:left;">
+                        <a href="#" onclick="fn_get('sup.php?mth=plot&amp;sup_id={@sup_id}',disp);"><xsl:value-of select="@sup_name"/></a>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@ts_avl"/>
+                    </td>
+                    <td style="text-align:left;">
+                        <a href="#" onclick="fn_get('ts.php?mth=plot&amp;ts_id={@ts_avl}',disp);"><xsl:value-of select="@avl_name"/></a>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@ts_prc"/>
+                    </td>
+                    <td style="text-align:left;">
+                        <a href="#" onclick="fn_get('ts.php?mth=plot&amp;ts_id={@ts_prc}',disp);"><xsl:value-of select="@prc_name"/></a>
+                    </td>
+<!--                    <td>
+                        <object type="image/svg+xml" data="sup.php?mth=plot&amp;sup_id={@sup_id}" style="width:600; height:200;"/>
+                    </td>-->
                 </tr>
             </xsl:for-each> 
         </table>
+        <div id="disp"></div>
     </xsl:template>
 </xsl:stylesheet>

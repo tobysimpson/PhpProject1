@@ -29,9 +29,7 @@ switch ($mth) {
 
 function sup_list() {
     $db = new cls_db();
-    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM vw_sup WHERE res_id = ?;");
-    $qry->bind_param("i", $res_id);
+    $qry = $db->conn->prepare("SELECT * FROM vw_sup ORDER BY res_id, prd_id, sup_mrt;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);

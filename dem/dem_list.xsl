@@ -18,7 +18,8 @@
                 <th>dem_name</th>
                 <th>ts_id</th>
                 <th>ts_name</th>
-                <th colspan="1"></th>
+                <th>dem_fac</th>
+                <th>dem_lvl</th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -35,7 +36,7 @@
                         <xsl:value-of select="@dem_id"/>
                     </td>
                     <td style="text-align:left;">
-                        <xsl:value-of select="@dem_name"/>
+                        <a href="#" onclick="fn_get('dem.php?mth=plot&amp;dem_id={@dem_id}',disp);"><xsl:value-of select="@dem_name"/></a>
                     </td>
                     <td>
                         <xsl:value-of select="@ts_id"/>
@@ -44,10 +45,17 @@
                         <xsl:value-of select="@ts_name"/>
                     </td>
                     <td>
-                        <object type="image/svg+xml" data="dem.php?mth=plot&amp;dem_id={@dem_id}" style="height:200;width:600;"/>
+                        <xsl:value-of select="@dem_fac"/>
                     </td>
+                    <td>
+                        <xsl:value-of select="@dem_lvl"/>
+                    </td>
+<!--                    <td>
+                        <object type="image/svg+xml" data="dem.php?mth=plot&amp;dem_id={@dem_id}" style="height:200;width:600;"/>
+                    </td>-->
                 </tr>
             </xsl:for-each> 
         </table>
+        <div id="disp"></div>
     </xsl:template>
 </xsl:stylesheet>

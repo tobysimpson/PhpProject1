@@ -7,9 +7,6 @@ require_once "cls_xml.php";
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
-    case "all":
-        prd_all();
-        break;
     case "list":
         prd_list();
         break;
@@ -38,7 +35,7 @@ switch ($mth) {
         prd_hist();
         break;
     default:
-        prd_list_all();
+        prd_list();
 }
 
 /*
@@ -47,7 +44,9 @@ switch ($mth) {
  * =========================
  */
 
-function prd_all() {
+
+
+function prd_list() {
     $db = new cls_db();
     $qry = $db->conn->prepare("SELECT * FROM prd_info;");
     $qry->execute();
@@ -58,24 +57,9 @@ function prd_all() {
     $res->close();
 }
 
-function prd_list() {
-    $db = new cls_db();
-    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM prd_info WHERE res_id = ?;");
-    $qry->bind_param("i", $res_id);
-    $qry->execute();
-    $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res);
-    $xsl = cls_xml::file2dom("prd/prd_list.xsl");
-    echo cls_xml::xsltrans($xml, $xsl);
-    $res->close();
-}
-
 function prd_dem() {
     $db = new cls_db();
-    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM vw_prd_dem WHERE res_id = ?;");
-    $qry->bind_param("i", $res_id);
+    $qry = $db->conn->prepare("SELECT * FROM vw_prd_dem;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
