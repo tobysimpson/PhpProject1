@@ -15,7 +15,7 @@
     <xsl:variable name="wo" select="0.05 * $w"/>
     
     <xsl:variable name="tt" select="root/row/@t" />
-    <xsl:variable name="vv" select="root/row/@s8" />
+    <xsl:variable name="vv" select="root/row/@d5" />
                 
     <xsl:variable name="tmin">
         <xsl:call-template name="min">
@@ -61,29 +61,21 @@
                 <xsl:call-template name="zero"/>
                 
 
+
                 <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'s8'" />
+                    <xsl:with-param name="att1" select="'d5'" />
                 </xsl:call-template>
                 <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'s7'" />
+                    <xsl:with-param name="att1" select="'d4'" />
                 </xsl:call-template>
                 <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'s6'" />
+                    <xsl:with-param name="att1" select="'d3'" />
                 </xsl:call-template>
                 <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'s5'" />
+                    <xsl:with-param name="att1" select="'d2'" />
                 </xsl:call-template>
                 <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'s4'" />
-                </xsl:call-template>
-                <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'s3'" />
-                </xsl:call-template>
-                <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'s2'" />
-                </xsl:call-template>
-                <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'s1'" />
+                    <xsl:with-param name="att1" select="'d1'" />
                 </xsl:call-template>
                 
                 <!--<xsl:call-template name="dots"/>-->

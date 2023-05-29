@@ -16,6 +16,7 @@
                 <th>prd_name</th>
                 <th>dem_id</th>
                 <th>dem_name</th>
+                <th>dem_ord</th>
                 <th>ts_id</th>
                 <th>ts_name</th>
                 <th>dem_fac</th>
@@ -37,6 +38,9 @@
                     </td>
                     <td style="text-align:left;">
                         <a href="#" onclick="fn_get('dem.php?mth=plot&amp;dem_id={@dem_id}',disp);"><xsl:value-of select="@dem_name"/></a>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@dem_ord"/>
                     </td>
                     <td>
                         <xsl:value-of select="@ts_id"/>

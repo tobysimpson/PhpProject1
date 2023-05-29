@@ -84,11 +84,11 @@
                     <a href="item.php?mth=svg">item_svg</a>
                 </td>
             </tr>
-            <tr>
+<!--            <tr>
                 <td>
                     <a href="item.php?mth=test">item_test</a>
                 </td>
-            </tr>
+            </tr>-->
             <tr>
                 <th style="text-align:left">game</th>
             </tr>
