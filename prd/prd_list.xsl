@@ -14,9 +14,7 @@
                 <th>res_id</th>
                 <th>prd_id</th>
                 <th>prd_name</th>
-                <th>supply</th>
-                <th>demand</th>
-                <th colspan="2"></th>
+                <th colspan="4"></th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -30,17 +28,17 @@
                         <xsl:value-of select="@prd_name"/>
                     </td>
                     <td>
-                        <a href="#" onclick="fn_get('sup.php?mth=agg&amp;prd_id={@prd_id}',disp);">supply</a>
+                        <a href="#" onclick="fn_get('sup.php?mth=agg&amp;prd_id={@prd_id}',disp);">sup_agg</a>
                     </td>
                     <td>
-                        <a href="#" onclick="fn_get('dem.php?mth=agg&amp;prd_id={@prd_id}',disp);">demand</a>
-                    </td>
-                    <!--                    <td>
-                        <object type="image/svg+xml" data="sup.php?mth=agg&amp;prd_id={@prd_id}" style="width:400; height:120;"/>
+                        <a href="#" onclick="fn_get('dem.php?mth=agg&amp;prd_id={@prd_id}',disp);">dem_agg</a>
                     </td>
                     <td>
-                        <object type="image/svg+xml" data="dem.php?mth=agg&amp;prd_id={@prd_id}" style="width:400; height:120;"/>
-                    </td>-->
+                        <a href="#" onclick="fn_get('sup.php?mth=piv&amp;prd_id={@prd_id}',disp);">sup_piv</a>
+                    </td>
+                    <td>
+                        <a href="#" onclick="fn_get('dem.php?mth=piv&amp;prd_id={@prd_id}',disp);">dem_piv</a>
+                    </td>
                 </tr>
             </xsl:for-each> 
         </table>

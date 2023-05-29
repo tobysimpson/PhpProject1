@@ -15,9 +15,9 @@
                 <th>prd_id</th>
                 <th>prd_name</th>
                 <th>sup_id</th>
-                <th>sup_mrt</th>
+                <th>sup_ord</th>
+                <th style="text-align:left;">sup_name</th>
                 <th>sup_cap</th>
-                <th>sup_name</th>
                 <th>avl_id</th>
                 <th>avl_name</th>
                 <th>prc_id</th>
@@ -38,13 +38,14 @@
                         <xsl:value-of select="@sup_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@sup_mrt"/>
+                        <xsl:value-of select="@sup_ord"/>
+                    </td>
+                    
+                    <td style="text-align:left;">
+                        <a href="#" onclick="fn_get('sup.php?mth=plot&amp;sup_id={@sup_id}',disp);"><xsl:value-of select="@sup_name"/></a>
                     </td>
                     <td>
                         <xsl:value-of select="@sup_cap"/>
-                    </td>
-                    <td style="text-align:left;">
-                        <a href="#" onclick="fn_get('sup.php?mth=plot&amp;sup_id={@sup_id}',disp);"><xsl:value-of select="@sup_name"/></a>
                     </td>
                     <td>
                         <xsl:value-of select="@ts_avl"/>

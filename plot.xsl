@@ -33,6 +33,15 @@
     </xsl:template>
 
 
+    <xsl:template name="title">
+        <g id="title">
+            <text x="10" y="25">
+                <xsl:text>title</xsl:text>
+            </text>
+        </g>
+    </xsl:template>
+
+
 
     <xsl:template name="key">
         <g id="key">
@@ -158,6 +167,31 @@
             </xsl:for-each>
         </g>
     </xsl:template>
-  
+    
+    <xsl:template name="labels">
+        <g id="labels">
+            <text x="{$pw + 10}" y="0" alignment-baseline="middle">
+                <xsl:value-of select="format-number($vmax,'0.00')"/>
+            </text>
+            <text x="{$pw + 10}" y="{$ph}" alignment-baseline="middle">
+                <xsl:value-of select="format-number($vmin,'0.00')"/>
+            </text>
+            <text x="0" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
+                <xsl:value-of select="format-number($tmin,'0.00')"/>
+            </text>
+            <text x="{$pw}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
+                <xsl:value-of select="format-number($tmax,'0.00')"/>
+            </text>
+        </g>
+    </xsl:template>
+    
+    
+    <xsl:template name="grid">
+        <g id="grid">
+            <line x1="0" y1="{0.0}" x2="{$pw}" y2="{0.0}" stroke="lightgrey" stroke-dasharray="5,5"/>
+            <line x1="0" y1="{$ph}" x2="{$pw}" y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
+        </g>
+    </xsl:template>
+    
     
 </xsl:stylesheet>
