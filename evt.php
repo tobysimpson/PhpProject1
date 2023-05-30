@@ -41,8 +41,6 @@ function evt_list() {
 function evt_plot() {
     $db = new cls_db();
     $evt_id = filter_input(INPUT_GET, "evt_id", FILTER_VALIDATE_INT);
-
-    //query
     $qry = $db->conn->prepare("SELECT * FROM vw_evt_ts WHERE evt_id = ? ORDER BY t;");
     $qry->bind_param("i", $evt_id);
     $qry->execute();
@@ -50,7 +48,6 @@ function evt_plot() {
     $dom1 = cls_xml::res2dom($res);
     $res->close();
 
-    //transform
 //    echo $dom1->saveXML();
     $xsl = cls_xml::file2dom("evt/evt_plot.xsl");
     echo cls_xml::xsltrans($dom1, $xsl);

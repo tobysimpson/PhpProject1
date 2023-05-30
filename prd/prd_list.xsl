@@ -14,7 +14,7 @@
                 <th>res_id</th>
                 <th>prd_id</th>
                 <th>prd_name</th>
-                <th colspan="4"></th>
+                <th colspan="5"></th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -34,14 +34,25 @@
                         <a href="#" onclick="fn_get('dem.php?mth=agg&amp;prd_id={@prd_id}',disp);">dem_agg</a>
                     </td>-->
                     <td>
-                        <a href="#" onclick="fn_get('sup.php?mth=piv&amp;prd_id={@prd_id}',disp);">sup_piv</a>
+                        <a href="#" onclick="fn_get('sup.php?mth=piv&amp;prd_id={@prd_id}',disp1);">sup_piv</a>
                     </td>
                     <td>
-                        <a href="#" onclick="fn_get('dem.php?mth=piv&amp;prd_id={@prd_id}',disp);">dem_piv</a>
+                        <a href="#" onclick="fn_get('dem.php?mth=piv&amp;prd_id={@prd_id}',disp2);">dem_piv</a>
+                    </td>
+                    <td>
+                        <a href="#" onclick="fn_get('prd.php?mth=exp&amp;prd_id={@prd_id}',disp3);">prd_exp</a>
                     </td>
                 </tr>
             </xsl:for-each> 
         </table>
-        <div id="disp"></div>
+        
+        <table>
+            <tr>
+                <td id="disp1"></td>
+                <td id="disp2"></td>
+                <td id="disp3"></td>
+            </tr>
+        </table>
+
     </xsl:template>
 </xsl:stylesheet>

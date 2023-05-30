@@ -15,7 +15,7 @@
     <xsl:variable name="wo" select="0.05 * $w"/>
     
     <xsl:variable name="tt" select="root/row/@t" />
-    <xsl:variable name="vv" select="root/row/@d6" />
+    <xsl:variable name="vv" select="root/row/@v1" />
                 
     <xsl:variable name="tmin">
         <xsl:call-template name="min">
@@ -62,22 +62,7 @@
                 
 
                 <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'d6'" />
-                </xsl:call-template>
-                <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'d5'" />
-                </xsl:call-template>
-                <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'d4'" />
-                </xsl:call-template>
-                <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'d3'" />
-                </xsl:call-template>
-                <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'d2'" />
-                </xsl:call-template>
-                <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'d1'" />
+                    <xsl:with-param name="att1" select="'v1'" />
                 </xsl:call-template>
                 
                 <!--<xsl:call-template name="dots"/>-->

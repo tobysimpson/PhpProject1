@@ -15,7 +15,7 @@
                 <th>ts_id</th>
                 <th>ts_typ</th>
                 <th style="text-align:left;">ts_name</th>
-                <th colspan="1"></th>
+                <th colspan="4"></th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
