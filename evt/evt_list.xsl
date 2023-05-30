@@ -11,37 +11,44 @@
     <xsl:template match="root">
         <table class="table1">
             <tr>
-                <th>res_id</th>
-                <th>prd_id</th>
-                <th>prd_name</th>
-                <th colspan="4"></th>
+                <th>evt_id</th>
+                <th>ts_id</th>
+                <th>ts_name</th>
+                <th>t</th>
+                <th>v1</th>
+                <th>mod</th>
+                <th colspan="1"></th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
                     <td>
-                        <xsl:value-of select="@res_id"/>
+                        <xsl:value-of select="@evt_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@prd_id"/>
+                        <xsl:value-of select="@ts_id"/>
                     </td>
                     <td style="text-align:left;">
-                        <xsl:value-of select="@prd_name"/>
-                    </td>
-<!--                    <td>
-                        <a href="#" onclick="fn_get('sup.php?mth=agg&amp;prd_id={@prd_id}',disp);">sup_agg</a>
+                        <xsl:value-of select="@ts_name"/>
                     </td>
                     <td>
-                        <a href="#" onclick="fn_get('dem.php?mth=agg&amp;prd_id={@prd_id}',disp);">dem_agg</a>
-                    </td>-->
-                    <td>
-                        <a href="#" onclick="fn_get('sup.php?mth=piv&amp;prd_id={@prd_id}',disp);">sup_piv</a>
+                        <xsl:value-of select="@t"/>
                     </td>
                     <td>
-                        <a href="#" onclick="fn_get('dem.php?mth=piv&amp;prd_id={@prd_id}',disp);">dem_piv</a>
+                        <xsl:value-of select="@v1"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@evt_mod"/>
+                    </td>
+                    <td style="text-align:left;">
+                        <a href="#" onclick="fn_get('evt.php?mth=plot&amp;evt_id={@evt_id}',disp);">
+                            <xsl:text>plot</xsl:text>
+                        </a>
                     </td>
                 </tr>
             </xsl:for-each> 
         </table>
+        
         <div id="disp"></div>
+        
     </xsl:template>
 </xsl:stylesheet>

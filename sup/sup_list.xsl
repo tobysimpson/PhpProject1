@@ -16,7 +16,7 @@
                 <th>prd_name</th>
                 <th>sup_id</th>
                 <th>sup_ord</th>
-                <th style="text-align:left;">sup_name</th>
+                <th>sup_name</th>
                 <th>sup_cap</th>
                 <th>avl_id</th>
                 <th>avl_name</th>

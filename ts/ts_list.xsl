@@ -29,9 +29,23 @@
                         <xsl:value-of select="@ts_typ"/>
                     </td>
                     <td style="text-align:left;">
-                        <a href="#" onclick="fn_get('ts.php?mth=plot&amp;ts_id={@ts_id}',disp);"><xsl:value-of select="@ts_name"/></a>
+                        <a href="#" onclick="fn_get('ts.php?mth=plot&amp;ts_id={@ts_id}',disp);">
+                            <xsl:value-of select="@ts_name"/>
+                        </a>
                     </td>
-<!--                    <td>
+                    <td style="text-align:left;">
+                        <a href="#" onclick="fn_get('ts.php?mth=gen&amp;ts_id={@ts_id}',disp);">gen</a>
+                    </td>
+                    <td style="text-align:left;">
+                        <a href="#" onclick="fn_get('ts.php?mth=evt&amp;ts_id={@ts_id}',disp);">evt</a>
+                    </td>
+                    <td style="text-align:left;">
+                        <a href="#" onclick="fn_get('ts.php?mth=sum&amp;ts_id={@ts_id}',disp);">sum</a>
+                    </td>
+                    <td style="text-align:left;">
+                        <a href="#" onclick="fn_get('ts.php?mth=acc&amp;ts_id={@ts_id}',disp);">acc</a>
+                    </td>
+                    <!--                    <td>
                         <object type="image/svg+xml" data="ts.php?mth=plot&amp;ts_id={@ts_id}" style="width:600; height:200;"/>
                     </td>-->
                 </tr>

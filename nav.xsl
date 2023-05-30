@@ -99,6 +99,11 @@
             </tr>
             <tr>
                 <td>
+                    <a href="evt.php?mth=list">evt_list</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <a href="sup.php?mth=list">sup_list</a>
                 </td>
             </tr>

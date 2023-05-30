@@ -5,13 +5,13 @@
     <xsl:include href="../plot.xsl"/>
     
     
-    <xsl:variable name="h">200</xsl:variable>
+    <xsl:variable name="h">400</xsl:variable>
     <xsl:variable name="w">600</xsl:variable>
     
     <xsl:variable name="ph" select="0.8 * $h"/>
     <xsl:variable name="pw" select="0.8 * $w"/>
     
-    <xsl:variable name="ho" select="0.05 * $h"/>
+    <xsl:variable name="ho" select="0.1 * $h"/>
     <xsl:variable name="wo" select="0.05 * $w"/>
     
     <xsl:variable name="tt" select="root/row/@t" />
@@ -51,10 +51,10 @@
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
             <style>* { font-size: 100%; font-family: sans-serif; font-weight: 300; }</style> 
             
-           
+           <xsl:call-template name="title"/>
+            
             <g id="plot" transform="translate({$wo},{$ho})"> 
                 
-
                 <g id="grid">
                     <line x1="0" y1="{0.0}" x2="{$pw}" y2="{0.0}" stroke="lightgrey" stroke-dasharray="5,5"/>
                     <line x1="0" y1="{$ph}" x2="{$pw}" y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
@@ -109,6 +109,7 @@
                 
                 
                 <xsl:call-template name="polyline"/>
+                <!--<xsl:call-template name="bars"/>-->
                 <xsl:call-template name="zero"/>
                 <xsl:call-template name="line"/>
                 <!--<xsl:call-template name="dots"/>-->
