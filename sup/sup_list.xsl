@@ -18,9 +18,11 @@
                 <th>sup_ord</th>
                 <th>sup_name</th>
                 <th>sup_cap</th>
-                <th>avl_id</th>
+                <th>ts_avl</th>
                 <th>avl_name</th>
-                <th>prc_id</th>
+                <th>ts_cap</th>
+                <th>cap_name</th>
+                <th>ts_prc</th>
                 <th>prc_name</th>
             </tr>
             <xsl:for-each select="row">
@@ -52,6 +54,12 @@
                     </td>
                     <td style="text-align:left;">
                         <a href="#" onclick="fn_get('ts.php?mth=plot&amp;ts_id={@ts_avl}',disp);"><xsl:value-of select="@avl_name"/></a>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@ts_cap"/>
+                    </td>
+                    <td style="text-align:left;">
+                        <a href="#" onclick="fn_get('ts.php?mth=plot&amp;ts_id={@ts_cap}',disp);"><xsl:value-of select="@cap_name"/></a>
                     </td>
                     <td>
                         <xsl:value-of select="@ts_prc"/>

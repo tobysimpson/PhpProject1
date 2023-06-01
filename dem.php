@@ -30,7 +30,7 @@ switch ($mth) {
 
 function dem_list() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM vw_dem;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_dem ORDER BY dem_ord;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);

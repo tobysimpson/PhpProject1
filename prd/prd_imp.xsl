@@ -15,7 +15,7 @@
     <xsl:variable name="wo" select="0.05 * $w"/>
     
     <xsl:variable name="tt" select="root/row/@t" />
-    <xsl:variable name="vv" select="root/row/@d6" />
+    <xsl:variable name="vv" select="root/row/@v1" />
                 
     <xsl:variable name="tmin">
         <xsl:call-template name="min">
@@ -61,31 +61,8 @@
                 <xsl:call-template name="zero"/>
                 
 
-                
-                
-                <xsl:call-template name="polyline1">
                 <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'d6'" />
-                </xsl:call-template>
-                <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'d5'" />
-                    <xsl:with-param name="fill1" select="'#EEEEFF'" />
-                </xsl:call-template>
-                <xsl:call-template name="polyline1">
-                    <xsl:with-param name="att1" select="'d4'" />
-                    <xsl:with-param name="fill1" select="'#DDDDFF'" />
-                </xsl:call-template>
-                <xsl:call-template name="polyline1">
-                    <xsl:with-param name="att1" select="'d3'" />
-                    <xsl:with-param name="fill1" select="'#CCCCFF'" />
-                </xsl:call-template>
-                <xsl:call-template name="polyline1">
-                    <xsl:with-param name="att1" select="'d2'" />
-                    <xsl:with-param name="fill1" select="'#BBBBFF'" />
-                </xsl:call-template>
-                <xsl:call-template name="polyline1">
-                    <xsl:with-param name="att1" select="'d1'" />
-                    <xsl:with-param name="fill1" select="'#AAAAFF'" />
+                    <xsl:with-param name="att1" select="'v1'" />
                 </xsl:call-template>
                 
                 <!--<xsl:call-template name="dots"/>-->
@@ -126,48 +103,6 @@
         </g>
     </xsl:template>
     
-    <xsl:template name="polyline1">
-        <xsl:param name="att1" />
-        <xsl:param name="fill1" />
-        <xsl:variable name="points">
-            <xsl:for-each select="row">
-                <xsl:sort select="@t" data-type="number" order="ascending"/>
-                <xsl:variable name="x" select="format-number($pw * (@t - $tmin) div $trng,'0.0')"/>
-                <xsl:variable name="y" select="format-number($ph * (1 - (@*[name() = $att1] - $vmin) div $vrng),'0.0')"/>
-                <!--<xsl:variable name="y" select="format-number($ph * (1 - (@v1 - $vmin) div $vrng),'0.0')"/>-->
-                <xsl:choose>
-                    <xsl:when test="position()=1">
-                        <xsl:text>0,</xsl:text>
-                        <xsl:value-of select="$pzro"/>
-                        <xsl:text> </xsl:text>
-                        <xsl:value-of select="$x"/>
-                        <xsl:text>,</xsl:text>
-                        <xsl:value-of select="$y"/>
-                        <xsl:text> </xsl:text>
-                    </xsl:when>
-                    <xsl:when test="position()=last()">
-                        <xsl:value-of select="$x"/>
-                        <xsl:text>,</xsl:text>
-                        <xsl:value-of select="$y"/>
-                        <xsl:text> </xsl:text>
-                        <xsl:value-of select="$pw"/>
-                        <xsl:text>,</xsl:text>
-                        <xsl:value-of select="$pzro"/>
-                        <xsl:text> </xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="$x"/>
-                        <xsl:text>,</xsl:text>
-                        <xsl:value-of select="$y"/>
-                        <xsl:text> </xsl:text>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:for-each>
-        </xsl:variable>
-        <g id="polyline">
-            <polyline points="{$points}" fill="{$fill1}" stroke="none" />
-        </g>
-    </xsl:template>
     
     
 </xsl:stylesheet>
