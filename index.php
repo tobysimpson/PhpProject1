@@ -6,5 +6,3 @@ header("Location: usr.php?mth=edit");
 
 //hello
 
-
-
