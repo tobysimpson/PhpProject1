@@ -75,7 +75,7 @@ function dem_piv() {
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
-//    echo $xml->saveXML();
+    echo $xml->saveXML();
     $xsl = cls_xml::file2dom("dem/dem_piv.xsl");
     echo cls_xml::xsltrans($xml, $xsl);
     $res->close();

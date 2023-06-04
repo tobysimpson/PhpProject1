@@ -58,34 +58,42 @@
                 <xsl:call-template name="grid"/>
                 <xsl:call-template name="labels"/>
                 <!--<xsl:call-template name="polyline"/>-->
-                <xsl:call-template name="zero"/>
+                <!--<xsl:call-template name="zero"/>-->
                 
 
                 
                 
-                <xsl:call-template name="polyline1">
-                <xsl:call-template name="line1">
-                    <xsl:with-param name="att1" select="'d6'" />
-                </xsl:call-template>
-                <xsl:call-template name="line1">
+<!--                <xsl:call-template name="polyline1">
                     <xsl:with-param name="att1" select="'d5'" />
+                    <xsl:with-param name="fill1" select="'#EEEEFF'" />
+                </xsl:call-template>-->
+                <xsl:call-template name="polyline1">
+                    <xsl:with-param name="att1" select="'d7'" />
                     <xsl:with-param name="fill1" select="'#EEEEFF'" />
                 </xsl:call-template>
                 <xsl:call-template name="polyline1">
-                    <xsl:with-param name="att1" select="'d4'" />
+                    <xsl:with-param name="att1" select="'d6'" />
+                    <xsl:with-param name="fill1" select="'#EEEEFF'" />
+                </xsl:call-template>
+                <xsl:call-template name="polyline1">
+                    <xsl:with-param name="att1" select="'d5'" />
                     <xsl:with-param name="fill1" select="'#DDDDFF'" />
                 </xsl:call-template>
                 <xsl:call-template name="polyline1">
-                    <xsl:with-param name="att1" select="'d3'" />
+                    <xsl:with-param name="att1" select="'d4'" />
                     <xsl:with-param name="fill1" select="'#CCCCFF'" />
                 </xsl:call-template>
                 <xsl:call-template name="polyline1">
-                    <xsl:with-param name="att1" select="'d2'" />
+                    <xsl:with-param name="att1" select="'d3'" />
                     <xsl:with-param name="fill1" select="'#BBBBFF'" />
                 </xsl:call-template>
                 <xsl:call-template name="polyline1">
-                    <xsl:with-param name="att1" select="'d1'" />
+                    <xsl:with-param name="att1" select="'d2'" />
                     <xsl:with-param name="fill1" select="'#AAAAFF'" />
+                </xsl:call-template>
+                <xsl:call-template name="polyline1">
+                    <xsl:with-param name="att1" select="'d1'" />
+                    <xsl:with-param name="fill1" select="'#9999FF'" />
                 </xsl:call-template>
                 
                 <!--<xsl:call-template name="dots"/>-->
