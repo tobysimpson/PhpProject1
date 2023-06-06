@@ -27,12 +27,18 @@
                     <td style="text-align:left;">
                         <xsl:value-of select="@col_name"/>
                     </td>
-                    <td style="text-align:left;">
-                        <a href="#" onclick="fn_get('col.php?mth=plot&amp;col_name={@col_name}',disp);">
-                            <xsl:value-of select="@col_name"/>
-                        </a>
+                    <td>
+                        <a href="#" onclick="fn_get('col.php?mth=disp&amp;tbl_name=res_def&amp;col_name={@col_name}',disp);">default</a>
                     </td>
-                  
+                    <td>
+                        <a href="evt.php?mth=list&amp;col_id={@col_id}">event</a>
+                    </td>
+                    <td>
+                        <a href="#" onclick="fn_get('col.php?mth=disp&amp;tbl_name=vw_fac&amp;col_name={@col_name}',disp);">factor</a>
+                    </td>
+                    <td>
+                        <a href="#" onclick="fn_get('col.php?mth=disp&amp;tbl_name=vw_usr&amp;col_name={@col_name}',disp);">user</a>
+                    </td>
                 </tr>
             </xsl:for-each> 
         </table>

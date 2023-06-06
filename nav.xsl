@@ -62,6 +62,35 @@
                 </td>
             </tr>
             <tr>
+                <th style="text-align:left">game</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="col.php?mth=list&amp;col_typ=1">availability</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="col.php?mth=list&amp;col_typ=2">capacity</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="col.php?mth=list&amp;col_typ=3">demand</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="sup.php?mth=list">supply</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="agg.php?mth=list">aggregate</a>
+                </td>
+            </tr>
+
+            <tr>
                 <th style="text-align:left">item</th>
             </tr>
             <tr>
@@ -84,19 +113,10 @@
                     <a href="item.php?mth=svg">item_svg</a>
                 </td>
             </tr>
-<!--            <tr>
-                <td>
-                    <a href="item.php?mth=test">item_test</a>
-                </td>
-            </tr>-->
-            <tr>
-                <th style="text-align:left">game</th>
-            </tr>
-            <tr>
-                <td>
-                    <a href="col.php?mth=list">col_list</a>
-                </td>
-            </tr>
+
+
+
+<!--            
             <tr>
                 <td>
                     <a href="ts.php?mth=list">ts_list</a>
@@ -126,22 +146,8 @@
                 <td>
                     <a href="res.php?mth=list">res_list</a>
                 </td>
-            </tr>
-            <!--            <tr>
-                <td>
-                    <a href="prc.php?mth=list">prc_list</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="prd.php?mth=sup">prc_sup</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="prd.php?mth=dem">prc_dem</a>
-                </td>
             </tr>-->
+
 
             
 
