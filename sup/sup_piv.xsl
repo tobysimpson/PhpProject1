@@ -58,7 +58,7 @@
                 <xsl:call-template name="grid"/>
                 <xsl:call-template name="labels"/>
                 <!--<xsl:call-template name="polyline"/>-->
-                <xsl:call-template name="zero"/>
+                <!--<xsl:call-template name="zero"/>-->
                 
 
                 

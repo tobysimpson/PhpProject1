@@ -94,6 +94,11 @@
             </tr>
             <tr>
                 <td>
+                    <a href="col.php?mth=list">col_list</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <a href="ts.php?mth=list">ts_list</a>
                 </td>
             </tr>
