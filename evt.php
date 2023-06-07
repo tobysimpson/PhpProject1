@@ -9,47 +9,91 @@ switch ($mth) {
     case "list":
         evt_list();
         break;
-    case "plot":
-        evt_plot();
+    case "edit":
+        evt_edit();
+        break;
+    case "update":
+        evt_update();
+        break;
+    case "insert":
+        evt_insert();
+        break;
+    case "reset":
+        evt_reset();
         break;
     default:
-        evt_list();
+        evt_list_all();
 }
 
-/*
- * =========================
- *  admin
- * =========================
- */
+
+function evt_list_all() {
+    $db = new cls_db();
+    $qry = $db->conn->prepare("SELECT * FROM res_evt ORDER BY col_id, t;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res);
+    $xsl = cls_xml::file2dom("evt/evt_list.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
+    $res->close();
+}
+
 
 function evt_list() {
     $db = new cls_db();
-    //query
-    $qry = $db->conn->prepare("SELECT * FROM vw_evt ORDER BY evt_id;");
+    $col_id = filter_input(INPUT_GET, "col_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT * FROM res_evt WHERE col_id = ? ORDER BY t;");
+    $qry->bind_param("i", $col_id);
     $qry->execute();
     $res = $qry->get_result();
-    $dom1 = cls_xml::res2dom($res);
-    $res->close();
-    
-    //transform
-//    echo $dom1->saveXML();
+    $xml = cls_xml::res2dom($res);
+    $xml->documentElement->setAttribute("col_id", $col_id);
     $xsl = cls_xml::file2dom("evt/evt_list.xsl");
-    echo cls_xml::xsltrans($dom1, $xsl);
+    echo cls_xml::xsltrans($xml, $xsl);
+    $res->close();
 }
 
-
-function evt_plot() {
+function evt_edit() {
     $db = new cls_db();
     $evt_id = filter_input(INPUT_GET, "evt_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM vw_evt_ts WHERE evt_id = ? ORDER BY t;");
+    $qry = $db->conn->prepare("SELECT * FROM res_evt WHERE evt_id = ?;");
     $qry->bind_param("i", $evt_id);
     $qry->execute();
     $res = $qry->get_result();
-    $dom1 = cls_xml::res2dom($res);
+    $xml = cls_xml::res2dom($res);
+    $xsl = cls_xml::file2dom("evt/evt_edit.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
     $res->close();
-
-//    echo $dom1->saveXML();
-    $xsl = cls_xml::file2dom("evt/evt_plot.xsl");
-    echo cls_xml::xsltrans($dom1, $xsl);
-    header("Content-Type: image/svg+xml");
 }
+
+
+function evt_update() {
+    $db = new cls_db();
+    $evt_id = filter_input(INPUT_POST, "evt_id", FILTER_VALIDATE_INT);
+    $t = filter_input(INPUT_POST, "t", FILTER_SANITIZE_STRING);
+    $v1 = filter_input(INPUT_POST, "v1", FILTER_VALIDATE_FLOAT);
+    $qry = $db->conn->prepare("UPDATE res_evt SET t=?, v1=? WHERE evt_id = ?;");
+    $qry->bind_param("ddi", $t, $v1, $evt_id);
+    $qry->execute();
+//    header("Location: index.php");
+    evt_list_all();
+}
+
+
+function evt_insert() {
+    $db = new cls_db();
+    $t = 0;
+    $v1 = 0;
+    $col_id = filter_input(INPUT_POST, "col_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("INSERT INTO res_evt (col_id, t, v1) VALUES (?,?,?);");
+    $qry->bind_param("idd", $col_id, $t, $v1);
+    $qry->execute();
+    header("Location: evt.php?mth=list&col_id=".$col_id);
+}
+
+function evt_reset() {
+    $db = new cls_db();
+    $qry = $db->conn->prepare("DELETE FROM evt_info;");
+    $qry->execute();
+    header("Location: item.php?mth=list");
+}
+

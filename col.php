@@ -29,7 +29,7 @@ function col_list() {
     $db = new cls_db();
 
     $col_typ = filter_input(INPUT_GET, "col_typ", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM col_met WHERE col_typ = ? ORDER BY col_id;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_col WHERE col_typ = ? ORDER BY col_id;");
     $qry->bind_param("i", $col_typ);
     
     $qry->execute();

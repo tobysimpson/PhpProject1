@@ -9,46 +9,37 @@
     </xsl:template>
 
     <xsl:template match="root">
+        <form action="evt.php?mth=insert" method="post">
+            <input type="hidden" name="col_id" value="{@col_id}" readonly="true"/>
+            <input type="submit" value="insert"/>
+        </form>
         <table class="table1">
             <tr>
+                <th>col_id</th>
                 <th>evt_id</th>
-                <th>ts_id</th>
-                <th>ts_name</th>
-                <th>t</th>
-                <th>v1</th>
-                <th>mod</th>
-                <th colspan="1"></th>
+                <th>time</th>
+                <th>value</th>
+                <th></th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
                     <td>
+                        <xsl:value-of select="@col_id"/>
+                    </td>
+                    <td>
                         <xsl:value-of select="@evt_id"/>
                     </td>
-                    <td>
-                        <xsl:value-of select="@ts_id"/>
+                    <td style="text-align:right">
+                        <xsl:value-of select="format-number(@t, '###,##0.0000')"/>
                     </td>
-                    <td style="text-align:left;">
-                        <xsl:value-of select="@ts_name"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@t"/>
+                    <td style="text-align:right">
+                        <xsl:value-of select="format-number(@v1, '###,##0.0000')"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@v1"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@evt_mod"/>
-                    </td>
-                    <td style="text-align:left;">
-                        <a href="#" onclick="fn_get('evt.php?mth=plot&amp;evt_id={@evt_id}',disp);">
-                            <xsl:text>plot</xsl:text>
-                        </a>
+                        <a href="evt.php?mth=edit&amp;evt_id={@evt_id}">edit</a>
                     </td>
                 </tr>
             </xsl:for-each> 
         </table>
-        
-        <div id="disp"></div>
-        
     </xsl:template>
 </xsl:stylesheet>

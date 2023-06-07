@@ -31,7 +31,11 @@
                         <a href="#" onclick="fn_get('col.php?mth=disp&amp;tbl_name=res_def&amp;col_name={@col_name}',disp);">default</a>
                     </td>
                     <td>
-                        <a href="evt.php?mth=list&amp;col_id={@col_id}">event</a>
+                        <a href="evt.php?mth=list&amp;col_id={@col_id}">
+                            <xsl:text>events (</xsl:text>
+                            <xsl:value-of select="@evt_ct"/>
+                            <xsl:text>)</xsl:text>
+                        </a>
                     </td>
                     <td>
                         <a href="#" onclick="fn_get('col.php?mth=disp&amp;tbl_name=vw_fac&amp;col_name={@col_name}',disp);">factor</a>

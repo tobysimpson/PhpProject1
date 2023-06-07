@@ -81,12 +81,18 @@
             </tr>
             <tr>
                 <td>
+                    <a href="evt.php">event</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
                     <a href="sup.php?mth=list">supply</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="agg.php?mth=list">aggregate</a>
+                    <a href="prd.php?mth=list">product</a>
                 </td>
             </tr>
 
