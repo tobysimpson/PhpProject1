@@ -92,7 +92,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="prd.php?mth=list">product</a>
+                    <a href="prd.php?mth=list">aggregate</a>
                 </td>
             </tr>
 

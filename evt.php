@@ -28,6 +28,8 @@ switch ($mth) {
 
 function evt_list_all() {
     $db = new cls_db();
+    $qry1 = $db->conn->prepare("DELETE FROM res_evt WHERE v1 = 0;");
+    $qry1->execute();
     $qry = $db->conn->prepare("SELECT * FROM res_evt ORDER BY col_id, t;");
     $qry->execute();
     $res = $qry->get_result();
