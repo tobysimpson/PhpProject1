@@ -15,7 +15,7 @@
     <xsl:variable name="wo" select="0.05 * $w"/>
     
     <xsl:variable name="tt" select="root/row/@t" />
-    <xsl:variable name="vv" select="root/row/@s6" />
+    <xsl:variable name="vv" select="root/row/@s7" />
                 
     <xsl:variable name="tmin">
         <xsl:call-template name="min">
@@ -62,7 +62,10 @@
                 
 
                 
-                
+                <xsl:call-template name="polyline1">
+                    <xsl:with-param name="att1" select="'s7'" />
+                    <xsl:with-param name="fill1" select="'#EEEEFF'" />
+                </xsl:call-template>
                 <xsl:call-template name="polyline1">
                     <xsl:with-param name="att1" select="'s6'" />
                     <xsl:with-param name="fill1" select="'#DDDDFF'" />

@@ -53,7 +53,7 @@ function prd_list() {
 
 function prd_sd1() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT t,s1,s2,s3,s4,s5,s6,d1 FROM vw_agg_def;");
+    $qry = $db->conn->prepare("SELECT t,s1,s2,s3,s4,s5,s6,s7 FROM vw_agg_def;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
@@ -65,7 +65,7 @@ function prd_sd1() {
 
 function prd_su1() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT t,s1,s2,s3,s4,s5,s6,d1 FROM vw_agg_usr;");
+    $qry = $db->conn->prepare("SELECT t,s1,s2,s3,s4,s5,s6,s7 FROM vw_agg_usr;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
@@ -101,7 +101,7 @@ function prd_du1() {
 
 function prd_ed1() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT t,s6,d4,i1 FROM vw_agg_def;");
+    $qry = $db->conn->prepare("SELECT t,s7,d4,e1 FROM vw_agg_def;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
@@ -113,7 +113,7 @@ function prd_ed1() {
 
 function prd_eu1() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT t,s6,d4,i1 FROM vw_agg_usr;");
+    $qry = $db->conn->prepare("SELECT t,s7,d4,e1 FROM vw_agg_usr;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);

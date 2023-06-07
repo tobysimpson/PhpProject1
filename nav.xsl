@@ -17,7 +17,7 @@
                 <link rel="stylesheet" href="https://toby.euler.usi.ch/styles.css"/>
                 <script src="xmlhttp.js"></script>
             </head>
-            <body >
+            <body>
                 <!--layout--> 
                 <table width="100%">
                     <tr>
@@ -76,7 +76,17 @@
             </tr>
             <tr>
                 <td>
+                    <a href="sup.php?mth=list">supply</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <a href="col.php?mth=list&amp;col_typ=3">demand</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="prd.php?mth=list">aggregate</a>
                 </td>
             </tr>
             <tr>
@@ -85,16 +95,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td>
-                    <a href="sup.php?mth=list">supply</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="prd.php?mth=list">aggregate</a>
-                </td>
-            </tr>
 
             <tr>
                 <th style="text-align:left">item</th>

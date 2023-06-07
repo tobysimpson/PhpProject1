@@ -193,5 +193,15 @@
         </g>
     </xsl:template>
     
+    <xsl:template name="last">
+        <g id="last">
+            <text x="{$pw + 10}" y="{format-number($ph * (1 - (row[last()]/@v1 - $vmin) div $vrng),'0.0')}" alignment-baseline="middle" style="font-weight: bold;">
+                <xsl:value-of select="format-number(row[last()]/@v1,'0.00')"/>
+            </text>
+            <circle cx="{$pw}" cy="{format-number($ph * (1 - (row[last()]/@v1 - $vmin) div $vrng),'0.0')}" r="2" fill="blue"/> 
+        </g>
+    </xsl:template>
+
+    
     
 </xsl:stylesheet>
