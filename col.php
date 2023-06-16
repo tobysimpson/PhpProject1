@@ -29,7 +29,7 @@ function col_list() {
     $db = new cls_db();
 
     $col_typ = filter_input(INPUT_GET, "col_typ", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM vw_col WHERE col_typ = ? ORDER BY col_id;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_col WHERE col_typ = ? ORDER BY col_ord,col_id;");
     $qry->bind_param("i", $col_typ);
     
     $qry->execute();
@@ -48,7 +48,7 @@ function col_list() {
 function col_list_all() {
     $db = new cls_db();
     //query
-    $qry = $db->conn->prepare("SELECT * FROM col_met ORDER BY col_id;");
+    $qry = $db->conn->prepare("SELECT * FROM vw_col ORDER BY col_typ,col_ord,col_id;");
 
     $qry->execute();
     $res = $qry->get_result();
@@ -64,8 +64,11 @@ function col_list_all() {
 
 function col_plot() {
     $db = new cls_db();
+    
     //dodgy
     $col_name = filter_input(INPUT_GET, "col_name", FILTER_SANITIZE_STRING);
+    //less dodgy
+    $col_name = substr($col_name, 0, 25);
 
     //query
     $qry = $db->conn->prepare("SELECT t, {$col_name} AS v1 FROM res_def ORDER BY t;");
@@ -87,7 +90,9 @@ function col_disp() {
     //dodgy
     $tbl_name = filter_input(INPUT_GET, "tbl_name", FILTER_SANITIZE_STRING);
     $col_name = filter_input(INPUT_GET, "col_name", FILTER_SANITIZE_STRING);
-
+    //less dodgy
+    $col_name = substr($col_name, 0, 25);
+    $tbl_name = substr($tbl_name, 0, 25);
     //query
     $qry = $db->conn->prepare("SELECT t, {$col_name} AS v1 FROM {$tbl_name} ORDER BY t;");
 

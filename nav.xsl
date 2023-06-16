@@ -74,16 +74,23 @@
                     <a href="col.php?mth=list&amp;col_typ=2">capacity</a>
                 </td>
             </tr>
+                        <tr>
+                <td>
+                    <a href="col.php?mth=list&amp;col_typ=3">conversion</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="col.php?mth=list&amp;col_typ=4">demand</a>
+                </td>
+            </tr>
+            
             <tr>
                 <td>
                     <a href="sup.php?mth=list">supply</a>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <a href="col.php?mth=list&amp;col_typ=3">demand</a>
-                </td>
-            </tr>
+
             <tr>
                 <td>
                     <a href="prd.php?mth=list">aggregate</a>
@@ -95,6 +102,21 @@
                 </td>
             </tr>
 
+            <tr>
+                <th style="text-align:left">test</th>
+            </tr>
+
+            <tr>
+                <td>
+                    <a href="col.php?mth=list_all">columns</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <a href="col.php?mth=list&amp;col_typ=5">test</a>
+                </td>
+            </tr>
 
             <tr>
                 <th style="text-align:left">item</th>

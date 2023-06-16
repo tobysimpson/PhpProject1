@@ -13,6 +13,7 @@
             <tr>
                 <th>col_id</th>
                 <th>col_typ</th>
+                <th>col_ord</th>
                 <th style="text-align:left;">col_name</th>
                 <th colspan="4"></th>
             </tr>
@@ -24,11 +25,17 @@
                     <td>
                         <xsl:value-of select="@col_typ"/>
                     </td>
+                    <td>
+                        <xsl:value-of select="@col_ord"/>
+                    </td>
                     <td style="text-align:left;">
                         <xsl:value-of select="@col_name"/>
                     </td>
                     <td>
                         <a href="#" onclick="fn_get('col.php?mth=disp&amp;tbl_name=res_def&amp;col_name={@col_name}',disp);">default</a>
+                    </td>
+                    <td>
+                        <a href="#" onclick="fn_get('col.php?mth=disp&amp;tbl_name=vw_fac&amp;col_name={@col_name}',disp);">factor</a>
                     </td>
                     <td>
                         <a href="#" onclick="fn_get('col.php?mth=disp&amp;tbl_name=vw_usr&amp;col_name={@col_name}',disp);">user</a>
@@ -40,9 +47,7 @@
                             <xsl:text>)</xsl:text>
                         </a>
                     </td>
-                    <td>
-                        <a href="#" onclick="fn_get('col.php?mth=disp&amp;tbl_name=vw_fac&amp;col_name={@col_name}',disp);">factor</a>
-                    </td>
+
                     
                 </tr>
             </xsl:for-each> 

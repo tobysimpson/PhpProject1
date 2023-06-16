@@ -32,7 +32,7 @@ switch ($mth) {
 
 function sup_list() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM col_met WHERE col_typ = 4 ORDER BY col_id;");
+    $qry = $db->conn->prepare("SELECT * FROM col_info WHERE col_typ = 5 ORDER BY col_id;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
