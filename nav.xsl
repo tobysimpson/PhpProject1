@@ -57,10 +57,27 @@
                 </td>
             </tr>
             <tr>
+                <th style="text-align:left">test</th>
+            </tr>
+            <tr>
                 <td>
-                    <a href="usr.php">user list</a>
+                    <a href="usr.php">usr_info</a>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <a href="col.php?mth=list_all">col_info</a>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <a href="evt.php">evt_info</a>
+                </td>
+            </tr>
+
+
+
             <tr>
                 <th style="text-align:left">game</th>
             </tr>
@@ -74,7 +91,7 @@
                     <a href="col.php?mth=list&amp;col_typ=2">capacity</a>
                 </td>
             </tr>
-                        <tr>
+            <tr>
                 <td>
                     <a href="col.php?mth=list&amp;col_typ=3">conversion</a>
                 </td>
@@ -94,23 +111,6 @@
             <tr>
                 <td>
                     <a href="prd.php?mth=list">aggregate</a>
-                </td>
-            </tr>
-
-
-            <tr>
-                <th style="text-align:left">test</th>
-            </tr>
-
-            <tr>
-                <td>
-                    <a href="col.php?mth=list_all">col_info</a>
-                </td>
-            </tr>
-            
-            <tr>
-                <td>
-                    <a href="evt.php">col_evt</a>
                 </td>
             </tr>
 
@@ -137,43 +137,6 @@
                     <a href="item.php?mth=svg">item_svg</a>
                 </td>
             </tr>
-
-
-
-<!--            
-            <tr>
-                <td>
-                    <a href="ts.php?mth=list">ts_list</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="evt.php?mth=list">evt_list</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="sup.php?mth=list">sup_list</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="dem.php?mth=list">dem_list</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="prd.php?mth=list">prd_list</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="res.php?mth=list">res_list</a>
-                </td>
-            </tr>-->
-
-
-            
 
         </table>
     </xsl:template>
