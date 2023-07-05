@@ -1,8 +1,8 @@
 <?php
 
 require_once "cls_db.php";
-require_once "usr/cls_usr.php";
 require_once "cls_xml.php";
+require_once "cls_usr.php";
 
 echo "hello\n";
 

@@ -2,6 +2,7 @@
 
 require_once "cls_db.php";
 require_once "cls_xml.php";
+require_once "cls_usr.php";
 
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);

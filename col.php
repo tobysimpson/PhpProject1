@@ -2,6 +2,7 @@
 
 require_once "cls_db.php";
 require_once "cls_xml.php";
+require_once "cls_usr.php";
 
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
@@ -48,7 +49,7 @@ function col_list() {
 function col_list_all() {
     $db = new cls_db();
     //query
-    $qry = $db->conn->prepare("SELECT * FROM vw_col ORDER BY col_typ,col_ord,col_id;");
+    $qry = $db->conn->prepare("SELECT * FROM col_info ORDER BY col_typ,col_ord,col_id;");
 
     $qry->execute();
     $res = $qry->get_result();

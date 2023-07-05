@@ -13,10 +13,22 @@
     <xsl:template match="root/row">
         <table class="table2">
             <form action="evt.php?mth=update" method="post">
-               <tr>
+                <tr>
                     <th>evt_id</th>
                     <td>
                         <input type="text" name="evt_id" value="{@evt_id}" readonly="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>usr_id</th>
+                    <td>
+                        <input type="text" name="usr_id" value="{@usr_id}" readonly="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>col_id</th>
+                    <td>
+                        <input type="text" name="col_id" value="{@col_id}" readonly="true"/>
                     </td>
                 </tr>
                 <tr>

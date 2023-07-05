@@ -96,11 +96,7 @@
                     <a href="prd.php?mth=list">aggregate</a>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <a href="evt.php">event</a>
-                </td>
-            </tr>
+
 
             <tr>
                 <th style="text-align:left">test</th>
@@ -108,13 +104,13 @@
 
             <tr>
                 <td>
-                    <a href="col.php?mth=list_all">columns</a>
+                    <a href="col.php?mth=list_all">col_info</a>
                 </td>
             </tr>
-
+            
             <tr>
                 <td>
-                    <a href="col.php?mth=list&amp;col_typ=5">test</a>
+                    <a href="evt.php">col_evt</a>
                 </td>
             </tr>
 

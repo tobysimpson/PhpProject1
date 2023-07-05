@@ -17,6 +17,7 @@
             <tr>
                 <th>col_id</th>
                 <th>evt_id</th>
+                <th>usr_id</th>
                 <th>time</th>
                 <th>value</th>
                 <th></th>
@@ -28,6 +29,9 @@
                     </td>
                     <td>
                         <xsl:value-of select="@evt_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@usr_id"/>
                     </td>
                     <td style="text-align:right">
                         <xsl:value-of select="format-number(@t, '###,##0.0000')"/>
