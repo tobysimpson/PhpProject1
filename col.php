@@ -13,6 +13,9 @@ switch ($mth) {
     case "plot":
         col_plot();
         break;
+    case "def":
+        col_def();
+        break;
     case "disp":
         col_disp();
         break;
@@ -30,7 +33,7 @@ function col_list() {
     $db = new cls_db();
 
     $col_typ = filter_input(INPUT_GET, "col_typ", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM vw_col WHERE col_typ = ? ORDER BY col_ord,col_id;");
+    $qry = $db->conn->prepare("SELECT * FROM col_info WHERE col_typ = ? ORDER BY col_ord;");
     $qry->bind_param("i", $col_typ);
     
     $qry->execute();
@@ -86,16 +89,34 @@ function col_plot() {
     header("Content-Type: image/svg+xml");
 }
 
-function col_disp() {
+function col_def() {
     $db = new cls_db();
     //dodgy
-    $tbl_name = filter_input(INPUT_GET, "tbl_name", FILTER_SANITIZE_STRING);
     $col_name = filter_input(INPUT_GET, "col_name", FILTER_SANITIZE_STRING);
-    //less dodgy
     $col_name = substr($col_name, 0, 25);
-    $tbl_name = substr($tbl_name, 0, 25);
     //query
-    $qry = $db->conn->prepare("SELECT t, {$col_name} AS v1 FROM {$tbl_name} ORDER BY t;");
+    $qry = $db->conn->prepare("SELECT t, {$col_name} AS v1 FROM col_def ORDER BY t;");
+
+    $qry->execute();
+    $res = $qry->get_result();
+    $dom1 = cls_xml::res2dom($res);
+    $res->close();
+
+    //transform
+//    echo $dom1->saveXML();
+    $xsl = cls_xml::file2dom("col/col_plot.xsl");
+    echo cls_xml::xsltrans($dom1, $xsl);
+    header("Content-Type: image/svg+xml");
+}
+
+function col_disp() {
+    $db = new cls_db();
+    $usr_id = cls_usr::check();
+    //dodgy
+    $col_name = filter_input(INPUT_GET, "col_name", FILTER_SANITIZE_STRING);
+    $col_name = substr($col_name, 0, 25);
+    //query
+    $qry = $db->conn->prepare("SELECT t, {$col_name} AS v1 FROM col_calc2 WHERE usr_id = {$usr_id} ORDER BY t;");
 
     $qry->execute();
     $res = $qry->get_result();

@@ -31,19 +31,19 @@
                     <td style="text-align:left;">
                         <xsl:value-of select="@col_name"/>
                     </td>
-                    <td>
-                        <a href="#" onclick="fn_get('col.php?mth=disp&amp;tbl_name=res_def&amp;col_name={@col_name}',disp);">default</a>
-                    </td>
-                    <td>
-                        <a href="#" onclick="fn_get('col.php?mth=disp&amp;tbl_name=vw_fac&amp;col_name={@col_name}',disp);">factor</a>
-                    </td>
-                    <td>
-                        <a href="#" onclick="fn_get('col.php?mth=disp&amp;tbl_name=vw_usr&amp;col_name={@col_name}',disp);">user</a>
-                    </td>
-                    <td>
-                        <a href="evt.php?mth=list&amp;col_id={@col_id}">events</a>
-                    </td>
 <!--                    <td>
+                        <a href="#" onclick="fn_get('col.php?mth=def&amp;col_name={@col_name}',disp);">default</a>
+                    </td>-->
+                    <td>
+                            <a href="#" onclick="fn_get('col.php?mth=disp&amp;col_name={@col_name}',disp);">plot</a>
+                        </td>
+                    <xsl:if test="@col_evt=1">
+                        <td>
+                            <a href="evt.php?mth=list&amp;col_id={@col_id}">event</a>
+                        </td>
+                    </xsl:if>
+
+                    <!--                    <td>
                         <a href="evt.php?mth=list&amp;col_id={@col_id}">
                             <xsl:text>events (</xsl:text>
                             <xsl:value-of select="@evt_ct"/>
