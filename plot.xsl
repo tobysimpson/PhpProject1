@@ -31,6 +31,24 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
+    
+    <xsl:template name="max0">
+        <xsl:param name="nodes" />
+        <xsl:variable name="max">
+            <xsl:call-template name="max">
+                <xsl:with-param name="nodes" select="$nodes" />
+            </xsl:call-template>
+        </xsl:variable>
+        <xsl:choose>
+            <xsl:when test="$max &lt; 0">
+                <xsl:value-of select="0" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$max" />
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
 
 
     <xsl:template name="title">

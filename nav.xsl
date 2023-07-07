@@ -123,6 +123,16 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <a href="col.php?mth=list&amp;col_typ=9">balance</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="col.php?mth=list&amp;col_typ=10">import</a>
+                </td>
+            </tr>
+            <tr>
                 <th style="text-align:left">item</th>
             </tr>
             <tr>

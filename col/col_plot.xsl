@@ -36,7 +36,7 @@
     </xsl:variable>
                 
     <xsl:variable name="vmax">
-        <xsl:call-template name="max">
+        <xsl:call-template name="max0">
             <xsl:with-param name="nodes" select="$vv" />
         </xsl:call-template>
     </xsl:variable>
