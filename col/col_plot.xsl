@@ -51,8 +51,11 @@
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
             <style>* { font-size: 100%; font-family: sans-serif; font-weight: 300; }</style> 
             
-           <xsl:call-template name="title"/>
-            
+           <xsl:call-template name="title">
+               <xsl:with-param name="txt" select="@col_name" />
+           </xsl:call-template>
+           
+    
             <g id="plot" transform="translate({$wo},{$ho})"> 
                 
                 <g id="grid">

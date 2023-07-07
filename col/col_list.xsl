@@ -31,17 +31,24 @@
                     <td style="text-align:left;">
                         <xsl:value-of select="@col_name"/>
                     </td>
-<!--                    <td>
-                        <a href="#" onclick="fn_get('col.php?mth=def&amp;col_name={@col_name}',disp);">default</a>
+                    <!--            <td>
+                        <xsl:if test="@col_def=1">
+                            <a href="#" onclick="fn_get('col.php?mth=def&amp;col_name={@col_name}',disp);">default</a>
+                        </xsl:if>
                     </td>-->
                     <td>
-                            <a href="#" onclick="fn_get('col.php?mth=disp&amp;col_name={@col_name}',disp);">plot</a>
-                        </td>
-                    <xsl:if test="@col_evt=1">
-                        <td>
+                        <a href="#" onclick="fn_get('col.php?mth=disp&amp;col_name={@col_name}',disp);">plot</a>
+                    </td>
+                    <td>
+                        <a href="col.php?mth=dat&amp;col_name={@col_name}">data</a>
+                    </td>
+                    <td>
+                        <xsl:if test="@col_evt=1">
+                        
                             <a href="evt.php?mth=list&amp;col_id={@col_id}">event</a>
-                        </td>
-                    </xsl:if>
+                        </xsl:if>
+                    </td>
+
 
                     <!--                    <td>
                         <a href="evt.php?mth=list&amp;col_id={@col_id}">

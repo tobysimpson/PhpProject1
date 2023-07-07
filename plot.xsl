@@ -34,9 +34,10 @@
 
 
     <xsl:template name="title">
+        <xsl:param name="txt" />
         <g id="title">
             <text x="10" y="25">
-                <xsl:text>title</xsl:text>
+                <xsl:value-of select="$txt"/>
             </text>
         </g>
     </xsl:template>
