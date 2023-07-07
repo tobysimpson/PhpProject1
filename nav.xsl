@@ -97,7 +97,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="col.php?mth=list&amp;col_typ=6">conversion</a>
+                    <a href="col.php?mth=list&amp;col_typ=6">processing</a>
                 </td>
             </tr>
             <tr>
@@ -105,14 +105,21 @@
                     <a href="col.php?mth=list&amp;col_typ=3">consumption</a>
                 </td>
             </tr>
+
             <tr>
                 <td>
-                    <a href="col.php?mth=list&amp;col_typ=4">demand</a>
+                    <a href="col.php?mth=list&amp;col_typ=7">subtotals</a>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <a href="col.php?mth=list&amp;col_typ=8">supply</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="col.php?mth=list&amp;col_typ=7">summary</a>
+                    <a href="col.php?mth=list&amp;col_typ=4">demand</a>
                 </td>
             </tr>
             <tr>
