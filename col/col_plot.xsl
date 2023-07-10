@@ -51,9 +51,9 @@
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
             <style>* { font-size: 100%; font-family: sans-serif; font-weight: 300; }</style> 
             
-           <xsl:call-template name="title">
-               <xsl:with-param name="txt" select="@col_name" />
-           </xsl:call-template>
+            <xsl:call-template name="title">
+                <xsl:with-param name="txt" select="@col_name" />
+            </xsl:call-template>
            
     
             <g id="plot" transform="translate({$wo},{$ho})"> 
@@ -79,7 +79,7 @@
                     </text>
                 </g>
                 
-<!--                <g id="zero">
+                <!--                <g id="zero">
                     <xsl:if test="$vmin != 0">
                     
                         <text x="{$pw + 10}" y="{$pzro}" alignment-baseline="middle">
@@ -90,15 +90,7 @@
                 </g>-->
 
                 
-                <!--     no           <g id="latest">
-                    <text x="{$pw + 10}" y="{format-number($ph * (1 - (row[last()]/@v1 - $vmin) div $vrng),'0.0')}" alignment-baseline="middle" style="font-weight: bold;">
-                        <xsl:value-of select="format-number(row[last()]/@v1,'0.00')"/>
-                    </text>
-                    <circle cx="{$pw}" cy="{format-number($ph * (1 - (row[last()]/@v1 - $vmin) div $v_rng),'0')}" r="2" fill="green"/> 
-                </g>-->
-                
-                
-                <!--                <g id="bar1">
+<!--                <g id="bar1">
                     <xsl:for-each select="row">
                         <xsl:sort select="@t" data-type="number" order="ascending"/>
                         <xsl:variable name="x" select="format-number($pw * (@t - $t_min) div $t_rng,'0')"/>
@@ -107,16 +99,14 @@
                     </xsl:for-each>
                 </g>-->
                 
-
-  
-                
                 
                 <xsl:call-template name="polyline"/>
-<!--                <xsl:call-template name="bars"/>-->
+                <!--<xsl:call-template name="bars"/>-->
                 <xsl:call-template name="zero"/>
                 <xsl:call-template name="line"/>
                 <xsl:call-template name="last"/>
                 <!--<xsl:call-template name="key"/>-->
+                <!--<xsl:call-template name="dots"/>-->
                 
               
             </g>

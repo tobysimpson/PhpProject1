@@ -84,7 +84,6 @@
     <xsl:template name="zero">
         <g id="zero">
             <xsl:if test="$vmin != 0">
-                    
                 <text x="{$pw + 10}" y="{$pzro}" alignment-baseline="middle">
                     <xsl:value-of select="format-number(0,'0.00')"/>
                 </text>

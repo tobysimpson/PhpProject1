@@ -69,13 +69,17 @@
                     <a href="col.php?mth=list_all">col_info</a>
                 </td>
             </tr>
-            
+
             <tr>
                 <td>
                     <a href="evt.php">evt_info</a>
                 </td>
             </tr>
-
+            <tr>
+                <td>
+                    <a href="bal.php">bal_list</a>
+                </td>
+            </tr>
             <tr>
                 <th style="text-align:left">game</th>
             </tr>
@@ -102,6 +106,11 @@
             </tr>
             <tr>
                 <td>
+                    <a href="col.php?mth=list&amp;col_typ=4">demand</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <a href="col.php?mth=list&amp;col_typ=3">consumption</a>
                 </td>
             </tr>
@@ -117,11 +126,7 @@
                     <a href="col.php?mth=list&amp;col_typ=8">supply</a>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <a href="col.php?mth=list&amp;col_typ=4">demand</a>
-                </td>
-            </tr>
+
             <tr>
                 <td>
                     <a href="col.php?mth=list&amp;col_typ=9">balance</a>
@@ -129,7 +134,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="col.php?mth=list&amp;col_typ=10">import</a>
+                    <a href="col.php?mth=list&amp;col_typ=10">export</a>
                 </td>
             </tr>
             <tr>

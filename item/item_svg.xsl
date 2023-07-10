@@ -134,7 +134,7 @@
                             <circle cx="{$x}" cy="{$y}" r="5" stroke="red" fill="lightgrey"/>
                         </a>
                         <xsl:if test="@item_name!='NULL'">
-                            <text x="{$x}" y="{$y}" text-anchor="middle" alignment-baseline="middle">
+                            <text x="{$x}" y="{$y+15}" text-anchor="middle" alignment-baseline="middle">
                                 <xsl:value-of select="@item_name"/>
                             </text>
 <!--                            <xsl:text>(</xsl:text>

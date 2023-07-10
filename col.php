@@ -10,12 +10,6 @@ switch ($mth) {
     case "list":
         col_list();
         break;
-    case "plot":
-        col_plot();
-        break;
-    case "def":
-        col_def();
-        break;
     case "disp":
         col_disp();
         break;
@@ -80,26 +74,6 @@ function col_plot() {
     //query
     $qry = $db->conn->prepare("SELECT t, {$col_name} AS v1 FROM res_def ORDER BY t;");
 //    $qry->bind_param("s", $col_name);
-    $qry->execute();
-    $res = $qry->get_result();
-    $dom1 = cls_xml::res2dom($res);
-    $res->close();
-
-    //transform
-//    echo $dom1->saveXML();
-    $xsl = cls_xml::file2dom("col/col_plot.xsl");
-    echo cls_xml::xsltrans($dom1, $xsl);
-    header("Content-Type: image/svg+xml");
-}
-
-function col_def() {
-    $db = new cls_db();
-    //dodgy
-    $col_name = filter_input(INPUT_GET, "col_name", FILTER_SANITIZE_STRING);
-    $col_name = substr($col_name, 0, 25);
-    //query
-    $qry = $db->conn->prepare("SELECT t, {$col_name} AS v1 FROM col_def ORDER BY t;");
-
     $qry->execute();
     $res = $qry->get_result();
     $dom1 = cls_xml::res2dom($res);
