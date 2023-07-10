@@ -101,7 +101,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="col.php?mth=list&amp;col_typ=6">processing</a>
+                    <a href="col.php?mth=list&amp;col_typ=6">generation</a>
                 </td>
             </tr>
             <tr>
@@ -115,11 +115,11 @@
                 </td>
             </tr>
 
-            <tr>
+<!--            <tr>
                 <td>
                     <a href="col.php?mth=list&amp;col_typ=7">subtotals</a>
                 </td>
-            </tr>
+            </tr>-->
             
             <tr>
                 <td>
@@ -129,12 +129,12 @@
 
             <tr>
                 <td>
-                    <a href="col.php?mth=list&amp;col_typ=9">balance</a>
+                    <a href="col.php?mth=list&amp;col_typ=9">surplus</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="col.php?mth=list&amp;col_typ=10">export</a>
+                    <a href="col.php?mth=list&amp;col_typ=10">balance</a>
                 </td>
             </tr>
             <tr>

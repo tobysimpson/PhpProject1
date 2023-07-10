@@ -83,13 +83,18 @@ function evt_edit() {
 
 function evt_update() {
     $db = new cls_db();
+    $usr_id = cls_usr::check();
     $evt_id = filter_input(INPUT_POST, "evt_id", FILTER_VALIDATE_INT);
     $col_id = filter_input(INPUT_POST, "col_id", FILTER_VALIDATE_INT);
-    $t = filter_input(INPUT_POST, "t", FILTER_SANITIZE_STRING);
+    $t = filter_input(INPUT_POST, "t", FILTER_VALIDATE_FLOAT);
     $v1 = filter_input(INPUT_POST, "v1", FILTER_VALIDATE_FLOAT);
-    $qry = $db->conn->prepare("UPDATE evt_info SET t=?, v1=? WHERE evt_id = ?;");
-    $qry->bind_param("ddi", $t, $v1, $evt_id);
+   
+ 
+    $qry = $db->conn->prepare("UPDATE evt_info SET t=?, v1=? WHERE evt_id=? AND usr_id=?;");
+    $qry->bind_param("ddii", $t, $v1, $evt_id,$usr_id);
     $qry->execute();
+
+
     header("Location: evt.php?mth=list&col_id=".$col_id);
 //    evt_list_all();
 }

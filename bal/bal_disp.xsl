@@ -9,7 +9,7 @@
     </xsl:template>-->
 
     <xsl:template match="root/row">
-        <table>
+<!--        <table>
             <tr>
                 <td>
                     <xsl:value-of select="@usr_id"/>
@@ -20,17 +20,17 @@
                 <td>
                     <xsl:value-of select="format-number(@t, '###,##0.000')"/>
                 </td>
-                <!--                    <td>
+                                    <td>
                     <a href="#" onclick="fn_get('bal.php?mth=disp&amp;n={@n}',disp);">disp</a>
-                </td>-->
+                </td>
             </tr>
-        </table>
+        </table>-->
         
         
-        <table class="table1">
+        <table class="table3">
             <tr>
                 <th></th>
-                <th></th>
+                <th style="width:150px"></th>
                 <th>pet</th>
                 <th>gas</th>
                 <th>nuc</th>
@@ -47,33 +47,23 @@
             <tr>
                 <th style="text-align:left">availability</th>
                 <td></td>
-                <td>
-                    <xsl:value-of select="format-number(1, '###,##0.00')"/>
-                </td>
-                <td>
-                    <xsl:value-of select="format-number(1, '###,##0.00')"/>
-                </td>
+                <td></td>
+                <td></td>
                 <td>
                     <xsl:value-of select="format-number(@avl_nuc, '###,##0.00')"/>
                 </td>
                 <td>
                     <xsl:value-of select="format-number(@avl_riv, '###,##0.00')"/>
                 </td>
-                <td>
-                    <xsl:value-of select="format-number(1, '###,##0.00')"/>
-                </td>
+                <td></td>
                 <td>
                     <xsl:value-of select="format-number(@avl_sol, '###,##0.00')"/>
                 </td>
                 <td>
                     <xsl:value-of select="format-number(@avl_wnd, '###,##0.00')"/>
                 </td>
-                <td>
-                    <xsl:value-of select="format-number(1, '###,##0.00')"/>
-                </td>
-                <td>
-                    <xsl:value-of select="format-number(1, '###,##0.00')"/>
-                </td>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -81,27 +71,13 @@
             <tr>
                 <th style="text-align:left">production</th>
                 <td></td>
-                <td>
-                    <xsl:value-of select="format-number(0, '###,##0.00')"/>
-                </td>
-                <td>
-                    <xsl:value-of select="format-number(0, '###,##0.00')"/>
-                </td>
-                <td>
-                    <xsl:value-of select="format-number(0, '###,##0.00')"/>
-                </td>
-                <td>
-                    <xsl:value-of select="format-number(0, '###,##0.00')"/>
-                </td>
-                <td>
-                    <xsl:value-of select="format-number(0, '###,##0.00')"/>
-                </td>
-                <td>
-                    <xsl:value-of select="format-number(0, '###,##0.00')"/>
-                </td>
-                <td>
-                    <xsl:value-of select="format-number(0, '###,##0.00')"/>
-                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td>
                     <xsl:value-of select="format-number(@prd_bio, '###,##0.00')"/>
                 </td>
@@ -123,7 +99,9 @@
                 <th style="text-align:left">electricity</th>
                 <td></td>
                 <td>
-                    <xsl:value-of select="format-number(@cap_gas, '###,##0.00')"/>
+                    <a href="evt.php?mth=list&amp;col_id=7">
+                        <xsl:value-of select="format-number(@cap_gas, '###,##0.00')"/>
+                    </a>
                 </td>
                 <td>
                     <xsl:value-of select="format-number(@cap_nuc, '###,##0.00')"/>
@@ -186,7 +164,7 @@
                 <td></td>
                 
                 <td>
-                    <xsl:value-of select="format-number(@chp_h2, '###,##0.00')"/>
+                    <xsl:value-of select="format-number(@cap_h2, '###,##0.00')"/>
                 </td>
                 <td></td>
                 <td></td>
@@ -196,7 +174,7 @@
             
             
             <tr>
-                <th style="text-align:left">processing</th>
+                <th style="text-align:left">generation</th>
                 <td colspan="13"></td>
             </tr>
             
@@ -205,9 +183,7 @@
             <tr>
                 <td></td>
                 <th style="text-align:left">electricity</th>
-                <td>
-                    <xsl:value-of select="format-number(0, '###,##0.00')"/>
-                </td>
+                <td></td>
                 <td>
                     <xsl:value-of select="format-number(@gen_ele_gas, '###,##0.00')"/>
                 </td>
