@@ -49,13 +49,14 @@ th{
 
 
 .table3 tr{
-    text-align: right;
+    text-align: left;
     border-bottom: 1pt solid #dddddd;
 }
 
-.table3 th{
+.table3 td{
     text-align: center;
 }
+
 
 
 

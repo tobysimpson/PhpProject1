@@ -22,6 +22,9 @@ switch ($mth) {
     case "reset":
         evt_reset();
         break;
+    case "upsert":
+        evt_upsert();
+        break;
     default:
         evt_list_all();
 }
@@ -89,14 +92,35 @@ function evt_update() {
     $t = filter_input(INPUT_POST, "t", FILTER_VALIDATE_FLOAT);
     $v1 = filter_input(INPUT_POST, "v1", FILTER_VALIDATE_FLOAT);
    
- 
     $qry = $db->conn->prepare("UPDATE evt_info SET t=?, v1=? WHERE evt_id=? AND usr_id=?;");
     $qry->bind_param("ddii", $t, $v1, $evt_id,$usr_id);
     $qry->execute();
-
-
+    
+    $qry1 = $db->conn->prepare("DELETE FROM evt_info WHERE v1 = 0;");
+    $qry1->execute();
+    
     header("Location: evt.php?mth=list&col_id=".$col_id);
 //    evt_list_all();
 }
 
+
+function evt_upsert() {
+    $db = new cls_db();
+    $usr_id = cls_usr::check();
+    $col_id = filter_input(INPUT_GET, "col_id", FILTER_VALIDATE_INT);
+    $t = filter_input(INPUT_GET, "t", FILTER_VALIDATE_FLOAT);
+    $n = filter_input(INPUT_GET, "n", FILTER_VALIDATE_INT);
+    $v1 = filter_input(INPUT_GET, "v1", FILTER_VALIDATE_FLOAT);
+
+
+//    echo 'usr_id=',$usr_id, ' col_id=', $col_id,' t=',  $t,' n=',  $n,' v1=',  $v1;
+    
+    
+    $qry = $db->conn->prepare("INSERT INTO evt_info (usr_id, col_id, t, v1 ) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE usr_id = ?, col_id = ?, t = ?, v1 = ?;");
+    $qry->bind_param("iiddiidd", $usr_id, $col_id, $t, $v1, $usr_id, $col_id, $t, $v1);
+    $qry->execute();
+
+    header("Location: bal.php?mth=disp&n=".$n);
+
+}
 

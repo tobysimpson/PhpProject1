@@ -32,19 +32,16 @@
                     <td style="text-align:left;">
                         <xsl:value-of select="@col_name"/>
                     </td>
-<!--                    <td>
-                        <xsl:value-of select="@col_def"/>
-                    </td>-->
                     <td>
                         <a href="#" onclick="fn_get('col.php?mth=disp&amp;col_name={@col_name}',disp);">plot</a>
-                    </td>
-                    <td>
-                        <a href="col.php?mth=dat&amp;col_name={@col_name}">data</a>
                     </td>
                     <td>
                         <xsl:if test="@col_evt=1">
                             <a href="evt.php?mth=list&amp;col_id={@col_id}">event</a>
                         </xsl:if>
+                    </td>
+                    <td>
+                        <a href="col.php?mth=dat&amp;col_name={@col_name}">data</a>
                     </td>
                 </tr>
             </xsl:for-each> 

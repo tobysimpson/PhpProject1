@@ -34,7 +34,7 @@
                         <xsl:value-of select="@col_id"/>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="format-number(@t, '###,##0.0000')"/>
+                        <xsl:value-of select="@t"/>
                     </td>
                     <td style="text-align:right">
                         <xsl:value-of select="format-number(@v1, '###,##0.0000')"/>
