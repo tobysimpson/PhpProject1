@@ -24,7 +24,7 @@ a:active {
 }
 
 table, th, td{
-    padding: 8px;
+    padding: 6px;
     border-collapse: collapse;
 }
 th{

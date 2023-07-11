@@ -77,7 +77,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="bal.php">bal_list</a>
+                    <a href="bal.php?mth=disp&amp;n=0">bal_disp</a>
                 </td>
             </tr>
             <tr>
