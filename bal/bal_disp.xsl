@@ -54,7 +54,7 @@
                 <th>H2</th>
             </tr>
             <tr>
-                <th style="text-align:left">availability</th>
+                <th>availability</th>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -78,7 +78,7 @@
                 <td></td>
             </tr>
             <tr>
-                <th style="text-align:left">production</th>
+                <th>production</th>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -105,7 +105,7 @@
             
             <tr>
                 <td></td>
-                <th style="text-align:left">electricity</th>
+                <th>electricity</th>
                 <td></td>
                 <td>
                     <input type="text" value="{format-number(@cap_gas, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=7&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=cap_gas',disp);"/>
@@ -142,7 +142,7 @@
             </tr>
             <tr>
                 <td></td>
-                <th style="text-align:left">chp</th>
+                <th>chp</th>
                 <td></td>
                 <td>
                     <xsl:value-of select="format-number(@chp_gas, '###,##0.00')"/>
@@ -164,7 +164,7 @@
             </tr>
             <tr>
                 <td></td>
-                <th style="text-align:left">hydrogen</th>
+                <th>hydrogen</th>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -186,7 +186,7 @@
             
             
             <tr>
-                <th style="text-align:left">generation</th>
+                <th>generation</th>
                 <td colspan="13"></td>
             </tr>
             
@@ -194,7 +194,7 @@
             
             <tr>
                 <td></td>
-                <th style="text-align:left">electricity</th>
+                <th>electricity</th>
                 <td></td>
                 <td>
                     <input type="text" readonly="true" value="{format-number(@gen_ele_gas, '###,##0.00')}" style="width: 60px; text-align: center;" onfocus="fn_get('col.php?mth=disp&amp;col_name=gen_ele_gas',disp);"/>
@@ -230,7 +230,7 @@
 
             <tr>
                 <td></td>
-                <th style="text-align:left">chp</th>
+                <th>chp</th>
                 <td></td>
                 <td>
                     <xsl:value-of select="format-number(@chp_gas, '###,##0.00')"/>
@@ -257,7 +257,7 @@
         
             <tr>
                 <td></td>
-                <th style="text-align:left">hydrogen</th>
+                <th>hydrogen</th>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -278,7 +278,7 @@
         
         
             <tr>
-                <th style="text-align:left">consumption</th>
+                <th >consumption</th>
                 <td colspan="13"></td>
                 <th style="width:100px;text-align:right;">supply</th>
                 <th style="text-align:right;">demand</th>
@@ -288,7 +288,7 @@
             
             <tr>
                 <td></td>
-                <th style="text-align:left">electricity base</th>
+                <th>electricity base</th>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -343,7 +343,7 @@
             
             <tr>
                 <td></td>
-                <th style="text-align:left">heat industrial</th>
+                <th>heat industrial</th>
                 <td>
                     <input type="text" value="{format-number(@con_hind_pet, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=21&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_hind_pet',disp);"/>
                 </td>
@@ -356,19 +356,19 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <xsl:value-of select="format-number(@con_hind_bio, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_hind_bio, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=23&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_hind_bio',disp);"/>
                 </td>
                 <td>
-                    <xsl:value-of select="format-number(@con_hind_wst, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_hind_wst, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=24&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_hind_wst',disp);"/>
                 </td>
                 <td>
-                    <xsl:value-of select="format-number(@con_hind_ele, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_hind_ele, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=25&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_hind_ele',disp);"/>
                 </td>
                 <td>
-                    <xsl:value-of select="format-number(@con_hind_hdst, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_hind_hdst, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=26&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_hind_hdst',disp);"/>
                 </td>
                 <td>
-                    <xsl:value-of select="format-number(@con_hind_h2, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_hind_h2, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=27&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_hind_h2',disp);"/>
                 </td>
                 <td>
                     <xsl:value-of select="format-number(@sup_hind, '###,##0.00')"/>
@@ -383,12 +383,12 @@
             
             <tr>
                 <td></td>
-                <th style="text-align:left">heat residential</th>
+                <th>heat residential</th>
                 <td>
-                    <xsl:value-of select="format-number(@con_hres_pet, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_hres_pet, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=28&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_hres_pet',disp);"/>
                 </td>
                 <td>
-                    <xsl:value-of select="format-number(@con_hres_gas, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_hres_gas, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=29&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_hres_gas',disp);"/>
                 </td>
                 <td></td>
                 <td></td>
@@ -396,19 +396,19 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <xsl:value-of select="format-number(@con_hres_bio, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_hres_bio, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=30&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_hres_bio',disp);"/>
                 </td>
                 <td>
-                    <xsl:value-of select="format-number(@con_hres_wst, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_hres_wst, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=31&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_hres_wst',disp);"/>
                 </td>
                 <td>
-                    <xsl:value-of select="format-number(@con_hres_ele, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_hres_ele, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=32&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_hres_ele',disp);"/>
                 </td>
                 <td>
-                    <xsl:value-of select="format-number(@con_hres_hdst, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_hres_hdst, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=33&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_hres_hdst',disp);"/>
                 </td>
                 <td>
-                    <xsl:value-of select="format-number(@con_hres_h2, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_hres_h2, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=34&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_hres_h2',disp);"/>
                 </td>
                 <td>
                     <xsl:value-of select="format-number(@sup_hres, '###,##0.00')"/>
@@ -422,9 +422,9 @@
             </tr>
             <tr>
                 <td></td>
-                <th style="text-align:left">transport road</th>
+                <th>transport road</th>
                 <td>
-                    <xsl:value-of select="format-number(@con_road_pet, '###,##0.00')"/>
+                     <input type="text" value="{format-number(@con_road_pet, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=44&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_road_pet',disp);"/>
                 </td>
                 <td></td>
                 <td></td>
@@ -435,11 +435,11 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <xsl:value-of select="format-number(@con_road_ele, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_road_ele, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=45&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_road_ele',disp);"/>
                 </td>
                 <td></td>
                 <td>
-                    <xsl:value-of select="format-number(@con_road_h2, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_road_h2, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=46&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_road_h2',disp);"/>
                 </td>
                 
                 <td>
@@ -454,9 +454,9 @@
             </tr>
             <tr>
                 <td></td>
-                <th style="text-align:left">transport rail</th>
+                <th>transport rail</th>
                 <td>
-                    <xsl:value-of select="format-number(@con_rail_pet, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_rail_pet, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=47&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_rail_pet',disp);"/>
                 </td>
                 <td></td>
                 <td></td>
@@ -467,11 +467,11 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <xsl:value-of select="format-number(@con_rail_ele, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_rail_ele, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=50&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_rail_ele',disp);"/>
                 </td>
                 <td></td>
                 <td>
-                    <xsl:value-of select="format-number(@con_rail_h2, '###,##0.00')"/>
+                    <input type="text" value="{format-number(@con_rail_h2, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=51&amp;n={@n}&amp;t={@t}&amp;v1='+(this.value - this.old_value);" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=con_rail_h2',disp);"/>
                 </td>
                 
                 <td>
@@ -486,13 +486,13 @@
             </tr>
             
             <tr>
-                <th style="text-align:left">balance</th>
+                <th>balance</th>
                 <td colspan="13"></td>
             </tr>
             
             <tr>
                 <th></th>
-                <th style="text-align:left">surplus</th>
+                <th>surplus</th>
                 <td>
                     <xsl:value-of select="format-number(@bal_pet, '###,##0.00')"/>
                 </td>
