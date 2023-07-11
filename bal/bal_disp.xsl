@@ -19,7 +19,7 @@
                 </td>
                 <td>
                     <!--<xsl:value-of select="@n"/>-->
-                    <input type="text" value="{@n}" style="width: 60px; text-align: center;" onchange="window.location.href='bal.php?mth=disp&amp;n='+this.value;"/>
+                    <input id="weeks" type="text" value="{@n}" style="width: 60px; text-align: center;" onchange="window.location.href='bal.php?mth=disp&amp;n='+this.value;"/>
                 </td>
                 <td>
                     <a href="bal.php?mth=disp&amp;n={@n+1}">&gt;</a>
@@ -57,17 +57,22 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <xsl:value-of select="format-number(@avl_nuc, '###,##0.00')"/>
+                     <input type="text" readonly="true" value="{format-number(@avl_nuc, '###,##0.00')}" style="width: 60px; text-align: center;" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_nuc',disp);"/>
+                    
+                    <!--<xsl:value-of select="format-number(@avl_nuc, '###,##0.00')"/>-->
                 </td>
                 <td>
-                    <xsl:value-of select="format-number(@avl_riv, '###,##0.00')"/>
+                    <!--<xsl:value-of select="format-number(@avl_riv, '###,##0.00')"/>-->
+                    <input type="text" readonly="true" value="{format-number(@avl_riv, '###,##0.00')}" style="width: 60px; text-align: center;" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_riv',disp);"/>
                 </td>
                 <td></td>
                 <td>
-                    <xsl:value-of select="format-number(@avl_sol, '###,##0.00')"/>
+                    <!--<xsl:value-of select="format-number(@avl_sol, '###,##0.00')"/>-->
+                    <input type="text" readonly="true" value="{format-number(@avl_sol, '###,##0.00')}" style="width: 60px; text-align: center;" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_sol',disp);"/>
                 </td>
                 <td>
-                    <xsl:value-of select="format-number(@avl_wnd, '###,##0.00')"/>
+                    <!--<xsl:value-of select="format-number(@avl_wnd, '###,##0.00')"/>-->
+                    <input type="text" readonly="true" value="{format-number(@avl_wnd, '###,##0.00')}" style="width: 60px; text-align: center;" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_wnd',disp);"/>
                 </td>
                 <td></td>
                 <td></td>
@@ -106,15 +111,14 @@
                 <th style="text-align:left">electricity</th>
                 <td></td>
                 <td>
-                    <xsl:value-of select="format-number(@cap_gas, '###,##0.00')"/>
-                    <!--                    <a href="evt.php?mth=list&amp;col_id=7">
-                        
-                        <text></text>
-                        <text></text>
-                    </a>-->
-                    <!--<a href="#" onclick="fn_get('col.php?mth=disp&amp;col_name=avl_riv',disp);">plot</a></td>-->
-                    <a style="font-family: Webdings; font-size:24;" href="col.php?mth=disp&amp;col_name=cap_gas"></a>
-                    <a style="font-family: Webdings; font-size:20;" href="evt.php?mth=list&amp;col_id=7"></a>
+                    <!--<xsl:value-of select="format-number(@cap_gas, '###,##0.00')"/>-->
+                    
+                    <input type="text" value="{format-number(@cap_gas, '###,##0.00')}" style="width: 60px; text-align: center;" onchange="window.location.href='bal.php?mth=disp&amp;n='+this.value;" onfocus="this.old_value = this.value;fn_get('col.php?mth=disp&amp;col_name=cap_gas',disp);"/>
+                    
+                    <!--<a style="font-family: Webdings; font-size:24;" href="#" onclick="fn_get('col.php?mth=disp&amp;col_name=cap_gas',disp);"></a>-->
+                    <!--<a style="font-family: Webdings; font-size:24;" href="col.php?mth=disp&amp;col_name=cap_gas"></a>-->
+                    <!--<a style="font-family: Webdings; font-size:20;" href="evt.php?mth=list&amp;col_id=7"></a>-->
+                    
                 </td>
                 <td>
                     <xsl:value-of select="format-number(@cap_nuc, '###,##0.00')"/>
@@ -281,9 +285,9 @@
             <tr>
                 <th style="text-align:left">consumption</th>
                 <td colspan="13"></td>
-                <th>supply</th>
-                <th>demand</th>
-                <th>surplus</th>
+                <th style="width:100px;text-align:right;">supply</th>
+                <th style="text-align:right;">demand</th>
+                <th style="text-align:right;">surplus</th>
             </tr>
             
             
@@ -526,7 +530,7 @@
             
         </table>
         
-        
+        <div id="disp"></div>
         
     </xsl:template>
 </xsl:stylesheet>
