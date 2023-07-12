@@ -23,10 +23,15 @@ a:active {
     text-decoration: underline;
 }
 
-table, th, td{
-    padding: 6px;
+
+table {
     border-collapse: collapse;
 }
+
+th, td{
+    padding: 6px;
+}
+
 th{
     font-weight: bold;
 }
@@ -49,15 +54,27 @@ th{
 
 
 .table3 tr{
-    text-align: left;
     border-bottom: 1pt solid #dddddd;
 }
 
 .table3 td{
-    text-align: center;
+    border: 1pt solid #dddddd;
+    text-align: right;
+    padding: 4px;
 }
 
+.table3 th{
+    border: 1pt solid #dddddd;
+    text-align: left;
+    padding: 4px;
+}
 
-
+.input1{
+    width: 60px;
+    text-align: right;
+    border: none;
+    margin-top: -1px;
+    margin-bottom: -1px;
+}
 
 

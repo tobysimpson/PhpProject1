@@ -15,6 +15,9 @@
                 <th>col_typ</th>
                 <th>col_ord</th>
                 <th style="text-align:left;">col_name</th>
+<!--                <th>prd_in</th>
+                <th>prd_out</th>
+                <th>dem_out</th>-->
                 <!--<th>col_def</th>-->
                 <th colspan="3"></th>
             </tr>
@@ -32,6 +35,18 @@
                     <td style="text-align:left;">
                         <xsl:value-of select="@col_name"/>
                     </td>
+<!--                    <td>
+                        <xsl:value-of select="@prd_in"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@prd_out"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@dem_out"/>
+                    </td>-->
+<!--                    <td>
+                        <xsl:value-of select="@col_def"/>
+                    </td>-->
                     <td>
                         <a href="#" onclick="fn_get('col.php?mth=disp&amp;col_name={@col_name}',disp);">plot</a>
                     </td>
