@@ -32,9 +32,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>time</th>
+                    <th>period</th>
                     <td>
-                        <input type="text" name="t" value="{@t}"/>
+                        <input type="text" name="n" value="{@n}"/>
                     </td>
                 </tr>
                 <tr>

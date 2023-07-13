@@ -90,46 +90,43 @@
             </tr>
             <tr>
                 <td>
-                    <a href="col.php?mth=list&amp;col_typ=5">production</a>
+                    <a href="col.php?mth=list&amp;col_typ=2">production</a>
                 </td>
             </tr>
             
             <tr>
                 <td>
-                    <a href="col.php?mth=list&amp;col_typ=2">capacity</a>
+                    <a href="col.php?mth=list&amp;col_typ=3">capacity</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="col.php?mth=list&amp;col_typ=6">generation</a>
+                    <a href="col.php?mth=list&amp;col_typ=4">generation</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="col.php?mth=list&amp;col_typ=4">demand</a>
+                    <a href="col.php?mth=list&amp;col_typ=5">capacity</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="col.php?mth=list&amp;col_typ=3">consumption</a>
+                    <a href="col.php?mth=list&amp;col_typ=6">consumption</a>
                 </td>
             </tr>
-
-<!--            <tr>
-                <td>
-                    <a href="col.php?mth=list&amp;col_typ=7">subtotals</a>
-                </td>
-            </tr>-->
-            
             <tr>
                 <td>
-                    <a href="col.php?mth=list&amp;col_typ=8">supply</a>
+                    <a href="col.php?mth=list&amp;col_typ=7">supply</a>
                 </td>
             </tr>
-
             <tr>
                 <td>
-                    <a href="col.php?mth=list&amp;col_typ=9">surplus</a>
+                    <a href="col.php?mth=list&amp;col_typ=8">demand</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="col.php?mth=list&amp;col_typ=9">balance</a>
                 </td>
             </tr>
             <tr>

@@ -34,7 +34,7 @@ function evt_list_all() {
     $db = new cls_db();
     $qry1 = $db->conn->prepare("DELETE FROM evt_info WHERE v1 = 0;");
     $qry1->execute();
-    $qry = $db->conn->prepare("SELECT * FROM evt_info ORDER BY usr_id, col_id, t;");
+    $qry = $db->conn->prepare("SELECT * FROM evt_info ORDER BY usr_id, col_id, n;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
@@ -48,8 +48,7 @@ function evt_list() {
     $db = new cls_db();
     $usr_id = cls_usr::check();
     $col_id = filter_input(INPUT_GET, "col_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM evt_info WHERE col_id = ? AND usr_id = ? ORDER BY t;");
-    $qry->bind_param("ii", $col_id, $usr_id);
+    $qry = $db->conn->prepare("SELECT * FROM evt_info WHERE col_id = {$col_id} AND usr_id = {$usr_id} ORDER BY n;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
@@ -64,8 +63,7 @@ function evt_insert() {
     $db = new cls_db();
     $usr_id = cls_usr::check();
     $col_id = filter_input(INPUT_POST, "col_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("INSERT INTO evt_info (col_id, usr_id) VALUES (?,?);");
-    $qry->bind_param("ii", $col_id, $usr_id);
+    $qry = $db->conn->prepare("INSERT INTO evt_info (col_id, usr_id) VALUES ({$col_id},{$usr_id});");
     $qry->execute();
     header("Location: evt.php?mth=list&col_id=".$col_id);
 }
@@ -73,8 +71,7 @@ function evt_insert() {
 function evt_edit() {
     $db = new cls_db();
     $evt_id = filter_input(INPUT_GET, "evt_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM evt_info WHERE evt_id = ?;");
-    $qry->bind_param("i", $evt_id);
+    $qry = $db->conn->prepare("SELECT * FROM evt_info WHERE evt_id = {$evt_id};");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
@@ -89,11 +86,10 @@ function evt_update() {
     $usr_id = cls_usr::check();
     $evt_id = filter_input(INPUT_POST, "evt_id", FILTER_VALIDATE_INT);
     $col_id = filter_input(INPUT_POST, "col_id", FILTER_VALIDATE_INT);
-    $t = filter_input(INPUT_POST, "t", FILTER_VALIDATE_FLOAT);
+    $n = filter_input(INPUT_POST, "n", FILTER_VALIDATE_FLOAT);
     $v1 = filter_input(INPUT_POST, "v1", FILTER_VALIDATE_FLOAT);
    
-    $qry = $db->conn->prepare("UPDATE evt_info SET t=?, v1=? WHERE evt_id=? AND usr_id=?;");
-    $qry->bind_param("ddii", $t, $v1, $evt_id,$usr_id);
+    $qry = $db->conn->prepare("UPDATE evt_info SET n={$n}, v1={$v1} WHERE evt_id={$evt_id} AND usr_id={$usr_id};");
     $qry->execute();
     
     $qry1 = $db->conn->prepare("DELETE FROM evt_info WHERE v1 = 0;");
@@ -108,7 +104,6 @@ function evt_upsert() {
     $db = new cls_db();
     $usr_id = cls_usr::check();
     $col_id = filter_input(INPUT_GET, "col_id", FILTER_VALIDATE_INT);
-    $t = filter_input(INPUT_GET, "t", FILTER_VALIDATE_FLOAT);
     $n = filter_input(INPUT_GET, "n", FILTER_VALIDATE_INT);
     $v1 = filter_input(INPUT_GET, "v1", FILTER_VALIDATE_FLOAT);
 
@@ -116,8 +111,8 @@ function evt_upsert() {
 //    echo 'usr_id=',$usr_id, ' col_id=', $col_id,' t=',  $t,' n=',  $n,' v1=',  $v1;
     
     
-    $qry = $db->conn->prepare("INSERT INTO evt_info (usr_id, col_id, t, v1 ) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE usr_id = ?, col_id = ?, t = ?, v1 = ?;");
-    $qry->bind_param("iiddiidd", $usr_id, $col_id, $t, $v1, $usr_id, $col_id, $t, $v1);
+    $qry = $db->conn->prepare("INSERT INTO evt_info (usr_id, col_id, n, v1 ) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE usr_id = ?, col_id = ?, n = ?, v1 = ?;");
+    $qry->bind_param("iiidiiid", $usr_id, $col_id, $n, $v1, $usr_id, $col_id, $n, $v1);
     $qry->execute();
 
     header("Location: bal.php?mth=disp&n=".$n);

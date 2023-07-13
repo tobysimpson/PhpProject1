@@ -18,7 +18,7 @@
                 <th>evt_id</th>
                 <th>usr_id</th>
                 <th>col_id</th>
-                <th>time</th>
+                <th>period</th>
                 <th>value</th>
                 <th></th>
             </tr>
@@ -34,10 +34,10 @@
                         <xsl:value-of select="@col_id"/>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="@t"/>
+                        <xsl:value-of select="@n"/>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="format-number(@v1, '###,##0.0000')"/>
+                        <xsl:value-of select="format-number(@v1, '0.000')"/>
                     </td>
                     <td>
                         <a href="evt.php?mth=edit&amp;evt_id={@evt_id}">edit</a>
