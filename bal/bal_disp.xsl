@@ -242,7 +242,7 @@
                 <th colspan="15">consumption</th>
                 <th>supply</th>
                 <th>demand</th>
-                <th>surplus</th>
+                <th>balance</th>
             </tr>
             
             
@@ -264,7 +264,7 @@
                 <td></td>
                 <td><input type="text" readonly="true" value="{format-number(@sup_base,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=sup_base',disp);"/></td>
                 <td><input type="text" value="{format-number(@dem_base,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=dem_base',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=231&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" readonly="true" value="{format-number(@sur_base,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=sur_base',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@bal_base,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_base',disp);"/></td>
             </tr>
             <tr>
                 <td style="text-align:left">electricity cool</td>
@@ -284,7 +284,7 @@
                 <td></td>
                 <td><input type="text" readonly="true" value="{format-number(@sup_cool, '###,##0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=sup_cool',disp);"/></td>
                 <td><input type="text" value="{format-number(@dem_cool,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=dem_cool',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=232&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" readonly="true" value="{format-number(@sur_cool, '###,##0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=sur_cool',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@bal_cool, '###,##0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_cool',disp);"/></td>
             </tr>
             
             <tr>
@@ -305,7 +305,7 @@
                 <td><input type="text" readonly="true" value="{format-number(@con_hind_hyd,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=con_hind_hyd',disp);"/></td>
                 <td><input type="text" readonly="true" value="{format-number(@sup_hind, '###,##0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=sup_hind',disp);"/></td>
                 <td><input type="text" value="{format-number(@dem_hind,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=dem_hind',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=233&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" readonly="true" value="{format-number(@sur_hind, '###,##0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=sur_hind',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@bal_hind, '###,##0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_hind',disp);"/></td>
             </tr>
             
             <tr>
@@ -326,7 +326,7 @@
                 <td><input type="text" readonly="true" value="{format-number(@con_hres_hyd,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=con_hres_hyd',disp);"/></td>
                 <td><input type="text" readonly="true" value="{format-number(@sup_hres, '###,##0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=sup_hres',disp);"/></td>
                 <td><input type="text" value="{format-number(@dem_hres,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=dem_hres',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=234&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" readonly="true" value="{format-number(@sur_hres, '###,##0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=sur_hres',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@bal_hres, '###,##0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_hres',disp);"/></td>
             </tr>
             <tr>
                 <td>transport road</td>
@@ -346,7 +346,7 @@
                 <td><input type="text" readonly="true" value="{format-number(@con_road_hyd,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=con_road_hyd',disp);"/></td>
                 <td><input type="text" readonly="true" value="{format-number(@sup_road, '###,##0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=sup_road',disp);"/></td>
                 <td><input type="text" value="{format-number(@dem_road,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=dem_road',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=235&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" readonly="true" value="{format-number(@sur_road, '###,##0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=sur_road',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@bal_road, '###,##0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_road',disp);"/></td>
             </tr>
 
             <tr>
@@ -367,7 +367,7 @@
                 <td><input type="text" readonly="true" value="{format-number(@con_rail_hyd,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=con_rail_hyd',disp);"/></td>
                 <td><input type="text" readonly="true" value="{format-number(@sup_rail, '###,##0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=sup_rail',disp);"/></td>
                 <td><input type="text" value="{format-number(@dem_rail,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=dem_rail',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=236&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" readonly="true" value="{format-number(@sur_rail, '###,##0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=sur_rail',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@bal_rail, '###,##0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_rail',disp);"/></td>
             </tr>
             
             <tr>
