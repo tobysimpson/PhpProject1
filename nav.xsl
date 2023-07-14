@@ -111,7 +111,17 @@
             </tr>
             <tr>
                 <td>
+                    <a href="col.php?mth=list&amp;col_typ=12">subtotals</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <a href="col.php?mth=list&amp;col_typ=6">consumption</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="col.php?mth=list&amp;col_typ=11">subtotals</a>
                 </td>
             </tr>
             <tr>
@@ -134,6 +144,8 @@
                     <a href="col.php?mth=list&amp;col_typ=10">balance</a>
                 </td>
             </tr>
+
+
             <tr>
                 <th style="text-align:left">item</th>
             </tr>

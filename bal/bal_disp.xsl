@@ -121,12 +121,15 @@
                 <td><input type="text" readonly="true" value="{format-number(@gen_ele_geo,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=gen_ele_geo',disp);"/></td>
                 <td><input type="text" readonly="true" value="{format-number(@gen_ele,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=gen_ele',disp);"/></td>
                 <td></td>
-                <td></td>
+                <td>
+                    <xsl:value-of select="format-number(@con_ele,'0.00')"/>
+                </td>
             </tr>
 
 
             <tr>
                 <th colspan="15">capacity</th>
+                <th>total</th>
             </tr>
             
             <tr>
@@ -145,6 +148,8 @@
                 <td><input type="text" value="{format-number(@cap_base_ele,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_base_ele',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=68&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
                 <td></td>
                 <td></td>
+                <td><input type="text" readonly="true" value="{format-number(@cap_base,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_base',disp);"/></td>
+
             </tr>
             
             <tr>
@@ -163,6 +168,7 @@
                 <td><input type="text" value="{format-number(@cap_cool_ele,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_cool_ele',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=82&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
                 <td></td>
                 <td></td>
+                <td><input type="text" readonly="true" value="{format-number(@cap_cool,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_cool',disp);"/></td>
             </tr>
             
           
@@ -182,6 +188,7 @@
                 <td><input type="text" value="{format-number(@cap_hind_ele,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_hind_ele',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=96&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
                 <td><input type="text" value="{format-number(@cap_hind_hds,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_hind_hds',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=97&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
                 <td><input type="text" value="{format-number(@cap_hind_hyd,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_hind_hyd',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=98&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@cap_hind,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_hind',disp);"/></td>
             </tr>
             
             <tr>
@@ -200,6 +207,7 @@
                 <td><input type="text" value="{format-number(@cap_hres_ele,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_hres_ele',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=110&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
                 <td><input type="text" value="{format-number(@cap_hres_hds,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_hres_hds',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=111&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
                 <td><input type="text" value="{format-number(@cap_hres_hyd,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_hres_hyd',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=112&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@cap_hres,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_hres',disp);"/></td>
             </tr>
             <tr>
                 <td>transport road</td>
@@ -217,7 +225,7 @@
                 <td><input type="text" value="{format-number(@cap_road_ele,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_road_ele',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=124&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
                 <td></td>
                 <td><input type="text" value="{format-number(@cap_road_hyd,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_road_hyd',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=126&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-
+                <td><input type="text" readonly="true" value="{format-number(@cap_road,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_road',disp);"/></td>
             </tr>
             <tr>
                 <td>transport rail</td>
@@ -235,6 +243,7 @@
                 <td><input type="text" value="{format-number(@cap_rail_ele,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_rail_ele',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=138&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
                 <td></td>
                 <td><input type="text" value="{format-number(@cap_rail_hyd,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_rail_hyd',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=140&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@cap_rail,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=cap_rail',disp);"/></td>
             </tr>
             
             
@@ -371,6 +380,24 @@
             </tr>
             
             <tr>
+                <td>subtotal</td>
+                <td><input type="text" readonly="true" value="{format-number(@con_pet,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=con_pet',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@con_gas,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=con_gas',disp);"/></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="text" readonly="true" value="{format-number(@con_bio,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=con_bio',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@con_wst,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=con_wst',disp);"/></td>
+                <td></td>
+                <td><input type="text" readonly="true" value="{format-number(@con_ele,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=con_ele',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@con_hds,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=con_hds',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@con_hyd,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=con_hyd',disp);"/></td>
+            </tr>
+            
+            <tr>
                 <th colspan="15">export</th>
             </tr>
             
@@ -379,14 +406,14 @@
                 <td><input type="text" readonly="true" value="{format-number(@bal_pet,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_pet',disp);"/></td>
                 <td><input type="text" readonly="true" value="{format-number(@bal_gas,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_gas',disp);"/></td>
                 <td><input type="text" readonly="true" value="{format-number(@bal_nuc,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_nuc',disp);"/></td>
-                <td><input type="text" readonly="true" value="{format-number(@bal_riv,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_riv',disp);"/></td>
-                <td><input type="text" readonly="true" value="{format-number(@bal_res,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_res',disp);"/></td>
-                <td><input type="text" readonly="true" value="{format-number(@bal_pmp,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_pmp',disp);"/></td>
-                <td><input type="text" readonly="true" value="{format-number(@bal_sol,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_sol',disp);"/></td>
-                <td><input type="text" readonly="true" value="{format-number(@bal_wnd,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_wnd',disp);"/></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td><input type="text" readonly="true" value="{format-number(@bal_bio,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_bio',disp);"/></td>
                 <td><input type="text" readonly="true" value="{format-number(@bal_wst,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_wst',disp);"/></td>
-                <td><input type="text" readonly="true" value="{format-number(@bal_geo,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_geo',disp);"/></td>
+                <td></td>
                 <td><input type="text" readonly="true" value="{format-number(@bal_ele,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_ele',disp);"/></td>
                 <td><input type="text" readonly="true" value="{format-number(@bal_hds,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_hds',disp);"/></td>
                 <td><input type="text" readonly="true" value="{format-number(@bal_hyd,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_hyd',disp);"/></td>
