@@ -11,6 +11,8 @@
     <xsl:template match="root">
         <form action="evt.php?mth=insert" method="post">
             <input type="hidden" name="col_id" value="{@col_id}" readonly="true"/>
+            <input type="hidden" name="n" value="0" readonly="true"/>
+            <input type="hidden" name="v1" value="0" readonly="true"/>
             <input type="submit" value="insert"/>
         </form>
         <table class="table1">

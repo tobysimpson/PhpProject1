@@ -50,16 +50,16 @@
             <tr>
                 <td>availability</td>
                 <td><input type="text" value="{format-number(@avl_pet,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_pet',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=1&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" value="{format-number(@avl_gas,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_gas',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=2&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" value="{format-number(@avl_nuc,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_nuc',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=3&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" value="{format-number(@avl_riv,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_riv',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=4&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" value="{format-number(@avl_res,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_res',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=5&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" value="{format-number(@avl_pmp,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_pmp',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=6&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" value="{format-number(@avl_sol,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_sol',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=7&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" value="{format-number(@avl_wnd,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_wnd',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=8&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" value="{format-number(@avl_bio,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_bio',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=9&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" value="{format-number(@avl_wst,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_wst',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=10&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
-                <td><input type="text" value="{format-number(@avl_geo,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_geo',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=11&amp;n={@n}&amp;v1='+(this.value);" class="input1"/></td>
+                <td><input type="text" value="{format-number(@avl_gas,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_gas',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=2&amp;n={@n}&amp;v1='this.value;" class="input1"/></td>
+                <td><input type="text" value="{format-number(@avl_nuc,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_nuc',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=3&amp;n={@n}&amp;v1='this.value;" class="input1"/></td>
+                <td><input type="text" value="{format-number(@avl_riv,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_riv',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=4&amp;n={@n}&amp;v1='this.value;" class="input1"/></td>
+                <td><input type="text" value="{format-number(@avl_res,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_res',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=5&amp;n={@n}&amp;v1='this.value;" class="input1"/></td>
+                <td><input type="text" value="{format-number(@avl_pmp,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_pmp',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=6&amp;n={@n}&amp;v1='this.value;" class="input1"/></td>
+                <td><input type="text" value="{format-number(@avl_sol,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_sol',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=7&amp;n={@n}&amp;v1='this.value;" class="input1"/></td>
+                <td><input type="text" value="{format-number(@avl_wnd,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_wnd',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=8&amp;n={@n}&amp;v1='this.value;" class="input1"/></td>
+                <td><input type="text" value="{format-number(@avl_bio,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_bio',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=9&amp;n={@n}&amp;v1='this.value;" class="input1"/></td>
+                <td><input type="text" value="{format-number(@avl_wst,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_wst',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=10&amp;n={@n}&amp;v1='this.value;" class="input1"/></td>
+                <td><input type="text" value="{format-number(@avl_geo,'0.00')}" onfocus="fn_get('col.php?mth=disp&amp;col_name=avl_geo',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=11&amp;n={@n}&amp;v1='this.value;" class="input1"/></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -106,8 +106,28 @@
                 <th colspan="15">generation</th>
             </tr>
            
+           
             <tr>
-                <td>electricity</td>
+                <td>market</td>
+                <td><input type="text" readonly="true" value="{format-number(@mkt_ele_pet,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=mkt_ele_pet',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@mkt_ele_gas,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=mkt_ele_gas',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@mkt_ele_nuc,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=mkt_ele_nuc',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@mkt_ele_riv,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=mkt_ele_riv',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@mkt_ele_res,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=mkt_ele_res',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@mkt_ele_pmp,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=mkt_ele_pmp',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@mkt_ele_sol,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=mkt_ele_sol',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@mkt_ele_wnd,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=mkt_ele_wnd',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@mkt_ele_bio,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=mkt_ele_bio',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@mkt_ele_wst,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=mkt_ele_wst',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@mkt_ele_geo,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=mkt_ele_geo',disp);"/></td>
+                <td><input type="text" readonly="true" value="{format-number(@mkt_ele,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=mkt_ele',disp);"/></td>
+                <td></td>
+                <td></td>
+            </tr>
+           
+ 
+            <tr>
+                <td>merit</td>
                 <td><input type="text" readonly="true" value="{format-number(@gen_ele_pet,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=gen_ele_pet',disp);"/></td>
                 <td><input type="text" readonly="true" value="{format-number(@gen_ele_gas,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=gen_ele_gas',disp);"/></td>
                 <td><input type="text" readonly="true" value="{format-number(@gen_ele_nuc,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=gen_ele_nuc',disp);"/></td>
@@ -121,9 +141,7 @@
                 <td><input type="text" readonly="true" value="{format-number(@gen_ele_geo,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=gen_ele_geo',disp);"/></td>
                 <td><input type="text" readonly="true" value="{format-number(@gen_ele,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=gen_ele',disp);"/></td>
                 <td></td>
-                <td>
-                    <xsl:value-of select="format-number(@con_ele,'0.00')"/>
-                </td>
+                <td></td>
             </tr>
 
 
@@ -398,11 +416,11 @@
             </tr>
             
             <tr>
-                <th colspan="15">export</th>
+                <th colspan="15">balance</th>
             </tr>
             
             <tr>
-                <td>balance</td>
+                <td>export</td>
                 <td><input type="text" readonly="true" value="{format-number(@bal_pet,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_pet',disp);"/></td>
                 <td><input type="text" readonly="true" value="{format-number(@bal_gas,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_gas',disp);"/></td>
                 <td><input type="text" readonly="true" value="{format-number(@bal_nuc,'0.00')}" class="input1" onfocus="fn_get('col.php?mth=disp&amp;col_name=bal_nuc',disp);"/></td>

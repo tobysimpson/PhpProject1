@@ -63,7 +63,7 @@ function col_disp() {
     $col_name = filter_input(INPUT_GET, "col_name", FILTER_SANITIZE_STRING);
     $col_name = substr($col_name, 0, 25);
     //query
-    $qry = $db->conn->prepare("SELECT n, t, {$col_name} AS v1 FROM col_calc3 WHERE usr_id = {$usr_id} ORDER BY t;");
+    $qry = $db->conn->prepare("SELECT n, t, {$col_name} AS v1 FROM col_calc4 WHERE usr_id = {$usr_id} ORDER BY t;");
     $qry->execute();
     $res = $qry->get_result();
     $dom1 = cls_xml::res2dom($res);
@@ -84,7 +84,7 @@ function col_dat() {
     $col_name = filter_input(INPUT_GET, "col_name", FILTER_SANITIZE_STRING);
     $col_name = substr($col_name, 0, 25);
     //query
-    $qry = $db->conn->prepare("SELECT n, t, {$col_name} AS v1 FROM col_calc3 WHERE usr_id = {$usr_id} ORDER BY t;");
+    $qry = $db->conn->prepare("SELECT n, t, {$col_name} AS v1 FROM col_calc4 WHERE usr_id = {$usr_id} ORDER BY t;");
     $qry->execute();
     $res = $qry->get_result();
     $dom1 = cls_xml::res2dom($res);

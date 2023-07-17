@@ -63,7 +63,7 @@ function evt_insert() {
     $db = new cls_db();
     $usr_id = cls_usr::check();
     $col_id = filter_input(INPUT_POST, "col_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("INSERT INTO evt_info (col_id, usr_id) VALUES ({$col_id},{$usr_id});");
+    $qry = $db->conn->prepare("INSERT INTO evt_info (col_id, usr_id) VALUES ({$col_id},{$usr_id}) ON DUPLICATE KEY UPDATE evt_id=evt_id;");
     $qry->execute();
     header("Location: evt.php?mth=list&col_id=".$col_id);
 }
@@ -108,14 +108,31 @@ function evt_upsert() {
     $v1 = filter_input(INPUT_GET, "v1", FILTER_VALIDATE_FLOAT);
 
 
-//    echo 'usr_id=',$usr_id, ' col_id=', $col_id,' t=',  $t,' n=',  $n,' v1=',  $v1;
-    
-    
-    $qry = $db->conn->prepare("INSERT INTO evt_info (usr_id, col_id, n, v1 ) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE usr_id = ?, col_id = ?, n = ?, v1 = ?;");
-    $qry->bind_param("iiidiiid", $usr_id, $col_id, $n, $v1, $usr_id, $col_id, $n, $v1);
+    $qry = $db->conn->prepare("SELECT col_name from col_info where col_id = {$col_id};");
     $qry->execute();
+    $res = $qry->get_result();
+    $col_name = $res->fetch_row()[0];
+    
+    
+    
+    $qry = $db->conn->prepare("SELECT {$col_name} FROM col_def WHERE n={$n} ;");//AND usr_id = {$usr_id}
+    $qry->execute();
+    $res = $qry->get_result();
+    $col_def = $res->fetch_row()[0];
+    
+
+    //subtract default value
+    $v1 = $v1 - $col_def;
+    
+    echo $col_name, $col_def, $v1;
+    
+    
+    $qry = $db->conn->prepare("INSERT INTO evt_info (usr_id, col_id, n, v1 ) VALUES ({$usr_id},{$col_id},{$n},{$v1}) ON DUPLICATE KEY UPDATE usr_id={$usr_id}, col_id={$col_id}, n={$n}, v1= {$v1};");
+//    $qry->bind_param("iiidiiid", $usr_id, $col_id, $n, $v1, $usr_id, $col_id, $n, $v1);
+    $qry->execute();
+    
+    
 
     header("Location: bal.php?mth=disp&n=".$n);
-
 }
 
