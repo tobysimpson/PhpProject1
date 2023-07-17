@@ -14,6 +14,8 @@
         <table>
             <tr>
                 <td>
+                    <a href="bal.php?mth=disp&amp;n={@n - 52}">&lt;&lt;</a>
+                    <xsl:text>  </xsl:text>
                     <a href="bal.php?mth=disp&amp;n={@n - 1}">&lt;</a>
                 </td>
                 <td>
@@ -22,6 +24,8 @@
                 </td>
                 <td>
                     <a href="bal.php?mth=disp&amp;n={@n+1}">&gt;</a>
+                    <xsl:text>  </xsl:text>
+                    <a href="bal.php?mth=disp&amp;n={@n+52}">&gt;&gt;</a>
                 </td>
             </tr>
         </table>

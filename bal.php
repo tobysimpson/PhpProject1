@@ -19,7 +19,7 @@ function bal_disp() {
     $db = new cls_db();
     $usr_id = cls_usr::check();
     $n = filter_input(INPUT_GET, "n", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM col_calc4 WHERE usr_id = {$usr_id} AND n = {$n};");
+    $qry = $db->conn->prepare("SELECT * FROM col_calc5 WHERE usr_id = {$usr_id} AND n = {$n};");
     $qry->execute();
     $res = $qry->get_result();
     $dom1 = cls_xml::res2dom($res);
