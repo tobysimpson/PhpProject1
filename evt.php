@@ -108,23 +108,23 @@ function evt_upsert() {
     $v1 = filter_input(INPUT_GET, "v1", FILTER_VALIDATE_FLOAT);
 
 
-    $qry = $db->conn->prepare("SELECT col_name from col_info where col_id = {$col_id};");
-    $qry->execute();
-    $res = $qry->get_result();
-    $col_name = $res->fetch_row()[0];
-    
-    
-    
-    $qry = $db->conn->prepare("SELECT {$col_name} FROM col_def WHERE n={$n} ;");//AND usr_id = {$usr_id}
-    $qry->execute();
-    $res = $qry->get_result();
-    $col_def = $res->fetch_row()[0];
-    
-
-    //subtract default value
-    $v1 = $v1 - $col_def;
-    
-    echo $col_name, $col_def, $v1;
+//    $qry = $db->conn->prepare("SELECT col_name from col_info where col_id = {$col_id};");
+//    $qry->execute();
+//    $res = $qry->get_result();
+//    $col_name = $res->fetch_row()[0];
+//    
+//    
+//    
+//    $qry = $db->conn->prepare("SELECT {$col_name} FROM col_def WHERE n={$n} ;");//AND usr_id = {$usr_id}
+//    $qry->execute();
+//    $res = $qry->get_result();
+//    $col_def = $res->fetch_row()[0];
+//    
+//
+//    //subtract default value
+//    $v1 = $v1 - $col_def;
+//    
+//    echo $col_name, $col_def, $v1;
     
     
     $qry = $db->conn->prepare("INSERT INTO evt_info (usr_id, col_id, n, v1 ) VALUES ({$usr_id},{$col_id},{$n},{$v1}) ON DUPLICATE KEY UPDATE usr_id={$usr_id}, col_id={$col_id}, n={$n}, v1= {$v1};");

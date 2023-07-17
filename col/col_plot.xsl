@@ -58,7 +58,7 @@
     
             <g id="plot" transform="translate({$wo},{$ho})"> 
                 
-                <g id="grid">
+                <g id="hgrid">
                     <line x1="0" y1="{0.0}" x2="{$pw}" y2="{0.0}" stroke="lightgrey" stroke-dasharray="5,5"/>
                     <line x1="0" y1="{$ph}" x2="{$pw}" y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
                 </g>
@@ -107,6 +107,13 @@
                 <xsl:call-template name="last"/>
                 <!--<xsl:call-template name="key"/>-->
                 <!--<xsl:call-template name="dots"/>-->
+                
+                <g id="vgrid">
+                    <line x1="{(1.0 div $tmax) * $pw}" x2="{(1.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
+                    <line x1="{(2.0 div $tmax) * $pw}" x2="{(2.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
+                    <line x1="{(3.0 div $tmax) * $pw}" x2="{(3.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
+                    <line x1="{(4.0 div $tmax) * $pw}" x2="{(4.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
+                </g>
                 
               
             </g>
