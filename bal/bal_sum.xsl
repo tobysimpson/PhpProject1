@@ -5,7 +5,7 @@
     <xsl:include href="../plot.xsl"/>
     
     
-    <xsl:variable name="h">600</xsl:variable>
+    <xsl:variable name="h">800</xsl:variable>
     <xsl:variable name="w">1000</xsl:variable>
     
     <xsl:variable name="ph" select="0.8 * $h"/>
@@ -90,7 +90,7 @@
                 </g>-->
 
                 
-                <!--                <g id="bar1">
+<!--                <g id="bar1">
                     <xsl:for-each select="row">
                         <xsl:sort select="@t" data-type="number" order="ascending"/>
                         <xsl:variable name="x" select="format-number($pw * (@t - $t_min) div $t_rng,'0')"/>
@@ -99,14 +99,7 @@
                     </xsl:for-each>
                 </g>-->
                 
-                
-                <!--<xsl:call-template name="polyline"/>-->
-                <!--<xsl:call-template name="bars"/>-->
-                <xsl:call-template name="zero"/>
-                <xsl:call-template name="line"/>
-                <!--<xsl:call-template name="last"/>-->
-                <!--<xsl:call-template name="key"/>-->
-                <!--<xsl:call-template name="dots"/>-->
+
                 
                 
                 <xsl:call-template name="polyline1">
@@ -149,6 +142,16 @@
                     <xsl:with-param name="att1" select="'s1'" />
                     <xsl:with-param name="fill1" select="'#5555FF'" />
                 </xsl:call-template>
+                
+                
+                                
+                <!--<xsl:call-template name="polyline"/>-->
+                <!--<xsl:call-template name="bars"/>-->
+                <xsl:call-template name="zero"/>
+                <xsl:call-template name="line"/>
+                <!--<xsl:call-template name="last"/>-->
+                <!--<xsl:call-template name="key"/>-->
+                <!--<xsl:call-template name="dots"/>-->
                 
                 <g id="vgrid">
                     <line x1="{(1.0 div $tmax) * $pw}" x2="{(1.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
