@@ -6,7 +6,7 @@
     
     
     <xsl:variable name="h">400</xsl:variable>
-    <xsl:variable name="w">600</xsl:variable>
+    <xsl:variable name="w">1000</xsl:variable>
     
     <xsl:variable name="ph" select="0.8 * $h"/>
     <xsl:variable name="pw" select="0.8 * $w"/>
