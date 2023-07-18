@@ -5,8 +5,8 @@
     <xsl:include href="../plot.xsl"/>
     
     
-    <xsl:variable name="h">400</xsl:variable>
-    <xsl:variable name="w">600</xsl:variable>
+    <xsl:variable name="h">600</xsl:variable>
+    <xsl:variable name="w">1000</xsl:variable>
     
     <xsl:variable name="ph" select="0.8 * $h"/>
     <xsl:variable name="pw" select="0.8 * $w"/>
@@ -16,7 +16,7 @@
     
     <xsl:variable name="tt" select="root/row/@t" />
     <xsl:variable name="vv" select="root/row/@v1" />
-                
+
     <xsl:variable name="tmin">
         <xsl:call-template name="min">
             <xsl:with-param name="nodes" select="$tt" />
@@ -90,7 +90,7 @@
                 </g>-->
 
                 
-<!--                <g id="bar1">
+                <!--                <g id="bar1">
                     <xsl:for-each select="row">
                         <xsl:sort select="@t" data-type="number" order="ascending"/>
                         <xsl:variable name="x" select="format-number($pw * (@t - $t_min) div $t_rng,'0')"/>
@@ -100,13 +100,55 @@
                 </g>-->
                 
                 
-                <xsl:call-template name="polyline"/>
+                <!--<xsl:call-template name="polyline"/>-->
                 <!--<xsl:call-template name="bars"/>-->
                 <xsl:call-template name="zero"/>
                 <xsl:call-template name="line"/>
-                <xsl:call-template name="last"/>
+                <!--<xsl:call-template name="last"/>-->
                 <!--<xsl:call-template name="key"/>-->
                 <!--<xsl:call-template name="dots"/>-->
+                
+                
+                <xsl:call-template name="polyline1">
+                    <xsl:with-param name="att1" select="'s10'" />
+                    <xsl:with-param name="fill1" select="'#EEEEFF'" />
+                </xsl:call-template>
+                <xsl:call-template name="polyline1">
+                    <xsl:with-param name="att1" select="'s9'" />
+                    <xsl:with-param name="fill1" select="'#DDDDFF'" />
+                </xsl:call-template>
+                <xsl:call-template name="polyline1">
+                    <xsl:with-param name="att1" select="'s8'" />
+                    <xsl:with-param name="fill1" select="'#CCCCFF'" />
+                </xsl:call-template>
+                <xsl:call-template name="polyline1">
+                    <xsl:with-param name="att1" select="'s7'" />
+                    <xsl:with-param name="fill1" select="'#BBBBFF'" />
+                </xsl:call-template>
+                <xsl:call-template name="polyline1">
+                    <xsl:with-param name="att1" select="'s6'" />
+                    <xsl:with-param name="fill1" select="'#AAAAFF'" />
+                </xsl:call-template>
+                <xsl:call-template name="polyline1">
+                    <xsl:with-param name="att1" select="'s5'" />
+                    <xsl:with-param name="fill1" select="'#9999FF'" />
+                </xsl:call-template>
+                <xsl:call-template name="polyline1">
+                    <xsl:with-param name="att1" select="'s4'" />
+                    <xsl:with-param name="fill1" select="'#8888FF'" />
+                </xsl:call-template>
+                <xsl:call-template name="polyline1">
+                    <xsl:with-param name="att1" select="'s3'" />
+                    <xsl:with-param name="fill1" select="'#7777FF'" />
+                </xsl:call-template>
+                <xsl:call-template name="polyline1">
+                    <xsl:with-param name="att1" select="'s2'" />
+                    <xsl:with-param name="fill1" select="'#6666FF'" />
+                </xsl:call-template>
+                <xsl:call-template name="polyline1">
+                    <xsl:with-param name="att1" select="'s1'" />
+                    <xsl:with-param name="fill1" select="'#5555FF'" />
+                </xsl:call-template>
                 
                 <g id="vgrid">
                     <line x1="{(1.0 div $tmax) * $pw}" x2="{(1.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
@@ -116,8 +158,56 @@
                 </g>
                 
               
+
             </g>
         </svg>
     </xsl:template>
+    
+    
+    <xsl:template name="polyline1">
+        <xsl:param name="att1" />
+        <xsl:param name="fill1" />
+        <xsl:variable name="points">
+            <xsl:for-each select="row">
+                <xsl:sort select="@t" data-type="number" order="ascending"/>
+                <xsl:variable name="x" select="format-number($pw * (@t - $tmin) div $trng,'0.0')"/>
+                <xsl:variable name="y" select="format-number($ph * (1 - (@*[name() = $att1] - $vmin) div $vrng),'0.0')"/>
+                <!--<xsl:variable name="y" select="format-number($ph * (1 - (@v1 - $vmin) div $vrng),'0.0')"/>-->
+                <xsl:choose>
+                    <xsl:when test="position()=1">
+                        <xsl:text>0,</xsl:text>
+                        <xsl:value-of select="$pzro"/>
+                        <xsl:text> </xsl:text>
+                        <xsl:value-of select="$x"/>
+                        <xsl:text>,</xsl:text>
+                        <xsl:value-of select="$y"/>
+                        <xsl:text> </xsl:text>
+                    </xsl:when>
+                    <xsl:when test="position()=last()">
+                        <xsl:value-of select="$x"/>
+                        <xsl:text>,</xsl:text>
+                        <xsl:value-of select="$y"/>
+                        <xsl:text> </xsl:text>
+                        <xsl:value-of select="$pw"/>
+                        <xsl:text>,</xsl:text>
+                        <xsl:value-of select="$pzro"/>
+                        <xsl:text> </xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$x"/>
+                        <xsl:text>,</xsl:text>
+                        <xsl:value-of select="$y"/>
+                        <xsl:text> </xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:variable>
+        <g id="polyline">
+            <polyline points="{$points}" fill="{$fill1}" stroke="none" />
+        </g>
+    </xsl:template>
+    
+    
 </xsl:stylesheet>
+
 

@@ -27,6 +27,9 @@
                     <xsl:text>  </xsl:text>
                     <a href="bal.php?mth=disp&amp;n={@n+52}">&gt;&gt;</a>
                 </td>
+                <td>
+                    <a href="#" onclick="fn_get('bal.php?mth=sum',disp);">summary</a>
+                </td>
             </tr>
         </table>
         
