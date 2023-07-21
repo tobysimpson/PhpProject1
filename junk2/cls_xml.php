@@ -1,18 +1,18 @@
 <?php
 
 class cls_xml {
-
+    
     public static function vec2dom($arr, $name) {
         $dom = new DOMDocument('1.0', 'utf-8');
         $dom->formatOutput = true;
         $root = $dom->createElement('res');
         $root->setAttribute("name", $name);
         $dom->appendChild($root);
-
+        
         $ele = $dom->createElement('vec');
         $root->appendChild($ele);
         for ($i = 0; $i < count($arr); $i++) {
-            $ele->setAttribute("v" . $i, $arr[$i]);
+            $ele->setAttribute("v".$i, $arr[$i]);
         }
         return $dom;
     }
@@ -34,7 +34,7 @@ class cls_xml {
         }
         return $dom;
     }
-
+    
     public static function file2dom($filename) {
         $dom = new DOMDocument;
         $dom->load($filename);
@@ -47,22 +47,20 @@ class cls_xml {
         return $proc->transformToXML($xml);
     }
 
+
     /*
      * =========================
      * recordsets
      * =========================
      */
-
+    
     public static function res2dom($res) {
         $dom = new DOMDocument('1.0', 'utf-8');
         $dom->formatOutput = true;
-
-//        $prc = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="../res/res_list.xsl"');
-//        $dom->appendChild($prc);
-
+//        $xsl = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="xsl1.xsl"');
+//        $dom->appendChild($xsl);
         $root = $dom->createElement('root');
         $dom->appendChild($root);
-        
         //fields
 //        while ($finfo = $res->fetch_field()) {
 //            $node = $dom->createElement('fld');
@@ -83,7 +81,7 @@ class cls_xml {
         }
         return $dom;
     }
-
+    
     public static function res2arr($res) {
         $arr = array();
         while ($row = $res->fetch_assoc()) {

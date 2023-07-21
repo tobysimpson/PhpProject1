@@ -29,7 +29,7 @@
         </xsl:variable>
 
         <div>
-             <xsl:value-of select="$min"/>, <xsl:value-of select="$max"/> hello patrick
+             <xsl:value-of select="$min"/>, <xsl:value-of select="$max"/> hello
         </div>
 
 

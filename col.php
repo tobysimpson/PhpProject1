@@ -16,6 +16,9 @@ switch ($mth) {
     case "dat":
         col_dat();
         break;
+    case "all":
+        col_all();
+        break;
     default:
         col_list_all();
 }
@@ -101,3 +104,21 @@ function col_dat() {
 }
 
 
+function col_all() {
+    $db = new cls_db();
+    $usr_id = cls_usr::check();
+    //query
+    $qry = $db->conn->prepare("SELECT * FROM col_calc5 WHERE usr_id = {$usr_id} ORDER BY n;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $dom1 = cls_xml::res2dom($res);
+    $res->close();
+
+//    echo "hello\n";
+    
+    header("Content-Type: text/xml");
+    echo $dom1->saveXML();
+//    $xsl = cls_xml::file2dom("col/col_plot.xsl");
+//    echo cls_xml::xsltrans($dom1, $xsl);
+//    header("Content-Type: image/svg+xml");
+}

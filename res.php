@@ -1,0 +1,93 @@
+<?php
+
+require_once "cls_db.php";
+require_once "cls_xml.php";
+require_once "cls_usr.php";
+
+//method
+$mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
+switch ($mth) {
+    case "list":
+        res_list();
+        break;
+    case "xml":
+        res_xml();
+        break;
+    case "edit":
+        res_edit();
+        break;
+    case "update":
+        res_update();
+        break;
+    case "insert":
+        res_insert();
+        break;
+    default:
+        res_list();
+}
+
+function res_list() {
+    $db = new cls_db();
+    $qry = $db->conn->prepare("SELECT * FROM res_info;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res);
+    $xsl = cls_xml::file2dom("res/res_list.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
+    $res->close();
+}
+
+
+function res_xml() {
+    $db = new cls_db();
+    $qry = $db->conn->prepare("SELECT * FROM res_info;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res);
+    
+//    $prc = $xml->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="res/res_list.xsl"');
+//    $xml->appendChild($prc);
+
+
+    $xml->documentElement->setAttribute("att", "hello");
+    
+    header('Content-Type: text/xml');
+    echo $xml->saveXML();
+    $res->close();
+}
+
+
+function res_edit() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT * FROM res_info WHERE res_id = {$res_id};");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res);
+    $xsl = cls_xml::file2dom("res/res_edit.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
+    $res->close();
+}
+
+
+function res_update() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_POST, "res_id", FILTER_VALIDATE_INT);
+    $res_name = filter_input(INPUT_POST, "res_name", FILTER_SANITIZE_STRING);
+   
+    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}' WHERE res_id = {$res_id};");
+    $qry->execute();
+    header("Location: res.php");
+}
+
+//
+//function res_insert() {
+//    $db = new cls_db();
+//    $v1 = 2 * (rand() / getrandmax()) - 1;
+//    $v2 = sin($v1 * pi());
+//    $qry = $db->conn->prepare("INSERT INTO res_info (res_val1, res_val2) VALUES (?,?);");
+//    $qry->bind_param("dd", $v1, $v2);
+//    $qry->execute();
+//    header("Location: res.php);
+//}
+//
