@@ -91,7 +91,7 @@ function evt_insert() {
 
 function evt_upsert() {
     $db = new cls_db();
-    $res_id = cls_usr::check();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $col_id = filter_input(INPUT_GET, "col_id", FILTER_VALIDATE_INT);
     $n = filter_input(INPUT_GET, "n", FILTER_VALIDATE_INT);
     $v1 = filter_input(INPUT_GET, "v1", FILTER_VALIDATE_FLOAT);
@@ -122,6 +122,6 @@ function evt_upsert() {
     
     
 
-    header("Location: bal.php?mth=disp&n=".$n);
+    header("Location: bal.php?mth=disp&n=".$n."&res_id=".$res_id);
 }
 

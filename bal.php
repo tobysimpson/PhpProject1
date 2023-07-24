@@ -20,23 +20,22 @@ switch ($mth) {
 
 function bal_disp() {
     $db = new cls_db();
-    $usr_id = cls_usr::check();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $n = filter_input(INPUT_GET, "n", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM col_calc5 WHERE usr_id = {$usr_id} AND n = {$n};");
+    $qry = $db->conn->prepare("SELECT * FROM col_calc5 WHERE res_id = {$res_id} AND n = {$n};");
     $qry->execute();
     $res = $qry->get_result();
-    $dom1 = cls_xml::res2dom($res);
+    $xml = cls_xml::res2dom($res, "bal/bal_disp.xsl");
     $res->close();
-//    echo $dom1->saveXML();
-    $xsl = cls_xml::file2dom("bal/bal_disp.xsl");
-    echo cls_xml::xsltrans($dom1, $xsl);
+    header('Content-Type: text/xml');
+    echo $xml->saveXML();
 }
 
 
 function bal_sum() {
     $db = new cls_db();
-    $usr_id = cls_usr::check();
-    $qry = $db->conn->prepare("SELECT n,t,con_ele AS v1,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10 FROM col_calc5 WHERE usr_id = {$usr_id} ORDER BY n;");
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT n,t,con_ele AS v1,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10 FROM col_calc5 WHERE res_id = {$res_id} ORDER BY n;");
     $qry->execute();
     $res = $qry->get_result();
     $dom1 = cls_xml::res2dom($res);

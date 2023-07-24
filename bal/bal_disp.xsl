@@ -10,7 +10,8 @@
 
     <xsl:template match="root/row">
         
-        
+        <input id="res_id" value="{@res_id}" type="hidden"/>
+
         <table>
             <tr>
                 <td>
@@ -20,7 +21,7 @@
                 </td>
                 <td>
                     <!--<xsl:value-of select="@n"/>-->
-                    <input type="text" value="{@n}" class="input1" onchange="window.location.href='bal.php?mth=disp&amp;n='+this.value;"/>
+                    <input id="n" type="text" value="{@n}" class="input1" onchange="window.location.href='bal.php?mth=disp&amp;n='+this.value;"/>
                 </td>
                 <td>
                     <a href="bal.php?mth=disp&amp;n={@n+1}">&gt;</a>
@@ -32,9 +33,7 @@
                 </td>
             </tr>
         </table>
-        
 
-        
         
         <table class="table3">
             <tr>
@@ -56,7 +55,7 @@
             </tr>
             <tr>
                 <td>availability</td>
-                <td><input type="text" value="{format-number(@avl_pet,'0.00')}" onfocus="this.value0=this.value;fn_get('col.php?mth=disp&amp;col_name=avl_pet',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=1&amp;n={@n}&amp;v1='+(this.value-this.value0);" class="input1"/></td>
+                <td><input type="text" value="{format-number(@avl_pet,'0.00')}" onfocus="fn_focus(this);" col_id="1" col_name="avl_pet" onchange="fn_change(this)" class="input1"/></td>
                 <td><input type="text" value="{format-number(@avl_gas,'0.00')}" onfocus="this.value0=this.value;fn_get('col.php?mth=disp&amp;col_name=avl_gas',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=2&amp;n={@n}&amp;v1='+(this.value-this.value0);" class="input1"/></td>
                 <td><input type="text" value="{format-number(@avl_nuc,'0.00')}" onfocus="this.value0=this.value;fn_get('col.php?mth=disp&amp;col_name=avl_nuc',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=3&amp;n={@n}&amp;v1='+(this.value-this.value0);" class="input1"/></td>
                 <td><input type="text" value="{format-number(@avl_riv,'0.00')}" onfocus="this.value0=this.value;fn_get('col.php?mth=disp&amp;col_name=avl_riv',disp);" onchange="window.location.href='evt.php?mth=upsert&amp;col_id=4&amp;n={@n}&amp;v1='+(this.value-this.value0)';" class="input1"/></td>

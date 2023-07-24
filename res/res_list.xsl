@@ -32,6 +32,9 @@
                     <td>
                         <a href="col.php?mth=list&amp;res_id={@res_id}">col</a>
                     </td>
+                    <td>
+                        <a href="bal.php?mth=disp&amp;res_id={@res_id}&amp;n=0">bal</a>
+                    </td>
 <!--                    <td>
                         <a href="res.php?mth=all&amp;res_id={@res_id}">all</a>
                     </td>-->

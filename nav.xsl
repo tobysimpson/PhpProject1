@@ -16,6 +16,7 @@
                 <title></title>
                 <link rel="stylesheet" href="https://toby.euler.usi.ch/styles.css"/>
                 <script src="xmlhttp.js"></script>
+                <script src="bal.js"></script>
             </head>
             <body>
                 <!--layout--> 
@@ -48,22 +49,7 @@
                     <a href="index.php">home</a>
                 </td>
             </tr>
-            <tr>
-                <th style="text-align:left">users</th>
-            </tr>
-            <tr>
-                <td>
-                    <a href="usr.php?mth=edit">my details</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="usr.php">usr_info</a>
-                </td>
-            </tr>
-            <tr>
-                <th style="text-align:left">test</th>
-            </tr>
+
             <tr>
                 <td>
                     <a href="res.php">res_info</a>
@@ -78,13 +64,13 @@
                 <td>
                     <a href="evt.php">evt_info</a>
                 </td>
-            </tr>-->
+            </tr>
             <tr>
                 <td>
                     <a href="bal.php?mth=disp&amp;n=0">bal_disp</a>
                 </td>
             </tr>
-<!--            <tr>
+            <tr>
                 <th style="text-align:left">game</th>
             </tr>
             <tr>
@@ -173,7 +159,19 @@
                     <a href="item.php?mth=svg">item_svg</a>
                 </td>
             </tr>
-
+            <tr>
+                <th style="text-align:left">users</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="usr.php?mth=edit">my details</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="usr.php">usr_info</a>
+                </td>
+            </tr>
         </table>
     </xsl:template>
     
