@@ -53,13 +53,16 @@ class cls_xml {
      * =========================
      */
 
-    public static function res2dom($res) {
+    public static function res2dom($res, $xsl = "") {
         $dom = new DOMDocument('1.0', 'utf-8');
         $dom->formatOutput = true;
 
-//        $prc = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="../res/res_list.xsl"');
-//        $dom->appendChild($prc);
-
+        if(strlen($xsl)>0)
+        {        
+            $prc = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="'.$xsl.'"');
+            $dom->appendChild($prc);
+        }
+        
         $root = $dom->createElement('root');
         $dom->appendChild($root);
         

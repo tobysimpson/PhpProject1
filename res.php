@@ -10,9 +10,6 @@ switch ($mth) {
     case "list":
         res_list();
         break;
-    case "xml":
-        res_xml();
-        break;
     case "edit":
         res_edit();
         break;
@@ -26,36 +23,17 @@ switch ($mth) {
         res_list();
 }
 
+
 function res_list() {
     $db = new cls_db();
     $qry = $db->conn->prepare("SELECT * FROM res_info;");
     $qry->execute();
     $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res);
-    $xsl = cls_xml::file2dom("res/res_list.xsl");
-    echo cls_xml::xsltrans($xml, $xsl);
+    $xml = cls_xml::res2dom($res, "res/res_list.xsl");
     $res->close();
-}
-
-
-function res_xml() {
-    $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM res_info;");
-    $qry->execute();
-    $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res);
-    
-//    $prc = $xml->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="res/res_list.xsl"');
-//    $xml->appendChild($prc);
-
-
-    $xml->documentElement->setAttribute("att", "hello");
-    
     header('Content-Type: text/xml');
     echo $xml->saveXML();
-    $res->close();
 }
-
 
 function res_edit() {
     $db = new cls_db();
