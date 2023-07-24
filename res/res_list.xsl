@@ -9,11 +9,12 @@
     </xsl:template>
 
     <xsl:template match="root">
+        <form action="res.php?mth=insert" method="post">
+            <input type="submit" value="insert"/>
+        </form>
         <table class="table1">
             <tr>
                 <th>res_id</th>
-                <th>res_created</th>
-                <th>res_updated</th>
                 <th>res_name</th>
                 <th></th>
             </tr>
@@ -21,14 +22,6 @@
                 <tr>
                     <td>
                         <xsl:value-of select="@res_id"/>
-                    </td>
-                    <td>
-                        <!--<xsl:value-of select="substring(@res_created,0,11)"/>-->
-                        <xsl:value-of select="@res_created"/>
-                    </td>
-                    <td>
-                        <!--<xsl:value-of select="substring(@res_updated,0,11)"/>-->
-                        <xsl:value-of select="@res_updated"/>
                     </td>
                     <td style="text-align:left">
                         <xsl:value-of select="@res_name"/>

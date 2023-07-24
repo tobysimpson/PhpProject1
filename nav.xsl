@@ -71,19 +71,9 @@
             </tr>
             <tr>
                 <td>
-                    <a href="res.php?mth=xml">res_xml</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <a href="col.php?mth=list_all">col_info</a>
                 </td>
             </tr>
-<!--            <tr>
-                <td>
-                    <a href="col.php?mth=all">col_all</a>
-                </td>
-            </tr>-->
             <tr>
                 <td>
                     <a href="evt.php">evt_info</a>
