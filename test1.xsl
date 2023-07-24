@@ -20,9 +20,9 @@
                 <title></title>
             </head>
             <body>
-                <table class="table4">
+                <table border="1" style="white-space: nowrap;">
                     <tr>
-                        <xsl:for-each select="row/@*">
+                        <xsl:for-each select="row[1]/@*">
                             <th>
                                 <xsl:value-of select="name(.)" />
                             </th>

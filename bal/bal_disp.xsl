@@ -112,8 +112,7 @@
             <tr>
                 <th colspan="15">generation</th>
             </tr>
-           
-           
+            
             <tr>
                 <td>auction</td>
                 <td><input type="text" readonly="true" value="{format-number(@mkt_ele_pet,'0.00')}" onfocus="fn_focus(this);" col_id="277" col_name="mkt_ele_pet" class="input1"/></td>

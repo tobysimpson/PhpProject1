@@ -80,7 +80,7 @@ function res_all() {
     $qry = $db->conn->prepare("SELECT * FROM col_calc5 WHERE res_id = {$res_id} ORDER BY n;");
     $qry->execute();
     $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res);
+    $xml = cls_xml::res2dom($res, "test1.xsl");
     $res->close();
     header('Content-Type: text/xml');
     echo $xml->saveXML();
