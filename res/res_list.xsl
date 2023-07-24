@@ -16,7 +16,7 @@
             <tr>
                 <th>res_id</th>
                 <th>res_name</th>
-                <th></th>
+                <th colspan="3"/>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -27,14 +27,14 @@
                         <xsl:value-of select="@res_name"/>
                     </td>
                     <td>
-                        <a>
-                            <xsl:attribute name="href">
-                                <xsl:text>res.php?mth=edit&amp;res_id=</xsl:text>
-                                <xsl:value-of select="@res_id"/>
-                            </xsl:attribute>
-                            <xsl:text>edit</xsl:text>
-                        </a>
+                        <a href="res.php?mth=edit&amp;res_id={@res_id}">edit</a>
                     </td>
+                    <td>
+                        <a href="col.php?mth=list&amp;res_id={@res_id}">col</a>
+                    </td>
+<!--                    <td>
+                        <a href="res.php?mth=all&amp;res_id={@res_id}">all</a>
+                    </td>-->
                 </tr>
             </xsl:for-each> 
         </table>

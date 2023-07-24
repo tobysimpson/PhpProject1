@@ -13,8 +13,8 @@ switch ($mth) {
     case "disp":
         col_disp();
         break;
-    case "dat":
-        col_dat();
+    case "data":
+        col_data();
         break;
     case "all":
         col_all();
@@ -29,96 +29,84 @@ switch ($mth) {
  * =========================
  */
 
+
 function col_list() {
     $db = new cls_db();
-
-    $col_typ = filter_input(INPUT_GET, "col_typ", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM col_info WHERE col_typ = {$col_typ} ORDER BY col_ord;");
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT * FROM col_info ORDER BY col_typ, col_ord;");
     $qry->execute();
     $res = $qry->get_result();
-    $dom1 = cls_xml::res2dom($res);
+    $xml = cls_xml::res2dom($res, "col/col_list.xsl");
+    $xml->documentElement->setAttribute("res_id", $res_id);     //instead of cookie
     $res->close();
-//    echo $dom1->saveXML();
-    $xsl = cls_xml::file2dom("col/col_list.xsl");
-    echo cls_xml::xsltrans($dom1, $xsl);
+    header('Content-Type: text/xml');
+    echo $xml->saveXML();
 }
 
 
 
-function col_list_all() {
-    $db = new cls_db();
-    //query
-    $qry = $db->conn->prepare("SELECT * FROM col_info ORDER BY col_typ, col_ord, col_id;");
-    $qry->execute();
-    $res = $qry->get_result();
-    $dom1 = cls_xml::res2dom($res);
-    $res->close();
-//    echo $dom1->saveXML();
-    $xsl = cls_xml::file2dom("col/col_list.xsl");
-    echo cls_xml::xsltrans($dom1, $xsl);
-}
+//function col_list() {
+//    $db = new cls_db();
+//    $col_typ = filter_input(INPUT_GET, "col_typ", FILTER_VALIDATE_INT);
+//    $qry = $db->conn->prepare("SELECT * FROM col_info WHERE col_typ = {$col_typ} ORDER BY col_ord;");
+//    $qry->execute();
+//    $res = $qry->get_result();
+//    $dom1 = cls_xml::res2dom($res);
+//    $res->close();
+////    echo $dom1->saveXML();
+//    $xsl = cls_xml::file2dom("col/col_list.xsl");
+//    echo cls_xml::xsltrans($dom1, $xsl);
+//}
+//
+//
+//
+//function col_list_all() {
+//    $db = new cls_db();
+//    //query
+//    $qry = $db->conn->prepare("SELECT * FROM col_info ORDER BY col_typ, col_ord, col_id;");
+//    $qry->execute();
+//    $res = $qry->get_result();
+//    $dom1 = cls_xml::res2dom($res);
+//    $res->close();
+////    echo $dom1->saveXML();
+//    $xsl = cls_xml::file2dom("col/col_list.xsl");
+//    echo cls_xml::xsltrans($dom1, $xsl);
+//}
 
 
 function col_disp() {
     $db = new cls_db();
-    $usr_id = cls_usr::check();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     //dodgy - will do subquery later :0)
     $col_name = filter_input(INPUT_GET, "col_name", FILTER_SANITIZE_STRING);
     $col_name = substr($col_name, 0, 25);
-    //query
-    $qry = $db->conn->prepare("SELECT n, t, {$col_name} AS v1 FROM col_calc5 WHERE usr_id = {$usr_id} ORDER BY n;");
+    $qry = $db->conn->prepare("SELECT n, t, {$col_name} AS v1 FROM col_calc5 WHERE res_id = {$res_id} ORDER BY n;");
     $qry->execute();
     $res = $qry->get_result();
-    $dom1 = cls_xml::res2dom($res);
+    $dom = cls_xml::res2dom($res);
     $res->close();
 
-    $dom1->documentElement->setAttribute("col_name", $col_name);
+    $dom->documentElement->setAttribute("col_name", $col_name);
 
-//    echo $dom1->saveXML();
     $xsl = cls_xml::file2dom("col/col_plot.xsl");
-    echo cls_xml::xsltrans($dom1, $xsl);
+    echo cls_xml::xsltrans($dom, $xsl);
     header("Content-Type: image/svg+xml");
+    echo $dom->saveXML();
 }
 
-function col_dat() {
+function col_data() {
     $db = new cls_db();
-    $usr_id = cls_usr::check();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     //dodgy - will do subquery later :0)
     $col_name = filter_input(INPUT_GET, "col_name", FILTER_SANITIZE_STRING);
     $col_name = substr($col_name, 0, 25);
-    //query
-    $qry = $db->conn->prepare("SELECT n, t, {$col_name} AS v1 FROM col_calc5 WHERE usr_id = {$usr_id} ORDER BY n;");
+    $qry = $db->conn->prepare("SELECT n, t, {$col_name} AS v1 FROM col_calc5 WHERE res_id = {$res_id} ORDER BY n;");
     $qry->execute();
     $res = $qry->get_result();
-    $dom1 = cls_xml::res2dom($res);
+    $dom = cls_xml::res2dom($res);
     $res->close();
-
-    $dom1->documentElement->setAttribute("col_name", $col_name);
-    
-    //disp
+    $dom->documentElement->setAttribute("col_name", $col_name);
     header("Content-Type: text/xml");
-    echo $dom1->saveXML();
-//    $xsl = cls_xml::file2dom("col/col_plot.xsl");
-//    echo cls_xml::xsltrans($dom1, $xsl);
-    
+    echo $dom->saveXML();
 }
 
-
-function col_all() {
-    $db = new cls_db();
-    $usr_id = cls_usr::check();
-    //query
-    $qry = $db->conn->prepare("SELECT * FROM col_calc5 WHERE usr_id = {$usr_id} ORDER BY n;");
-    $qry->execute();
-    $res = $qry->get_result();
-    $dom1 = cls_xml::res2dom($res);
-    $res->close();
-
-//    echo "hello\n";
-    
-    header("Content-Type: text/xml");
-    echo $dom1->saveXML();
-//    $xsl = cls_xml::file2dom("col/col_plot.xsl");
-//    echo cls_xml::xsltrans($dom1, $xsl);
-//    header("Content-Type: image/svg+xml");
-}

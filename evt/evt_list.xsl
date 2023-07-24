@@ -10,6 +10,7 @@
 
     <xsl:template match="root">
         <form action="evt.php?mth=insert" method="post">
+            <input type="hidden" name="res_id" value="{@res_id}" readonly="true"/>
             <input type="hidden" name="col_id" value="{@col_id}" readonly="true"/>
             <input type="hidden" name="n" value="0" readonly="true"/>
             <input type="hidden" name="v1" value="0" readonly="true"/>
@@ -18,7 +19,7 @@
         <table class="table1">
             <tr>
                 <th>evt_id</th>
-                <th>usr_id</th>
+                <th>res_id</th>
                 <th>col_id</th>
                 <th>period</th>
                 <th>value</th>
@@ -30,7 +31,7 @@
                         <xsl:value-of select="@evt_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@usr_id"/>
+                        <xsl:value-of select="@res_id"/>
                     </td>
                     <td>
                         <xsl:value-of select="@col_id"/>

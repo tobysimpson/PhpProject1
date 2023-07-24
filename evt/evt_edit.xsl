@@ -20,9 +20,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>usr_id</th>
+                    <th>res_id</th>
                     <td>
-                        <input type="text" name="usr_id" value="{@usr_id}" readonly="true"/>
+                        <input type="text" name="res_id" value="{@res_id}" readonly="true"/>
                     </td>
                 </tr>
                 <tr>

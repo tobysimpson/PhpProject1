@@ -19,6 +19,9 @@ switch ($mth) {
     case "insert":
         res_insert();
         break;
+    case "all":
+        res_all();
+        break;
     default:
         res_list();
 }
@@ -47,13 +50,6 @@ function res_edit() {
     echo $xml->saveXML();
 }
 
-function res_insert() {
-    $db = new cls_db();
-    $qry = $db->conn->prepare("INSERT INTO res_info (res_name) VALUES ('new');");
-    $qry->execute();
-    $res_id = $qry->insert_id;
-    header("Location: res.php?mth=edit&res_id=".$res_id);
-}
 
 function res_update() {
     $db = new cls_db();
@@ -65,5 +61,24 @@ function res_update() {
 }
 
 
+function res_insert() {
+    $db = new cls_db();
+    $qry = $db->conn->prepare("INSERT INTO res_info (res_name) VALUES ('new');");
+    $qry->execute();
+    $res_id = $qry->insert_id;
+    header("Location: res.php?mth=edit&res_id=".$res_id);
+}
 
 
+
+function res_all() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT * FROM col_calc5 WHERE res_id = {$res_id} ORDER BY n;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res);
+    $res->close();
+    header('Content-Type: text/xml');
+    echo $xml->saveXML();
+}

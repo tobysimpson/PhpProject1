@@ -15,11 +15,7 @@
                 <th>col_typ</th>
                 <th>col_ord</th>
                 <th style="text-align:left;">col_name</th>
-<!--                <th>prd_in</th>
-                <th>prd_out</th>
-                <th>dem_out</th>-->
-                <!--<th>col_def</th>-->
-                <th colspan="3"></th>
+                <th colspan="3"/>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -35,29 +31,18 @@
                     <td style="text-align:left;">
                         <xsl:value-of select="@col_name"/>
                     </td>
-<!--                    <td>
-                        <xsl:value-of select="@prd_in"/>
+                    <td>
+                        <a href="#" onclick="fn_get('col.php?mth=disp&amp;col_name={@col_name}&amp;res_id={../@res_id}',disp);">plot</a>
                     </td>
                     <td>
-                        <xsl:value-of select="@prd_out"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@dem_out"/>
-                    </td>-->
-<!--                    <td>
-                        <xsl:value-of select="@col_def"/>
-                    </td>-->
-                    <td>
-                        <a href="#" onclick="fn_get('col.php?mth=disp&amp;col_name={@col_name}',disp);">plot</a>
+                        <a href="col.php?mth=data&amp;col_name={@col_name}&amp;res_id={../@res_id}">data</a>
                     </td>
                     <td>
                         <xsl:if test="@col_evt=1">
-                            <a href="evt.php?mth=list&amp;col_id={@col_id}">event</a>
+                            <a href="evt.php?mth=list&amp;res_id={../@res_id}&amp;col_id={@col_id}">event</a>
                         </xsl:if>
                     </td>
-                    <td>
-                        <a href="col.php?mth=dat&amp;col_name={@col_name}">data</a>
-                    </td>
+
                 </tr>
             </xsl:for-each> 
         </table>

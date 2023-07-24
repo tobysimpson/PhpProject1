@@ -57,19 +57,19 @@
                 </td>
             </tr>
             <tr>
-                <th style="text-align:left">test</th>
-            </tr>
-            <tr>
                 <td>
                     <a href="usr.php">usr_info</a>
                 </td>
+            </tr>
+            <tr>
+                <th style="text-align:left">test</th>
             </tr>
             <tr>
                 <td>
                     <a href="res.php">res_info</a>
                 </td>
             </tr>
-            <tr>
+            <!--<tr>
                 <td>
                     <a href="col.php?mth=list_all">col_info</a>
                 </td>
@@ -78,13 +78,13 @@
                 <td>
                     <a href="evt.php">evt_info</a>
                 </td>
-            </tr>
+            </tr>-->
             <tr>
                 <td>
                     <a href="bal.php?mth=disp&amp;n=0">bal_disp</a>
                 </td>
             </tr>
-            <tr>
+<!--            <tr>
                 <th style="text-align:left">game</th>
             </tr>
             <tr>
@@ -147,7 +147,7 @@
                 <td>
                     <a href="col.php?mth=list&amp;col_typ=10">balance</a>
                 </td>
-            </tr>
+            </tr>-->
 
 
             <tr>
