@@ -16,7 +16,7 @@
             <tr>
                 <th>res_id</th>
                 <th>res_name</th>
-                <th colspan="3"/>
+                <th colspan="4"/>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -35,9 +35,9 @@
                     <td>
                         <a href="bal.php?mth=disp&amp;res_id={@res_id}&amp;n=0">bal</a>
                     </td>
-<!--                    <td>
-                        <a href="res.php?mth=all&amp;res_id={@res_id}">all</a>
-                    </td>-->
+                    <td>
+                        <a href="res.php?mth=evt&amp;res_id={@res_id}">evt</a>
+                    </td>
                 </tr>
             </xsl:for-each> 
         </table>

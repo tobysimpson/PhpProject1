@@ -44,11 +44,11 @@
 
     <xsl:template name="menu">
         <table width="100%">
-            <tr>
+<!--            <tr>
                 <td>
                     <a href="index.php">home</a>
                 </td>
-            </tr>
+            </tr>-->
 
             <tr>
                 <td>

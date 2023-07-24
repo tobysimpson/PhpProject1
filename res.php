@@ -22,6 +22,9 @@ switch ($mth) {
     case "all":
         res_all();
         break;
+    case "evt":
+        res_evt();
+        break;
     default:
         res_list();
 }
@@ -78,6 +81,19 @@ function res_all() {
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
+    $res->close();
+    header('Content-Type: text/xml');
+    echo $xml->saveXML();
+}
+
+
+function res_evt() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT * FROM evt_info WHERE res_id = {$res_id} ORDER BY n, col_id;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res, "evt/evt_list.xsl");
     $res->close();
     header('Content-Type: text/xml');
     echo $xml->saveXML();
