@@ -76,14 +76,14 @@
                 <td><input type="text" value="{format-number(@prd_pet,'0.00')}" onfocus="fn_focus(this);" col_id="15" col_name="prd_pet" onchange="fn_change(this)" class="input1"/></td>
                 <td><input type="text" value="{format-number(@prd_gas,'0.00')}" onfocus="fn_focus(this);" col_id="16" col_name="prd_gas" onchange="fn_change(this)" class="input1"/></td>
                 <td><input type="text" value="{format-number(@prd_nuc,'0.00')}" onfocus="fn_focus(this);" col_id="17" col_name="prd_nuc" onchange="fn_change(this)" class="input1"/></td>
-                <td><input type="text" value="{format-number(@prd_riv,'0.00')}" onfocus="fn_focus(this);" col_id="18" col_name="prd_riv" onchange="fn_change(this)" class="input1"/></td>
-                <td><input type="text" value="{format-number(@prd_res,'0.00')}" onfocus="fn_focus(this);" col_id="19" col_name="prd_res" onchange="fn_change(this)" class="input1"/></td>
-                <td><input type="text" value="{format-number(@prd_pmp,'0.00')}" onfocus="fn_focus(this);" col_id="20" col_name="prd_pmp" onchange="fn_change(this)" class="input1"/></td>
-                <td><input type="text" value="{format-number(@prd_sol,'0.00')}" onfocus="fn_focus(this);" col_id="21" col_name="prd_sol" onchange="fn_change(this)" class="input1"/></td>
-                <td><input type="text" value="{format-number(@prd_wnd,'0.00')}" onfocus="fn_focus(this);" col_id="22" col_name="prd_wnd" onchange="fn_change(this)" class="input1"/></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td><input type="text" value="{format-number(@prd_bio,'0.00')}" onfocus="fn_focus(this);" col_id="23" col_name="prd_bio" onchange="fn_change(this)" class="input1"/></td>
                 <td><input type="text" value="{format-number(@prd_wst,'0.00')}" onfocus="fn_focus(this);" col_id="24" col_name="prd_wst" onchange="fn_change(this)" class="input1"/></td>
-                <td><input type="text" value="{format-number(@prd_geo,'0.00')}" onfocus="fn_focus(this);" col_id="25" col_name="prd_geo" onchange="fn_change(this)" class="input1"/></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>

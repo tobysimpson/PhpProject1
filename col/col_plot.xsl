@@ -109,10 +109,11 @@
                 <!--<xsl:call-template name="dots"/>-->
                 
                 <g id="vgrid">
-                    <line x1="{(1.0 div $tmax) * $pw}" x2="{(1.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
-                    <line x1="{(2.0 div $tmax) * $pw}" x2="{(2.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
-                    <line x1="{(3.0 div $tmax) * $pw}" x2="{(3.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
-                    <line x1="{(4.0 div $tmax) * $pw}" x2="{(4.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
+                    <line x1="{( 5.0 div $tmax) * $pw}" x2="{( 5.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
+                    <line x1="{(10.0 div $tmax) * $pw}" x2="{(10.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
+                    <line x1="{(15.0 div $tmax) * $pw}" x2="{(15.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
+                    <line x1="{(20.0 div $tmax) * $pw}" x2="{(20.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
+                    <line x1="{(25.0 div $tmax) * $pw}" x2="{(25.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
                 </g>
                 
               
