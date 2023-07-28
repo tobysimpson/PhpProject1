@@ -11,24 +11,20 @@
     <xsl:template match="root">
         <table class="table1">
             <tr>
-                <th>prd_id</th>
-                <th>prd_code</th>
-                <th style="text-align:left;">prd_name</th>
-                <th style="text-align:left;">prd_desc</th>
+                <th>dem_id</th>
+                <th>dem_code</th>
+                <th style="text-align:left;">dem_name</th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
                     <td>
-                        <xsl:value-of select="@prd_id"/>
+                        <xsl:value-of select="@dem_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@prd_code"/>
+                        <xsl:value-of select="@dem_code"/>
                     </td>
                     <td style="text-align:left;">
-                        <xsl:value-of select="@prd_name"/>
-                    </td>
-                    <td style="text-align:left;">
-                        <xsl:value-of select="@prd_desc"/>
+                        <xsl:value-of select="@dem_name"/>
                     </td>
                 </tr>
             </xsl:for-each> 

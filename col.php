@@ -35,7 +35,7 @@ switch ($mth) {
 
 function col_info() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM col_info WHERE col_def IS NOT NULL ORDER BY col_typ, col_ord;");
+    $qry = $db->conn->prepare("SELECT * FROM col_desc WHERE col_vis=1 ORDER BY grp_ord, col_ord;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res, "col/col_info.xsl");

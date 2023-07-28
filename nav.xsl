@@ -56,6 +56,11 @@
             </tr>
             <tr>
                 <td>
+                    <a href="dem.php">dem_info</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <a href="col.php">col_info</a>
                 </td>
             </tr>
@@ -64,87 +69,6 @@
                     <a href="res.php">res_info</a>
                 </td>
             </tr>
-            <!--<tr>
-                <td>
-                    <a href="col.php?mth=list_all">col_info</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="evt.php">evt_info</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="bal.php?mth=disp&amp;n=0">bal_disp</a>
-                </td>
-            </tr>
-            <tr>
-                <th style="text-align:left">game</th>
-            </tr>
-            <tr>
-                <td>
-                    <a href="col.php?mth=list&amp;col_typ=1">availability</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="col.php?mth=list&amp;col_typ=2">production</a>
-                </td>
-            </tr>
-            
-            <tr>
-                <td>
-                    <a href="col.php?mth=list&amp;col_typ=3">capacity</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="col.php?mth=list&amp;col_typ=4">generation</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="col.php?mth=list&amp;col_typ=5">capacity</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="col.php?mth=list&amp;col_typ=12">subtotals</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="col.php?mth=list&amp;col_typ=6">consumption</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="col.php?mth=list&amp;col_typ=11">subtotals</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="col.php?mth=list&amp;col_typ=7">supply</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="col.php?mth=list&amp;col_typ=8">demand</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="col.php?mth=list&amp;col_typ=9">balance</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="col.php?mth=list&amp;col_typ=10">balance</a>
-                </td>
-            </tr>-->
-
-
             <tr>
                 <th style="text-align:left">item</th>
             </tr>
