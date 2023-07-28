@@ -16,6 +16,8 @@
             <tr>
                 <th>res_id</th>
                 <th>res_name</th>
+                <th>res_v1</th>
+                <th>res_v2</th>
                 <th colspan="4"/>
             </tr>
             <xsl:for-each select="row">
@@ -25,6 +27,12 @@
                     </td>
                     <td style="text-align:left">
                         <xsl:value-of select="@res_name"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@res_v1"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@res_v2"/>
                     </td>
                     <td>
                         <a href="res.php?mth=edit&amp;res_id={@res_id}">edit</a>

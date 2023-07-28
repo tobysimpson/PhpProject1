@@ -14,15 +14,27 @@
         <table class="table2">
             <form action="res.php?mth=update" method="post">
                <tr>
-                    <td>res_id</td>
+                    <th>res_id</th>
                     <td>
                         <input type="text" name="res_id" value="{@res_id}" readonly="true"/>
                     </td>
                 </tr>
                 <tr>
-                    <td>res_name</td>
+                    <th>res_name</th>
                     <td>
                        <input type="text" name="res_name" value="{@res_name}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>v1</th>
+                    <td>
+                       <input type="text" name="res_v1" value="{@res_v1}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>v2</th>
+                    <td>
+                       <input type="text" name="res_v2" value="{@res_v2}"/>
                     </td>
                 </tr>
                 <tr>

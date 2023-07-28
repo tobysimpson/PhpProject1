@@ -169,7 +169,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><input type="text" value="{format-number(@cap_cool_ele,'0.00')}" onfocus="fn_focus(this);" col_id="82" col_name="cap_cool_ele" onchange="fn_change(this)" class="input1"/></td>
+                <td><input type="text" value="{format-number(@cap_base_ele,'0.00')}" onfocus="fn_focus(this);" col_id="68" col_name="cap_base_ele" onchange="fn_change(this)" class="input1"/></td>
                 <td></td>
                 <td></td>
                 <td><input type="text" readonly="true" value="{format-number(@cap_base,'0.00')}" onfocus="fn_focus(this);" col_id="271" col_name="cap_base" class="input1"/></td>

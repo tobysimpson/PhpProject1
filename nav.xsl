@@ -49,7 +49,16 @@
                     <a href="index.php">home</a>
                 </td>
             </tr>-->
-
+            <tr>
+                <td>
+                    <a href="prd.php">prd_info</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="col.php">col_info</a>
+                </td>
+            </tr>
             <tr>
                 <td>
                     <a href="res.php">res_info</a>
@@ -149,11 +158,11 @@
                     <a href="item.php?mth=xml">item_xml</a>
                 </td>
             </tr>
-            <tr>
+<!--            <tr>
                 <td>
                     <a href="item.php?mth=csv">item_csv</a>
                 </td>
-            </tr>
+            </tr>-->
             <tr>
                 <td>
                     <a href="item.php?mth=svg">item_svg</a>

@@ -58,7 +58,9 @@ function res_update() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_POST, "res_id", FILTER_VALIDATE_INT);
     $res_name = filter_input(INPUT_POST, "res_name", FILTER_SANITIZE_STRING);
-    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}' WHERE res_id = {$res_id};");
+    $res_v1 = filter_input(INPUT_POST, "res_v1", FILTER_VALIDATE_FLOAT);
+    $res_v2 = filter_input(INPUT_POST, "res_v2", FILTER_VALIDATE_FLOAT);
+    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}', res_v1={$res_v1}, res_v2={$res_v2} WHERE res_id = {$res_id};");
     $qry->execute();
     header("Location: res.php");
 }

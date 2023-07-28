@@ -19,8 +19,11 @@ switch ($mth) {
     case "all":
         col_all();
         break;
+        case "list":
+    col_info();
+        break;
     default:
-        col_list_all();
+        col_info();
 }
 
 /*
@@ -30,10 +33,22 @@ switch ($mth) {
  */
 
 
+function col_info() {
+    $db = new cls_db();
+    $qry = $db->conn->prepare("SELECT * FROM col_info WHERE col_def IS NOT NULL ORDER BY col_typ, col_ord;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res, "col/col_info.xsl");
+    $res->close();
+    header('Content-Type: text/xml');
+    echo $xml->saveXML();
+}
+
+
 function col_list() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM col_info ORDER BY col_typ, col_ord;");
+    $qry = $db->conn->prepare("SELECT * FROM col_info WHERE col_def IS NOT NULL ORDER BY col_typ, col_ord;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res, "col/col_list.xsl");
