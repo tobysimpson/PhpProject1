@@ -61,7 +61,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="col.php">col_info</a>
+                    <a href="col.php">col_desc</a>
                 </td>
             </tr>
             <tr>

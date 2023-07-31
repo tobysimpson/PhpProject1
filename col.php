@@ -20,10 +20,8 @@ switch ($mth) {
         col_all();
         break;
         case "list":
-    col_info();
-        break;
     default:
-        col_info();
+        col_desc();
 }
 
 /*
@@ -33,12 +31,12 @@ switch ($mth) {
  */
 
 
-function col_info() {
+function col_desc() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM col_desc WHERE col_vis=1 ORDER BY grp_ord, col_ord;");
+    $qry = $db->conn->prepare("SELECT * FROM col_desc ORDER BY grp_ord, col_ord;");
     $qry->execute();
     $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res, "col/col_info.xsl");
+    $xml = cls_xml::res2dom($res, "col/col_desc.xsl");
     $res->close();
     header('Content-Type: text/xml');
     echo $xml->saveXML();
