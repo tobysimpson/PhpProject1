@@ -107,7 +107,7 @@ function res_evt() {
 
 function res_del() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("delete from res_info where res_id not in (select distinct res_id from evt_info);");
+    $qry = $db->conn->prepare("DELETE FROM res_info WHERE res_id NOT IN (SELECT DISTINCT res_id FROM evt_info);");
     $qry->execute();
     header("Location: res.php");
 }

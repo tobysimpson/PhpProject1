@@ -54,7 +54,7 @@ function item_xml() {
     $qry = $db->conn->prepare("SELECT * FROM item_info;");
     $qry->execute();
     $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res);
+    $xml = cls_xml::res2dom($res, "item/item_list.xsl");
     header('Content-Type: text/xml');
     echo $xml->saveXML();
     $res->close();
