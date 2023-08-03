@@ -25,6 +25,9 @@ switch ($mth) {
     case "evt":
         res_evt();
         break;
+    case "del":
+        res_del();
+        break;
     default:
         res_list();
 }
@@ -99,4 +102,12 @@ function res_evt() {
     $res->close();
     header('Content-Type: text/xml');
     echo $xml->saveXML();
+}
+
+
+function res_del() {
+    $db = new cls_db();
+    $qry = $db->conn->prepare("delete from res_info where res_id not in (select distinct res_id from evt_info);");
+    $qry->execute();
+    header("Location: res.php");
 }
