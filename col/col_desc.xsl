@@ -16,9 +16,9 @@
                 <th>grp_ord</th>
                 <th>col_ord</th>
                 <th>col_name</th>
-                <th>prd_id1</th>
+<!--                <th>prd_id1</th>
                 <th>prd_id2</th>
-                <th>dem_id</th>
+                <th>dem_id</th>-->
                 <th>col_evt</th>
                 <th>grp_code</th>
                 <th>prd_code1</th>
@@ -47,7 +47,7 @@
                     <td style="text-align:left;">
                         <xsl:value-of select="@col_name"/>
                     </td>
-                    <td>
+<!--                    <td>
                         <xsl:value-of select="@prd_id1"/>
                     </td>
                     <td>
@@ -55,7 +55,7 @@
                     </td>
                     <td>
                         <xsl:value-of select="@dem_id"/>
-                    </td>
+                    </td>-->
                     <td>
                         <xsl:value-of select="@col_evt"/>
                     </td>

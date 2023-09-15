@@ -26,7 +26,7 @@ switch ($mth) {
         res_evt();
         break;
     case "del":
-        res_del();
+//        res_del();
         break;
     default:
         res_list();

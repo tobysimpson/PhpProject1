@@ -71,8 +71,8 @@ function evt_update() {
     $qry = $db->conn->prepare("UPDATE evt_info SET n={$n}, v1={$v1} WHERE evt_id={$evt_id} AND res_id={$res_id};");
     $qry->execute();
     
-    $qry1 = $db->conn->prepare("DELETE FROM evt_info WHERE v1 = 0;");
-    $qry1->execute();
+//    $qry1 = $db->conn->prepare("DELETE FROM evt_info WHERE v1 = 0;");
+//    $qry1->execute();
     
     header("Location: evt.php?mth=list&res_id=".$res_id."&col_id=".$col_id);
 }
@@ -120,8 +120,6 @@ function evt_upsert() {
 //    $qry->bind_param("iiidiiid", $res_id, $col_id, $n, $v1, $res_id, $col_id, $n, $v1);
     $qry->execute();
     
-    
-
     header("Location: bal.php?mth=disp&n=".$n."&res_id=".$res_id);
 }
 
