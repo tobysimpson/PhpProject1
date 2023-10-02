@@ -1,6 +1,6 @@
 
 *{
-    font-size: 100%;
+    font-size: 10pt;
     font-family: sans-serif;
     font-weight: 300;
 }
@@ -29,7 +29,7 @@ table {
 }
 
 th, td{
-    padding: 6px;
+    padding: 4px;
 }
 
 th{
@@ -60,17 +60,17 @@ th{
 .table3 td{
     border: 1pt solid #dddddd;
     text-align: left;
-    padding: 4px;
+    padding: 3px;
 }
 
 .table3 th{
     border: 1pt solid #dddddd;
     text-align: left;
-    padding: 4px;
+    padding: 3px;
 }
 
 .input1{
-    width: 60px;
+    width: 50px;
     text-align: right;
     border: none;
     margin-top: 0px;

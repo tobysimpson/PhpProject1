@@ -5,7 +5,7 @@
     <xsl:include href="../plot.xsl"/>
     
     
-    <xsl:variable name="h">800</xsl:variable>
+    <xsl:variable name="h">600</xsl:variable>
     <xsl:variable name="w">1000</xsl:variable>
     
     <xsl:variable name="ph" select="0.8 * $h"/>
@@ -49,7 +49,7 @@
    
     <xsl:template match="root">
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
-            <style>* { font-size: 100%; font-family: sans-serif; font-weight: 300; }</style> 
+            <style>* { font-size: 10pt; font-family: sans-serif; font-weight: 300; }</style> 
             
             <xsl:call-template name="title">
                 <xsl:with-param name="txt" select="@col_name" />

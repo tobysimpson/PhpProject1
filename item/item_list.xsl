@@ -51,6 +51,9 @@
                             <xsl:text>edit</xsl:text>
                         </a>
                     </td>
+                    <td>
+                        <input type="range" min="-1" max="1" step="0.01" value="{@item_val1}" onchange="console.log(this.value);"/>
+                    </td>
                 </tr>
             </xsl:for-each> 
         </table>

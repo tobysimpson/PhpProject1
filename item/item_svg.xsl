@@ -15,7 +15,7 @@
     
     <xsl:template match="root">
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
-            <style>* { font-size: 100%; font-family: sans-serif; font-weight: 300; }</style> 
+            <style>* { font-size: 10pt; font-family: sans-serif; font-weight: 300; }</style> 
             <!-- title -->
             <g id="title">
                 <circle cx="10" cy="15" r="5" fill="blue"/>
