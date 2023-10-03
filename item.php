@@ -31,9 +31,9 @@ switch ($mth) {
     case "reset":
         item_reset();
         break;
-//    case "test":
-//        item_test();
-//        break;
+    case "test":
+        item_test();
+        break;
     default:
         item_list();
 }
@@ -131,14 +131,16 @@ function item_reset() {
 }
 
 
-//function item_test() {
-//    $db = new cls_db();
-//    $qry = $db->conn->prepare("SELECT * FROM item_info;");
-//    $qry->execute();
-//    $res = $qry->get_result();
-//    $xml = cls_xml::res2dom($res);
-//    echo $xml->saveXML();
-//    $xsl = cls_xml::file2dom("item/item_test.xsl");
-//    echo cls_xml::xsltrans($xml, $xsl);
-//    $res->close();
-//}
+function item_test() {
+    $db         = new cls_db();
+    $item_id    = filter_input(INPUT_GET, "item_id", FILTER_VALIDATE_INT);
+    $item_val2  = filter_input(INPUT_GET, "item_val2", FILTER_VALIDATE_FLOAT);
+
+    $qry = $db->conn->prepare("UPDATE item_info SET item_updated = LOCALTIMESTAMP(), item_val2 = {$item_val2} WHERE item_id = {$item_id};");
+
+//    $qry = $db->conn->prepare("INSERT INTO evt_info (res_id, col_id, n, v1 ) VALUES ({$res_id},{$col_id},{$n},{$v1}) ON DUPLICATE KEY UPDATE res_id={$res_id}, col_id={$col_id}, n={$n}, v1= {$v1};");
+//    $qry->bind_param("iiidiiid", $res_id, $col_id, $n, $v1, $res_id, $col_id, $n, $v1);
+    $qry->execute();
+    
+    header("Location: item.php?mth=list");
+}

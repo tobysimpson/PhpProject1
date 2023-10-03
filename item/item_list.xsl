@@ -52,7 +52,8 @@
                         </a>
                     </td>
                     <td>
-                        <input type="range" min="-1" max="1" step="0.01" value="{@item_val1}" onchange="console.log(this.value);"/>
+                        <!--<input type="range"  value="{@item_val2}" onchange="console.log(this.value);"/>-->
+                        <input type="range"  value="{@item_val2}" onchange="console.log(this.value);window.location.assign('item.php?mth=test&amp;item_id={@item_id}&amp;item_val2='+this.value)"/>
                     </td>
                 </tr>
             </xsl:for-each> 
