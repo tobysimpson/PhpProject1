@@ -29,7 +29,7 @@
                         <xsl:value-of select="@res_name"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@res_dt"/>
+                        <xsl:value-of select="format-number(@res_dt,'0.000')"/>
                     </td>
                     <td>
                         <xsl:value-of select="@res_nt"/>
