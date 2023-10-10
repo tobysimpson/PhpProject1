@@ -11,38 +11,35 @@
     <xsl:template match="root">
         <table class="table1">
             <tr>
-                <th>col_id</th>
+                <th>prm_id</th>
                 <th>grp_id</th>
-                <th>col_ord</th>
-                <th style="text-align:left;">col_name</th>
+                <!--<th>prm_ord</th>-->
+                <th style="text-align:left;">prm_name</th>
                 <th colspan="3"/>
             </tr>
             <xsl:for-each select="row">
                 <tr>
                     <td>
-                        <xsl:value-of select="@col_id"/>
+                        <xsl:value-of select="@prm_id"/>
                     </td>
                     <td>
                         <xsl:value-of select="@grp_id"/>
                     </td>
-                    <td>
-                        <xsl:value-of select="@col_ord"/>
-                    </td>
+<!--                    <td>
+                        <xsl:value-of select="@prm_ord"/>
+                    </td>-->
                     <td style="text-align:left;">
-                        <xsl:value-of select="@col_name"/>
+                        <xsl:value-of select="@prm_name"/>
                     </td>
                     <td>
-                        <a href="#" onclick="fn_get('col.php?mth=disp&amp;col_name={@col_name}&amp;res_id={../@res_id}',disp);">plot</a>
+                        <a href="#" onclick="console.log('plot'+{@prm_id});fn_get('prm.php?mth=plot&amp;prm_id={@prm_id}',disp);">plot</a>
                     </td>
                     <td>
-                        <a href="col.php?mth=data&amp;col_name={@col_name}&amp;res_id={../@res_id}">data</a>
+                        <a href="prm.php?mth=def&amp;prm_id={@prm_id}">def</a>
                     </td>
                     <td>
-                        <xsl:if test="@col_evt=1">
-                            <a href="evt.php?mth=list&amp;res_id={../@res_id}&amp;col_id={@col_id}">event</a>
-                        </xsl:if>
+                        <a href="prm.php?mth=usr&amp;prm_id={@prm_id}">usr</a>
                     </td>
-
                 </tr>
             </xsl:for-each> 
         </table>

@@ -16,6 +16,9 @@ switch ($mth) {
     case "data":
         col_data();
         break;
+    case "grp":
+        grp_col();
+        break;
     case "all":
         col_all();
         break;
@@ -46,7 +49,7 @@ function col_desc() {
 function col_list() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM col_info WHERE col_def IS NOT NULL ORDER BY col_typ, col_ord;");
+    $qry = $db->conn->prepare("SELECT * FROM col_info WHERE col_evt = 1 ORDER BY grp_id , col_ord;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res, "col/col_list.xsl");
@@ -56,6 +59,19 @@ function col_list() {
     echo $xml->saveXML();
 }
 
+function grp_col() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $grp_id = filter_input(INPUT_GET, "grp_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT * FROM col_info WHERE grp_id = {$grp_id} ORDER BY grp_id , col_ord;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res, "col/col_list.xsl");
+    $xml->documentElement->setAttribute("res_id", $res_id);     //instead of cookie
+    $res->close();
+    header('Content-Type: text/xml');
+    echo $xml->saveXML();
+}
 
 
 //function col_list() {

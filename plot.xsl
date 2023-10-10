@@ -105,6 +105,23 @@
     </xsl:template>
     
     
+    <xsl:template name="dots1">
+        <xsl:param name="tt"/>
+        <xsl:param name="vv"/>
+        <g id="dots">
+            <xsl:for-each select="$tt">
+                <xsl:variable name="i" select="position()"/>
+                <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.0')"/>
+                <xsl:variable name="y" select="format-number($ph * (1 - ($vv[$i] - $vmin) div $vrng),'0.0')"/>
+                <circle cx="{$x}" cy="{$y}" r="4" fill="blue"/>
+            </xsl:for-each>
+        </g>
+    </xsl:template>
+    
+
+    
+    
+
     <xsl:template name="line">
         <xsl:variable name="line1">
             <xsl:for-each select="row">

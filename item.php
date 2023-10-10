@@ -40,7 +40,7 @@ switch ($mth) {
 
 function item_list() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM item_info;");
+    $qry = $db->conn->prepare("SELECT * FROM item_info ORDER BY item_val1;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
@@ -89,7 +89,7 @@ function item_edit() {
 
 function item_svg() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM item_info;");
+    $qry = $db->conn->prepare("SELECT * FROM item_info ORDER BY item_val1;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
@@ -115,10 +115,11 @@ function item_update() {
 
 function item_insert() {
     $db = new cls_db();
-    $v1 = 2 * (rand() / getrandmax()) - 1;
-    $v2 = sin($v1 * pi());
-    $qry = $db->conn->prepare("INSERT INTO item_info (item_val1, item_val2) VALUES (?,?);");
-    $qry->bind_param("dd", $v1, $v2);
+    $v1 = 100*rand()/getrandmax();  
+    $v2 = pow($v1/10,2);  
+//    $v2 = 10*sin($v1 * pi());
+    $qry = $db->conn->prepare("INSERT INTO item_info (item_val1, item_val2) VALUES ({$v1},{$v2});");
+//    $qry->bind_param("dd", $v1, $v2);
     $qry->execute();
     header("Location: item.php?mth=list");
 }
@@ -132,14 +133,13 @@ function item_reset() {
 
 
 function item_test() {
-    $db         = new cls_db();
-    $item_id    = filter_input(INPUT_GET, "item_id", FILTER_VALIDATE_INT);
-    $item_val2  = filter_input(INPUT_GET, "item_val2", FILTER_VALIDATE_FLOAT);
+    $db        = new cls_db();
+    $item_id   = filter_input(INPUT_GET, "item_id", FILTER_VALIDATE_INT);
+    $fld_name  = filter_input(INPUT_GET, "fld_name", FILTER_SANITIZE_STRING);
+    $fld_val = filter_input(INPUT_GET, "fld_val", FILTER_VALIDATE_FLOAT);
 
-    $qry = $db->conn->prepare("UPDATE item_info SET item_updated = LOCALTIMESTAMP(), item_val2 = {$item_val2} WHERE item_id = {$item_id};");
+    $qry = $db->conn->prepare("UPDATE item_info SET item_updated = LOCALTIMESTAMP(), {$fld_name} = {$fld_val} WHERE item_id = {$item_id};");
 
-//    $qry = $db->conn->prepare("INSERT INTO evt_info (res_id, col_id, n, v1 ) VALUES ({$res_id},{$col_id},{$n},{$v1}) ON DUPLICATE KEY UPDATE res_id={$res_id}, col_id={$col_id}, n={$n}, v1= {$v1};");
-//    $qry->bind_param("iiidiiid", $res_id, $col_id, $n, $v1, $res_id, $col_id, $n, $v1);
     $qry->execute();
     
     header("Location: item.php?mth=list");

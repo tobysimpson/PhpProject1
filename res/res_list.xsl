@@ -16,9 +16,9 @@
             <tr>
                 <th>res_id</th>
                 <th>res_name</th>
-                <th>res_v1</th>
-                <th>res_v2</th>
-                <th colspan="4"/>
+                <th>res_dt</th>
+                <th>res_nt</th>
+                <th colspan="7"/>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -29,10 +29,10 @@
                         <xsl:value-of select="@res_name"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@res_v1"/>
+                        <xsl:value-of select="@res_dt"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@res_v2"/>
+                        <xsl:value-of select="@res_nt"/>
                     </td>
                     <td>
                         <a href="res.php?mth=edit&amp;res_id={@res_id}">edit</a>
@@ -45,6 +45,12 @@
                     </td>
                     <td>
                         <a href="res.php?mth=evt&amp;res_id={@res_id}">evt</a>
+                    </td>
+                    <td>
+                        <a href="res.php?mth=grp&amp;res_id={@res_id}">grp</a>
+                    </td>
+                    <td>
+                        <a href="res.php?mth=prm&amp;res_id={@res_id}">prm</a>
                     </td>
                 </tr>
             </xsl:for-each> 

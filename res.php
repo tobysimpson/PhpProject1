@@ -28,6 +28,12 @@ switch ($mth) {
     case "del":
 //        res_del();
         break;
+    case "grp":
+        res_grp();
+        break;
+    case "prm":
+        res_prm();
+        break;
     default:
         res_list();
 }
@@ -61,9 +67,9 @@ function res_update() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_POST, "res_id", FILTER_VALIDATE_INT);
     $res_name = filter_input(INPUT_POST, "res_name", FILTER_SANITIZE_STRING);
-    $res_v1 = filter_input(INPUT_POST, "res_v1", FILTER_VALIDATE_FLOAT);
-    $res_v2 = filter_input(INPUT_POST, "res_v2", FILTER_VALIDATE_FLOAT);
-    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}', res_v1={$res_v1}, res_v2={$res_v2} WHERE res_id = {$res_id};");
+    $res_dt = filter_input(INPUT_POST, "res_dt", FILTER_VALIDATE_FLOAT);
+    $res_nt = filter_input(INPUT_POST, "res_nt", FILTER_VALIDATE_FLOAT);
+    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}', res_dt={$res_dt}, res_nt={$res_nt} WHERE res_id = {$res_id};");
     $qry->execute();
     header("Location: res.php");
 }
@@ -110,4 +116,31 @@ function res_del() {
     $qry = $db->conn->prepare("DELETE FROM res_info WHERE res_id NOT IN (SELECT DISTINCT res_id FROM evt_info);");
     $qry->execute();
     header("Location: res.php");
+}
+
+
+function res_grp() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT * FROM grp_info ORDER BY grp_ord;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res, "grp/grp_list.xsl");
+    $xml->documentElement->setAttribute("res_id", $res_id);     //instead of cookie
+    $res->close();
+    header('Content-Type: text/xml');
+    echo $xml->saveXML();
+}
+
+
+function res_prm() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT * FROM res_prm WHERE res_id = {$res_id} ORDER BY res_id, prm_id, t , typ ASC;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res, "res/res_prm.xsl");
+    $res->close();
+    header('Content-Type: text/xml');
+    echo $xml->saveXML();
 }

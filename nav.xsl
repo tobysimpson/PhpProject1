@@ -93,6 +93,14 @@
                 </td>
             </tr>
             <tr>
+                <th style="text-align:left">prm</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="prm.php">prm_list</a>
+                </td>
+            </tr>
+            <tr>
                 <th style="text-align:left">users</th>
             </tr>
             <tr>

@@ -19,6 +19,7 @@
                 <th>item_updated</th>
                 <th>item_name</th>
                 <th>item_val1</th>
+                <th></th>
                 <th>item_val2</th>
                 <th></th>
             </tr>
@@ -29,18 +30,26 @@
                     </td>
                     <td>
                         <xsl:value-of select="substring(@item_created,0,11)"/>
+                        <!--<xsl:value-of select="@item_created"/>-->
                     </td>
                     <td>
                         <xsl:value-of select="substring(@item_updated,0,11)"/>
+                        <!--<xsl:value-of select="@item_updated"/>-->
                     </td>
                     <td style="text-align:left">
                         <xsl:value-of select="@item_name"/>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="format-number(@item_val1, '###,##0.0000')"/>
+                        <xsl:value-of select="format-number(@item_val1, '###,##0.000')"/>
+                    </td>
+                    <td>                       
+                        <input type="range"  value="{@item_val1}" onchange="window.location.assign('item.php?mth=test&amp;item_id={@item_id}&amp;fld_name=item_val1&amp;fld_val='+this.value)"/>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="format-number(@item_val2, '###,##0.0000')"/>
+                        <xsl:value-of select="format-number(@item_val2, '###,##0.000')"/>
+                    </td>
+                    <td>
+                        <input type="range"  value="{@item_val2}" onchange="window.location.assign('item.php?mth=test&amp;item_id={@item_id}&amp;fld_name=item_val2&amp;fld_val='+this.value)"/>
                     </td>
                     <td>
                         <a>
@@ -50,10 +59,6 @@
                             </xsl:attribute>
                             <xsl:text>edit</xsl:text>
                         </a>
-                    </td>
-                    <td>
-                        <!--<input type="range"  value="{@item_val2}" onchange="console.log(this.value);"/>-->
-                        <input type="range"  value="{@item_val2}" onchange="console.log(this.value);window.location.assign('item.php?mth=test&amp;item_id={@item_id}&amp;item_val2='+this.value)"/>
                     </td>
                 </tr>
             </xsl:for-each> 

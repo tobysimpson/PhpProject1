@@ -26,15 +26,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>v1</th>
+                    <th>res_dt</th>
                     <td>
-                       <input type="text" name="res_v1" value="{@res_v1}"/>
+                       <input type="text" name="res_dt" value="{@res_dt}"/>
                     </td>
                 </tr>
                 <tr>
-                    <th>v2</th>
+                    <th>res_nt</th>
                     <td>
-                       <input type="text" name="res_v2" value="{@res_v2}"/>
+                       <input type="text" name="res_nt" value="{@res_nt}"/>
                     </td>
                 </tr>
                 <tr>
