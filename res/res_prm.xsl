@@ -31,7 +31,7 @@
                         <a href="#" onclick="fn_get('prm.php?mth=plot&amp;prm_id={@prm_id}',disp);">plot</a>
                     </td>-->
                     <td>
-                        <a href="res.php?mth=itp&amp;res_id={@res_id}&amp;prm_id={@prm_id}">itp</a>
+                        <a href="res.php?mth=itp&amp;res_id={@res_id}&amp;prm_id={@prm_id}">res_itp</a>
                     </td>
                 </tr>
             </xsl:for-each> 

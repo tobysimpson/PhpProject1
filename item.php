@@ -51,7 +51,7 @@ function item_list() {
 
 function item_xml() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM item_info;");
+    $qry = $db->conn->prepare("SELECT * FROM item_info ORDER BY item_val1;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res, "item/item_list.xsl");

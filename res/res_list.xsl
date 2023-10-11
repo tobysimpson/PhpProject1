@@ -50,7 +50,7 @@
                         <a href="res.php?mth=grp&amp;res_id={@res_id}">grp</a>
                     </td>
                     <td>
-                        <a href="res.php?mth=prm&amp;res_id={@res_id}">prm</a>
+                        <a href="res.php?mth=prm&amp;res_id={@res_id}">res_prm</a>
                     </td>
                 </tr>
             </xsl:for-each> 

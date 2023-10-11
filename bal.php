@@ -40,7 +40,7 @@ function bal_sum() {
     $res = $qry->get_result();
     $dom1 = cls_xml::res2dom($res);
     $res->close();
-//    echo $dom1->saveXML();
+//    echo $dom1->saveXML;
     $xsl = cls_xml::file2dom("bal/bal_sum.xsl");
     echo cls_xml::xsltrans($dom1, $xsl);
 }

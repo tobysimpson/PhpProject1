@@ -49,7 +49,8 @@
                         <xsl:value-of select="format-number(@item_val2, '###,##0.000')"/>
                     </td>
                     <td>
-                        <input type="range"  value="{@item_val2}" onchange="window.location.assign('item.php?mth=test&amp;item_id={@item_id}&amp;fld_name=item_val2&amp;fld_val='+this.value)"/>
+                        <!-- style="appearance: slider-vertical;" -->
+                        <input type="range" value="{@item_val2}" onchange="window.location.assign('item.php?mth=test&amp;item_id={@item_id}&amp;fld_name=item_val2&amp;fld_val='+this.value)"/>
                     </td>
                     <td>
                         <a>

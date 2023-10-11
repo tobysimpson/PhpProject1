@@ -35,10 +35,10 @@
                         <a href="#" onclick="console.log('plot'+{@prm_id});fn_get('prm.php?mth=plot&amp;prm_id={@prm_id}',disp);">plot</a>
                     </td>
                     <td>
-                        <a href="prm.php?mth=def&amp;prm_id={@prm_id}">def</a>
+                        <a href="prm.php?mth=def&amp;prm_id={@prm_id}">prm_def</a>
                     </td>
                     <td>
-                        <a href="prm.php?mth=usr&amp;prm_id={@prm_id}">usr</a>
+                        <a href="prm.php?mth=usr&amp;prm_id={@prm_id}">prm_usr</a>
                     </td>
                 </tr>
             </xsl:for-each> 
