@@ -96,7 +96,7 @@ function prm_ups1() {
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
     $p = filter_input(INPUT_GET, "p", FILTER_VALIDATE_INT);
     $du = filter_input(INPUT_GET, "du", FILTER_VALIDATE_FLOAT);
-    $qry = $db->conn->prepare("INSERT INTO prm_usr (res_id, prm_id, p, du ) VALUES ({$res_id},{$prm_id},{$p},{$du}) ON DUPLICATE KEY UPDATE du= {$du};");
+    $qry = $db->conn->prepare("INSERT INTO prm_usr (res_id, prm_id, p, du) VALUES ({$res_id},{$prm_id},{$p},{$du}) ON DUPLICATE KEY UPDATE du = {$du};");
     $qry->execute();
     header("Location: res.php?mth=prm&res_id=".$res_id."&prm_id=".$prm_id);
 }
@@ -107,11 +107,19 @@ function prm_ups2() {
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
     $p = filter_input(INPUT_GET, "p", FILTER_VALIDATE_INT);
-    $u0 = filter_input(INPUT_GET, "u0", FILTER_VALIDATE_FLOAT);
+//    $u0 = filter_input(INPUT_GET, "u0", FILTER_VALIDATE_FLOAT);
     $u1 = filter_input(INPUT_GET, "u1", FILTER_VALIDATE_FLOAT);
-    $du = $u1 - $u0; 
-    $qry = $db->conn->prepare("INSERT INTO prm_usr (res_id, prm_id, p, du ) VALUES ({$res_id},{$prm_id},{$p},{$du}) ON DUPLICATE KEY UPDATE du = du + {$du};");
+    //get prior
+    $qry = $db->conn->prepare("SELECT u FROM res_prm WHERE res_id={$res_id} AND prm_id={$prm_id} AND p={$p} LIMIT 1;");
     $qry->execute();
+    $res = $qry->get_result();
+    $val = $res->fetch_array(MYSQLI_NUM);
+    $u0 = $val[0];
+    //diff
+    $du = $u1 - $u0; 
+    $qry = $db->conn->prepare("INSERT INTO prm_usr (res_id, prm_id, p, du) VALUES ({$res_id},{$prm_id},{$p},{$du}) ON DUPLICATE KEY UPDATE du = du + {$du};"); //works
+    $qry->execute();
+    //nav
     header("Location: res.php?mth=prm&res_id=".$res_id."&prm_id=".$prm_id);
 }
 
