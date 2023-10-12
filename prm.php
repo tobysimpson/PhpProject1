@@ -19,6 +19,15 @@ switch ($mth) {
     case "plot":
         prm_plot();
         break;
+    case "ups1":
+        prm_ups1();
+        break;
+    case "ups2":
+        prm_ups2();
+        break;
+    case "clr":
+        prm_clr();
+        break;
     default:
         prm_list();
 }
@@ -78,4 +87,41 @@ function prm_plot() {
     echo cls_xml::xsltrans($xml, $xsl);
     header("Content-Type: image/svg+xml");
     echo $xml->saveXML();
+}
+
+
+function prm_ups1() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $p = filter_input(INPUT_GET, "p", FILTER_VALIDATE_INT);
+    $du = filter_input(INPUT_GET, "du", FILTER_VALIDATE_FLOAT);
+    $qry = $db->conn->prepare("INSERT INTO prm_usr (res_id, prm_id, p, du ) VALUES ({$res_id},{$prm_id},{$p},{$du}) ON DUPLICATE KEY UPDATE du= {$du};");
+    $qry->execute();
+    header("Location: res.php?mth=prm&res_id=".$res_id."&prm_id=".$prm_id);
+}
+
+
+function prm_ups2() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $p = filter_input(INPUT_GET, "p", FILTER_VALIDATE_INT);
+    $u0 = filter_input(INPUT_GET, "u0", FILTER_VALIDATE_FLOAT);
+    $u1 = filter_input(INPUT_GET, "u1", FILTER_VALIDATE_FLOAT);
+    $du = $u1 - $u0; 
+    $qry = $db->conn->prepare("INSERT INTO prm_usr (res_id, prm_id, p, du ) VALUES ({$res_id},{$prm_id},{$p},{$du}) ON DUPLICATE KEY UPDATE du = du + {$du};");
+    $qry->execute();
+    header("Location: res.php?mth=prm&res_id=".$res_id."&prm_id=".$prm_id);
+}
+
+
+function prm_clr() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $p = filter_input(INPUT_GET, "p", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("DELETE FROM prm_usr WHERE res_id={$res_id} AND prm_id={$prm_id} AND p={$p};");
+    $qry->execute();
+    header("Location: res.php?mth=prm&res_id=".$res_id."&prm_id=".$prm_id);
 }

@@ -101,7 +101,7 @@
                 
                 <!--<xsl:call-template name="polyline"/>-->
                 <!--<xsl:call-template name="bars"/>-->
-                <!--<xsl:call-template name="zero"/>-->
+                <xsl:call-template name="zero"/>
                 <!--<xsl:call-template name="line1"/>-->
                 <!--<xsl:call-template name="last"/>-->
                 <!--<xsl:call-template name="key"/>-->
