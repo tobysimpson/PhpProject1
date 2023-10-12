@@ -31,11 +31,11 @@ switch ($mth) {
     case "grp":
         res_grp();
         break;
+    case "prm_list":
+        prm_list();
+        break;
     case "prm":
         res_prm();
-        break;
-    case "itp":
-        res_itp();
         break;
     default:
         res_list();
@@ -137,27 +137,27 @@ function res_grp() {
 
 
 
-function res_prm() {
+function prm_list() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $qry = $db->conn->prepare("SELECT {$res_id} AS res_id, prm_info.* FROM prm_info;");
     $qry->execute();
     $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res, "res/res_prm.xsl");
+    $xml = cls_xml::res2dom($res, "res/res_prm_list.xsl");
     $res->close();
     header('Content-Type: text/xml');
     echo $xml->saveXML();
 }
 
 
-function res_itp() {
+function res_prm() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM res_itp WHERE res_id = {$res_id} AND prm_id = {$prm_id} ORDER BY res_id, prm_id, t , typ ASC;");
+    $qry = $db->conn->prepare("SELECT * FROM res_prm WHERE res_id = {$res_id} AND prm_id = {$prm_id} ORDER BY res_id, prm_id, p;");
     $qry->execute();
     $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res, "res/res_itp.xsl");
+    $xml = cls_xml::res2dom($res, "res/res_prm.xsl");
     $res->close();
     header('Content-Type: text/xml');
     echo $xml->saveXML();

@@ -11,38 +11,32 @@
     <xsl:template match="root">
         <table class="table1">
             <tr>
+                <th>res_id</th>
                 <th>prm_id</th>
-                <th>grp_id</th>
-                <th style="text-align:left;">prm_name</th>
+                <th>prm_name</th>
                 <th>u0</th>
                 <th colspan="3"/>
             </tr>
             <xsl:for-each select="row">
                 <tr>
                     <td>
-                        <xsl:value-of select="@prm_id"/>
+                        <xsl:value-of select="@res_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@grp_id"/>
+                        <xsl:value-of select="@prm_id"/>
                     </td>
-<!--                    <td>
-                        <xsl:value-of select="@prm_ord"/>
-                    </td>-->
                     <td style="text-align:left;">
                         <xsl:value-of select="@prm_name"/>
                     </td>
-                    <td style="text-align:right">
+                    <td>
                         <xsl:value-of select="format-number(@u0, '###,##0.000')"/>
                     </td>
-<!--                    <td>
-                        <a href="#" onclick="console.log('plot'+{@prm_id});fn_get('prm.php?mth=plot&amp;prm_id={@prm_id}',disp);">plot</a>
-                    </td>-->
-<!--                    <td>
-                        <a href="prm.php?mth=def&amp;prm_id={@prm_id}">prm_def</a>
+                    <td>
+                        <a href="res.php?mth=prm&amp;res_id={@res_id}&amp;prm_id={@prm_id}">res_prm</a>
                     </td>
                     <td>
-                        <a href="prm.php?mth=usr&amp;prm_id={@prm_id}">prm_usr</a>
-                    </td>-->
+                        <a href="#" onclick="fn_get('prm.php?mth=plot&amp;res_id={@res_id}&amp;prm_id={@prm_id}',disp);">prm_plot</a>
+                    </td>
                 </tr>
             </xsl:for-each> 
         </table>

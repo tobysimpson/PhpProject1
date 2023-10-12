@@ -97,7 +97,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="prm.php">prm_list</a>
+                    <a href="prm.php">prm_info</a>
                 </td>
             </tr>
             <tr>

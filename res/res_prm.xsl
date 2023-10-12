@@ -13,7 +13,10 @@
             <tr>
                 <th>res_id</th>
                 <th>prm_id</th>
-                <th>prm_name</th>
+                <th>p</th>
+                <th>t</th>
+                <th>du</th>
+                <th>u</th>
                 <th colspan="3"/>
             </tr>
             <xsl:for-each select="row">
@@ -21,18 +24,24 @@
                     <td>
                         <xsl:value-of select="@res_id"/>
                     </td>
-                                       <td>
+                    <td>
                         <xsl:value-of select="@prm_id"/>
                     </td>
-                    <td style="text-align:left;">
-                        <xsl:value-of select="@prm_name"/>
+                    <td>
+                        <xsl:value-of select="@p"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="format-number(@t, '###,##0.000')"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="format-number(@du, '###,##0.000')"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="format-number(@u, '###,##0.000')"/>
                     </td>
 <!--                    <td>
-                        <a href="#" onclick="fn_get('prm.php?mth=plot&amp;prm_id={@prm_id}',disp);">plot</a>
+                        <a href="prm.php?mth=def&amp;prm_id={@prm_id}">def</a>
                     </td>-->
-                    <td>
-                        <a href="res.php?mth=itp&amp;res_id={@res_id}&amp;prm_id={@prm_id}">res_itp</a>
-                    </td>
                 </tr>
             </xsl:for-each> 
         </table>

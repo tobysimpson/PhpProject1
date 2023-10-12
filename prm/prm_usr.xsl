@@ -13,9 +13,9 @@
             <tr>
                 <th>res_id</th>
                 <th>prm_id</th>
-                <th>ele_id</th>
+                <th>p</th>
                 <th>t</th>
-                <th>v</th>
+                <th>u</th>
                 <th colspan="3"/>
             </tr>
             <xsl:for-each select="row">
@@ -27,13 +27,13 @@
                         <xsl:value-of select="@prm_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@ele_id"/>
+                        <xsl:value-of select="@p"/>
                     </td>
                     <td>
                         <xsl:value-of select="format-number(@t, '###,##0.000')"/>
                     </td>
                     <td>
-                        <xsl:value-of select="format-number(@v, '###,##0.000')"/>
+                        <xsl:value-of select="format-number(@u, '###,##0.000')"/>
                     </td>
 <!--                    <td>
                         <a href="prm.php?mth=def&amp;prm_id={@prm_id}">def</a>

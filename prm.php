@@ -67,8 +67,9 @@ function prm_usr() {
 
 function prm_plot() {
     $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM prm_def WHERE prm_id = {$prm_id} ORDER BY t ASC;");
+    $qry = $db->conn->prepare("SELECT * FROM res_prm WHERE res_id = {$res_id} AND prm_id = {$prm_id} ORDER BY p ASC;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);

@@ -14,7 +14,7 @@
     <xsl:variable name="wo" select="0.05 * $w"/>
     
     <xsl:variable name="tt" select="root/row/@t" />
-    <xsl:variable name="vv" select="root/row/@v" />
+    <xsl:variable name="vv" select="root/row/@u" />
                 
     <xsl:variable name="tmin">
         <xsl:call-template name="min">
@@ -51,7 +51,7 @@
             <style>* { font-size: 10pt; font-family: sans-serif; font-weight: 300; }</style> 
             
             <xsl:call-template name="title">
-                <xsl:with-param name="txt" select="row/@prm_id" />
+                <xsl:with-param name="txt" select="row/@prm_name" />
             </xsl:call-template>
            
     
@@ -102,10 +102,15 @@
                 <!--<xsl:call-template name="polyline"/>-->
                 <!--<xsl:call-template name="bars"/>-->
                 <!--<xsl:call-template name="zero"/>-->
-                <!--<xsl:call-template name="line"/>-->
+                <!--<xsl:call-template name="line1"/>-->
                 <!--<xsl:call-template name="last"/>-->
                 <!--<xsl:call-template name="key"/>-->
                 <!--<xsl:call-template name="dots">-->
+                
+                <xsl:call-template name="line1">
+                    <xsl:with-param name="tt" select="$tt" />
+                    <xsl:with-param name="vv" select="$vv" />
+                </xsl:call-template>
 
                 <xsl:call-template name="dots1">
                     <xsl:with-param name="tt" select="$tt" />
