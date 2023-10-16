@@ -16,8 +16,8 @@
             <tr>
                 <th>res_id</th>
                 <th>res_name</th>
-                <th>res_dt</th>
-                <th>res_nt</th>
+                <th>dt</th>
+                <th>nt</th>
                 <th colspan="7"/>
             </tr>
             <xsl:for-each select="row">
@@ -29,10 +29,10 @@
                         <xsl:value-of select="@res_name"/>
                     </td>
                     <td>
-                        <xsl:value-of select="format-number(@res_dt,'0.000')"/>
+                        <xsl:value-of select="format-number(@dt,'0.000')"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@res_nt"/>
+                        <xsl:value-of select="@nt"/>
                     </td>
                     <td>
                         <a href="res.php?mth=edit&amp;res_id={@res_id}">edit</a>

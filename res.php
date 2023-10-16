@@ -70,9 +70,9 @@ function res_update() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_POST, "res_id", FILTER_VALIDATE_INT);
     $res_name = filter_input(INPUT_POST, "res_name", FILTER_SANITIZE_STRING);
-    $res_dt = filter_input(INPUT_POST, "res_dt", FILTER_VALIDATE_FLOAT);
-    $res_nt = filter_input(INPUT_POST, "res_nt", FILTER_VALIDATE_FLOAT);
-    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}', res_dt={$res_dt}, res_nt={$res_nt} WHERE res_id = {$res_id};");
+    $dt = filter_input(INPUT_POST, "dt", FILTER_VALIDATE_FLOAT);
+    $nt = filter_input(INPUT_POST, "nt", FILTER_VALIDATE_FLOAT);
+    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}', dt={$dt}, nt={$nt} WHERE res_id = {$res_id};");
     $qry->execute();
     header("Location: res.php");
 }

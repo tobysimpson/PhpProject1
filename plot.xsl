@@ -119,7 +119,23 @@
     </xsl:template>
     
 
-    
+    <xsl:template name="step1">
+        <xsl:param name="tt"/>
+        <xsl:param name="vv"/>
+        <g id="dots">
+            <xsl:for-each select="$tt">
+                <xsl:variable name="i" select="position()"/>
+                <xsl:variable name="x1" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.0')"/>
+                <xsl:variable name="x2" select="format-number($pw * ($tt[$i+1] - $tmin) div $trng,'0.0')"/>
+                <xsl:variable name="y1" select="format-number($ph * (1 - ($vv[$i] - $vmin) div $vrng),'0.0')"/>
+                <xsl:variable name="y2" select="format-number($ph * (1 - ($vv[$i+1] - $vmin) div $vrng),'0.0')"/>
+                 <xsl:if test="position() != last()">
+                    <line x1="{$x1}" x2="{$x2}" y1="{$y1}"  y2="{$y1}" stroke="blue"/>
+                    <line x1="{$x2}" x2="{$x2}" y1="{$y1}"  y2="{$y2}" stroke="blue"/>
+                 </xsl:if>
+            </xsl:for-each>
+        </g>
+    </xsl:template>
     
 
     <xsl:template name="line">

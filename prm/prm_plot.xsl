@@ -44,7 +44,6 @@
     <xsl:variable name="vrng" select="$vmax - $vmin"/>
     <xsl:variable name="pzro" select="$ph * $vmax div $vrng"/>
     
-    
    
     <xsl:template match="root">
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
@@ -117,14 +116,19 @@
                     <xsl:with-param name="vv" select="$vv" />
                 </xsl:call-template>
                 
+<!--                <xsl:call-template name="step1">
+                    <xsl:with-param name="tt" select="$tt" />
+                    <xsl:with-param name="vv" select="$vv" />
+                </xsl:call-template>-->
                 
-                <g id="vgrid">
+                
+<!--                <g id="vgrid">
                     <line x1="{(0.0 div $tmax) * $pw}" x2="{(0.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
                     <line x1="{(1.0 div $tmax) * $pw}" x2="{(1.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
                     <line x1="{(2.0 div $tmax) * $pw}" x2="{(2.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
                     <line x1="{(3.0 div $tmax) * $pw}" x2="{(3.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
                     <line x1="{(4.0 div $tmax) * $pw}" x2="{(4.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
-                </g>
+                </g>-->
                 
               
             </g>
