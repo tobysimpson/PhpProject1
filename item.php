@@ -34,13 +34,16 @@ switch ($mth) {
     case "test":
         item_test();
         break;
+    case "sp":
+        item_sp();
+        break;
     default:
         item_list();
 }
 
 function item_list() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM item_info ORDER BY item_val1;");
+    $qry = $db->conn->prepare("SELECT * FROM item_info;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
@@ -51,7 +54,7 @@ function item_list() {
 
 function item_xml() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM item_info ORDER BY item_val1;");
+    $qry = $db->conn->prepare("SELECT * FROM item_info;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res, "item/item_list.xsl");
@@ -85,8 +88,6 @@ function item_edit() {
     $res->close();
 }
 
-
-
 function item_svg() {
     $db = new cls_db();
     $qry = $db->conn->prepare("SELECT * FROM item_info ORDER BY item_val1;");
@@ -112,11 +113,10 @@ function item_update() {
     header("Location: item.php");
 }
 
-
 function item_insert() {
     $db = new cls_db();
-    $v1 = 100*rand()/getrandmax();  
-    $v2 = pow($v1/10,2);  
+    $v1 = 100 * rand() / getrandmax();
+    $v2 = pow($v1 / 10, 2);
 //    $v2 = 10*sin($v1 * pi());
     $qry = $db->conn->prepare("INSERT INTO item_info (item_val1, item_val2) VALUES ({$v1},{$v2});");
 //    $qry->bind_param("dd", $v1, $v2);
@@ -131,16 +131,40 @@ function item_reset() {
     header("Location: item.php?mth=list");
 }
 
-
 function item_test() {
-    $db        = new cls_db();
-    $item_id   = filter_input(INPUT_GET, "item_id", FILTER_VALIDATE_INT);
-    $fld_name  = filter_input(INPUT_GET, "fld_name", FILTER_SANITIZE_STRING);
+    $db = new cls_db();
+    $item_id = filter_input(INPUT_GET, "item_id", FILTER_VALIDATE_INT);
+    $fld_name = filter_input(INPUT_GET, "fld_name", FILTER_SANITIZE_STRING);
     $fld_val = filter_input(INPUT_GET, "fld_val", FILTER_VALIDATE_FLOAT);
 
     $qry = $db->conn->prepare("UPDATE item_info SET item_updated = LOCALTIMESTAMP(), {$fld_name} = {$fld_val} WHERE item_id = {$item_id};");
 
     $qry->execute();
-    
+
     header("Location: item.php?mth=list");
+}
+
+function item_sp() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->multi_query("CALL sp_test1({$res_id},{$prm_id});");
+
+    printf('<root>');
+
+    do {
+        if ($res = $db->conn->store_result()) {
+            printf('<rows>');
+            while ($row = $res->fetch_assoc()) {
+                printf('<row ');
+                foreach ($row as $key => $val) {
+                    echo $key, '=', $val, ' ';
+                }
+                printf('/>');
+            }
+            printf('</rows>');
+        }
+    } while ($db->conn->next_result());
+
+    printf('</root>');
 }
