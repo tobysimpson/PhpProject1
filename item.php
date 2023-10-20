@@ -150,21 +150,40 @@ function item_sp() {
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
     $qry = $db->conn->multi_query("CALL sp_test1({$res_id},{$prm_id});");
 
-    printf('<root>');
-
-    do {
-        if ($res = $db->conn->store_result()) {
-            printf('<rows>');
-            while ($row = $res->fetch_assoc()) {
-                printf('<row ');
-                foreach ($row as $key => $val) {
-                    echo $key, '=', $val, ' ';
-                }
-                printf('/>');
-            }
-            printf('</rows>');
-        }
-    } while ($db->conn->next_result());
-
-    printf('</root>');
+    
+    $dom = cls_xml::mul2dom($db->conn, "item_test.xsl");
+    
+    
+//    $dom = new DOMDocument('1.0', 'utf-8');
+//    $dom->formatOutput = true;
+//    $root = $dom->createElement('root');
+//    $dom->appendChild($root);
+//
+//    $prc = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="hello.xsl"');
+//    $dom->appendChild($prc);
+//
+//    do {
+//        if ($res = $db->conn->store_result()) {
+//
+//            $rows = $dom->createElement('tbl');
+//            $root->appendChild($rows);
+//
+//            while ($row = $res->fetch_assoc()) {
+//                $node = $dom->createElement('row');
+//                foreach ($row as $key => $val) {
+//                    $node->setAttribute($key, $val);
+//                }
+//                $rows->appendChild($node);
+//
+////                printf('<row ');
+////                foreach ($row as $key => $val) {
+////                    echo $key, '=', $val, ' ';
+////                }
+////                printf('/>');
+//            }
+////            printf('</rows>');
+//        }
+//    } while ($db->conn->next_result());
+    
+    echo $dom->saveXML();
 }
