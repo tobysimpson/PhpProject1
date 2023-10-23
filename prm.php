@@ -13,8 +13,8 @@ switch ($mth) {
     case "def":
         prm_def();
         break;
-    case "usr":
-        prm_usr();
+    case "edit":
+        prm_edit();
         break;
     case "plot":
         prm_plot();
@@ -54,16 +54,19 @@ function prm_list() {
 }
 
 
-function prm_usr() {
+function prm_edit() {
     $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM prm_usr WHERE prm_id = {$prm_id} ORDER BY res_id, prm_id, t ASC;");
+    $p = filter_input(INPUT_GET, "p", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT * FROM res_prm WHERE res_id = {$res_id} AND prm_id = {$prm_id} AND p = {$p};");
     $qry->execute();
     $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res, "prm/prm_usr.xsl");
+    $xml = cls_xml::res2dom($res);
     $res->close();
+    $xsl = cls_xml::file2dom("prm/prm_edit.xsl");
     header('Content-Type: text/xml');
-    echo $xml->saveXML();
+    echo cls_xml::xsltrans($xml, $xsl);
 }
 
 function prm_plot() {
@@ -76,9 +79,9 @@ function prm_plot() {
     $xml = cls_xml::res2dom($res);
     $res->close();
     $xsl = cls_xml::file2dom("prm/prm_plot.xsl");
+//    header("Content-Type: image/svg+xml");
+    header('Content-Type: text/xml');
     echo cls_xml::xsltrans($xml, $xsl);
-    header("Content-Type: image/svg+xml");
-    echo $xml->saveXML();
 }
 
 
@@ -90,7 +93,7 @@ function prm_ups1() {
     $u = filter_input(INPUT_GET, "u", FILTER_VALIDATE_FLOAT);
     $qry = $db->conn->prepare("INSERT INTO prm_usr (res_id, prm_id, p, u) VALUES ({$res_id},{$prm_id},{$p},{$u}) ON DUPLICATE KEY UPDATE u = {$u};");
     $qry->execute();
-    header("Location: res.php?mth=prm&res_id=".$res_id."&prm_id=".$prm_id);
+    header("Location: prm.php?mth=plot&res_id=".$res_id."&prm_id=".$prm_id);
 }
 
 
@@ -123,7 +126,7 @@ function prm_clr() {
     $p = filter_input(INPUT_GET, "p", FILTER_VALIDATE_INT);
     $qry = $db->conn->prepare("DELETE FROM prm_usr WHERE res_id={$res_id} AND prm_id={$prm_id} AND p={$p};");
     $qry->execute();
-    header("Location: res.php?mth=prm&res_id=".$res_id."&prm_id=".$prm_id);
+    header("Location: prm.php?mth=plot&res_id=".$res_id."&prm_id=".$prm_id);
 }
 
 

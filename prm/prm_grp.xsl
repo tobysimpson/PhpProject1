@@ -46,6 +46,7 @@
         </table>
         <hr/>
         <div id="div3"></div>
-        
+        <hr/>
+        <div id="div4"></div>
     </xsl:template>
 </xsl:stylesheet>

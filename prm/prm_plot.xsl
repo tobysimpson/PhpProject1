@@ -77,62 +77,38 @@
                     </text>
                 </g>
                 
-                <!--                <g id="zero">
-                    <xsl:if test="$vmin != 0">
-                    
-                        <text x="{$pw + 10}" y="{$pzro}" alignment-baseline="middle">
-                            <xsl:value-of select="format-number(0,'0.00')"/>
-                        </text>
-                        <line x1="0" y1="{$pzro}" x2="{$pw}" y2="{$pzro}" stroke="lightgrey" />
-                    </xsl:if>
-                </g>-->
 
+                <!--                <xsl:call-template name="dots1">
+                    <xsl:with-param name="tt" select="$tt" />
+                    <xsl:with-param name="vv" select="$vv" />
+                </xsl:call-template>-->
                 
-                <!--                <g id="bar1">
-                    <xsl:for-each select="row">
-                        <xsl:sort select="@t" data-type="number" order="ascending"/>
-                        <xsl:variable name="x" select="format-number($pw * (@t - $t_min) div $t_rng,'0')"/>
-                        <xsl:variable name="y" select="format-number($ph * (1 - (@v1 - $v_min) div $v_rng),'0')"/>
-                        <rect x="{$x - ($t_w div 2)}" y="{$ph - $y}" width="{$t_w}" height="{$y}" fill="#EEEEFF"/>
+                
+                
+                <g id="steps">
+                    <xsl:for-each select="$tt">
+                        <xsl:variable name="p" select="position()"/>
+                        <xsl:variable name="x1" select="format-number($pw * ($tt[$p] - $tmin) div $trng,'0.0')"/>
+                        <xsl:variable name="y1" select="format-number($ph * (1 - ($vv[$p] - $vmin) div $vrng),'0.0')"/>
+                        <xsl:variable name="x2" select="format-number($pw * ($tt[$p + 1] - $tmin) div $trng,'0.0')"/>
+                        <xsl:variable name="y2" select="format-number($ph * (1 - ($vv[$p + 1] - $vmin) div $vrng),'0.0')"/>
+                        <xsl:if test="position() != last()">
+                            <line x1="{$x1}" y1="{$y1}" x2="{$x2}" y2="{$y1}" stroke="gray" />
+                            <xsl:if test="position() != 0">
+                                <line x1="{$x2}" y1="{$y1}" x2="{$x2}" y2="{$y2}" stroke="gray"  stroke-dasharray="5,5"/> 
+                                <circle cx="{$x2}" cy="{$y1}" r="3" stroke="gray" fill="white"/>
+                            </xsl:if>
+                        </xsl:if>
+                        <a href="#0" onclick="fn_get('prm.php?mth=edit&amp;res_id={//row/@res_id}&amp;prm_id={//row/@prm_id}&amp;p={$p - 1}',div4);">
+                            <circle cx="{$x1}" cy="{$y1}" r="3" stroke="gray" fill="gray"/>
+                        </a>
                     </xsl:for-each>
-                </g>-->
-                
-                
-                <!--<xsl:call-template name="polyline"/>-->
-                <!--<xsl:call-template name="bars"/>-->
-                <!--<xsl:call-template name="zero"/>-->
-                <!--<xsl:call-template name="line1"/>-->
-                <!--<xsl:call-template name="last"/>-->
-                <!--<xsl:call-template name="key"/>-->
-                <!--<xsl:call-template name="dots">-->
-                
-<!--                <xsl:call-template name="line1">
-                    <xsl:with-param name="tt" select="$tt" />
-                    <xsl:with-param name="vv" select="$vv" />
-                </xsl:call-template>-->
-
-<!--                <xsl:call-template name="dots1">
-                    <xsl:with-param name="tt" select="$tt" />
-                    <xsl:with-param name="vv" select="$vv" />
-                </xsl:call-template>-->
-                
-                <xsl:call-template name="step1">
-                    <xsl:with-param name="tt" select="$tt" />
-                    <xsl:with-param name="vv" select="$vv" />
-                </xsl:call-template>
-                
-                
-<!--                <g id="vgrid">
-                    <line x1="{(0.0 div $tmax) * $pw}" x2="{(0.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
-                    <line x1="{(1.0 div $tmax) * $pw}" x2="{(1.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
-                    <line x1="{(2.0 div $tmax) * $pw}" x2="{(2.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
-                    <line x1="{(3.0 div $tmax) * $pw}" x2="{(3.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
-                    <line x1="{(4.0 div $tmax) * $pw}" x2="{(4.0 div $tmax) * $pw}" y1="{0.0}"  y2="{$ph}" stroke="lightgrey" stroke-dasharray="5,5"/>
-                </g>-->
-                
-              
+                </g>
+               
             </g>
         </svg>
     </xsl:template>
+    
+    
 </xsl:stylesheet>
 

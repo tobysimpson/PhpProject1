@@ -29,6 +29,5 @@
         </table>
         <hr/>
         <div id="div2"></div>
-        
     </xsl:template>
 </xsl:stylesheet>

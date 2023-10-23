@@ -27,7 +27,7 @@
         <table>
             <tr>
                 <td>
-                    <a href="#0" onclick="fn_get('grp.php?mth=prm&amp;res_id={row/@res_id}',div1)">params</a>
+                    <a href="#0" onclick="fn_get('grp.php?mth=prm&amp;res_id={row/@res_id}',div1)">parameters</a>
                 </td>
             </tr>
         </table>
