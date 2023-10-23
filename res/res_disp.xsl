@@ -9,13 +9,6 @@
     </xsl:template>
 
     <xsl:template match="root">
-        <xsl:call-template name="res_head"/>
-        <hr/>
-        <xsl:call-template name="grp_nav"/>
-    </xsl:template>
-    
-    
-    <xsl:template name="res_head">
         <table>
             <tr>
                 <th>res_id</th>
@@ -23,30 +16,23 @@
             </tr>
             <tr>
                 <td>
-                    <xsl:value-of select="tbl[1]/row/@res_id"/>
+                    <xsl:value-of select="row/@res_id"/>
                 </td>
                 <td>
-                    <xsl:value-of select="tbl[1]/row/@res_name"/>
+                    <xsl:value-of select="row/@res_name"/>
                 </td>
             </tr>
         </table>
-    </xsl:template>
-    
-    
-    <xsl:template name="grp_nav">
+        <hr/>
         <table>
             <tr>
-                <xsl:for-each select="tbl[2]/row">
-                    <td>
-                        <a href="#0" onclick="console.log({//tbl[1]/row/@res_id},{@grp_id});">
-                            <xsl:value-of select="@grp_name"/>
-                        </a>
-                    </td>
-                </xsl:for-each>
+                <td>
+                    <a href="#0" onclick="fn_get('grp.php?mth=prm&amp;res_id={row/@res_id}',div1)">params</a>
+                </td>
             </tr>
         </table>
+        <hr/>
+        <div id="div1"></div>
     </xsl:template>
-    
-
     
 </xsl:stylesheet>

@@ -25,14 +25,19 @@
                     <td>
                         <xsl:value-of select="@res_id"/>
                     </td>
-                    <td style="text-align:left">
-                        <xsl:value-of select="@res_name"/>
+                    <td>
+                        <a href="res.php?mth=disp&amp;res_id={@res_id}">
+                            <xsl:value-of select="@res_name"/>
+                        </a>
                     </td>
                     <td>
                         <xsl:value-of select="format-number(@dt,'0.000')"/>
                     </td>
                     <td>
                         <xsl:value-of select="@nt"/>
+                    </td>
+                    <td>
+                        <a href="res.php?mth=disp&amp;res_id={@res_id}">disp</a>
                     </td>
                     <td>
                         <a href="res.php?mth=edit&amp;res_id={@res_id}">edit</a>

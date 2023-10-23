@@ -10,6 +10,9 @@ switch ($mth) {
     case "list":
         res_list();
         break;
+    case "disp":
+        res_disp();
+        break;
     case "edit":
         res_edit();
         break;
@@ -24,9 +27,6 @@ switch ($mth) {
         break;
     case "evt":
         res_evt();
-        break;
-    case "del":
-//        res_del();
         break;
     case "grp":
         res_grp();
@@ -48,6 +48,18 @@ function res_list() {
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res, "res/res_list.xsl");
+    $res->close();
+    header('Content-Type: text/xml');
+    echo $xml->saveXML();
+}
+
+function res_disp() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("SELECT * FROM res_info WHERE res_id = {$res_id};");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res, "res/res_disp.xsl");
     $res->close();
     header('Content-Type: text/xml');
     echo $xml->saveXML();
@@ -111,14 +123,6 @@ function res_evt() {
     $res->close();
     header('Content-Type: text/xml');
     echo $xml->saveXML();
-}
-
-
-function res_del() {
-    $db = new cls_db();
-    $qry = $db->conn->prepare("DELETE FROM res_info WHERE res_id NOT IN (SELECT DISTINCT res_id FROM evt_info);");
-    $qry->execute();
-    header("Location: res.php");
 }
 
 

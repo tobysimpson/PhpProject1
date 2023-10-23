@@ -61,7 +61,6 @@
     </xsl:template>
 
 
-
     <xsl:template name="key">
         <g id="key">
             <text x="0" y="40">
@@ -80,6 +79,7 @@
             </text>
         </g>
     </xsl:template>
+    
     
     <xsl:template name="zero">
         <g id="zero">
@@ -118,21 +118,26 @@
         </g>
     </xsl:template>
     
-
+    
     <xsl:template name="step1">
         <xsl:param name="tt"/>
         <xsl:param name="vv"/>
-        <g id="dots">
+        <g id="steps">
             <xsl:for-each select="$tt">
                 <xsl:variable name="i" select="position()"/>
                 <xsl:variable name="x1" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.0')"/>
-                <xsl:variable name="x2" select="format-number($pw * ($tt[$i+1] - $tmin) div $trng,'0.0')"/>
                 <xsl:variable name="y1" select="format-number($ph * (1 - ($vv[$i] - $vmin) div $vrng),'0.0')"/>
-                <xsl:variable name="y2" select="format-number($ph * (1 - ($vv[$i+1] - $vmin) div $vrng),'0.0')"/>
-                 <xsl:if test="position() != last()">
-                    <line x1="{$x1}" x2="{$x2}" y1="{$y1}"  y2="{$y1}" stroke="blue"/>
-                    <line x1="{$x2}" x2="{$x2}" y1="{$y1}"  y2="{$y2}" stroke="blue"/>
-                 </xsl:if>
+                <xsl:variable name="x2" select="format-number($pw * ($tt[$i + 1] - $tmin) div $trng,'0.0')"/>
+                <xsl:variable name="y2" select="format-number($ph * (1 - ($vv[$i + 1] - $vmin) div $vrng),'0.0')"/>
+                <xsl:if test="position() != last()">
+                    <line x1="{$x1}" y1="{$y1}" x2="{$x2}" y2="{$y1}" stroke="gray" />
+                    <xsl:if test="position() != 0">
+                        <line x1="{$x2}" y1="{$y1}" x2="{$x2}" y2="{$y2}" stroke="gray"  stroke-dasharray="5,5"/> 
+                        <circle cx="{$x2}" cy="{$y1}" r="3" stroke="gray" fill="white"/>
+                    </xsl:if>
+                </xsl:if>
+
+                <circle cx="{$x1}" cy="{$y1}" r="3" stroke="gray" fill="gray"/>
             </xsl:for-each>
         </g>
     </xsl:template>
@@ -243,7 +248,7 @@
                 <xsl:sort select="@t" data-type="number" order="ascending"/>
                 <xsl:variable name="x" select="format-number($pw * (@t - $tmin) div $trng,'0.0')"/>
                 <xsl:variable name="y" select="format-number($ph * (1 - (@v1 - $vmin) div $vrng),'0.0')"/>
-                <!--<circle cx="{$x}" cy="{$y}" r="1" fill="blue"/>-->
+                <circle cx="{$x}" cy="{$y}" r="1" fill="blue"/>
                 <line x1="{$x}" y1="{$pzro}" x2="{$x}" y2="{$y}" stroke="#4444FF" stroke-width="0.1"/>
             </xsl:for-each>
         </g>

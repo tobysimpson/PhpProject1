@@ -22,13 +22,18 @@
                 <!--layout--> 
                 <table width="100%">
                     <tr>
-                        <td colspan="2">
-                            <xsl:call-template name="head"/>
+                        <!--logo--> 
+                        <td>
+                            <a href="https://toby.euler.usi.ch/index.php">
+                                <img style="width:100px; height:auto;" src="https://toby.euler.usi.ch/img/logo_usi1.svg"/>
+                            </a>
                         </td>
+                        <!--head--> 
+                        <td/>
                     </tr>
                     <tr>
                         <!-- navigation -->
-                        <td width="150px" style="vertical-align:top">
+                        <td width="120px" style="vertical-align:top">
                             <xsl:call-template name="menu"/>
                         </td>
                         <!-- body -->
@@ -44,7 +49,7 @@
 
     <xsl:template name="menu">
         <table width="100%">
-<!--            <tr>
+            <!--            <tr>
                 <td>
                     <a href="index.php">home</a>
                 </td>
@@ -82,7 +87,7 @@
                     <a href="item.php?mth=xml">item_xml</a>
                 </td>
             </tr>
-<!--            <tr>
+            <!--            <tr>
                 <td>
                     <a href="item.php?mth=csv">item_csv</a>
                 </td>
@@ -100,6 +105,13 @@
                     <a href="prm.php">prm_info</a>
                 </td>
             </tr>
+            
+            <tr>
+                <td>
+                    <a href="item.php?mth=sp&amp;res_id=1&amp;prm_id=1">item_sp</a>
+                </td>
+            </tr>
+ 
             <tr>
                 <th style="text-align:left">users</th>
             </tr>

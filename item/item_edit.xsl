@@ -11,9 +11,10 @@
     
     
     <xsl:template match="root/row">
-        <table class="table2">
-            <form action="item.php?mth=update" method="post">
-               <tr>
+        <form action="item.php?mth=update" method="post">
+            <table class="table2">
+            
+                <tr>
                     <td>item_id</td>
                     <td>
                         <input type="text" name="item_id" readonly="true">
@@ -57,9 +58,12 @@
                     <td>
                         
                     </td>
-                    <td><input type="submit"/></td>
+                    <td>
+                        <input type="submit"/>
+                    </td>
                 </tr>
-            </form>
-        </table>
+            </table>
+        </form>
+
     </xsl:template>
 </xsl:stylesheet>

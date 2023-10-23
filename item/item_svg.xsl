@@ -15,7 +15,9 @@
     
     <xsl:template match="root">
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
-            <style>* { font-size: 10pt; font-family: sans-serif; font-weight: 300; }</style> 
+            <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="styles.css"/>
+            <!--<style>* { font-size: 10pt; font-family: sans-serif; font-weight: 300; }</style>--> 
+            
             <!-- title -->
             <g id="title">
                 <circle cx="10" cy="15" r="5" fill="blue"/>
@@ -68,12 +70,12 @@
                 </xsl:variable>
             
                 <g id="grid">
-                    <line x1="0" y1="{$ph * 0.0}" x2="{$pw}" y2="{$ph * 0.0}" stroke="lightgrey" />
-                    <line x1="0" y1="{$ph * 0.2}" x2="{$pw}" y2="{$ph * 0.2}" stroke="lightgrey" />
-                    <line x1="0" y1="{$ph * 0.4}" x2="{$pw}" y2="{$ph * 0.4}" stroke="lightgrey" />
-                    <line x1="0" y1="{$ph * 0.6}" x2="{$pw}" y2="{$ph * 0.6}" stroke="lightgrey" />
-                    <line x1="0" y1="{$ph * 0.8}" x2="{$pw}" y2="{$ph * 0.8}" stroke="lightgrey" />
-                    <line x1="0" y1="{$ph * 1.0}" x2="{$pw}" y2="{$ph * 1.0}" stroke="lightgrey" />
+                    <line x1="0" y1="{$ph * 0.0}" x2="{$pw}" y2="{$ph * 0.0}" stroke="lightgrey" stroke-dasharray="5,5"/>
+                    <line x1="0" y1="{$ph * 0.2}" x2="{$pw}" y2="{$ph * 0.2}" stroke="lightgrey" stroke-dasharray="5,5"/>
+                    <line x1="0" y1="{$ph * 0.4}" x2="{$pw}" y2="{$ph * 0.4}" stroke="lightgrey" stroke-dasharray="5,5"/>
+                    <line x1="0" y1="{$ph * 0.6}" x2="{$pw}" y2="{$ph * 0.6}" stroke="lightgrey" stroke-dasharray="5,5"/>
+                    <line x1="0" y1="{$ph * 0.8}" x2="{$pw}" y2="{$ph * 0.8}" stroke="lightgrey" stroke-dasharray="5,5"/>
+                    <line x1="0" y1="{$ph * 1.0}" x2="{$pw}" y2="{$ph * 1.0}" stroke="lightgrey" stroke-dasharray="5,5"/>
                 </g>
          
                 <g id="key">
@@ -126,18 +128,22 @@
                         <xsl:sort select="@item_val1" data-type="number" order="ascending"/>
                         <xsl:variable name="x" select="format-number($pw * (@item_val1 - $x_min) div $x_rng,'0.000')"/>
                         <xsl:variable name="y" select="format-number($ph * (1 - (@item_val2 - $y_min) div $y_rng),'0.000')"/>
-                        <a>
+                        <!--                        <a>
                             <xsl:attribute name="href">
                                 <xsl:text>item.php?mth=edit&amp;item_id=</xsl:text>
                                 <xsl:value-of select="@item_id"/>
                             </xsl:attribute>
                             <circle cx="{$x}" cy="{$y}" r="5" stroke="red" fill="lightgrey"/>
+                        </a> href="#"-->
+                        <a onclick="fn_get('item.php?mth=edit&amp;item_id={@item_id}',disp);">
+                            <circle cx="{$x}" cy="{$y}" r="5" stroke="red" fill="lightgrey"/>
                         </a>
+                        
                         <xsl:if test="@item_name!='NULL'">
                             <text x="{$x}" y="{$y+15}" text-anchor="middle" alignment-baseline="middle">
                                 <xsl:value-of select="@item_name"/>
                             </text>
-<!--                            <xsl:text>(</xsl:text>
+                            <!--                            <xsl:text>(</xsl:text>
                             <xsl:value-of select="format-number(@item_val1,'0.000')"/>
                             <xsl:text>,</xsl:text>
                             <xsl:value-of select="format-number(@item_val2,'0.000')"/>
@@ -149,6 +155,7 @@
         
             </g>
         </svg>
+        <div id="disp"></div>
     </xsl:template>
 </xsl:stylesheet>
 

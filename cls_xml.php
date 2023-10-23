@@ -53,19 +53,26 @@ class cls_xml {
      * =========================
      */
 
+    public static function res2arr($res) {
+        $arr = array();
+        while ($row = $res->fetch_assoc()) {
+            $arr[] = $row;
+        }
+        return $arr;
+    }
+
     public static function res2dom($res, $xsl = "") {
         $dom = new DOMDocument('1.0', 'utf-8');
         $dom->formatOutput = true;
 
-        if(strlen($xsl)>0)
-        {        
-            $prc = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="'.$xsl.'"');
+        if (strlen($xsl) > 0) {
+            $prc = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="' . $xsl . '"');
             $dom->appendChild($prc);
         }
-        
+
         $root = $dom->createElement('root');
         $dom->appendChild($root);
-        
+
         //fields
 //        while ($finfo = $res->fetch_field()) {
 //            $node = $dom->createElement('fld');
@@ -76,6 +83,7 @@ class cls_xml {
 //            $node->setAttribute("max_length", $finfo->max_length);
 //            $root->appendChild($node);
 //        }
+//        
         //rows
         while ($row = $res->fetch_assoc()) {
             $node = $dom->createElement('row');
@@ -87,12 +95,36 @@ class cls_xml {
         return $dom;
     }
 
-    public static function res2arr($res) {
-        $arr = array();
-        while ($row = $res->fetch_assoc()) {
-            $arr[] = $row;
+    public static function mul2dom($conn, $xsl = "") {
+        $dom = new DOMDocument('1.0', 'utf-8');
+        $dom->formatOutput = true;
+
+        if (strlen($xsl) > 0) {
+            $prc = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="' . $xsl . '"');
+            $dom->appendChild($prc);
         }
-        return $arr;
+
+        $root = $dom->createElement('root');
+        $dom->appendChild($root);
+
+        do {
+            $res = $conn->store_result();
+
+            if ($res) {
+                $rows = $dom->createElement('tbl');
+                $root->appendChild($rows);
+
+                while ($row = $res->fetch_assoc()) {
+                    $node = $dom->createElement('row');
+                    foreach ($row as $key => $val) {
+                        $node->setAttribute($key, $val);
+                    }
+                    $rows->appendChild($node);
+                }
+            }
+        } while ($conn->next_result());
+
+        return $dom;
     }
 
 }
