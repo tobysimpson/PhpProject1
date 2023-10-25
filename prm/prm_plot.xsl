@@ -64,24 +64,24 @@
                 
                 <g id="labels">
                     <text x="{$pw + 10}" y="0" alignment-baseline="middle">
-                        <xsl:value-of select="format-number($vmax,'0.00')"/>
+                        <xsl:value-of select="format-number($vmax,'0.000')"/>
                     </text>
                     <text x="{$pw + 10}" y="{$ph}" alignment-baseline="middle">
-                        <xsl:value-of select="format-number($vmin,'0.00')"/>
+                        <xsl:value-of select="format-number($vmin,'0.000')"/>
                     </text>
                     <text x="0" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
-                        <xsl:value-of select="format-number($tmin,'0.00')"/>
+                        <xsl:value-of select="format-number($tmin,'0.000')"/>
                     </text>
                     <text x="{$pw}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
-                        <xsl:value-of select="format-number($tmax,'0.00')"/>
+                        <xsl:value-of select="format-number($tmax,'0.000')"/>
                     </text>
                 </g>
                 
 
-                <!--                <xsl:call-template name="dots1">
+                <xsl:call-template name="dots1">
                     <xsl:with-param name="tt" select="$tt" />
                     <xsl:with-param name="vv" select="$vv" />
-                </xsl:call-template>-->
+                </xsl:call-template>
                 
                 
                 

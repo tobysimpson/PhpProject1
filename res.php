@@ -95,7 +95,7 @@ function res_insert() {
     $qry = $db->conn->prepare("INSERT INTO res_info (res_name) VALUES ('new');");
     $qry->execute();
     $res_id = $qry->insert_id;
-    header("Location: res.php?mth=edit&res_id=".$res_id);
+    header("Location: res.php?mth=disp&res_id=".$res_id);
 }
 
 

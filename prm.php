@@ -19,6 +19,9 @@ switch ($mth) {
     case "plot":
         prm_plot();
         break;
+    case "tbl":
+        prm_tbl();
+        break;
     case "ups1":
         prm_ups1();
         break;
@@ -73,12 +76,27 @@ function prm_plot() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM res_prm WHERE res_id = {$res_id} AND prm_id = {$prm_id} ORDER BY p ASC;");
+    $qry = $db->conn->prepare("CALL sp_prm_plot({$res_id},{$prm_id});");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
     $res->close();
     $xsl = cls_xml::file2dom("prm/prm_plot.xsl");
+//    header("Content-Type: image/svg+xml");
+    header('Content-Type: text/xml');
+    echo cls_xml::xsltrans($xml, $xsl);
+}
+
+function prm_tbl() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("CALL sp_prm_plot({$res_id},{$prm_id});");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res);
+    $res->close();
+    $xsl = cls_xml::file2dom("prm/prm_tbl.xsl");
 //    header("Content-Type: image/svg+xml");
     header('Content-Type: text/xml');
     echo cls_xml::xsltrans($xml, $xsl);
