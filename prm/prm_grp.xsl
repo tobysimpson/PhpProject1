@@ -32,18 +32,19 @@
                     <td>
                         <xsl:value-of select="format-number(@prm_def, '###,##0.000')"/>
                     </td>
+                    <!--
                     <td>
                         <a href="#0" onclick="fn_get('prm.php?mth=plot&amp;res_id={@res_id}&amp;prm_id={@prm_id}',div3);">plot</a>
                     </td>
                     <td>
                         <a href="#0" onclick="fn_get('prm.php?mth=tbl&amp;res_id={@res_id}&amp;prm_id={@prm_id}',div4);">table</a>
                     </td>
+                    -->
                 </tr>
             </xsl:for-each> 
         </table>
         <hr/>
         <div id="div3"></div>
-        <hr/>
-        <div id="div4"></div>
+
     </xsl:template>
 </xsl:stylesheet>
