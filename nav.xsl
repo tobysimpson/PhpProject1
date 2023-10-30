@@ -48,7 +48,7 @@
     
 
     <xsl:template name="menu">
-        <table width="100%">
+        <table width="100%" class="table2">
             <!--            <tr>
                 <td>
                     <a href="index.php">home</a>
@@ -98,6 +98,13 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <a href="item.php?mth=sp&amp;res_id=1&amp;prm_id=1">item_sp</a>
+                </td>
+            </tr>
+            
+            
+            <tr>
                 <th style="text-align:left">prm</th>
             </tr>
             <tr>
@@ -106,11 +113,7 @@
                 </td>
             </tr>
             
-            <tr>
-                <td>
-                    <a href="item.php?mth=sp&amp;res_id=1&amp;prm_id=1">item_sp</a>
-                </td>
-            </tr>
+
  
             <tr>
                 <th style="text-align:left">users</th>

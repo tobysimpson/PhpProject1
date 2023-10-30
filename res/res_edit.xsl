@@ -3,17 +3,18 @@
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="utf-8"/>
     
-    <xsl:include href="../nav.xsl"/>
+    <!--    <xsl:include href="../nav.xsl"/>
     
     <xsl:template match="/">
         <xsl:call-template name="page"/> 
-    </xsl:template>
+    </xsl:template>-->
     
     
     <xsl:template match="root/row">
-        <table class="table2">
-            <form action="res.php?mth=update" method="post">
-               <tr>
+        <form action="res.php?mth=update" method="post">
+            <table class="table2">
+            
+                <tr>
                     <th>res_id</th>
                     <td>
                         <input type="text" name="res_id" value="{@res_id}" readonly="true"/>
@@ -22,26 +23,29 @@
                 <tr>
                     <th>res_name</th>
                     <td>
-                       <input type="text" name="res_name" value="{@res_name}"/>
+                        <input type="text" name="res_name" value="{@res_name}"/>
                     </td>
                 </tr>
                 <tr>
                     <th>dt</th>
                     <td>
-                       <input type="text" name="dt" value="{@dt}"/>
+                        <input type="text" name="dt" value="{@dt}"/>
                     </td>
                 </tr>
                 <tr>
                     <th>nt</th>
                     <td>
-                       <input type="text" name="nt" value="{@nt}"/>
+                        <input type="text" name="nt" value="{@nt}"/>
                     </td>
                 </tr>
                 <tr>
-                    <td><input type="submit"/></td>
+                    <td>
+                        <input type="submit"/>
+                    </td>
                     <td/>
                 </tr>
-            </form>
-        </table>
+            </table>
+        </form>
+
     </xsl:template>
 </xsl:stylesheet>

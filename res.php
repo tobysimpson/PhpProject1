@@ -71,10 +71,11 @@ function res_edit() {
     $qry = $db->conn->prepare("SELECT * FROM res_info WHERE res_id = {$res_id};");
     $qry->execute();
     $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res, "res/res_edit.xsl");
+    $xml = cls_xml::res2dom($res);
     $res->close();
+    $xsl = cls_xml::file2dom("res/res_edit.xsl");
     header('Content-Type: text/xml');
-    echo $xml->saveXML();
+    echo cls_xml::xsltrans($xml, $xsl);
 }
 
 
@@ -86,7 +87,7 @@ function res_update() {
     $nt = filter_input(INPUT_POST, "nt", FILTER_VALIDATE_FLOAT);
     $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}', dt={$dt}, nt={$nt} WHERE res_id = {$res_id};");
     $qry->execute();
-    header("Location: res.php");
+    header("Location: res.php?mth=disp&res_id=".$res_id);
 }
 
 

@@ -11,7 +11,9 @@
                 <th>grp_id</th>
                 <th>prm_id</th>
                 <th>prm_name</th>
-                <th>u0</th>
+                <th>prm_def</th>
+                <th>prm_tick</th>
+                <th>prm_cal</th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -24,13 +26,19 @@
                     <td>
                         <xsl:value-of select="@prm_id"/>
                     </td>
-                    <td>
+                    <td style="text-align:left;">
                         <a href="#0" onclick="fn_get('prm.php?mth=plot&amp;res_id={@res_id}&amp;prm_id={@prm_id}',div3);">
                             <xsl:value-of select="@prm_name"/>
                         </a>
                     </td>
                     <td>
-                        <xsl:value-of select="format-number(@prm_def, '###,##0.000')"/>
+                        <xsl:value-of select="format-number(@prm_def, '0.000')"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="format-number(@prm_tick, '0.000')"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@prm_cal"/>
                     </td>
                     <!--
                     <td>

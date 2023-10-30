@@ -19,7 +19,7 @@
                     <td>
                         <xsl:value-of select="@grp_id"/>
                     </td>
-                    <td>
+                    <td  style="text-align:left;">
                         <a href="#0" onclick="fn_get('prm.php?mth=grp&amp;res_id={@res_id}&amp;grp_id={@grp_id}',div2);">
                             <xsl:value-of select="@grp_name"/>
                         </a>

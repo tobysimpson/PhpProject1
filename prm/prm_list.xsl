@@ -9,12 +9,14 @@
     </xsl:template>
 
     <xsl:template match="root">
-        <table class="table1">
+        <table>
             <tr>
                 <th>prm_id</th>
                 <th>grp_id</th>
-                <th style="text-align:left;">prm_name</th>
-                <th>u0</th>
+                <th>prm_name</th>
+                <th>prm_def</th>
+                <th>prm_tick</th>
+                <th>prm_cal</th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -24,29 +26,22 @@
                     <td>
                         <xsl:value-of select="@grp_id"/>
                     </td>
-<!--                    <td>
-                        <xsl:value-of select="@prm_ord"/>
-                    </td>-->
                     <td style="text-align:left;">
                         <xsl:value-of select="@prm_name"/>
                     </td>
-                    <td style="text-align:right">
-                        <xsl:value-of select="format-number(@u0, '###,##0.000')"/>
-                    </td>
-<!--                    <td>
-                        <a href="#" onclick="console.log('plot'+{@prm_id});fn_get('prm.php?mth=plot&amp;prm_id={@prm_id}',disp);">plot</a>
-                    </td>-->
-<!--                    <td>
-                        <a href="prm.php?mth=def&amp;prm_id={@prm_id}">prm_def</a>
+                    <td>
+                        <xsl:value-of select="format-number(@prm_def, '0.000')"/>
                     </td>
                     <td>
-                        <a href="prm.php?mth=usr&amp;prm_id={@prm_id}">prm_usr</a>
-                    </td>-->
+                        <xsl:value-of select="format-number(@prm_tick, '0.000')"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@prm_cal"/>
+                    </td>
                 </tr>
             </xsl:for-each> 
         </table>
         
-        <div id="disp"></div>
-        
+      
     </xsl:template>
 </xsl:stylesheet>

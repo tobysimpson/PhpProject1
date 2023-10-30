@@ -30,7 +30,6 @@ hr {height:1px;
     background-color:lightgray;}
 
 
-
 table {
     border-collapse: collapse;
 }
@@ -44,46 +43,21 @@ th{
     font-weight: 600;
 }
 
-/*
-
-.table1 tr{
+.table1 th{
     text-align: center;
-    border-bottom: 1pt solid #dddddd;
+    font-weight: 600;
 }
 
-.table2 tr{
-    text-align: left;
-    border-bottom: 1pt solid #dddddd;
+.table1 td{
+    text-align: center;
 }
+
 
 .table2 th{
-    font-weight: bold;
-}
-
-
-.table3 tr{
-    border-bottom: 1pt solid #dddddd;
-}
-
-.table3 td{
-    border: 1pt solid #dddddd;
     text-align: left;
-    padding: 4px;
+    font-weight: 600;
 }
 
-.table3 th{
-    border: 1pt solid #dddddd;
+.table2 td{
     text-align: left;
-    padding: 4px;
 }
-
-.input1{
-    width: 50px;
-    text-align: right;
-    border: none;
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-
-*/

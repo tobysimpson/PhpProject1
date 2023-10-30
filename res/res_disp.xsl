@@ -8,18 +8,30 @@
         <xsl:call-template name="page"/> 
     </xsl:template>
 
-    <xsl:template match="root">
+    <xsl:template match="root/row">
         <table>
             <tr>
                 <th>res_id</th>
                 <th>res_name</th>
+                <th>dt</th>
+                <th>nt</th>
+                <th>res_tick</th>
             </tr>
             <tr>
                 <td>
-                    <xsl:value-of select="row/@res_id"/>
+                    <xsl:value-of select="@res_id"/>
                 </td>
                 <td>
-                    <xsl:value-of select="row/@res_name"/>
+                    <xsl:value-of select="@res_name"/>
+                </td>
+                <td>
+                    <xsl:value-of select="@dt"/>
+                </td>
+                <td>
+                    <xsl:value-of select="@nt"/>
+                </td>
+                <td>
+                    <xsl:value-of select="@res_tick"/>
                 </td>
             </tr>
         </table>
@@ -27,7 +39,10 @@
         <table>
             <tr>
                 <td>
-                    <a href="#0" onclick="fn_get('grp.php?mth=prm&amp;res_id={row/@res_id}',div1)">parameters</a>
+                    <a href="#0" onclick="fn_get('res.php?mth=edit&amp;res_id={@res_id}',div1)">settings</a>
+                </td>
+                <td>
+                    <a href="#0" onclick="fn_get('grp.php?mth=prm&amp;res_id={@res_id}',div1)">parameters</a>
                 </td>
             </tr>
         </table>

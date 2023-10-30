@@ -76,13 +76,10 @@ function prm_plot() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("CALL sp_prm_plot({$res_id},{$prm_id});");
-    $qry->execute();
-    $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res);
-    $res->close();
-    $xsl = cls_xml::file2dom("prm/prm_plot.xsl");
-//    header("Content-Type: image/svg+xml");
+    $db->conn->multi_query("CALL sp_prm_plot({$res_id},{$prm_id});");
+    $xml = cls_xml::mul2dom($db->conn);
+    echo $xml->saveXML();
+    $xsl = cls_xml::file2dom("prm/prm_plot1.xsl");
     header('Content-Type: text/xml');
     echo cls_xml::xsltrans($xml, $xsl);
 }
