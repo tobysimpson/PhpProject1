@@ -39,6 +39,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>res_tick</th>
+                    <td>
+                        <input type="text" name="res_tick" value="{format-number(@res_tick, '0.000')}"/>
+                    </td>
+                </tr>
+                <tr>
                     <td>
                         <input type="submit"/>
                     </td>

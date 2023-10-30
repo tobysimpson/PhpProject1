@@ -85,7 +85,8 @@ function res_update() {
     $res_name = filter_input(INPUT_POST, "res_name", FILTER_SANITIZE_STRING);
     $dt = filter_input(INPUT_POST, "dt", FILTER_VALIDATE_FLOAT);
     $nt = filter_input(INPUT_POST, "nt", FILTER_VALIDATE_FLOAT);
-    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}', dt={$dt}, nt={$nt} WHERE res_id = {$res_id};");
+    $res_tick = filter_input(INPUT_POST, "res_tick", FILTER_VALIDATE_FLOAT);
+    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}', dt={$dt}, nt={$nt}, res_tick={$res_tick} WHERE res_id = {$res_id};");
     $qry->execute();
     header("Location: res.php?mth=disp&res_id=".$res_id);
 }

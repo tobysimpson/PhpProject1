@@ -21,7 +21,7 @@
                 <td>
                     <xsl:value-of select="@res_id"/>
                 </td>
-                <td>
+                <td style="text-align:left;">
                     <xsl:value-of select="@res_name"/>
                 </td>
                 <td>
@@ -39,10 +39,10 @@
         <table>
             <tr>
                 <td>
-                    <a href="#0" onclick="fn_get('res.php?mth=edit&amp;res_id={@res_id}',div1)">settings</a>
+                    <a href="#0" onclick="fn_get('grp.php?mth=prm&amp;res_id={@res_id}',div1)">parameters</a>
                 </td>
                 <td>
-                    <a href="#0" onclick="fn_get('grp.php?mth=prm&amp;res_id={@res_id}',div1)">parameters</a>
+                    <a href="#0" onclick="fn_get('res.php?mth=edit&amp;res_id={@res_id}',div1)">settings</a>
                 </td>
             </tr>
         </table>

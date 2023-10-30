@@ -40,9 +40,6 @@
                         <a href="res.php?mth=disp&amp;res_id={@res_id}">disp</a>
                     </td>
                     <td>
-                        <a href="res.php?mth=edit&amp;res_id={@res_id}">edit</a>
-                    </td>
-                    <td>
                         <a href="col.php?mth=list&amp;res_id={@res_id}">col</a>
                     </td>
                     <td>
@@ -50,12 +47,6 @@
                     </td>
                     <td>
                         <a href="res.php?mth=evt&amp;res_id={@res_id}">evt</a>
-                    </td>
-                    <td>
-                        <a href="res.php?mth=grp&amp;res_id={@res_id}">grp</a>
-                    </td>
-                    <td>
-                        <a href="res.php?mth=prm_list&amp;res_id={@res_id}">prm</a>
                     </td>
                 </tr>
             </xsl:for-each> 
