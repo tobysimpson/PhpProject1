@@ -33,10 +33,10 @@
                         <xsl:value-of select="@p"/>
                     </td>
                     <td>
-                        <xsl:value-of select="format-number(@t, '###,##0.000')"/>
+                        <xsl:value-of select="format-number(@t, '0.000')"/>
                     </td>
                     <td>
-                        <xsl:value-of select="format-number(@u, '###,##0.000')"/>
+                        <xsl:value-of select="format-number(@u, '0.000')"/>
                     </td>
                     <td>
                         <input type="range" value="{format-number(@u, '###,##0.000')}"  min="-1" max="1" step="0.1" onchange="window.location.assign('prm.php?mth=ups1&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}&amp;u='+this.value)"/>

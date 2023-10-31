@@ -27,15 +27,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>dt</th>
+                    <th>res_dt</th>
                     <td>
-                        <input type="text" name="dt" value="{@dt}"/>
+                        <input type="text" name="res_dt" value="{@res_dt}"/>
                     </td>
                 </tr>
                 <tr>
-                    <th>nt</th>
+                    <th>res_nt</th>
                     <td>
-                        <input type="text" name="nt" value="{@nt}"/>
+                        <input type="text" name="res_nt" value="{@res_nt}"/>
                     </td>
                 </tr>
                 <tr>
