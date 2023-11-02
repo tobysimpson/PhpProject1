@@ -149,7 +149,7 @@ function prm_grp() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $grp_id = filter_input(INPUT_GET, "grp_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT *, {$res_id} AS res_id FROM prm_info WHERE grp_id = {$grp_id};");
+    $qry = $db->conn->prepare("SELECT *, {$res_id} AS res_id FROM prm_info JOIN grp_info ON grp_info.grp_id = prm_info.grp_id WHERE grp_info.grp_id = {$grp_id};");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);

@@ -9,11 +9,12 @@
     </xsl:template>
 
     <xsl:template match="root">
-        <table>
+        <table class="table1">
             <tr>
                 <th>prm_id</th>
                 <th>grp_id</th>
                 <th>prm_name</th>
+                <th>prm_desc</th>
                 <th>prm_def</th>
                 <th>prm_tick</th>
                 <th>prm_cal</th>
@@ -28,6 +29,9 @@
                     </td>
                     <td style="text-align:left;">
                         <xsl:value-of select="@prm_name"/>
+                    </td>
+                    <td style="text-align:left;">
+                        <xsl:value-of select="@prm_desc"/>
                     </td>
                     <td>
                         <xsl:value-of select="format-number(@prm_def, '0.000')"/>

@@ -62,7 +62,9 @@
                 <text x="10" y="20">
                     <xsl:value-of select="tbl[1]/row/@res_name"/>
                     <xsl:text>, </xsl:text>
-                    <xsl:value-of select="tbl[2]/row/@prm_name"/>
+                    <xsl:value-of select="tbl[2]/row/@grp_desc"/>
+                    <xsl:text>, </xsl:text>
+                    <xsl:value-of select="tbl[2]/row/@prm_desc"/>
                     <!--<xsl:value-of select="$vtick"/>,<xsl:value-of select="$vinf"/>,<xsl:value-of select="$vsup"/>, <xsl:value-of select="$ttick"/>,  <xsl:value-of select="$vdash"/>, <xsl:value-of select="$tdash"/>-->
                 </text>
             </g>
@@ -193,7 +195,7 @@
                                     <input style="width:60px;text-align:right;" value="{format-number(@u, '0.000')}" onchange="fn_get('prm.php?mth=ups1&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}&amp;u='+this.value, div3);"/>
                                 </td>
                                 <td>
-                                    <input type="range" value="{format-number(@u,'0.000')}"  min="{$vinf}" max="{$vsup}" step="{$vtick * 0.1}" onchange="fn_get('prm.php?mth=ups1&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}&amp;u='+this.value, div3);"/>
+                                    <input type="range" value="{format-number(@u,'0.000')}"  min="{$vinf}" max="{$vsup}" step="{$vtick * 0.2}" onchange="fn_get('prm.php?mth=ups1&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}&amp;u='+this.value, div3);"/>
                                 </td>
                                 <td>
                                     <a href="#0" onclick="fn_get('prm.php?mth=clr&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}', div3);">clear</a>
