@@ -7,14 +7,14 @@ require_once "cls_usr.php";
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
-    case "list":
-        prm_list();
-        break;
-    case "def":
-        prm_def();
+    case "disp":
+        prm_disp();
         break;
     case "edit":
         prm_edit();
+        break;
+    case "rst":
+        prm_rst();
         break;
     case "upd":
         prm_upd();
@@ -22,14 +22,8 @@ switch ($mth) {
     case "plot":
         prm_plot();
         break;
-    case "tbl":
-        prm_tbl();
-        break;
-    case "ups1":
-        prm_ups1();
-        break;
-    case "ups2":
-        prm_ups2();
+    case "ups":
+        prm_ups();
         break;
     case "clr":
         prm_clr();
@@ -38,7 +32,7 @@ switch ($mth) {
         prm_grp();
         break;
     default:
-        prm_list();
+        prm_disp();
 }
 
 /*
@@ -48,12 +42,12 @@ switch ($mth) {
  */
 
 
-function prm_list() {
+function prm_disp() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM prm_info;");
+    $qry = $db->conn->prepare("SELECT * FROM prm_dsp;");
     $qry->execute();
     $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res, "prm/prm_list.xsl");
+    $xml = cls_xml::res2dom($res, "prm/prm_disp.xsl");
     $res->close();
     header('Content-Type: text/xml');
     echo $xml->saveXML();
@@ -80,9 +74,20 @@ function prm_upd() {
     $prm_def    = filter_input(INPUT_POST, "prm_def", FILTER_VALIDATE_FLOAT);
     $prm_tick   = filter_input(INPUT_POST, "prm_tick", FILTER_VALIDATE_FLOAT);
     $prm_cal    = filter_input(INPUT_POST, "prm_cal", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("UPDATE prm_info SET prm_desc='{$prm_desc}', prm_def = {$prm_def}, prm_tick = {$prm_tick}, prm_cal = {$prm_cal} WHERE prm_id = {$prm_id};"); 
+    $prm_note   = filter_input(INPUT_POST, "prm_note", FILTER_SANITIZE_STRING);
+    $qry = $db->conn->prepare("UPDATE prm_info SET prm_desc='{$prm_desc}', prm_def = {$prm_def}, prm_tick = {$prm_tick}, prm_cal = {$prm_cal} , prm_note = '{$prm_note}' WHERE prm_id = {$prm_id};"); 
     $qry->execute();
     header("Location: prm.php");
+}
+
+function prm_rst() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $p = filter_input(INPUT_GET, "p", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("DELETE FROM prm_usr WHERE res_id={$res_id} AND prm_id={$prm_id};");
+    $qry->execute();
+    header("Location: prm.php?mth=plot&res_id=".$res_id."&prm_id=".$prm_id);
 }
 
 
@@ -98,23 +103,8 @@ function prm_plot() {
     echo cls_xml::xsltrans($xml, $xsl);
 }
 
-function prm_tbl() {
-    $db = new cls_db();
-    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("CALL sp_prm_plot({$res_id},{$prm_id});");
-    $qry->execute();
-    $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res);
-    $res->close();
-    $xsl = cls_xml::file2dom("prm/prm_tbl.xsl");
-//    header("Content-Type: image/svg+xml");
-    header('Content-Type: text/xml');
-    echo cls_xml::xsltrans($xml, $xsl);
-}
 
-
-function prm_ups1() {
+function prm_ups() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
@@ -126,27 +116,6 @@ function prm_ups1() {
 }
 
 
-function prm_ups2() {
-    $db = new cls_db();
-    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $p = filter_input(INPUT_GET, "p", FILTER_VALIDATE_INT);
-//    $u0 = filter_input(INPUT_GET, "u0", FILTER_VALIDATE_FLOAT);
-    $u1 = filter_input(INPUT_GET, "u1", FILTER_VALIDATE_FLOAT);
-    //get prior
-    $qry = $db->conn->prepare("SELECT u FROM res_prm WHERE res_id={$res_id} AND prm_id={$prm_id} AND p={$p} LIMIT 1;");
-    $qry->execute();
-    $res = $qry->get_result();
-    $val = $res->fetch_array(MYSQLI_NUM);
-    $u0 = $val[0];
-    //diff
-    $du = $u1 - $u0; 
-    $qry = $db->conn->prepare("INSERT INTO prm_usr (res_id, prm_id, p, du) VALUES ({$res_id},{$prm_id},{$p},{$du}) ON DUPLICATE KEY UPDATE du = du + {$du};"); //works
-    $qry->execute();
-    //nav
-    header("Location: res.php?mth=prm&res_id=".$res_id."&prm_id=".$prm_id);
-}
-
 
 function prm_clr() {
     $db = new cls_db();
@@ -157,6 +126,7 @@ function prm_clr() {
     $qry->execute();
     header("Location: prm.php?mth=plot&res_id=".$res_id."&prm_id=".$prm_id);
 }
+
 
 
 function prm_grp() {

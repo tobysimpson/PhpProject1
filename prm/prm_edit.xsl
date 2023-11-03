@@ -48,6 +48,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>prm_note</td>
+                    <td>
+                        <input type="text" name="prm_note" value="{@prm_note}"/>
+                    </td>
+                </tr>
+                <tr>
                     <td>
                         
                     </td>

@@ -11,21 +11,43 @@
     <xsl:template match="root">
         <table class="table1">
             <tr>
-                <th>prm_id</th>
+                <th>cat_id</th>
+                <th>cat_ord</th>
+                <th>cat_desc</th>
                 <th>grp_id</th>
+                <th>grp_ord</th>
+                <th>grp_desc</th>
+                <th>prm_id</th>
                 <th>prm_name</th>
                 <th>prm_desc</th>
                 <th>prm_def</th>
                 <th>prm_tick</th>
                 <th>prm_cal</th>
+                <th>prm_note</th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
                     <td>
-                        <xsl:value-of select="@prm_id"/>
+                        <xsl:value-of select="@cat_id"/>
                     </td>
                     <td>
+                        <xsl:value-of select="@cat_ord"/>
+                    </td>
+                    <td style="text-align:left;">
+                        <xsl:value-of select="@cat_desc"/>
+                    </td>
+
+                    <td>
                         <xsl:value-of select="@grp_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@grp_ord"/>
+                    </td>
+                    <td style="text-align:left;">
+                        <xsl:value-of select="@grp_desc"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@prm_id"/>
                     </td>
                     <td>
                         <xsl:value-of select="@prm_name"/>
@@ -41,6 +63,9 @@
                     </td>
                     <td>
                         <xsl:value-of select="@prm_cal"/>
+                    </td>
+                    <td style="text-align:left;">
+                        <xsl:value-of select="@prm_note"/>
                     </td>
                     <td>
                         <a href="prm.php?mth=edit&amp;prm_id={@prm_id}">
