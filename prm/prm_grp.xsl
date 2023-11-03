@@ -33,7 +33,7 @@
                         <xsl:value-of select="@prm_id"/>
                     </td>
                     <td>
-                        <a href="#0" onclick="fn_get('prm.php?mth=plot&amp;res_id={@res_id}&amp;prm_id={@prm_id}',div3);">
+                        <a href="#0" onclick="fn_get('prm.php?mth=plot&amp;res_id={@res_id}&amp;prm_id={@prm_id}',div4);">
                             <xsl:value-of select="@prm_name"/>
                         </a>
                     </td>
@@ -61,7 +61,7 @@
             </xsl:for-each> 
         </table>
         <hr/>
-        <div id="div3"></div>
+        <div id="div4"></div>
 
     </xsl:template>
 </xsl:stylesheet>

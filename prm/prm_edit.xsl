@@ -2,44 +2,60 @@
 <xsl:stylesheet version="1.0" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="utf-8"/>
+    <xsl:include href="../nav.xsl"/>
+    
+    <xsl:template match="/">
+        <xsl:call-template name="page"/> 
+    </xsl:template>
 
-
-    <xsl:template match="root">
-        <table>
-            <tr>
-                <th>res_id</th>
-                <th>prm_id</th>
-                <th>p</th>
-                <th>t</th>
-                <th>u</th>
-                <th/>
-            </tr>
-            <xsl:for-each select="row">
+    <xsl:template match="root/row">
+        <form action="prm.php?mth=upd" method="post">
+            <table class="table2">
                 <tr>
+                    <td>prm_id</td>
                     <td>
-                        <xsl:value-of select="@res_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@prm_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@p"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="format-number(@t, '###,##0.000')"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="format-number(@u, '###,##0.000')"/>
-                    </td>
-                    <td>
-                        <input type="range" value="{format-number(@u, '###,##0.000')}"  min="-1" max="1" step="0.1" onchange="fn_get('prm.php?mth=ups1&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}&amp;u='+this.value, div3);"/>
-                    </td>
-                    <td>
-                        <a href="#0" onclick="fn_get('prm.php?mth=clr&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}', div3);">prm_clr</a>
+                        <input type="text" name="prm_id" readonly="true" value="{@prm_id}"/>
                     </td>
                 </tr>
-            </xsl:for-each> 
-        </table>
-   
+                <tr>
+                    <td>prm_name</td>
+                    <td>
+                        <input type="text" name="prm_name" readonly="true" value="{@prm_name}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>prm_desc</td>
+                    <td>
+                        <input type="text" name="prm_desc" value="{@prm_desc}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>prm_def</td>
+                    <td>
+                        <input type="text" name="prm_def" value="{format-number(@prm_def, '0.000')}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>prm_tick</td>
+                    <td>
+                        <input type="text" name="prm_tick" value="{format-number(@prm_tick, '0.000')}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>prm_cal</td>
+                    <td>
+                        <input type="text" name="prm_cal" value="{@prm_cal}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <input type="submit"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </xsl:template>
 </xsl:stylesheet>

@@ -27,7 +27,7 @@
                     <td>
                         <xsl:value-of select="@grp_id"/>
                     </td>
-                    <td style="text-align:left;">
+                    <td>
                         <xsl:value-of select="@prm_name"/>
                     </td>
                     <td style="text-align:left;">
@@ -41,6 +41,11 @@
                     </td>
                     <td>
                         <xsl:value-of select="@prm_cal"/>
+                    </td>
+                    <td>
+                        <a href="prm.php?mth=edit&amp;prm_id={@prm_id}">
+                            <xsl:text>edit</xsl:text>
+                        </a>
                     </td>
                 </tr>
             </xsl:for-each> 

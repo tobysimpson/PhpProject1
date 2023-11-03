@@ -59,10 +59,11 @@ function res_disp() {
     $qry = $db->conn->prepare("SELECT * FROM res_info WHERE res_id = {$res_id};");
     $qry->execute();
     $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res, "res/res_disp.xsl");
+    $xml = cls_xml::res2dom($res);
     $res->close();
-    header('Content-Type: text/xml');
-    echo $xml->saveXML();
+    $xsl = cls_xml::file2dom("res/res_disp.xsl");
+    header('Content-Type: text/html');
+    echo cls_xml::xsltrans($xml, $xsl);
 }
 
 function res_edit() {

@@ -16,6 +16,9 @@ switch ($mth) {
     case "edit":
         prm_edit();
         break;
+    case "upd":
+        prm_upd();
+        break;
     case "plot":
         prm_plot();
         break;
@@ -59,18 +62,29 @@ function prm_list() {
 
 function prm_edit() {
     $db = new cls_db();
-    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $p = filter_input(INPUT_GET, "p", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM res_prm WHERE res_id = {$res_id} AND prm_id = {$prm_id} AND p = {$p};");
+    $qry = $db->conn->prepare("SELECT * FROM prm_info WHERE prm_id = {$prm_id};");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
     $res->close();
     $xsl = cls_xml::file2dom("prm/prm_edit.xsl");
-    header('Content-Type: text/xml');
+    header('Content-Type: text/html');
     echo cls_xml::xsltrans($xml, $xsl);
 }
+
+function prm_upd() {
+    $db = new cls_db();
+    $prm_id     = filter_input(INPUT_POST, "prm_id", FILTER_VALIDATE_INT);
+    $prm_desc   = filter_input(INPUT_POST, "prm_desc", FILTER_SANITIZE_STRING);
+    $prm_def    = filter_input(INPUT_POST, "prm_def", FILTER_VALIDATE_FLOAT);
+    $prm_tick   = filter_input(INPUT_POST, "prm_tick", FILTER_VALIDATE_FLOAT);
+    $prm_cal    = filter_input(INPUT_POST, "prm_cal", FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("UPDATE prm_info SET prm_desc='{$prm_desc}', prm_def = {$prm_def}, prm_tick = {$prm_tick}, prm_cal = {$prm_cal} WHERE prm_id = {$prm_id};"); 
+    $qry->execute();
+    header("Location: prm.php");
+}
+
 
 function prm_plot() {
     $db = new cls_db();
