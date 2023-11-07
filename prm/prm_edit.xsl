@@ -18,15 +18,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>prm_name</td>
+                    <td>prm_code</td>
                     <td>
-                        <input type="text" name="prm_name" readonly="true" value="{@prm_name}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>prm_desc</td>
-                    <td>
-                        <input type="text" name="prm_desc" value="{@prm_desc}"/>
+                        <input type="text" name="prm_name" readonly="true" value="{@prm_code}"/>
                     </td>
                 </tr>
                 <tr>
@@ -41,18 +35,12 @@
                         <input type="text" name="prm_tick" value="{format-number(@prm_tick, '0.000')}"/>
                     </td>
                 </tr>
-                <tr>
+<!--                <tr>
                     <td>prm_cal</td>
                     <td>
                         <input type="text" name="prm_cal" value="{@prm_cal}"/>
                     </td>
-                </tr>
-                <tr>
-                    <td>prm_note</td>
-                    <td>
-                        <input type="text" name="prm_note" value="{@prm_note}"/>
-                    </td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td>
                         

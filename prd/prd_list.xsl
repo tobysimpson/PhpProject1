@@ -12,17 +12,13 @@
         <table class="table1">
             <tr>
                 <th>prd_id</th>
-                <th>prd_code</th>
-                <th style="text-align:left;">prd_name</th>
-                <th style="text-align:left;">prd_desc</th>
+                <th>prd_name</th>
+                <th>prd_desc</th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
                     <td>
                         <xsl:value-of select="@prd_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@prd_code"/>
                     </td>
                     <td style="text-align:left;">
                         <xsl:value-of select="@prd_name"/>

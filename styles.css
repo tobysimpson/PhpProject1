@@ -61,3 +61,8 @@ th{
 .table2 td{
     text-align: left;
 }
+
+.input1{
+    width: 60px;
+    text-align: center;
+}

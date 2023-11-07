@@ -42,7 +42,10 @@
                     <a href="#0" onclick="fn_get('res.php?mth=edit&amp;res_id={@res_id}',div1)">settings</a>
                 </td>
                 <td>
-                    <a href="#0" onclick="fn_get('cat.php?mth=list&amp;res_id={@res_id}',div1)">parameters</a>
+                    <a href="#0" onclick="fn_get('cat.php?mth=list&amp;res_id={@res_id}&amp;cat_grp=1',div1)">parameters</a>
+                </td>
+                <td>
+                    <a href="#0" onclick="fn_get('cat.php?mth=list&amp;res_id={@res_id}&amp;cat_grp=2',div1)">calculated</a>
                 </td>
             </tr>
         </table>

@@ -83,7 +83,7 @@
                     <xsl:for-each select="$tt">
                         <xsl:variable name="i" select="position()"/>
                         <xsl:if test="$tt[$i] mod $ttick = 0">
-                            <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.0')"/>
+                            <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.00')"/>
                             <line x1="{$x}" y1="0" x2="{$x}" y2="{$ph}" stroke="lightgray" stroke-dasharray="{$vdash},{$vdash}" stroke-dashoffset="{$vdash * 0.5}"/>
                             <text x="{$x}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
                                 <xsl:value-of select="format-number($tt[$i],'0.000')"/>
@@ -100,9 +100,9 @@
                             <xsl:for-each select="$tt">
                                 <xsl:variable name="p" select="position()"/>
                                 <xsl:if test="$tt[$p] mod $ttick = 0">
-                                    <xsl:variable name="x1" select="format-number($pw * ($tt[$p] - $tmin) div $trng,'0.0')"/>
-                                    <xsl:variable name="y1" select="format-number($ph * (1 - ($vv[$p] - $vinf) div $vrng),'0.0')"/>
-                                    <xsl:variable name="x2" select="format-number($pw * ($tt[$p] + $ttick - $tmin) div $trng,'0.0')"/>
+                                    <xsl:variable name="x1" select="format-number($pw * ($tt[$p] - $tmin) div $trng,'0.00')"/>
+                                    <xsl:variable name="y1" select="format-number($ph * (1 - ($vv[$p] - $vinf) div $vrng),'0.00')"/>
+                                    <xsl:variable name="x2" select="format-number($pw * ($tt[$p] + $ttick - $tmin) div $trng,'0.00')"/>
                                     <!--<xsl:variable name="y2" select="format-number($ph * (1 - ($vv[$p + 1] - $vinf) div $vrng),'0.0')"/>-->
                                     <xsl:if test="position() != last()">
                                         <line x1="{$x1}" y1="{$y1}" x2="{$x2}" y2="{$y1}" stroke="gray" />
@@ -124,8 +124,8 @@
                             <xsl:variable name="line1">
                                 <xsl:for-each select="$tt">
                                     <xsl:variable name="i" select="position()"/>
-                                    <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.0')"/>
-                                    <xsl:variable name="y" select="format-number($ph * (1 - ($vv[$i] - $vinf) div $vrng),'0.0')"/>
+                                    <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.00')"/>
+                                    <xsl:variable name="y" select="format-number($ph * (1 - ($vv[$i] - $vinf) div $vrng),'0.00')"/>
                                     <xsl:choose>
                                         <xsl:when test="position()=1">
                                             <xsl:text>M </xsl:text>
@@ -149,8 +149,8 @@
                             <xsl:for-each select="$tt">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:if test="$tt[$i] mod $ttick = 0">
-                                    <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.0')"/>
-                                    <xsl:variable name="y" select="format-number($ph * (1 - ($vv[$i] - $vinf) div $vrng),'0.0')"/>
+                                    <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.00')"/>
+                                    <xsl:variable name="y" select="format-number($ph * (1 - ($vv[$i] - $vinf) div $vrng),'0.00')"/>
                                     <circle cx="{$x}" cy="{$y}" r="3" stroke="black" fill="black"/>
                                 </xsl:if>
                             </xsl:for-each>
@@ -192,10 +192,10 @@
                                     <xsl:value-of select="format-number(@t, '0.000')"/>
                                 </td>
                                 <td>
-                                    <input style="width:60px;text-align:right;" value="{format-number(@u, '0.000')}" onchange="fn_get('prm.php?mth=ups&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}&amp;u='+this.value, div4);"/>
+                                    <input style="width:60px;text-align:right;" value="{format-number(@u, '0.000')}" onchange="fn_get('prm.php?mth=ups&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}&amp;u='+this.value, div3);"/>
                                 </td>
                                 <td>
-                                    <input type="range" value="{format-number(@u,'0.000')}"  min="{$vinf}" max="{$vsup}" step="{$vtick * 0.5}" onchange="fn_get('prm.php?mth=ups&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}&amp;u='+this.value, div4);"/>
+                                    <input type="range" value="{format-number(@u,'0.000')}"  min="{$vinf}" max="{$vsup}" step="{$vtick * 0.5}" onchange="fn_get('prm.php?mth=ups&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}&amp;u='+this.value, div3);"/>
                                 </td>
                                 <td>
                                     <a href="#0" onclick="fn_get('prm.php?mth=clr&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}', div3);">clear</a>
