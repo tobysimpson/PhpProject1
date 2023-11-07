@@ -8,7 +8,10 @@
         <table class="table1">
             <tr>
                 <th>res_id</th>
+                <th>cat_grp</th>
+                <th>cat_ord</th>
                 <th>cat_id</th>
+                
                 <th>cat_code</th>
                 <th>cat_name</th>
             </tr>
@@ -18,8 +21,15 @@
                         <xsl:value-of select="@res_id"/>
                     </td>
                     <td>
+                        <xsl:value-of select="@cat_grp"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@cat_ord"/>
+                    </td>
+                    <td>
                         <xsl:value-of select="@cat_id"/>
                     </td>
+
                     <td>
                         <xsl:value-of select="@cat_code"/>
                     </td>

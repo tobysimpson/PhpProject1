@@ -12,13 +12,16 @@
         <table class="table1">
             <tr>
                 <th>cat_id</th>
+                <th>cat_grp</th>
                 <th>cat_ord</th>
                 <th>cat_code</th>
                 <th>cat_name</th>
+                
                 <th>obj_id</th>
                 <th>obj_ord</th>
                 <th>obj_code</th>
                 <th>obj_name</th>
+                
                 <th>fld_id</th>
                 <th>fld_ord</th>
                 <th>fld_code</th>
@@ -26,8 +29,7 @@
 
                 <th>prm_id</th>
                 <th>prm_code</th>
-                <th>prm_name</th>
-
+     
                 <th>prm_def</th>
                 <th>prm_tick</th>
                 <th>prm_cal</th>
@@ -39,6 +41,9 @@
                     
                     <td>
                         <xsl:value-of select="@cat_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@cat_grp"/>
                     </td>
                     <td>
                         <xsl:value-of select="@cat_ord"/>
@@ -83,10 +88,7 @@
                     <td style="text-align:left;">
                         <xsl:value-of select="@prm_code"/>
                     </td>
-                    <td  style="text-align:left;">
-                        <xsl:value-of select="@prm_name"/>
-                    </td>
-       
+   
                     <td>
                         <xsl:value-of select="format-number(@prm_def, '0.000')"/>
                     </td>
@@ -96,7 +98,7 @@
                     <td>
                         <xsl:value-of select="@prm_cal"/>
                     </td>
-<!--                    <td style="text-align:left;">
+                    <!--                    <td style="text-align:left;">
                         <xsl:value-of select="@prm_fn1"/>
                     </td>-->
                     <!--                    <td>
