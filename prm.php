@@ -28,8 +28,8 @@ switch ($mth) {
     case "clr":
         prm_clr();
         break;
-    case "grp":
-        prm_grp();
+    case "xml":
+        prm_xml();
         break;
     default:
         prm_disp();
@@ -95,7 +95,7 @@ function prm_plot() {
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_prm_plot({$res_id},{$prm_id});");
     $xml = cls_xml::mul2dom($db->conn);
-    echo $xml->saveXML();
+//    echo $xml->saveXML();
     $xsl = cls_xml::file2dom("prm/prm_plot1.xsl");
     header('Content-Type: text/xml');
     echo cls_xml::xsltrans($xml, $xsl);
@@ -127,16 +127,13 @@ function prm_clr() {
 
 
 
-function prm_grp() {
+function prm_xml() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    $grp_id = filter_input(INPUT_GET, "grp_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT *, {$res_id} AS res_id FROM prm_info JOIN grp_info ON grp_info.grp_id = prm_info.grp_id WHERE grp_info.grp_id = {$grp_id};");
-    $qry->execute();
-    $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res);
-    $res->close();
-    $xsl = cls_xml::file2dom("prm/prm_grp.xsl");
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_prm_plot({$res_id},{$prm_id});");
+    $xml = cls_xml::mul2dom($db->conn);
     header('Content-Type: text/xml');
-    echo cls_xml::xsltrans($xml, $xsl);
+    echo $xml->saveXML();
+    
 }

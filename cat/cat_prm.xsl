@@ -79,6 +79,9 @@
                         <xsl:value-of select="@prm_cal"/>
                     </td>
                     <td>
+                        <a href="prm.php?mth=xml&amp;res_id={@res_id}&amp;prm_id={@prm_id}">xml</a>
+                    </td>
+                    <td>
                         <a href="#0" onclick="fn_get('prm.php?mth=rst&amp;res_id={@res_id}&amp;prm_id={@prm_id}',div3);">reset</a>
                     </td>
                 </tr>
