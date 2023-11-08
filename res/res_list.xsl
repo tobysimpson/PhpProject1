@@ -36,7 +36,7 @@
                     <td>
                         <xsl:value-of select="@res_nt"/>
                     </td>
-                                        <td>
+                    <td>
                         <xsl:value-of select="format-number(@res_tick,'0.000')"/>
                     </td>
                     <td>

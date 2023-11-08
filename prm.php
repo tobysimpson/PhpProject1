@@ -135,5 +135,4 @@ function prm_xml() {
     $xml = cls_xml::mul2dom($db->conn);
     header('Content-Type: text/xml');
     echo $xml->saveXML();
-    
 }
