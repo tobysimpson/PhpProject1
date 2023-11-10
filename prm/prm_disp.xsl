@@ -16,11 +16,22 @@
                 <th>cat_ord</th>
                 <th>cat_code</th>
                 <th>cat_name</th>
+               
+                
+                <th>dem_id</th>
+                <th>dem_ord</th>
+                <th>dem_code</th>
+                <th>dem_name</th>
                 
                 <th>obj_id</th>
                 <th>obj_ord</th>
                 <th>obj_code</th>
                 <th>obj_name</th>
+                
+                <th>cst_id</th>
+                <th>cst_ord</th>
+                <th>cst_code</th>
+                <th>cst_name</th>
                 
                 <th>fld_id</th>
                 <th>fld_ord</th>
@@ -54,6 +65,22 @@
                     <td style="text-align:left;">
                         <xsl:value-of select="@cat_name"/>
                     </td>
+                    
+
+                    
+                    <td>
+                        <xsl:value-of select="@dem_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@dem_ord"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@dem_code"/>
+                    </td>
+                    <td  style="text-align:left;">
+                        <xsl:value-of select="@dem_name"/>
+                    </td>
+                    
                     <td>
                         <xsl:value-of select="@obj_id"/>
                     </td>
@@ -66,6 +93,20 @@
                     <td  style="text-align:left;">
                         <xsl:value-of select="@obj_name"/>
                     </td>
+                    
+                    <td>
+                        <xsl:value-of select="@cst_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@cst_ord"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@cst_code"/>
+                    </td>
+                    <td  style="text-align:left;">
+                        <xsl:value-of select="@cst_name"/>
+                    </td>
+                    
                     
                     <td>
                         <xsl:value-of select="@fld_id"/>

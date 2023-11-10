@@ -25,7 +25,7 @@
                     <td>
                         <xsl:value-of select="@res_id"/>
                     </td>
-                    <td>
+                    <td style="text-align:left;">
                         <a href="res.php?mth=disp&amp;res_id={@res_id}">
                             <xsl:value-of select="@res_name"/>
                         </a>

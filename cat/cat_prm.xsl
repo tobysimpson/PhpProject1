@@ -10,8 +10,9 @@
                 <th>res_id</th>
                 
                 <th>cat_id</th>
+                <th>dem_id</th>
                 <th>obj_id</th>
-                <th>fld_id</th>
+                
                 
                 <!--                <th>cat_code</th>
                 <th>obj_code</th>
@@ -21,7 +22,10 @@
                 <th>prm_code</th>
                 
                 <th>cat_name</th>
+                <th>dem_name</th>
                 <th>obj_name</th>
+                
+                <th>fld_id</th>
                 <th>fld_name</th>
 
                 <th>prm_def</th>
@@ -37,10 +41,10 @@
                         <xsl:value-of select="@cat_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@obj_id"/>
+                        <xsl:value-of select="@dem_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@fld_id"/>
+                        <xsl:value-of select="@obj_id"/>
                     </td>
                     <!--                    <td >
                             <xsl:value-of select="@cat_code"/>
@@ -64,7 +68,13 @@
                         <xsl:value-of select="@cat_name"/>
                     </td>
                     <td  style="text-align:left;">
+                        <xsl:value-of select="@dem_name"/>
+                    </td>
+                    <td  style="text-align:left;">
                         <xsl:value-of select="@obj_name"/>
+                    </td>
+                                  <td>
+                        <xsl:value-of select="@fld_id"/>
                     </td>
                     <td style="text-align:left;">
                         <xsl:value-of select="@fld_name"/>
