@@ -46,7 +46,7 @@ function cat_prm() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $cat_id = filter_input(INPUT_GET, "cat_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT *, {$res_id} AS res_id FROM prm_dsp WHERE cat_id = {$cat_id} ORDER BY cat_ord,obj_ord, fld_ord;");
+    $qry = $db->conn->prepare("SELECT *, {$res_id} AS res_id FROM prm_dsp WHERE cat_id = {$cat_id} ORDER BY cat_ord, dem_id, obj_ord, fld_ord;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);

@@ -42,7 +42,7 @@
                     <a href="#0" onclick="fn_get('res.php?mth=edit&amp;res_id={@res_id}',div1)">settings</a>
                 </td>
                 <td>
-                    <a href="#0" onclick="fn_get('cat.php?mth=list&amp;res_id={@res_id}&amp;cat_grp=1',div1)">defaults</a>
+                    <a href="#0" onclick="fn_get('cat.php?mth=list&amp;res_id={@res_id}&amp;cat_grp=1',div1)">environment</a>
                 </td>
                 <td>
                     <a href="#0" onclick="fn_get('cat.php?mth=list&amp;res_id={@res_id}&amp;cat_grp=3',div1)">demand</a>
@@ -51,7 +51,13 @@
                     <a href="#0" onclick="fn_get('cat.php?mth=list&amp;res_id={@res_id}&amp;cat_grp=2',div1)">generation</a>
                 </td>
                 <td>
-                    <a href="#0" onclick="fn_get('cat.php?mth=list&amp;res_id={@res_id}&amp;cat_grp=4',div1)">cost</a>
+                    <a href="#0" onclick="fn_get('cat.php?mth=list&amp;res_id={@res_id}&amp;cat_grp=5',div1)">imports</a>
+                </td>
+                <td>
+                    <a href="#0" onclick="fn_get('cat.php?mth=list&amp;res_id={@res_id}&amp;cat_grp=4',div1)">costs</a>
+                </td>
+                <td>
+                    <a href="#0" onclick="fn_get('rpt.php?mth=sum1&amp;res_id={@res_id}',div1)">rpt_sum1</a>
                 </td>
             </tr>
         </table>
