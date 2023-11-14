@@ -17,6 +17,7 @@
     <xsl:variable name="tt" select="root/tbl[1]/row/@t" />
     <xsl:variable name="v1" select="root/tbl[1]/row/@v1" />
     <xsl:variable name="v2" select="root/tbl[1]/row/@v2" />
+    <xsl:variable name="vv" select="root/tbl[1]/row/@v1 | root/tbl[1]/row/@s7" />
 
     <xsl:variable name="tmin">
         <xsl:call-template name="min">
@@ -38,7 +39,7 @@
                 
     <xsl:variable name="vmax">
         <xsl:call-template name="max0">
-            <xsl:with-param name="nodes" select="$v1" />
+            <xsl:with-param name="nodes" select="$vv" />
         </xsl:call-template>
     </xsl:variable>
                 
