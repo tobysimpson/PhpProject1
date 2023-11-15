@@ -45,6 +45,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>res_mod</th>
+                    <td>
+                        <input type="text" name="res_mod" value="{@res_mod}"/>
+                    </td>
+                </tr>
+                <tr>
                     <td>
                         <input type="submit"/>
                     </td>

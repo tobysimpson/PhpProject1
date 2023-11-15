@@ -9,13 +9,14 @@
     </xsl:template>
 
     <xsl:template match="root/row">
-        <table>
+        <table class="table1">
             <tr>
                 <th>res_id</th>
                 <th>res_name</th>
                 <th>res_dt</th>
                 <th>res_nt</th>
                 <th>res_tick</th>
+                <th>res_mod</th>
             </tr>
             <tr>
                 <td>
@@ -32,6 +33,9 @@
                 </td>
                 <td>
                     <xsl:value-of select="format-number(@res_tick, '0.000')"/>
+                </td>
+                <td>
+                    <xsl:value-of select="@res_mod"/>
                 </td>
             </tr>
         </table>
@@ -51,14 +55,18 @@
                     <a href="#0" onclick="fn_get('cat.php?mth=list&amp;res_id={@res_id}&amp;cat_grp=2',div1)">generation</a>
                 </td>
                 <td>
+                    <a href="#0" onclick="fn_get('rpt.php?mth=sum1&amp;res_id={@res_id}',div1)">summary1</a>
+                </td>
+                <td>
                     <a href="#0" onclick="fn_get('cat.php?mth=list&amp;res_id={@res_id}&amp;cat_grp=5',div1)">imports</a>
                 </td>
                 <td>
-                    <a href="#0" onclick="fn_get('cat.php?mth=list&amp;res_id={@res_id}&amp;cat_grp=4',div1)">costs</a>
+                    <a href="#0" onclick="fn_get('cat.php?mth=list&amp;res_id={@res_id}&amp;cat_grp=4',div1)">factors</a>
                 </td>
                 <td>
-                    <a href="#0" onclick="fn_get('rpt.php?mth=sum1&amp;res_id={@res_id}',div1)">rpt_sum1</a>
+                    <a href="#0" onclick="fn_get('cat.php?mth=list&amp;res_id={@res_id}&amp;cat_grp=6',div1)">metrics</a>
                 </td>
+
             </tr>
         </table>
         <hr/>

@@ -62,13 +62,21 @@
                 <text x="10" y="20">
                     <xsl:value-of select="tbl[1]/row/@res_name"/>
                     <xsl:text>, </xsl:text>
-<!--                    <xsl:value-of select="tbl[2]/row/@prm_code"/>
-                    <xsl:text>, </xsl:text>-->
                     <xsl:value-of select="tbl[2]/row/@cat_name"/>
                     <xsl:text>, </xsl:text>
                     <xsl:value-of select="tbl[2]/row/@obj_name"/>
-                    <xsl:text>, </xsl:text>
-                    <xsl:value-of select="tbl[2]/row/@fld_name"/>
+                 
+                    <xsl:text> </xsl:text>
+                    <xsl:value-of select="tbl[2]/row/@dem_name"/>
+                    
+                    
+                    <xsl:if test="string-length(tbl[2]/row/@fld_name) &gt; 0">
+                        <xsl:text> (</xsl:text>
+                        <xsl:value-of select="tbl[2]/row/@fld_name"/>
+                        <xsl:text>)</xsl:text>
+                    </xsl:if>
+                    
+                    
                     <!--<xsl:value-of select="$vtick"/>,<xsl:value-of select="$vinf"/>,<xsl:value-of select="$vsup"/>, <xsl:value-of select="$ttick"/>,  <xsl:value-of select="$vdash"/>, <xsl:value-of select="$tdash"/>-->
                 </text>
             </g>
