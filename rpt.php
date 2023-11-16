@@ -15,9 +15,6 @@ switch ($mth) {
 }
 
 
-
-
-
 function rpt_sum1() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);

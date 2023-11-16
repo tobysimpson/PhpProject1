@@ -7,8 +7,8 @@ require_once "cls_usr.php";
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
-    case "disp":
-        prm_disp();
+    case "dsp":
+        prm_dsp();
         break;
     case "edit":
         prm_edit();
@@ -32,7 +32,7 @@ switch ($mth) {
         prm_xml();
         break;
     default:
-        prm_disp();
+        prm_dsp();
 }
 
 /*
@@ -42,7 +42,7 @@ switch ($mth) {
  */
 
 
-function prm_disp() {
+function prm_dsp() {
     $db = new cls_db();
     $qry = $db->conn->prepare("SELECT * FROM prm_dsp;");
     $qry->execute();

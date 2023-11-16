@@ -43,7 +43,7 @@
                     <td>
                         <xsl:value-of select="@res_mod"/>
                     </td>
-                    <td>
+<!--                    <td>
                         <a href="res.php?mth=disp&amp;res_id={@res_id}">disp</a>
                     </td>
                     <td>
@@ -54,7 +54,7 @@
                     </td>
                     <td>
                         <a href="res.php?mth=evt&amp;res_id={@res_id}">evt</a>
-                    </td>
+                    </td>-->
                 </tr>
             </xsl:for-each> 
         </table>

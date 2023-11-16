@@ -49,7 +49,7 @@
 
     <xsl:template name="menu">
         <table width="100%" class="table2">
-<!--
+            <!--
             <tr>
                 <td>
                     <a href="prd.php">prd_info</a>
@@ -70,9 +70,14 @@
                     <a href="res.php">res_info</a>
                 </td>
             </tr>
-                        <tr>
+            <tr>
                 <td>
-                    <a href="prm.php">prm_disp</a>
+                    <a href="prm.php">prm_dsp</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="api.php">api_dsp</a>
                 </td>
             </tr>
             
