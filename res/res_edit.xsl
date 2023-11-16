@@ -38,12 +38,12 @@
                         <input type="text" name="res_nt" value="{@res_nt}"/>
                     </td>
                 </tr>
-                <tr>
+<!--                <tr>
                     <th>res_tick</th>
                     <td>
                         <input type="text" name="res_tick" value="{format-number(@res_tick, '0.000')}"/>
                     </td>
-                </tr>
+                </tr>-->
                 <tr>
                     <th>res_mod</th>
                     <td>

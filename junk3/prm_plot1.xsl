@@ -40,7 +40,6 @@
         </xsl:call-template>
     </xsl:variable>
     
-    <xsl:variable name="res_mod" select="root/tbl[1]/row/@res_mod"/>
     <xsl:variable name="ttick" select="root/tbl[1]/row/@res_tick"/>
     <xsl:variable name="vtick" select="root/tbl[2]/row/@prm_tick"/>
                 
@@ -77,6 +76,7 @@
                         <xsl:text>)</xsl:text>
                     </xsl:if>
                     
+                    
                     <!--<xsl:value-of select="$vtick"/>,<xsl:value-of select="$vinf"/>,<xsl:value-of select="$vsup"/>, <xsl:value-of select="$ttick"/>,  <xsl:value-of select="$vdash"/>, <xsl:value-of select="$tdash"/>-->
                 </text>
             </g>
@@ -94,22 +94,14 @@
                 <g id="vgrid">
                     <xsl:for-each select="$tt">
                         <xsl:variable name="i" select="position()"/>
-                        <!--<xsl:if test="$tt[$i] mod $ttick = 0">-->
-                        <xsl:if test="((position() - 1) mod $res_mod) = 0">
+                        <xsl:if test="$tt[$i] mod $ttick = 0">
                             <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.00')"/>
                             <line x1="{$x}" y1="0" x2="{$x}" y2="{$ph}" stroke="lightgray" stroke-dasharray="{$vdash},{$vdash}" stroke-dashoffset="{$vdash * 0.5}"/>
                             <text x="{$x}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
                                 <xsl:value-of select="format-number($tt[$i],'0.000')"/>
                             </text>
-                        
-                            <!-- debug -->
-                            <!--                        <text x="{$x}" y="{$ph + 20}" text-anchor="middle" alignment-baseline="hanging" style="writing-mode: tb; glyph-orientation-vertical: 90;">
-                                <xsl:value-of select="format-number($tt[$i] mod $ttick,'0.0000000') = 0"/>
-                                    <xsl:value-of select="(position() mod $res_mod) = 0"/>
-                            </text>-->
-                        
                         </xsl:if>
-                    </xsl:for-each>
+                    </xsl:for-each>  
                 </g>  
                
                
@@ -119,8 +111,7 @@
                         <g id="steps">
                             <xsl:for-each select="$tt">
                                 <xsl:variable name="p" select="position()"/>
-                                <!--<xsl:if test="$tt[$p] mod $ttick = 0">-->
-                                <xsl:if test="((position() - 1) mod $res_mod) = 0">
+                                <xsl:if test="$tt[$p] mod $ttick = 0">
                                     <xsl:variable name="x1" select="format-number($pw * ($tt[$p] - $tmin) div $trng,'0.00')"/>
                                     <xsl:variable name="y1" select="format-number($ph * (1 - ($vv[$p] - $vinf) div $vrng),'0.00')"/>
                                     <xsl:variable name="x2" select="format-number($pw * ($tt[$p] + $ttick - $tmin) div $trng,'0.00')"/>
@@ -169,8 +160,7 @@
                         <g id="dots">
                             <xsl:for-each select="$tt">
                                 <xsl:variable name="i" select="position()"/>
-                                <!--<xsl:if test="$tt[$i] mod $ttick = 0">-->
-                                <xsl:if test="((position() - 1) mod $res_mod) = 0">
+                                <xsl:if test="$tt[$i] mod $ttick = 0">
                                     <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.00')"/>
                                     <xsl:variable name="y" select="format-number($ph * (1 - ($vv[$i] - $vinf) div $vrng),'0.00')"/>
                                     <circle cx="{$x}" cy="{$y}" r="3" stroke="black" fill="black"/>
@@ -199,8 +189,7 @@
                         <th>u</th>
                     </tr>
                     <xsl:for-each select="tbl[3]/row">
-                        <!--<xsl:if test="@t mod $ttick = 0">-->
-                        <xsl:if test="((position() - 1) mod $res_mod) = 0">
+                        <xsl:if test="@t mod $ttick = 0">
                             <tr>
                                 <td>
                                     <xsl:value-of select="@res_id"/>
