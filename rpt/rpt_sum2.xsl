@@ -69,9 +69,11 @@
 
             <g id="title" transform="translate(40,20)">
                 <text x="0" y="0" alignment-baseline="middle">
-                    <xsl:value-of select="@prm_code"/>,
-                    <xsl:value-of select="count($vv)"/>,
-                    <xsl:value-of select="$vmin"/>,<xsl:value-of select="$vmax"/>
+                    <xsl:value-of select="tbl[1]/row/@res_name"/>
+                    <xsl:text>, </xsl:text>
+                    <xsl:value-of select="tbl[2]/row/@cat_name"/>
+                    <!--                    <xsl:value-of select="count($vv)"/>,
+                    <xsl:value-of select="$vmin"/>,<xsl:value-of select="$vmax"/>-->
                 </text>
             </g>
                 
@@ -132,6 +134,23 @@
                         </g>
                     </xsl:for-each>
                 </g>
+                
+                
+                <g id="dots">
+                    <xsl:for-each select="tbl[3]/row">
+                        <xsl:variable name="j" select="position()"/>
+                        <xsl:variable name="c" select="substring($cc, round( 14 * position() div count(//tbl[3]/row)), 1)"/>
+                        <g id="series">
+                            <xsl:for-each select="../../tbl[4]/row">
+                                <xsl:variable name="i" select="position()"/>
+                                <xsl:variable name="x" select="format-number($pw * (@t - $tmin) div $trng,'0.00')"/>
+                                <xsl:variable name="y" select="format-number($ph * (1 - (@*[$j + 3] - $vinf) div $vrng),'0.00')"/>
+                                <circle cx="{$x}" cy="{$y}" r="1" stroke="#{$c}{$c}{$c}{$c}FF" fill="#{$c}{$c}{$c}{$c}FF"/>
+                            </xsl:for-each>
+                        </g>
+                    </xsl:for-each>
+                </g>
+                
                 
                 
                 <g id="key" transform="translate(20,20)">
