@@ -19,6 +19,8 @@
     <xsl:variable name="vv" select="root/tbl[4]/row/@*[position() &gt; 3]" />
     
 
+    <xsl:variable name="cc" select="'0123456789ABCDEF'"/>
+
     <xsl:variable name="tmin">
         <xsl:call-template name="min">
             <xsl:with-param name="nodes" select="$tt" />
@@ -102,6 +104,7 @@
                 <g id="lines">
                     <xsl:for-each select="tbl[3]/row">
                         <xsl:variable name="j" select="position()"/>
+                        <xsl:variable name="c" select="substring($cc, round( 14 * position() div count(//tbl[3]/row)), 1)"/>
                         <g id="line">
                             <xsl:variable name="line1">
                                 <xsl:for-each select="../../tbl[4]/row">
@@ -125,7 +128,7 @@
                                     </xsl:choose>
                                 </xsl:for-each>
                             </xsl:variable>
-                            <path fill="none" stroke="black" d="{$line1}" stroke-width="1"/>
+                            <path fill="none"  d="{$line1}" stroke-width="1" stroke="#{$c}{$c}{$c}{$c}FF" />
                         </g>
                     </xsl:for-each>
                 </g>
@@ -133,16 +136,15 @@
                 
                 <g id="key" transform="translate(20,20)">
                     <xsl:for-each select="tbl[3]/row">
+                        <xsl:variable name="c" select="substring($cc, round( 14 * position() div count(//tbl[3]/row)), 1)"/>
                         <g transform="translate(0,{(position() - 1) * 20})">
                             <text x="30" y="0" alignment-baseline="middle">
                                 <xsl:value-of select="@prm_code"/>
-                                <xsl:value-of select="count($vv)"/>
                             </text>
-                            <line x1="0" x2="25" y1="0"  y2="0" stroke="#8888FF" stroke-width="10"/>
+                            <line x1="0" x2="25" y1="0"  y2="0" stroke="#{$c}{$c}{$c}{$c}FF" stroke-width="10"/>
                         </g>
                     </xsl:for-each>
                 </g>
-  
             </g>
         </svg>
     </xsl:template>
