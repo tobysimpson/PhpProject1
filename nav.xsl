@@ -80,7 +80,11 @@
                     <a href="api.php">api_dsp</a>
                 </td>
             </tr>
-            
+            <tr>
+                <td>
+                    <a href="res.php?mth=del">res_del</a>
+                </td>
+            </tr>
             <tr>
                 <th style="text-align:left">item</th>
             </tr>

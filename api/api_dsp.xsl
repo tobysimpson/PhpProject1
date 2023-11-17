@@ -14,14 +14,6 @@
             <tr>
                 <th>desc</th>
                 <th>url</th>
-                
-            </tr>
-            <tr>
-                <td>home</td>
-                <td>
-                    <a href="https://toby.euler.usi.ch/api.php">https://toby.euler.usi.ch/api.php</a>
-                </td>
-                
             </tr>
             <tr>
                 <td>res_lst</td>
@@ -43,6 +35,8 @@
                     <a href="https://toby.euler.usi.ch/api.php?mth=res_ins">https://toby.euler.usi.ch/api.php?mth=res_ins</a>
                 </td>
             </tr>
+
+            
             <tr>
                 <td>res_upd</td>
                 <td>
@@ -52,38 +46,19 @@
                                 <tr>
                                     <th>res_id</th>
                                     <td>
-                                        <input type="text" name="res_id" value="1" readonly=""/>
+                                        <input type="text" name="res_id" value="1"/>
                                     </td>
-                                </tr>
-                                <tr>
                                     <th>res_name</th>
                                     <td>
                                         <input type="text" name="res_name" value="res1"/>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <th>res_dt</th>
+                                    <th>res_del</th>
                                     <td>
-                                        <input type="text" name="res_dt" value="0.0625"/>
+                                        <input type="text" name="res_del" value="0"/>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <th>res_nt</th>
-                                    <td>
-                                        <input type="text" name="res_nt" value="96"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>res_mod</th>
-                                    <td>
-                                        <input type="text" name="res_mod" value="8"/>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td>
                                         <input type="submit"/>
                                     </td>
-                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>

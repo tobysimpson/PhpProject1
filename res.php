@@ -10,6 +10,9 @@ switch ($mth) {
     case "list":
         res_list();
         break;
+    case "del":
+        res_del();
+        break;
     case "disp":
         res_disp();
         break;
@@ -44,7 +47,18 @@ switch ($mth) {
 
 function res_list() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM res_info;");
+    $qry = $db->conn->prepare("SELECT * FROM res_info WHERE res_del = 0;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res, "res/res_list.xsl");
+    $res->close();
+    header('Content-Type: text/xml');
+    echo $xml->saveXML();
+}
+
+function res_del() {
+    $db = new cls_db();
+    $qry = $db->conn->prepare("SELECT * FROM res_info  WHERE res_del = 1;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res, "res/res_list.xsl");
@@ -86,9 +100,10 @@ function res_update() {
     $res_name = filter_input(INPUT_POST, "res_name", FILTER_SANITIZE_STRING);
     $res_dt = filter_input(INPUT_POST, "res_dt", FILTER_VALIDATE_FLOAT);
     $res_nt = filter_input(INPUT_POST, "res_nt", FILTER_VALIDATE_FLOAT);
-//    $res_tick = filter_input(INPUT_POST, "res_tick", FILTER_VALIDATE_FLOAT);
     $res_mod = filter_input(INPUT_POST, "res_mod", FILTER_VALIDATE_FLOAT);
-    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}', res_dt={$res_dt}, res_nt={$res_nt}, res_mod={$res_mod} WHERE res_id = {$res_id};");
+    $res_del = (int)!is_null(filter_input(INPUT_POST, "res_del",FILTER_VALIDATE_BOOL));
+    var_dump($res_del);
+    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}', res_dt={$res_dt}, res_nt={$res_nt}, res_mod={$res_mod}, res_del={$res_del}  WHERE res_id = {$res_id};");
     $qry->execute();
     header("Location: res.php?mth=disp&res_id=".$res_id);
 }
@@ -101,7 +116,6 @@ function res_insert() {
     $res_id = $qry->insert_id;
     header("Location: res.php?mth=disp&res_id=".$res_id);
 }
-
 
 
 function res_all() {

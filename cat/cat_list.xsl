@@ -38,6 +38,12 @@
                             <xsl:value-of select="@cat_name"/>
                         </a>
                     </td>
+                    <td>
+                        <a href="#0" onclick="fn_get('rpt.php?mth=sum2&amp;res_id={@res_id}&amp;cat_id={@cat_id}',div2);">plot</a>
+                    </td>
+<!--                    <td>
+                        <a href="rpt.php?mth=sum3&amp;res_id={@res_id}&amp;cat_id={@cat_id}">debug</a>
+                    </td>-->
                 </tr>
             </xsl:for-each> 
         </table>

@@ -18,8 +18,8 @@
                 <th>res_name</th>
                 <th>res_dt</th>
                 <th>res_nt</th>
-                <!--<th>res_tick</th>-->
                 <th>res_mod</th>
+                <th>res_del</th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -37,13 +37,16 @@
                     <td>
                         <xsl:value-of select="@res_nt"/>
                     </td>
-<!--                    <td>
+                    <!--                    <td>
                         <xsl:value-of select="format-number(@res_tick,'0.000')"/>
                     </td>-->
                     <td>
                         <xsl:value-of select="@res_mod"/>
                     </td>
-<!--                    <td>
+                    <td>
+                        <xsl:value-of select="@res_del"/>
+                    </td>
+                    <!--                    <td>
                         <a href="res.php?mth=disp&amp;res_id={@res_id}">disp</a>
                     </td>
                     <td>

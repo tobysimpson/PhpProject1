@@ -3,8 +3,7 @@
     <xsl:output method="xml" omit-xml-declaration="yes" indent="yes"/>
 
     <xsl:include href="../plot.xsl"/>
-    
-    
+        
     <xsl:variable name="h">600</xsl:variable>
     <xsl:variable name="w">1000</xsl:variable>
     
@@ -64,9 +63,42 @@
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
             <style>* { font-size: 10pt; font-family: sans-serif; font-weight: 300; }</style> 
             
-            <xsl:call-template name="title">
-                <xsl:with-param name="txt" select="@col_name" />
-            </xsl:call-template>
+            <g id="key" transform="translate(60,25)">
+                
+                <g transform="translate(000,0)">
+                    <text x="30" y="0" alignment-baseline="middle">bio</text>
+                    <line x1="0" x2="25" y1="0"  y2="0" stroke="#8888FF" stroke-width="10"/>
+                </g>
+                <g transform="translate(100,0)">
+                    <text x="30" y="0" alignment-baseline="middle">wnd</text>
+                    <line x1="0" x2="25" y1="0"  y2="0" stroke="#9999FF" stroke-width="10"/>
+                </g>
+                <g transform="translate(200,0)">
+                    <text x="30" y="0" alignment-baseline="middle">sol</text>
+                    <line x1="0" x2="25" y1="0"  y2="0" stroke="#AAAAFF" stroke-width="10"/>
+                </g>
+                <g transform="translate(300,0)">
+                    <text x="30" y="0" alignment-baseline="middle">riv</text>
+                    <line x1="0" x2="25" y1="0"  y2="0" stroke="#BBBBFF" stroke-width="10"/>
+                </g>
+                <g transform="translate(400,0)">
+                    <text x="30" y="0" alignment-baseline="middle">nuc</text>
+                    <line x1="0" x2="25" y1="0"  y2="0" stroke="#CCCCFF" stroke-width="10"/>
+                </g>
+                <g transform="translate(500,0)">
+                    <text x="30" y="0" alignment-baseline="middle">res</text>
+                    <line x1="0" x2="25" y1="0"  y2="0" stroke="#DDDDFF" stroke-width="10"/>
+                </g>
+                <g transform="translate(600,0)">
+                    <text x="30" y="0" alignment-baseline="middle">gas</text>
+                    <line x1="0" x2="25" y1="0"  y2="0" stroke="#EEEEFF" stroke-width="10"/>
+                </g>
+                <g transform="translate(700,0)">
+                    <text x="30" y="0" alignment-baseline="middle">load</text>
+                    <line x1="0" x2="25" y1="0"  y2="0" stroke="#000000" stroke-width="2"/>
+                </g>
+
+            </g>
            
     
             <g id="plot" transform="translate({$wo},{$ho})"> 

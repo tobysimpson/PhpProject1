@@ -22,6 +22,9 @@ switch ($mth) {
     case "res_upd":
         res_upd();
         break;
+    case "prm_lst":
+        prm_lst();
+        break;
     case "prm_dsp":
         prm_dsp();
         break;
@@ -96,10 +99,12 @@ function res_upd() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_POST, "res_id", FILTER_VALIDATE_INT);
     $res_name = filter_input(INPUT_POST, "res_name", FILTER_SANITIZE_STRING);
-    $res_dt = filter_input(INPUT_POST, "res_dt", FILTER_VALIDATE_FLOAT);
-    $res_nt = filter_input(INPUT_POST, "res_nt", FILTER_VALIDATE_FLOAT);
-    $res_mod = filter_input(INPUT_POST, "res_mod", FILTER_VALIDATE_FLOAT);
-    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}', res_dt={$res_dt}, res_nt={$res_nt}, res_mod={$res_mod} WHERE res_id = {$res_id};");
+//    $res_dt = filter_input(INPUT_POST, "res_dt", FILTER_VALIDATE_FLOAT);
+//    $res_nt = filter_input(INPUT_POST, "res_nt", FILTER_VALIDATE_FLOAT);
+//    $res_mod = filter_input(INPUT_POST, "res_mod", FILTER_VALIDATE_FLOAT);
+    $res_del = filter_input(INPUT_POST, "res_del", FILTER_VALIDATE_INT);
+//    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}', res_dt={$res_dt}, res_nt={$res_nt}, res_mod={$res_mod} WHERE res_id = {$res_id};");
+    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}', res_del = {$res_del} WHERE res_id = {$res_id};");
     $qry->execute();
     header("Location: api.php?mth=res_dsp&res_id=" . $res_id);
 }
@@ -109,6 +114,17 @@ function res_upd() {
  *  prm
  * ================
  */
+
+function prm_lst() {
+    $db = new cls_db();
+    $qry = $db->conn->prepare("SELECT * FROM prm_dsp;");
+    $qry->execute();
+    $res = $qry->get_result();
+    $xml = cls_xml::res2dom($res);
+    $res->close();
+    header('Content-Type: text/xml');
+    echo $xml->saveXML();
+}
 
 function prm_dsp() {
     $db = new cls_db();

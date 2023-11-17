@@ -38,16 +38,20 @@
                         <input type="text" name="res_nt" value="{@res_nt}"/>
                     </td>
                 </tr>
-<!--                <tr>
-                    <th>res_tick</th>
-                    <td>
-                        <input type="text" name="res_tick" value="{format-number(@res_tick, '0.000')}"/>
-                    </td>
-                </tr>-->
                 <tr>
                     <th>res_mod</th>
                     <td>
                         <input type="text" name="res_mod" value="{@res_mod}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>res_del</th>
+                    <td>
+                        <input type="checkbox" name="res_del" value="{@res_del}"  onchange="this.value=this.checked;console.log(this.checked, this.name, this.value);">
+                            <xsl:if test="@res_del = 1">
+                                <xsl:attribute name="checked"/>
+                            </xsl:if>
+                        </input>
                     </td>
                 </tr>
                 <tr>
