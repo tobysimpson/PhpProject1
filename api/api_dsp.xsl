@@ -89,6 +89,24 @@
                     <a href="https://toby.euler.usi.ch/api.php?mth=prm_rst&amp;res_id=1&amp;prm_id=98">https://toby.euler.usi.ch/api.php?mth=prm_rst&amp;res_id=1&amp;prm_id=98</a>
                 </td>
             </tr>
+            <tr>
+                <td>rpt_cat1</td>
+                <td>
+                    <a href="https://toby.euler.usi.ch/rpt.php?mth=cat1&amp;res_id=1&amp;cat_id=2&amp;xsl=0">https://toby.euler.usi.ch/rpt.php?mth=cat1&amp;res_id=1&amp;cat_id=2&amp;xsl=0</a>
+                </td>
+            </tr>
+            <tr>
+                <td>rpt_sum2</td>
+                <td>
+                    <a href="https://toby.euler.usi.ch/rpt.php?mth=sum2&amp;res_id=1&amp;xsl=0">https://toby.euler.usi.ch/rpt.php?mth=sum2&amp;res_id=1&amp;xsl=0</a>
+                </td>
+            </tr>
+            <tr>
+                <td>rpt_rnk1</td>
+                <td>
+                    <a href="https://toby.euler.usi.ch/rpt.php?mth=rnk1&amp;res_id=1&amp;xsl=0">https://toby.euler.usi.ch/rpt.php?mth=rnk1&amp;res_id=1&amp;xsl=0</a>
+                </td>
+            </tr>
         </table>
     </xsl:template>
 </xsl:stylesheet>

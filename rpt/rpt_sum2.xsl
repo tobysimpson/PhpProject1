@@ -1,193 +1,184 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-    <xsl:output method="xml" omit-xml-declaration="yes" indent="yes"/>
+<xsl:stylesheet version="1.0"  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:output method="html" encoding="utf-8"/>
+    
+    
+    
+    <xsl:template match="root/tbl[1]/row">
 
-    <xsl:include href="../plot.xsl"/>
+    </xsl:template>
+    
+
+    <xsl:template match="root/tbl[2]/row">
         
-    <xsl:variable name="h">600</xsl:variable>
-    <xsl:variable name="w">1000</xsl:variable>
-    
-    <xsl:variable name="ph" select="0.8 * $h"/>
-    <xsl:variable name="pw" select="0.8 * $w"/>
-    
-    <xsl:variable name="ho" select="0.1 * $h"/>
-    <xsl:variable name="wo" select="0.05 * $w"/>
-    
-    <xsl:variable name="tt" select="root/tbl[4]/row/@t" />
-    <xsl:variable name="v1" select="root/tbl[4]/row/@u1" />
-    <xsl:variable name="v2" select="root/tbl[4]/row/@u2" />
-    <xsl:variable name="vv" select="root/tbl[4]/row/@*[position() &gt; 3]" />
-    
-
-    <xsl:variable name="cc" select="'0123456789ABCDEF'"/>
-
-    <xsl:variable name="tmin">
-        <xsl:call-template name="min">
-            <xsl:with-param name="nodes" select="$tt" />
-        </xsl:call-template>
-    </xsl:variable>
-                
-    <xsl:variable name="tmax">
-        <xsl:call-template name="max">
-            <xsl:with-param name="nodes" select="$tt" />
-        </xsl:call-template>
-    </xsl:variable>
-                 
-    <xsl:variable name="vmin">
-        <xsl:call-template name="min">
-            <xsl:with-param name="nodes" select="$vv" />
-        </xsl:call-template>
-    </xsl:variable>
-                
-    <xsl:variable name="vmax">
-        <xsl:call-template name="max">
-            <xsl:with-param name="nodes" select="$vv" />
-        </xsl:call-template>
-    </xsl:variable>
-                
-                
-                
-    <xsl:variable name="ttick" select="1"/>
-    <xsl:variable name="vtick" select="0.25"/>
-                
-    <xsl:variable name="trng" select="$tmax - $tmin"/>
-    <xsl:variable name="vinf" select="(floor($vmin div $vtick)) * $vtick"/>
-    <xsl:variable name="vsup" select="(ceiling($vmax div $vtick)) * $vtick"/>
-    <xsl:variable name="vrng" select="$vsup - $vinf"/>
-    <xsl:variable name="pzro" select="$ph * $vsup div $vrng"/>
-                
-                
-    <xsl:variable name="tdash" select="$pw * $ttick div $trng * 0.125"/>
-    <xsl:variable name="vdash" select="$ph * $vtick div $vrng * 0.125"/>
-    
-    
-   
-    <xsl:template match="root">
-        <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
-            <style>* { font-size: 10pt; font-family: sans-serif; font-weight: 300; }</style> 
-            
-
-            <g id="title" transform="translate(40,20)">
-                <text x="0" y="0" alignment-baseline="middle">
-                    <xsl:value-of select="tbl[1]/row/@res_name"/>
-                    <xsl:text>, </xsl:text>
-                    <xsl:value-of select="tbl[2]/row/@cat_name"/>
-                    <!--                    <xsl:value-of select="count($vv)"/>,
-                    <xsl:value-of select="$vmin"/>,<xsl:value-of select="$vmax"/>-->
-                </text>
-            </g>
-                
-                
-                
-            <g id="plot" transform="translate({$wo},{$ho})"> 
-                
-                
-                <g id="vgrid">
-                    <xsl:for-each select="$tt">
-                        <xsl:variable name="i" select="position()"/>
-                        <xsl:if test="$tt[$i] mod $ttick = 0">
-                            <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.00')"/>
-                            <line x1="{$x}" y1="0" x2="{$x}" y2="{$ph}" stroke="lightgray" stroke-dasharray="{$vdash},{$vdash}" stroke-dashoffset="{$vdash * 0.5}"/>
-                            <text x="{$x}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
-                                <xsl:value-of select="format-number($tt[$i],'0.000')"/>
-                            </text>
-                        </xsl:if>
-                    </xsl:for-each>  
-                </g> 
-              
-              
-                <g id="hgrid">       
-                    <xsl:call-template name="hgrid">
-                        <xsl:with-param name="vpos" select="$vinf" />
-                    </xsl:call-template>
-                </g>
-                
-                
-                <g id="lines">
-                    <xsl:for-each select="tbl[3]/row">
-                        <xsl:variable name="j" select="position()"/>
-                        <xsl:variable name="c" select="substring($cc, round( 14 * position() div count(//tbl[3]/row)), 1)"/>
-                        <g id="line">
-                            <xsl:variable name="line1">
-                                <xsl:for-each select="../../tbl[4]/row">
-                                    <xsl:variable name="i" select="position()"/>
-                                    <xsl:variable name="x" select="format-number($pw * (@t - $tmin) div $trng,'0.00')"/>
-                                    <!--<xsl:variable name="y" select="@*[$j + 3]"/>-->
-                                    <xsl:variable name="y" select="format-number($ph * (1 - (@*[$j + 3] - $vinf) div $vrng),'0.00')"/>
-                                    <xsl:choose>
-                                        <xsl:when test="position()=1">
-                                            <xsl:text>M </xsl:text>
-                                            <xsl:value-of select="$x"/>
-                                            <xsl:text>,</xsl:text>
-                                            <xsl:value-of select="$y"/>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:text> L </xsl:text>
-                                            <xsl:value-of select="$x"/>
-                                            <xsl:text>,</xsl:text>
-                                            <xsl:value-of select="$y"/>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                </xsl:for-each>
-                            </xsl:variable>
-                            <path fill="none"  d="{$line1}" stroke-width="1" stroke="#{$c}{$c}{$c}{$c}FF" />
-                        </g>
-                    </xsl:for-each>
-                </g>
-                
-                
-                <g id="dots">
-                    <xsl:for-each select="tbl[3]/row">
-                        <xsl:variable name="j" select="position()"/>
-                        <xsl:variable name="c" select="substring($cc, round( 14 * position() div count(//tbl[3]/row)), 1)"/>
-                        <g id="series">
-                            <xsl:for-each select="../../tbl[4]/row">
-                                <xsl:variable name="i" select="position()"/>
-                                <xsl:variable name="x" select="format-number($pw * (@t - $tmin) div $trng,'0.00')"/>
-                                <xsl:variable name="y" select="format-number($ph * (1 - (@*[$j + 3] - $vinf) div $vrng),'0.00')"/>
-                                <circle cx="{$x}" cy="{$y}" r="1" stroke="#{$c}{$c}{$c}{$c}FF" fill="#{$c}{$c}{$c}{$c}FF"/>
-                            </xsl:for-each>
-                        </g>
-                    </xsl:for-each>
-                </g>
-                
-                
-                
-                <g id="key" transform="translate(20,20)">
-                    <xsl:for-each select="tbl[3]/row">
-                        <xsl:variable name="c" select="substring($cc, round( 14 * position() div count(//tbl[3]/row)), 1)"/>
-                        <g transform="translate(0,{(position() - 1) * 20})">
-                            <text x="30" y="0" alignment-baseline="middle">
-                                <xsl:value-of select="@prm_code"/>
-                            </text>
-                            <line x1="0" x2="25" y1="0"  y2="0" stroke="#{$c}{$c}{$c}{$c}FF" stroke-width="10"/>
-                        </g>
-                    </xsl:for-each>
-                </g>
-            </g>
-        </svg>
-    </xsl:template>
-    
-    
-   
-
+        <table class="table1">
+            <tr>
+                <th>res_id</th>
+                <th>soc_pop</th>
+            </tr>
+            <tr>
+                <td><xsl:value-of select="@res_id"/></td>
+                <td><xsl:value-of select="@soc_pop"/></td>
+            </tr>
+        </table>
+        
+        <hr/>
  
+        <table class="table1">
+            <col/>
+            <col/>
+            <col width="100px"/>
+            <col width="100px"/>
+            <col width="100px"/>
+            <col width="100px"/>
+            <col width="100px"/>
+  
+            <tr>
+                <th colspan="2"></th>
+                <th>fixed cost</th>
+                <th>floating cost</th>
+                <th>land use</th>
+                <th>emissions</th>
+                <th>waste</th>
+            </tr>
+            <tr>
+                <th style="text-align:left;">despatch</th>
+
+                <td style="text-align:left;">gas</td>
+                <td><xsl:value-of select="@cst_gas_fxd"/></td>
+                <td><xsl:value-of select="@cst_gas_flt"/></td>
+                <td><xsl:value-of select="@ext_gas_lnd"/></td>
+                <td><xsl:value-of select="@ext_gas_emi"/></td>
+                <td><xsl:value-of select="@ext_gas_wst"/></td>
+            </tr>
+            
+            <tr>
+                <td rowspan="6"></td>
+                <td style="text-align:left;">nuclear</td>
+                <td><xsl:value-of select="@cst_nuc_fxd"/></td>
+                <td><xsl:value-of select="@cst_nuc_flt"/></td>
+                <td><xsl:value-of select="@ext_nuc_lnd"/></td>
+                <td><xsl:value-of select="@ext_nuc_emi"/></td>
+                <td><xsl:value-of select="@ext_nuc_wst"/></td>
+            </tr>
+            
+            <tr>
+                <td style="text-align:left;">river</td>
+                <td><xsl:value-of select="@cst_riv_fxd"/></td>
+                <td><xsl:value-of select="@cst_riv_flt"/></td>
+                <td><xsl:value-of select="@ext_riv_lnd"/></td>
+                <td><xsl:value-of select="@ext_riv_emi"/></td>
+                <td><xsl:value-of select="@ext_riv_wst"/></td>
+            </tr>
+            
+            <tr>
+                <td style="text-align:left;">reservoir</td>
+                <td><xsl:value-of select="@cst_res_fxd"/></td>
+                <td><xsl:value-of select="@cst_res_flt"/></td>
+                <td><xsl:value-of select="@ext_res_lnd"/></td> 
+                <td><xsl:value-of select="@ext_res_emi"/></td>
+                <td><xsl:value-of select="@ext_res_wst"/></td>
+            </tr>
+            
+            <tr>
+                <td style="text-align:left;">solar</td>
+                <td><xsl:value-of select="@cst_sol_fxd"/></td>
+                <td><xsl:value-of select="@cst_sol_flt"/></td>
+                <td><xsl:value-of select="@ext_sol_lnd"/></td>
+                <td><xsl:value-of select="@ext_sol_emi"/></td>
+                <td><xsl:value-of select="@ext_sol_wst"/></td>
+            </tr>
+            
+            <tr>
+                <td style="text-align:left;">wind</td>
+                <td><xsl:value-of select="@cst_wnd_fxd"/></td>
+                <td><xsl:value-of select="@cst_wnd_flt"/></td>
+                <td><xsl:value-of select="@ext_wnd_lnd"/></td>
+                <td><xsl:value-of select="@ext_wnd_emi"/></td>
+                <td><xsl:value-of select="@ext_wnd_wst"/></td>
+            </tr>
+            
+            <tr>
+                <td style="text-align:left;">biomass/waste</td>
+                <td><xsl:value-of select="@cst_bio_fxd"/></td>
+                <td><xsl:value-of select="@cst_bio_flt"/></td>
+                <td><xsl:value-of select="@ext_bio_lnd"/></td>
+                <td><xsl:value-of select="@ext_bio_emi"/></td>
+                <td><xsl:value-of select="@ext_bio_wst"/></td>
+            </tr>
     
-    <xsl:template name="hgrid">
-        <xsl:param name="vpos"/>
-        <xsl:variable name="y" select="format-number($ph * (1 - ($vpos - $vinf) div $vrng),'0.0')"/>
-        <text x="{$pw + 50}" y="{$y}" alignment-baseline="middle" text-anchor="end">
-            <xsl:value-of select="format-number($vpos,'0.000')"/>
-        </text>
-        <line x1="0" y1="{$y}" x2="{$pw}" y2="{$y}" stroke="lightgrey" stroke-dasharray="{$tdash},{$tdash}" stroke-dashoffset="{$tdash * 0.5}" />
-        <xsl:if test="$vpos &lt; $vsup">
-            <xsl:call-template name="hgrid">
-                <xsl:with-param name="vpos" select="$vpos + $vtick" />
-            </xsl:call-template>
-        </xsl:if>
+            
+            <tr>
+                <th style="text-align:left;">consumption</th>
+ 
+                <td style="text-align:left;">heat industrial</td>
+                <td><xsl:value-of select="@cst_hind_gas_fxd"/></td>
+                <td><xsl:value-of select="@cst_hind_gas_flt"/></td>
+                <td><xsl:value-of select="@ext_hind_gas_lnd"/></td>
+                <td><xsl:value-of select="@ext_hind_gas_emi"/></td>
+                <td><xsl:value-of select="@ext_hind_gas_wst"/></td>
+            </tr>
+            
+            <tr>
+                <td rowspan="3"></td>
+                <td style="text-align:left;">heat residential</td>
+                <td><xsl:value-of select="@cst_hres_gas_fxd"/></td>
+                <td><xsl:value-of select="@cst_hres_gas_flt"/></td>
+                <td><xsl:value-of select="@ext_hres_gas_lnd"/></td>
+                <td><xsl:value-of select="@ext_hres_gas_emi"/></td>
+                <td><xsl:value-of select="@ext_hres_gas_wst"/></td>
+            </tr>
+        
+            <tr>
+                <td style="text-align:left;">transport road</td>
+                <td><xsl:value-of select="@cst_road_pet_fxd"/></td>
+                <td><xsl:value-of select="@cst_road_pet_flt"/></td>
+                <td><xsl:value-of select="@ext_road_pet_lnd"/></td>
+                <td><xsl:value-of select="@ext_road_pet_emi"/></td>
+                <td><xsl:value-of select="@ext_road_pet_wst"/></td>
+            </tr>
+        
+        
+            <tr>
+                <td style="text-align:left;">transport rail</td>
+                <td><xsl:value-of select="@cst_rail_pet_fxd"/></td>
+                <td><xsl:value-of select="@cst_rail_pet_flt"/></td>
+                <td><xsl:value-of select="@ext_rail_pet_lnd"/></td>
+                <td><xsl:value-of select="@ext_rail_pet_emi"/></td>
+                <td><xsl:value-of select="@ext_rail_pet_wst"/></td>
+            </tr>
+        
+        
+            <tr>
+                <th style="text-align:left;">imports</th>
+            
+                <td style="text-align:left;">imported electricity</td>
+                <td><xsl:value-of select="@cst_imp_fxd"/></td>
+                <td><xsl:value-of select="@cst_imp_flt"/></td>
+                <td><xsl:value-of select="@ext_imp_lnd"/></td>
+                <td><xsl:value-of select="@ext_imp_emi"/></td>
+                <td><xsl:value-of select="@ext_imp_wst"/></td>
+            </tr>
+            
+            <tr>
+                <td colspan="7">
+                    <hr/>
+                </td>
+            </tr>
+     
+            
+            <tr>
+                <th style="text-align:left;">total</th>
+                
+                <td></td>
+                <td><xsl:value-of select="@cst_fxd"/></td>
+                <td><xsl:value-of select="@cst_flt"/></td>
+                <td><xsl:value-of select="@ext_lnd"/></td>
+                <td><xsl:value-of select="@ext_emi"/></td>
+                <td><xsl:value-of select="@ext_wst"/></td>
+            </tr>
+         
+        </table>
+        
+       
     </xsl:template>
-    
-    
 </xsl:stylesheet>
-
-

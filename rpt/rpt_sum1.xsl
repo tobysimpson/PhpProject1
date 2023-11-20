@@ -240,41 +240,12 @@
                     </xsl:choose>
                 </xsl:for-each>
             </xsl:variable>
-            <path fill="none" stroke="gray" d="{$line1}"/>
+            <path fill="none" stroke="black" d="{$line1}"/>
         </g>
     </xsl:template>
     
-    <!--    <xsl:template name="line2">
-        <xsl:param name="tt"/>
-        <xsl:param name="vv"/>
-        <xsl:variable name="line1">
-            <xsl:for-each select="$tt">
-                <xsl:variable name="i" select="position()"/>
-                <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.0')"/>
-                <xsl:variable name="y" select="format-number($ph * (1 - ($vv[$i] - $vmin) div $vrng),'0.0')"/>
-                <xsl:choose>
-                    <xsl:when test="position()=1">
-                        <xsl:text>M </xsl:text>
-                        <xsl:value-of select="$x"/>
-                        <xsl:text>,</xsl:text>
-                        <xsl:value-of select="$y"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:text> L </xsl:text>
-                        <xsl:value-of select="$x"/>
-                        <xsl:text>,</xsl:text>
-                        <xsl:value-of select="$y"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:for-each>
-        </xsl:variable>
-        <g id="line">
-            <path fill="none" stroke="black" d="{$line1}" stroke-width="1"/>
-        </g>
-    </xsl:template>-->
-    
-    
-    
+
+   
     <xsl:template name="hgrid">
         <xsl:param name="vpos"/>
         <xsl:variable name="y" select="format-number($ph * (1 - ($vpos - $vinf) div $vrng),'0.0')"/>

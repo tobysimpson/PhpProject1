@@ -19,8 +19,8 @@ switch ($mth) {
     case "upd":
         prm_upd();
         break;
-    case "plot":
-        prm_plot();
+    case "plt1":
+        prm_plt1();
         break;
     case "ups":
         prm_ups();
@@ -85,18 +85,18 @@ function prm_rst() {
     $p = filter_input(INPUT_GET, "p", FILTER_VALIDATE_INT);
     $qry = $db->conn->prepare("DELETE FROM prm_usr WHERE res_id={$res_id} AND prm_id={$prm_id};");
     $qry->execute();
-    header("Location: prm.php?mth=plot&res_id=".$res_id."&prm_id=".$prm_id);
+    header("Location: prm.php?mth=plt1&res_id=".$res_id."&prm_id=".$prm_id);
 }
 
 
-function prm_plot() {
+function prm_plt1() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_prm_plot({$res_id},{$prm_id});");
+    $db->conn->multi_query("CALL sp_prm_plt1({$res_id},{$prm_id});");
     $xml = cls_xml::mul2dom($db->conn);
 //    echo $xml->saveXML();
-    $xsl = cls_xml::file2dom("prm/prm_plot1.xsl");
+    $xsl = cls_xml::file2dom("prm/prm_plt1.xsl");
     header('Content-Type: text/xml');
     echo cls_xml::xsltrans($xml, $xsl);
 }
@@ -110,7 +110,7 @@ function prm_ups() {
     $u = filter_input(INPUT_GET, "u", FILTER_VALIDATE_FLOAT);
     $qry = $db->conn->prepare("INSERT INTO prm_usr (res_id, prm_id, p, u) VALUES ({$res_id},{$prm_id},{$p},{$u}) ON DUPLICATE KEY UPDATE u = {$u};");
     $qry->execute();
-    header("Location: prm.php?mth=plot&res_id=".$res_id."&prm_id=".$prm_id);
+    header("Location: prm.php?mth=plt1&res_id=".$res_id."&prm_id=".$prm_id);
 }
 
 
@@ -122,7 +122,7 @@ function prm_clr() {
     $p = filter_input(INPUT_GET, "p", FILTER_VALIDATE_INT);
     $qry = $db->conn->prepare("DELETE FROM prm_usr WHERE res_id={$res_id} AND prm_id={$prm_id} AND p={$p};");
     $qry->execute();
-    header("Location: prm.php?mth=plot&res_id=".$res_id."&prm_id=".$prm_id);
+    header("Location: prm.php?mth=plt1&res_id=".$res_id."&prm_id=".$prm_id);
 }
 
 
