@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" 
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:php="http://php.net/xsl">
     
-    <!--<xsl:copy-of select="node()"/>-->
+
     
     <xsl:template name="min">
         <xsl:param name="nodes" />
@@ -12,6 +13,20 @@
     <xsl:template name="max">
         <xsl:param name="nodes" />
         <xsl:value-of select="number($nodes[not($nodes &gt; .)])" />
+    </xsl:template>
+    
+    
+    <xsl:template name="tick">
+        <xsl:param name="rng" />
+        <xsl:choose>
+            <xsl:when test="$rng &gt; 0">
+                    <!--<xsl:value-of select="php:function('pow',10,round(php:function('log10', $rng)) - 1)"/>-->
+                <xsl:value-of select="php:function('pow',2,round(php:function('log10', $rng) div php:function('log10', 2)) - 2)"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:value-of select="0.1"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     

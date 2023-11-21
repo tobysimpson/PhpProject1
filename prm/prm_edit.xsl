@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" 
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:php="http://php.net/xsl">
     <xsl:output method="html" encoding="utf-8"/>
     <xsl:include href="../nav.xsl"/>
     
@@ -20,30 +19,25 @@
                 <tr>
                     <td>prm_code</td>
                     <td>
-                        <input type="text" name="prm_name" readonly="true" value="{@prm_code}"/>
+                        <input type="text" name="prm_code" readonly="true" value="{@prm_code}"/>
                     </td>
                 </tr>
                 <tr>
                     <td>prm_def</td>
                     <td>
-                        <input type="text" name="prm_def" value="{format-number(@prm_def, '0.000')}"/>
+                        <input type="text" name="prm_def" value="{format-number(@prm_def, '0.0000')}"/>
                     </td>
                 </tr>
                 <tr>
                     <td>prm_tick</td>
                     <td>
-                        <input type="text" name="prm_tick" value="{format-number(@prm_tick, '0.000')}"/>
+                        <input type="text" name="prm_tick" value="{format-number(@prm_tick, '0.0000')}"/>
                     </td>
                 </tr>
-<!--                <tr>
-                    <td>prm_cal</td>
-                    <td>
-                        <input type="text" name="prm_cal" value="{@prm_cal}"/>
-                    </td>
-                </tr>-->
+
                 <tr>
                     <td>
-                        
+                        <!--<xsl:value-of select="php:function('log10',100)"/>-->
                     </td>
                     <td>
                         <input type="submit"/>

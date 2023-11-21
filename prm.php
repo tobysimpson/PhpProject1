@@ -47,7 +47,7 @@ function prm_dsp() {
     $qry = $db->conn->prepare("SELECT * FROM prm_dsp;");
     $qry->execute();
     $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res, "prm/prm_disp.xsl");
+    $xml = cls_xml::res2dom($res, "prm/prm_dsp.xsl");
     $res->close();
     header('Content-Type: text/xml');
     echo $xml->saveXML();
@@ -57,7 +57,7 @@ function prm_dsp() {
 function prm_edit() {
     $db = new cls_db();
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM prm_info WHERE prm_id = {$prm_id};");
+    $qry = $db->conn->prepare("SELECT * FROM prm_dsp WHERE prm_id = {$prm_id};");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res);
@@ -66,6 +66,7 @@ function prm_edit() {
     header('Content-Type: text/html');
     echo cls_xml::xsltrans($xml, $xsl);
 }
+
 
 function prm_upd() {
     $db = new cls_db();
@@ -77,6 +78,7 @@ function prm_upd() {
     $qry->execute();
     header("Location: prm.php");
 }
+
 
 function prm_rst() {
     $db = new cls_db();
@@ -114,7 +116,6 @@ function prm_ups() {
 }
 
 
-
 function prm_clr() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
@@ -124,7 +125,6 @@ function prm_clr() {
     $qry->execute();
     header("Location: prm.php?mth=plt1&res_id=".$res_id."&prm_id=".$prm_id);
 }
-
 
 
 function prm_xml() {

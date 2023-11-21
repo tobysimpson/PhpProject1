@@ -39,6 +39,7 @@
             <xsl:with-param name="nodes" select="$vv" />
         </xsl:call-template>
     </xsl:variable>
+  
     
     <xsl:variable name="res_mod" select="root/tbl[1]/row/@res_mod"/>
     <xsl:variable name="ttick" select="root/tbl[1]/row/@res_tick"/>
@@ -98,15 +99,15 @@
                         <xsl:if test="((position() - 1) mod $res_mod) = 0">
                             <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.00')"/>
                             <line x1="{$x}" y1="0" x2="{$x}" y2="{$ph}" stroke="lightgray" stroke-dasharray="{$vdash},{$vdash}" stroke-dashoffset="{$vdash * 0.5}"/>
-                            <text x="{$x}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
+<!--                            <text x="{$x}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
                                 <xsl:value-of select="format-number($tt[$i],'0.000')"/>
-                            </text>
-                        
-                            <!-- debug -->
-                            <!--                        <text x="{$x}" y="{$ph + 20}" text-anchor="middle" alignment-baseline="hanging" style="writing-mode: tb; glyph-orientation-vertical: 90;">
-                                <xsl:value-of select="format-number($tt[$i] mod $ttick,'0.0000000') = 0"/>
-                                    <xsl:value-of select="(position() mod $res_mod) = 0"/>
                             </text>-->
+                        
+                            <g id="label" transform="translate({$x}, {$ph + 10})">
+                                <text text-anchor="end" transform="rotate(-90)" alignment-baseline="middle">
+                                    <xsl:value-of select="format-number($tt[$i],'0.00')"/>
+                                </text>
+                            </g>
                         
                         </xsl:if>
                     </xsl:for-each>

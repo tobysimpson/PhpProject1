@@ -19,7 +19,7 @@
                 <th>obj_id</th>
                 <th>fld_id</th>
     
-<!--                <th>cat_code</th>
+                <!--                <th>cat_code</th>
                 <th>dem_code</th>
                 <th>obj_code</th>
                 <th>fld_code</th>-->
@@ -60,7 +60,7 @@
                     </td>
                 
            
-<!--                    <td>
+                    <!--                    <td>
                         <xsl:value-of select="@cat_code"/>
                     </td>
                     <td>
@@ -93,9 +93,7 @@
                     <td style="text-align:left;">
                         <xsl:value-of select="@fld_name"/>
                     </td>
-
-
-   
+                    
                     <td>
                         <xsl:value-of select="format-number(@prm_def, '0.000')"/>
                     </td>
@@ -105,7 +103,9 @@
                     <td>
                         <xsl:value-of select="@prm_cal"/>
                     </td>
-      
+                    <td>
+                        <a href="prm.php?mth=edit&amp;prm_id={@prm_id}">edit</a>
+                    </td>
                 </tr>
             </xsl:for-each> 
         </table>

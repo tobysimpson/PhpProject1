@@ -46,16 +46,26 @@
     </xsl:variable>
                 
                 
+    <xsl:variable name="ttick">
+        <xsl:call-template name="tick">
+            <xsl:with-param name="rng" select="$tmax - $tmin" />
+        </xsl:call-template>
+    </xsl:variable> 
                 
-    <xsl:variable name="ttick" select="1.00"/>
-    <xsl:variable name="vtick" select="0.25"/>
+    <xsl:variable name="vtick">
+        <xsl:call-template name="tick">
+            <xsl:with-param name="rng" select="$vmax - $vmin" />
+        </xsl:call-template>
+    </xsl:variable> 
+                
+    <!--<xsl:variable name="ttick" select="1.00"/>-->
+    <!--<xsl:variable name="vtick" select="0.25"/>-->
                 
     <xsl:variable name="trng" select="$tmax - $tmin"/>
     <xsl:variable name="vinf" select="(floor($vmin div $vtick)) * $vtick"/>
     <xsl:variable name="vsup" select="(ceiling($vmax div $vtick)) * $vtick"/>
     <xsl:variable name="vrng" select="$vsup - $vinf"/>
-    <xsl:variable name="pzro" select="$ph * $vsup div $vrng"/>
-                
+
                 
     <xsl:variable name="tdash" select="$pw * $ttick div $trng * 0.125"/>
     <xsl:variable name="vdash" select="$ph * $vtick div $vrng * 0.125"/>
@@ -72,8 +82,14 @@
                     <xsl:value-of select="tbl[1]/row/@res_name"/>
                     <xsl:text>, </xsl:text>
                     <xsl:value-of select="tbl[2]/row/@cat_name"/>
-                    <!--                    <xsl:value-of select="count($vv)"/>,
-                    <xsl:value-of select="$vmin"/>,<xsl:value-of select="$vmax"/>-->
+
+                    <!--                    <xsl:text>, </xsl:text>
+                    <xsl:value-of select="$vtick"/>
+                    <xsl:text>, </xsl:text>
+                    <xsl:value-of select="$vinf"/>
+                    <xsl:text>, </xsl:text>
+                    <xsl:value-of select="$vsup"/>-->
+       
                 </text>
             </g>
                 
@@ -88,9 +104,13 @@
                         <xsl:if test="$tt[$i] mod $ttick = 0">
                             <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.00')"/>
                             <line x1="{$x}" y1="0" x2="{$x}" y2="{$ph}" stroke="lightgray" stroke-dasharray="{$vdash},{$vdash}" stroke-dashoffset="{$vdash * 0.5}"/>
-                            <text x="{$x}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
-                                <xsl:value-of select="format-number($tt[$i],'0.000')"/>
-                            </text>
+                           
+                            <g id="label" transform="translate({$x}, {$ph + 10})">
+                                <text text-anchor="end" transform="rotate(-90)" alignment-baseline="middle">
+                                    <xsl:value-of select="format-number($tt[$i],'0.00')"/>
+                                </text>
+                            </g>
+                            
                         </xsl:if>
                     </xsl:for-each>  
                 </g> 
@@ -171,12 +191,12 @@
 
     <xsl:template name="hgrid">
         <xsl:param name="vpos"/>
-        <xsl:variable name="y" select="format-number($ph * (1 - ($vpos - $vinf) div $vrng),'0.0')"/>
+        <xsl:variable name="y" select="format-number($ph * (1 - ($vpos - $vinf) div $vrng),'0.00')"/>
         <text x="{$pw + 50}" y="{$y}" alignment-baseline="middle" text-anchor="end">
-            <xsl:value-of select="format-number($vpos,'0.000')"/>
+            <xsl:value-of select="format-number($vpos,'0.0000')"/>
         </text>
         <line x1="0" y1="{$y}" x2="{$pw}" y2="{$y}" stroke="lightgrey" stroke-dasharray="{$tdash},{$tdash}" stroke-dashoffset="{$tdash * 0.5}" />
-        <xsl:if test="$vpos &lt; $vsup">
+        <xsl:if test="format-number($vpos,'0.00000') &lt; format-number($vsup,'0.00000')">
             <xsl:call-template name="hgrid">
                 <xsl:with-param name="vpos" select="$vpos + $vtick" />
             </xsl:call-template>

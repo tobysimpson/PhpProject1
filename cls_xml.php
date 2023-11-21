@@ -43,6 +43,7 @@ class cls_xml {
 
     public static function xsltrans($xml, $xsl) {
         $proc = new XSLTProcessor;
+        $proc->registerPHPFunctions();
         $proc->importStyleSheet($xsl);
         return $proc->transformToXML($xml);
     }
