@@ -66,9 +66,9 @@
                 </td>
             </tr>
             <tr>
-                <td>prm_dsp</td>
+                <td>prm_xml</td>
                 <td>
-                    <a href="https://toby.euler.usi.ch/api.php?mth=prm_dsp&amp;res_id=1&amp;prm_id=101">https://toby.euler.usi.ch/api.php?mth=prm_dsp&amp;res_id=1&amp;prm_id=101</a>
+                    <a href="https://toby.euler.usi.ch/api.php?mth=prm_xml&amp;res_id=1&amp;prm_id=101">https://toby.euler.usi.ch/api.php?mth=prm_xml&amp;res_id=1&amp;prm_id=101</a>
                 </td>
             </tr>
             <tr>

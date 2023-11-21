@@ -4,7 +4,6 @@
     <xsl:output method="html" encoding="utf-8"/>
 
     
-
     <xsl:template match="root/tbl[1]/row">
         <table class="table1">
             <tr>
@@ -56,6 +55,95 @@
                 </td>
             </tr>
         </table>
+        
+        
+        <hr/>
+        
+        <table class="table1">
+            <tr>
+                <th style="text-align:left;">metric</th>
+                <th>value</th>
+                <th>rank</th>
+                <th>count</th>
+                <th>percent</th>
+            </tr>
+            <tr>
+                <td style="text-align:left;">fixed cost</td>
+                <td>
+                    <xsl:value-of select="format-number(@cst_fxd,'0.0000')"/>
+                </td>
+                <td>
+                    <xsl:value-of select="@cst_fxd_rnk"/>
+                </td>
+                <td>
+                    <xsl:value-of select="@res_count"/>
+                </td>
+                <td style="text-align:right;">
+                    <xsl:value-of select="format-number(@cst_fxd_pct,'0%')"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:left;">floating cost</td>
+                <td>
+                    <xsl:value-of select="format-number(@cst_flt,'0.0000')"/>
+                </td>
+                <td>
+                    <xsl:value-of select="@cst_flt_rnk"/>
+                </td>
+                <td>
+                    <xsl:value-of select="@res_count"/>
+                </td>
+                <td style="text-align:right;">
+                    <xsl:value-of select="format-number(@cst_flt_pct,'0%')"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:left;">land use</td>
+                <td>
+                    <xsl:value-of select="format-number(@ext_lnd,'0.0000')"/>
+                </td>
+                <td>
+                    <xsl:value-of select="@ext_lnd_rnk"/>
+                </td>                
+                <td>
+                    <xsl:value-of select="@res_count"/>
+                </td>
+                <td style="text-align:right;">
+                    <xsl:value-of select="format-number(@ext_lnd_pct,'0%')"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:left;">emissions</td>
+                <td>
+                    <xsl:value-of select="format-number(@ext_emi,'0.0000')"/>
+                </td>
+                <td>
+                    <xsl:value-of select="@ext_emi_rnk"/>
+                </td>                
+                <td>
+                    <xsl:value-of select="@res_count"/>
+                </td>
+                <td style="text-align:right;">
+                    <xsl:value-of select="format-number(@ext_emi_pct,'0%')"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:left;">waste</td>
+                <td>
+                    <xsl:value-of select="format-number(@ext_wst,'0.0000')"/>
+                </td>
+                <td>
+                    <xsl:value-of select="@ext_wst_rnk"/>
+                </td>                
+                <td>
+                    <xsl:value-of select="@res_count"/>
+                </td>
+                <td style="text-align:right;">
+                    <xsl:value-of select="format-number(@ext_wst_pct,'0%')"/>
+                </td>
+            </tr>
+        </table>
+        
         
     </xsl:template>
     

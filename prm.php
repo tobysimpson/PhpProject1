@@ -73,8 +73,7 @@ function prm_upd() {
     $prm_id     = filter_input(INPUT_POST, "prm_id", FILTER_VALIDATE_INT);
     $prm_def    = filter_input(INPUT_POST, "prm_def", FILTER_VALIDATE_FLOAT);
     $prm_tick   = filter_input(INPUT_POST, "prm_tick", FILTER_VALIDATE_FLOAT);
-    $prm_cal    = filter_input(INPUT_POST, "prm_cal", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("UPDATE prm_info SET prm_def = {$prm_def}, prm_tick = {$prm_tick}, prm_cal = {$prm_cal} WHERE prm_id = {$prm_id};"); 
+    $qry = $db->conn->prepare("UPDATE prm_info SET prm_def = {$prm_def}, prm_tick = {$prm_tick} WHERE prm_id = {$prm_id};"); 
     $qry->execute();
     header("Location: prm.php");
 }
@@ -131,7 +130,7 @@ function prm_xml() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_prm_plot({$res_id},{$prm_id});");
+    $db->conn->multi_query("CALL sp_prm_plt1({$res_id},{$prm_id});");
     $xml = cls_xml::mul2dom($db->conn);
     header('Content-Type: text/xml');
     echo $xml->saveXML();
