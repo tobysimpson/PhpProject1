@@ -133,8 +133,6 @@
                     <xsl:with-param name="fill1" select="'#8888FF'" />
                 </xsl:call-template>
 
-
-                
        
                 <g id="vgrid">
                     <xsl:for-each select="$tt">
@@ -142,9 +140,17 @@
                         <xsl:if test="$tt[$i] mod $ttick = 0">
                             <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.00')"/>
                             <line x1="{$x}" y1="0" x2="{$x}" y2="{$ph}" stroke="lightgray" stroke-dasharray="{$vdash},{$vdash}" stroke-dashoffset="{$vdash * 0.5}"/>
-                            <text x="{$x}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
+                            <!--                            <text x="{$x}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
                                 <xsl:value-of select="format-number($tt[$i],'0.000')"/>
-                            </text>
+                            </text>-->
+                            
+                            <g id="label" transform="translate({$x}, {$ph + 10})">
+                                <text text-anchor="end" transform="rotate(-90)" alignment-baseline="middle">
+                                    <xsl:value-of select="format-number($tt[$i],'0.00')"/>
+                                </text>
+                            </g>
+                            
+                            
                         </xsl:if>
                     </xsl:for-each>  
                 </g> 

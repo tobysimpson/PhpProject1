@@ -177,6 +177,7 @@
                     <xsl:for-each select="tbl[3]/row">
                         <xsl:variable name="c" select="substring($cc, round( 14 * position() div count(//tbl[3]/row)), 1)"/>
                         <g transform="translate(0,{(position() - 1) * 20})">
+                            <line x1="-10" x2="120" y1="0"  y2="0" stroke="#FFFFFF" stroke-width="20"/>
                             <text x="30" y="0" alignment-baseline="middle">
                                 <xsl:value-of select="@prm_code"/>
                             </text>

@@ -70,7 +70,7 @@
                     <a href="#0" onclick="fn_get('rpt.php?mth=sum2&amp;res_id={@res_id}&amp;xsl=1',div1)">summary2</a>
                 </td>
                 <td>
-                    <a href="#0" onclick="fn_get('rpt.php?mth=rnk1&amp;res_id={@res_id}&amp;xsl=1',div1)">rank</a>
+                    <a href="#0" onclick="fn_get('rpt.php?mth=rnk1&amp;res_id={@res_id}&amp;xsl=1',div1)">rankings</a>
                 </td>
             </tr>
         </table>

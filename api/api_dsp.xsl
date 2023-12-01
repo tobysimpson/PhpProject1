@@ -32,8 +32,9 @@
             <tr>
                 <td>res_ins</td>
                 <td>
-                    <a href="https://toby.euler.usi.ch/api.php?mth=res_ins">https://toby.euler.usi.ch/api.php?mth=res_ins</a>
-                </td>
+                    <!--<a href="https://toby.euler.usi.ch/api.php?mth=res_ins">https://toby.euler.usi.ch/api.php?mth=res_ins</a>-->
+                    https://toby.euler.usi.ch/api.php?mth=res_ins 
+               </td>
             </tr>
 
             

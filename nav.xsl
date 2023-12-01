@@ -72,7 +72,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="prm.php">prm_dsp</a>
+                    <a href="prm.php?mth=dsp&amp;xsl=1">prm_dsp</a>
                 </td>
             </tr>
             <tr>

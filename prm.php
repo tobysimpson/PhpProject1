@@ -42,15 +42,21 @@ switch ($mth) {
  */
 
 
+
 function prm_dsp() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM prm_dsp;");
-    $qry->execute();
-    $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res, "prm/prm_dsp.xsl");
-    $res->close();
-    header('Content-Type: text/xml');
-    echo $xml->saveXML();
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_prm_dsp();");
+    $xml = cls_xml::mul2dom($db->conn);
+    
+    if ($xsl==1) {
+        $xsl = cls_xml::file2dom("prm/prm_dsp.xsl");
+        header('Content-Type: text/html');
+        echo cls_xml::xsltrans($xml, $xsl);
+    } else {
+        header('Content-Type: text/xml');
+        echo $xml->saveXML();
+    }
 }
 
 
@@ -80,10 +86,9 @@ function prm_upd() {
 
 
 function prm_rst() {
-    $db = new cls_db();
-    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $db = new cls_db(); 
+   $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $p = filter_input(INPUT_GET, "p", FILTER_VALIDATE_INT);
     $qry = $db->conn->prepare("DELETE FROM prm_usr WHERE res_id={$res_id} AND prm_id={$prm_id};");
     $qry->execute();
     header("Location: prm.php?mth=plt1&res_id=".$res_id."&prm_id=".$prm_id);
