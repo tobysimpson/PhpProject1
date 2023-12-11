@@ -58,7 +58,7 @@ function res_list() {
 
 function res_del() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("SELECT * FROM res_info  WHERE res_del = 1;");
+    $qry = $db->conn->prepare("SELECT * FROM res_info  WHERE res_del != 0;");
     $qry->execute();
     $res = $qry->get_result();
     $xml = cls_xml::res2dom($res, "res/res_list.xsl");
