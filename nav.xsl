@@ -140,6 +140,17 @@
                     <a href="usr.php">usr_info</a>
                 </td>
             </tr>
+            
+            <tr>
+                <th style="text-align:left">docs</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="sure_spec2.pdf">specification</a>
+                </td>
+            </tr>            
+
+            
         </table>
     </xsl:template>
     

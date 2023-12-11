@@ -20,6 +20,12 @@
                 <th>res_nt</th>
                 <th>res_mod</th>
                 <th>res_del</th>
+                <th>soc_pop</th>
+                <th>cst_fxd</th>
+                <th>cst_flt</th>
+                <th>ext_lnd</th>
+                <th>ext_emi</th>
+                <th>ext_wst</th>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -46,18 +52,26 @@
                     <td>
                         <xsl:value-of select="@res_del"/>
                     </td>
-                    <!--                    <td>
-                        <a href="res.php?mth=disp&amp;res_id={@res_id}">disp</a>
+                    
+                    
+                    <td>
+                        <xsl:value-of select="format-number(@soc_pop,'0.0000')"/>
                     </td>
                     <td>
-                        <a href="col.php?mth=list&amp;res_id={@res_id}">col</a>
+                        <xsl:value-of select="format-number(@cst_fxd,'0.0000')"/>
                     </td>
                     <td>
-                        <a href="bal.php?mth=disp&amp;res_id={@res_id}&amp;n=0">bal</a>
+                        <xsl:value-of select="format-number(@cst_flt,'0.0000')"/>
                     </td>
                     <td>
-                        <a href="res.php?mth=evt&amp;res_id={@res_id}">evt</a>
-                    </td>-->
+                        <xsl:value-of select="format-number(@ext_lnd,'0.0000')"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="format-number(@ext_emi,'0.0000')"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="format-number(@ext_wst,'0.0000')"/>
+                    </td>
                 </tr>
             </xsl:for-each> 
         </table>

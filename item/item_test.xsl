@@ -44,7 +44,7 @@
                  </tr>
             </xsl:for-each> 
         </table>
-
+        <hr/>
     </xsl:template>
     
     <xsl:template match="root/tbl[2]">
