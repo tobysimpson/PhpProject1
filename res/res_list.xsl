@@ -14,7 +14,7 @@
         </form>
         <table class="table1">
             <tr>
-                <th>res_id</th>
+                <th>res_id hello</th>
                 <th>res_name</th>
                 <th>res_dt</th>
                 <th>res_nt</th>
