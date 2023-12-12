@@ -81,7 +81,7 @@ function prm_upd() {
     $prm_tick   = filter_input(INPUT_POST, "prm_tick", FILTER_VALIDATE_FLOAT);
     $qry = $db->conn->prepare("UPDATE prm_info SET prm_def = {$prm_def}, prm_tick = {$prm_tick} WHERE prm_id = {$prm_id};"); 
     $qry->execute();
-    header("Location: prm.php");
+    header("Location: prm.php?mth=dsp&xsl=1");
 }
 
 
