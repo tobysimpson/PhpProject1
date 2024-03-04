@@ -10,7 +10,7 @@
     <xsl:variable name="ph" select="0.8 * $h"/>
     <xsl:variable name="pw" select="0.8 * $w"/>
     
-    <xsl:variable name="ho" select="0.1 * $h"/>
+    <xsl:variable name="ho" select="0.09 * $h"/>
     <xsl:variable name="wo" select="0.05 * $w"/>
     
     <xsl:variable name="tt" select="root/tbl[3]/row/@t" />
