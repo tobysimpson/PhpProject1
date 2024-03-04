@@ -20,11 +20,12 @@
         <xsl:param name="rng" />
         <xsl:choose>
             <xsl:when test="$rng &gt; 0">
-                    <!--<xsl:value-of select="php:function('pow',10,round(php:function('log10', $rng)) - 1)"/>-->
-                <xsl:value-of select="php:function('pow',2,round(php:function('log10', $rng) div php:function('log10', 2)) - 2)"/>
+                <xsl:value-of select="php:function('pow',10,round(php:function('log10', $rng)) - 1)"/>
+                <!--<xsl:value-of select="php:function('pow',2,round(php:function('log10', $rng) div php:function('log10', 2)) - 2)"/>-->
             </xsl:when>
-            <xsl:otherwise>
-               <xsl:value-of select="0.1"/>
+            <!-- for horiz line -->
+            <xsl:otherwise> 
+                <xsl:value-of select="0.1"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>

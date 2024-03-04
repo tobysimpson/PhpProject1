@@ -96,11 +96,11 @@ function res_edit() {
 
 function res_update() {
     $db = new cls_db();
-    $res_id = filter_input(INPUT_POST, "res_id", FILTER_VALIDATE_INT);
-    $res_name = filter_input(INPUT_POST, "res_name", FILTER_SANITIZE_STRING);
-    $res_dt = filter_input(INPUT_POST, "res_dt", FILTER_VALIDATE_FLOAT);
-    $res_nt = filter_input(INPUT_POST, "res_nt", FILTER_VALIDATE_FLOAT);
-    $res_mod = filter_input(INPUT_POST, "res_mod", FILTER_VALIDATE_FLOAT);
+    $res_id     = filter_input(INPUT_POST, "res_id",    FILTER_VALIDATE_INT);
+    $res_name   = filter_input(INPUT_POST, "res_name",  FILTER_SANITIZE_STRING);
+    $res_dt     = filter_input(INPUT_POST, "res_dt",    FILTER_VALIDATE_FLOAT);
+    $res_nt     = filter_input(INPUT_POST, "res_nt",    FILTER_VALIDATE_FLOAT);
+    $res_mod    = filter_input(INPUT_POST, "res_mod",   FILTER_VALIDATE_FLOAT);
     $res_del = (int)!is_null(filter_input(INPUT_POST, "res_del",FILTER_VALIDATE_BOOL));
     var_dump($res_del);
     $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}', res_dt={$res_dt}, res_nt={$res_nt}, res_mod={$res_mod}, res_del={$res_del}  WHERE res_id = {$res_id};");
