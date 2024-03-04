@@ -96,6 +96,7 @@ class cls_xml {
         return $dom;
     }
 
+    
     public static function mul2dom($conn, $xsl = "") {
         $dom = new DOMDocument('1.0', 'utf-8');
         $dom->formatOutput = true;
