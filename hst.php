@@ -23,14 +23,13 @@ switch ($mth) {
  * =========================
  */
 
-
 function hst_dsp() {
     $db = new cls_db();
     $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("SELECT * FROM hst_dsp;");
+    $db->conn->multi_query("CALL sp_hst_dsp();");
     $xml = cls_xml::mul2dom($db->conn);
-    
-    if ($xsl==1) {
+
+    if ($xsl == 1) {
         $xsl = cls_xml::file2dom("hst/hst_dsp.xsl");
         header('Content-Type: text/html');
         echo cls_xml::xsltrans($xml, $xsl);
@@ -47,14 +46,13 @@ function hst_plt() {
     $prd_id = filter_input(INPUT_GET, "prd_id", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_hst_plt({$prc_id},{$prd_id});");
     $xml = cls_xml::mul2dom($db->conn);
-    
-    if ($xsl==1) {
-        $xsl = cls_xml::file2dom("hst/hst_plt.xsl");
-        header('Content-Type: text/html');
-        echo cls_xml::xsltrans($xml, $xsl);
-    } else {
+
+    if ($xsl == 0) {
         header('Content-Type: text/xml');
         echo $xml->saveXML();
+    } else {
+        $xsl = cls_xml::file2dom("hst/hst_plt{$xsl}.xsl");
+        header('Content-Type: image/svg+xml');
+        echo cls_xml::xsltrans($xml, $xsl);
     }
 }
-

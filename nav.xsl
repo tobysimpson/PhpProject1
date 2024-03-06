@@ -95,7 +95,7 @@
             
             <tr>
                 <td>
-                    <a href="hst.php?mth-=dsp&amp;xsl=1">hst_dsp</a>
+                    <a href="hst.php?mth=dsp&amp;xsl=1">hst_dsp</a>
                 </td>
             </tr>
             

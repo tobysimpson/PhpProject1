@@ -14,7 +14,7 @@
     <xsl:variable name="wo" select="0.05 * $w"/>
     
     <xsl:variable name="tt" select="root/tbl[4]/row/@yr" />
-    <xsl:variable name="vv" select="root/tbl[4]/row/@tj" />
+    <xsl:variable name="vv" select="root/tbl[4]/row/@*[name()='tj' or name()='v']" />
     
 
     <xsl:variable name="cc" select="'0123456789ABCDEF'"/>
@@ -171,14 +171,14 @@
                 
                 
                 <g id="dots">
-                        <g id="series">
-                            <xsl:for-each select="tbl[4]/row">
-                                <xsl:variable name="i" select="position()"/>
-                                <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                                <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.00')"/>
-                                <circle cx="{$x}" cy="{$y}" r="1" stroke="#6666FF" fill="#6666FF"/>
-                            </xsl:for-each>
-                        </g>
+                    <g id="series">
+                        <xsl:for-each select="tbl[4]/row">
+                            <xsl:variable name="i" select="position()"/>
+                            <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
+                            <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.00')"/>
+                            <circle cx="{$x}" cy="{$y}" r="1" stroke="#6666FF" fill="#6666FF"/>
+                        </xsl:for-each>
+                    </g>
                 </g>
                 
 
@@ -190,10 +190,10 @@
     <xsl:template name="hgrid">
         <xsl:param name="vpos"/>
         <xsl:variable name="y" select="format-number($ph * (1 - ($vpos - $vinf) div $vrng),'0.00')"/>
-        <text x="{$pw + 50}" y="{$y}" alignment-baseline="middle" text-anchor="end">
+        <text xmlns="http://www.w3.org/2000/svg" x="{$pw + 50}" y="{$y}" alignment-baseline="middle" text-anchor="end">
             <xsl:value-of select="format-number($vpos,'#,##0')"/>
         </text>
-        <line x1="0" y1="{$y}" x2="{$pw}" y2="{$y}" stroke="lightgrey" stroke-dasharray="{$tdash},{$tdash}" stroke-dashoffset="{$tdash * 0.5}" />
+        <line xmlns="http://www.w3.org/2000/svg" x1="0" y1="{$y}" x2="{$pw}" y2="{$y}" stroke="lightgrey" stroke-dasharray="{$tdash},{$tdash}" stroke-dashoffset="{$tdash * 0.5}" />
         <xsl:if test="format-number($vpos,'0.000') &lt; format-number($vsup,'0.000')">
             <xsl:call-template name="hgrid">
                 <xsl:with-param name="vpos" select="$vpos + $vtick" />
