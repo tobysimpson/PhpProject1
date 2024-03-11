@@ -7,6 +7,9 @@ require_once "cls_usr.php";
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
+    case "dsc":
+        hst_dsc();
+        break;
     case "dsp":
         hst_dsp();
         break;
@@ -22,6 +25,23 @@ switch ($mth) {
  *  admin
  * =========================
  */
+
+function hst_dsc() {
+    $db = new cls_db();
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("SELECT * FROM hst_dsc;");
+    $xml = cls_xml::mul2dom($db->conn);
+
+    if ($xsl == 1) {
+        $xsl = cls_xml::file2dom("hst/hst_dsc.xsl");
+        header('Content-Type: text/html');
+        echo cls_xml::xsltrans($xml, $xsl);
+    } else {
+        header('Content-Type: text/xml');
+        echo $xml->saveXML();
+    }
+}
+
 
 function hst_dsp() {
     $db = new cls_db();

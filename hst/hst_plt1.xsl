@@ -32,13 +32,13 @@
     </xsl:variable>
                  
     <xsl:variable name="vmin">
-        <xsl:call-template name="min">
+        <xsl:call-template name="min0">
             <xsl:with-param name="nodes" select="$vv" />
         </xsl:call-template>
     </xsl:variable>
                 
     <xsl:variable name="vmax">
-        <xsl:call-template name="max">
+        <xsl:call-template name="max0">
             <xsl:with-param name="nodes" select="$vv" />
         </xsl:call-template>
     </xsl:variable>
@@ -88,6 +88,49 @@
                 
                 
             <g id="plot" transform="translate({$wo},{$ho})"> 
+                
+                
+                <xsl:variable name="pzro" select="format-number($ph * (1 + $vinf div $vrng),'0.0')"/>
+                    <g id="poly">
+                        <xsl:variable name="points">
+                            <xsl:for-each select="tbl[4]/row">
+                                <xsl:sort select="@yr" data-type="number" order="ascending"/>
+                                <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
+                                <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.0')"/>
+                                <xsl:choose>
+                                    <xsl:when test="position()=1">
+                                        <xsl:text>0,</xsl:text>
+                                        <xsl:value-of select="$pzro"/>
+                                        <xsl:text> </xsl:text>
+                                        <xsl:value-of select="$x"/>
+                                        <xsl:text>,</xsl:text>
+                                        <xsl:value-of select="$y"/>
+                                        <xsl:text> </xsl:text>
+                                    </xsl:when>
+                                    <xsl:when test="position()=last()">
+                                        <xsl:value-of select="$x"/>
+                                        <xsl:text>,</xsl:text>
+                                        <xsl:value-of select="$y"/>
+                                        <xsl:text> </xsl:text>
+                                        <xsl:value-of select="$pw"/>
+                                        <xsl:text>,</xsl:text>
+                                        <xsl:value-of select="$pzro"/>
+                                        <xsl:text> </xsl:text>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="$x"/>
+                                        <xsl:text>,</xsl:text>
+                                        <xsl:value-of select="$y"/>
+                                        <xsl:text> </xsl:text>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:for-each>
+                        </xsl:variable>
+                        <g id="polyline">
+                            <polyline points="{$points}" fill="#EEEEFF" stroke="none" />
+                        </g>
+                    </g>
+                
                 
                 
                 <g id="vgrid">

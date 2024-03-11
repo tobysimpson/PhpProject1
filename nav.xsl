@@ -80,7 +80,7 @@
                     <a href="api.php">api_dsp</a>
                 </td>
             </tr>
-<!--            
+            <!--            
             <tr>
                 <td>
                     <a href="raw.php?mth=">raw_hh</a>
@@ -92,7 +92,14 @@
                     <a href="res.php?mth=del">res_del</a>
                 </td>
             </tr>
-            
+            <tr>
+                <th style="text-align:left">history</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="hst.php?mth=dsc&amp;xsl=1">hst_dsc</a>
+                </td>
+            </tr>
             <tr>
                 <td>
                     <a href="hst.php?mth=dsp&amp;xsl=1">hst_dsp</a>
