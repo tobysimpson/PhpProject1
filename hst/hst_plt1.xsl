@@ -13,8 +13,8 @@
     <xsl:variable name="ho" select="0.1 * $h"/>
     <xsl:variable name="wo" select="0.05 * $w"/>
     
-    <xsl:variable name="tt" select="root/tbl[4]/row/@yr" />
-    <xsl:variable name="vv" select="root/tbl[4]/row/@*[name()='tj' or name()='v']" />
+    <xsl:variable name="tt" select="root/tbl[2]/row/@yr" />
+    <xsl:variable name="vv" select="root/tbl[2]/row/@*[name()='tj' or name()='v']" />
     
 
     <xsl:variable name="cc" select="'0123456789ABCDEF'"/>
@@ -79,9 +79,9 @@
                 <text x="0" y="0" alignment-baseline="middle">
                     <xsl:value-of select="tbl[1]/row/@grp_name"/>
                     <xsl:text>, </xsl:text>
-                    <xsl:value-of select="tbl[2]/row/@prc_name"/>
+                    <xsl:value-of select="tbl[1]/row/@prc_name"/>
                     <xsl:text>, </xsl:text>
-                    <xsl:value-of select="tbl[3]/row/@prd_name"/>
+                    <xsl:value-of select="tbl[1]/row/@prd_name"/>
                 </text>
             </g>
                 
@@ -93,7 +93,7 @@
                 <xsl:variable name="pzro" select="format-number($ph * (1 + $vinf div $vrng),'0.0')"/>
                     <g id="poly">
                         <xsl:variable name="points">
-                            <xsl:for-each select="tbl[4]/row">
+                            <xsl:for-each select="tbl[2]/row">
                                 <xsl:sort select="@yr" data-type="number" order="ascending"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
                                 <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.0')"/>
@@ -161,7 +161,7 @@
                 <g id="lines">
                     <g id="line">
                         <xsl:variable name="line1">
-                            <xsl:for-each select="tbl[4]/row">
+                            <xsl:for-each select="tbl[2]/row">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
                                 <!--<xsl:variable name="y" select="@*[$j + 3]"/>-->
@@ -187,7 +187,7 @@
                     
                     <g id="line">
                         <xsl:variable name="line2">
-                            <xsl:for-each select="tbl[4]/row">
+                            <xsl:for-each select="tbl[2]/row">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
                                 <!--<xsl:variable name="y" select="@*[$j + 3]"/>-->
@@ -215,7 +215,7 @@
                 
                 <g id="dots">
                     <g id="series">
-                        <xsl:for-each select="tbl[4]/row">
+                        <xsl:for-each select="tbl[2]/row">
                             <xsl:variable name="i" select="position()"/>
                             <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
                             <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.00')"/>

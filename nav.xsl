@@ -16,7 +16,7 @@
                 <title></title>
                 <link rel="stylesheet" href="https://toby.euler.usi.ch/styles.css"/>
                 <script src="xmlhttp.js"></script>
-                <script src="bal.js"></script>
+                <!--<script src="bal.js"></script>-->
             </head>
             <body>
                 <!--layout--> 

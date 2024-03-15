@@ -99,7 +99,7 @@
                         <xsl:if test="((position() - 1) mod $res_mod) = 0">
                             <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.00')"/>
                             <line x1="{$x}" y1="0" x2="{$x}" y2="{$ph}" stroke="lightgray" stroke-dasharray="{$vdash},{$vdash}" stroke-dashoffset="{$vdash * 0.5}"/>
-<!--                            <text x="{$x}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
+                            <!--                            <text x="{$x}" y="{$ph + 10}" text-anchor="middle" alignment-baseline="hanging">
                                 <xsl:value-of select="format-number($tt[$i],'0.000')"/>
                             </text>-->
                         
@@ -134,8 +134,9 @@
                                         </xsl:if>
                                     </xsl:if>
                                     <!--<a href="#0" onclick="fn_get('prm.php?mth=edit&amp;res_id={//row/@res_id}&amp;prm_id={//row/@prm_id}&amp;p={$p - 1}',div4);">-->
-                                    <circle cx="{$x1}" cy="{$y1}" r="3" stroke="black" fill="black"/>
-                                    <!--</a>-->
+                                    <a href="javascript:console.log({$p});">
+                                        <circle cx="{$x1}" cy="{$y1}" r="3" stroke="black" fill="black"/>
+                                    </a>
                                 </xsl:if>
                             </xsl:for-each>
                         </g>
@@ -187,10 +188,17 @@
             </g>
         </svg>
         <hr/>
+        
+        <div id="div4"></div>
+        
         <!-- table -->
+        
+        <!--<input type="range" style="transform:rotate(-90deg);"/>-->
         
         <xsl:choose>
             <xsl:when test="tbl[2]/row/@prm_cal = 0">
+                
+
                 <table>
                     <tr>
                         <th>res_id</th>
@@ -200,31 +208,32 @@
                         <th>u</th>
                     </tr>
                     <xsl:for-each select="tbl[3]/row">
-                        <!--<xsl:if test="@t mod $ttick = 0">-->
-                        <xsl:if test="((position() - 1) mod $res_mod) = 0">
-                            <tr>
-                                <td>
-                                    <xsl:value-of select="@res_id"/>
-                                </td>
-                                <td>
-                                    <xsl:value-of select="@prm_id"/>
-                                </td>
-                                <td>
-                                    <xsl:value-of select="@p"/>
-                                </td>
-                                <td>
-                                    <xsl:value-of select="format-number(@t, '0.000')"/>
-                                </td>
-                                <td>
-                                    <input style="width:60px;text-align:right;" value="{format-number(@u, '0.000')}" onchange="fn_get('prm.php?mth=ups&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}&amp;u='+this.value, div3);"/>
-                                </td>
-                                <td>
-                                    <input type="range" value="{format-number(@u,'0.000')}"  min="{$vinf}" max="{$vsup}" step="{$vtick * 0.5}" onchange="fn_get('prm.php?mth=ups&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}&amp;u='+this.value, div3);"/>
-                                </td>
-                                <td>
-                                    <a href="#0" onclick="fn_get('prm.php?mth=clr&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}', div3);">clear</a>
-                                </td>
-                            </tr>
+                        <xsl:if test="@t mod $ttick = 0">
+                            <xsl:if test="((position() - 1) mod $res_mod) = 0">
+                                <tr>
+                                    <td>
+                                        <xsl:value-of select="@res_id"/>
+                                    </td>
+                                    <td>
+                                        <xsl:value-of select="@prm_id"/>
+                                    </td>
+                                    <td>
+                                        <xsl:value-of select="@p"/>
+                                    </td>
+                                    <td>
+                                        <xsl:value-of select="format-number(@t, '0.000')"/>
+                                    </td>
+                                    <td>
+                                        <input style="width:60px;text-align:right;" value="{format-number(@u, '0.000')}" onchange="fn_get('prm.php?mth=ups&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}&amp;u='+this.value, div3);"/>
+                                    </td>
+                                    <td>
+                                        <input type="range" value="{format-number(@u,'0.000')}"  min="{$vinf}" max="{$vsup}" step="{$vtick * 0.5}" onchange="fn_get('prm.php?mth=ups&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}&amp;u='+this.value, div3);"/>
+                                    </td>
+                                    <td>
+                                        <a href="#0" onclick="fn_get('prm.php?mth=clr&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;p={@p}', div3);">clear</a>
+                                    </td>
+                                </tr>
+                            </xsl:if>
                         </xsl:if>
                     </xsl:for-each> 
                 </table>

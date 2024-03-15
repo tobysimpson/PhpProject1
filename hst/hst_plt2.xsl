@@ -7,8 +7,8 @@
     <xsl:variable name="h">60</xsl:variable>
     <xsl:variable name="w">100</xsl:variable>
 
-    <xsl:variable name="tt" select="root/tbl[4]/row/@yr" />
-    <xsl:variable name="vv" select="root/tbl[4]/row/@*[name()='tj' or name()='v']" />
+    <xsl:variable name="tt" select="root/tbl[2]/row/@yr" />
+    <xsl:variable name="vv" select="root/tbl[2]/row/@*[name()='tj' or name()='v']" />
     
     <xsl:variable name="tmin">
         <xsl:call-template name="min">
@@ -45,7 +45,7 @@
                     <xsl:variable name="pzro" select="format-number($h * (1 + $vmin div $vrng),'0.0')"/>
                     <g id="poly">
                         <xsl:variable name="points">
-                            <xsl:for-each select="tbl[4]/row">
+                            <xsl:for-each select="tbl[2]/row">
                                 <xsl:sort select="@yr" data-type="number" order="ascending"/>
                                 <xsl:variable name="x" select="format-number($w * (@yr - $tmin) div $trng,'0.0')"/>
                                 <xsl:variable name="y" select="format-number($h * (1 - (@tj - $vmin) div $vrng),'0.0')"/>
@@ -85,7 +85,7 @@
     
                     <g id="line">
                         <xsl:variable name="line1">
-                            <xsl:for-each select="tbl[4]/row">
+                            <xsl:for-each select="tbl[2]/row">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($w * (@yr - $tmin) div $trng,'0.00')"/>
                                 <xsl:variable name="y" select="format-number($h * (1 - (@tj - $vmin) div $vrng),'0.00')"/>
@@ -111,7 +111,7 @@
                     
                     <g id="line">
                         <xsl:variable name="line2">
-                            <xsl:for-each select="tbl[4]/row">
+                            <xsl:for-each select="tbl[2]/row">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($w * (@yr - $tmin) div $trng,'0.00')"/>
                                 <xsl:variable name="y" select="format-number($h * (1 - (@v - $vmin) div $vrng),'0.00')"/>
