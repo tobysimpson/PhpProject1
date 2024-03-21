@@ -50,32 +50,34 @@
                         <xsl:for-each select="/root/tbl[3]/row">
                             <xsl:variable name="prd" select="current()"/>
                             <xsl:variable name="hst" select="/root/tbl[4]/row[@prc_id = $prc/@prc_id][@prd_id = $prd/@prd_id]"/>
-                            <td style="text-align:right;width:50px">
+                            <td style="text-align:left;width:50px; white-space: nowrap">
                                 <!-- cell --> 
                                 <xsl:if test="$hst">
+                                    <xsl:value-of select="$hst/@hst_id"/>
+                                    <xsl:text> </xsl:text>    
                                     
                                     <!-- plt -->
-                                    <a href="hst.php?mth=plt&amp;hst_id={$hst/@hst_id}&amp;xsl=1">
+<!--                                    <a href="hst.php?mth=plt&amp;hst_id={$hst/@hst_id}&amp;xsl=1">
                                         <img  src="https://toby.euler.usi.ch/hst.php?mth=plt&amp;hst_id={$hst/@hst_id}&amp;xsl=2"/>
-                                    </a>
+                                    </a>-->
                                     
-<!--                                    <a href="hst.php?mth=plt&amp;prc_id={$prc/@prc_id}&amp;prd_id={$prd/@prd_id}&amp;xsl=1">
+                                    <a href="hst.php?mth=plt&amp;hst_id={$hst/@hst_id}&amp;xsl=1">
                                         <xsl:value-of select="$grp/@grp_code"/>
                                         <xsl:text>_</xsl:text>
                                         <xsl:value-of select="$prc/@prc_code"/>
                                         <xsl:text>_</xsl:text>
                                         <xsl:value-of select="$prd/@prd_code"/>
-                                    </a>-->
+                                    </a>
                                     
                                     <!--<xsl:value-of select="$prd_prc/@sgn"/>-->
                                     <!--<xsl:value-of select="$prd_prc/@eff"/>-->
-                                    <xsl:value-of select="$hst/@yr"/>=<xsl:value-of select="format-number($hst/@tj,'#,##0')"/><br/>
+                                    <!--<xsl:value-of select="$hst/@yr"/>=<xsl:value-of select="format-number($hst/@tj,'#,##0')"/><br/>-->
                                     
-                                    <xsl:variable name="att" select="concat($grp/@grp_code,'_',$prc/@prc_code,'_',$prd/@prd_code)"/>
+                                    <!--<xsl:variable name="att" select="concat($grp/@grp_code,'_',$prc/@prc_code,'_',$prd/@prd_code)"/>-->
                                     <!--<xsl:value-of select="$att"/>-->
                                     
                                     <!--<xsl:value-of select="/root/tbl[5]/row/@*[name()=$att]"/>-->
-                                    <xsl:value-of select="format-number(/root/tbl[5]/row/@*[name()=$att],'#,##0')"/>
+                                    <!--<xsl:value-of select="format-number(/root/tbl[5]/row/@*[name()=$att],'#,##0')"/>-->
                                     
                                     
                                 </xsl:if>
