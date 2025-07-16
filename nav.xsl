@@ -49,23 +49,7 @@
 
     <xsl:template name="menu">
         <table width="100%" class="table2">
-            <!--
-            <tr>
-                <td>
-                    <a href="prd.php">prd_info</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="dem.php">dem_info</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="col.php">col_desc</a>
-                </td>
-            </tr>-->
-            <tr>
+<!--            <tr>
                 <td>
                     <a href="res.php">res_info</a>
                 </td>
@@ -80,13 +64,6 @@
                     <a href="api.php">api_dsp</a>
                 </td>
             </tr>
-            <!--            
-            <tr>
-                <td>
-                    <a href="raw.php?mth=">raw_hh</a>
-                </td>
-            </tr>-->
-            
             <tr>
                 <td>
                     <a href="res.php?mth=del">res_del</a>
@@ -104,9 +81,7 @@
                 <td>
                     <a href="hst.php?mth=dsp&amp;xsl=1">hst_dsp</a>
                 </td>
-            </tr>
-            
-            
+            </tr>-->
             <tr>
                 <th style="text-align:left">item</th>
             </tr>
@@ -120,11 +95,6 @@
                     <a href="item.php?mth=xml">item_xml</a>
                 </td>
             </tr>
-            <!--<tr>
-                <td>
-                    <a href="item.php?mth=csv">item_csv</a>
-                </td>
-            </tr>-->
             <tr>
                 <td>
                     <a href="item.php?mth=svg">item_svg</a>
@@ -135,9 +105,6 @@
                     <a href="item.php?mth=sp&amp;res_id=1&amp;prm_id=1">item_sp</a>
                 </td>
             </tr>
-            
-           
- 
             <tr>
                 <th style="text-align:left">users</th>
             </tr>
@@ -151,21 +118,14 @@
                     <a href="usr.php">usr_info</a>
                 </td>
             </tr>
-            
-            <tr>
+<!--            <tr>
                 <th style="text-align:left">docs</th>
             </tr>
             <tr>
                 <td>
                     <a href="sure_spec2.pdf">specification</a>
                 </td>
-            </tr>            
-
-            
+            </tr>            -->
         </table>
     </xsl:template>
-    
-    
-
- 
 </xsl:stylesheet>

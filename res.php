@@ -4,11 +4,12 @@ require_once "cls_db.php";
 require_once "cls_xml.php";
 require_once "cls_usr.php";
 
+
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
-    case "list":
-        res_list();
+    case "lst":
+        res_lst();
         break;
     case "del":
         res_del();
@@ -41,11 +42,11 @@ switch ($mth) {
         res_prm();
         break;
     default:
-        res_list();
+        res_lst();
 }
 
 
-function res_list() {
+function res_lst() {
     $db = new cls_db();
     $qry = $db->conn->prepare("SELECT * FROM res_info WHERE res_del = 0;");
     $qry->execute();

@@ -13,6 +13,8 @@
         <form action="item.php?mth=insert" method="post">
             <input type="submit" value="add new"/>
         </form>
+       
+
         <table class="table1">
             <tr>
                 <th>item_id</th>
