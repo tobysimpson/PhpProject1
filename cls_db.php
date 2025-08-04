@@ -8,7 +8,7 @@ class cls_db {
     private $hostname = "localhost";
     private $username = "root";
     private $password = "Flowerdb1";
-    private $dbname   = "webgame";
+    private $dbname   = "db2";
     //objects
     public $conn    = null;
     public $usr_id  = 0;

@@ -9,7 +9,7 @@
         <xsl:call-template name="page"/> 
     </xsl:template>
 
-    <xsl:template match="root">
+    <xsl:template match="root/tbl[1]">
         <form action="item.php?mth=insert" method="post">
             <input type="submit" value="add new"/>
         </form>

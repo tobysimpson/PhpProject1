@@ -8,7 +8,7 @@
         <xsl:call-template name="page"/> 
     </xsl:template>
 
-    <xsl:template match="root/tbl[1]">
+    <xsl:template match="root">
 
         <table class="table1">
             <tr>
