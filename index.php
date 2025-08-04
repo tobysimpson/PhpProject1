@@ -6,5 +6,4 @@
 
 header("Location: item.php");
 
-//hello
 
