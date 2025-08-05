@@ -35,21 +35,6 @@ function item_lst() {
 }
 
 
-
-//function item_edt() {
-//    $db = new cls_db();
-//    $item_id = filter_input(INPUT_GET, "item_id", FILTER_VALIDATE_INT);
-//    $qry = $db->conn->prepare("SELECT * FROM item_info WHERE item_id = {$item_id};");
-////    $qry->bind_param("i", $item_id);
-//    $qry->execute();
-//    $res = $qry->get_result();
-//    $xml = cls_xml::res2dom($res);
-//    $xsl = cls_xml::file2dom("item/item_edt.xsl");
-//    echo cls_xml::xsltrans($xml, $xsl);
-//    $res->close();
-//}
-
-
 function item_edt() {
     $db = new cls_db();
     $item_id = filter_input(INPUT_GET, "item_id", FILTER_VALIDATE_INT);
@@ -60,20 +45,18 @@ function item_edt() {
 }
 
 
-
-
 function item_upd() {
     $db = new cls_db();
     $item_id   = filter_input(INPUT_POST, "item_id",   FILTER_VALIDATE_INT);
     $item_name = filter_input(INPUT_POST, "item_name", FILTER_SANITIZE_STRING);
-    $item_val1 = filter_input(INPUT_POST, "item_val1", FILTER_VALIDATE_FLOAT);
+    $item_val1 = filter_input(INPUT_POST, "item_val1", FILTER_VALIDATE_INT);
     $item_val2 = filter_input(INPUT_POST, "item_val2", FILTER_VALIDATE_FLOAT);
-//echo $item_name,$item_id,$item_val1,$item_val2;
-    $qry = $db->conn->prepare("UPDATE item_info SET item_date = NOW(), item_name = ?, item_val1 = ?, item_val2 = ? WHERE item_id = ?;");
-    $qry->bind_param("sddi", substr($item_name, 0, 20), $item_val1, $item_val2, $item_id);
-    $qry->execute();
+    $item_act  = filter_input(INPUT_POST, "item_act",  FILTER_VALIDATE_INT);
+//    echo $item_id,$item_name,$item_val1,$item_val2,$item_act;'
+    $db->conn->multi_query("CALL sp_item_upd({$item_id},{$item_act},'{$item_name}',{$item_val1},{$item_val2})");
     header("Location: item.php");
 }
+
 
 function item_ins() {
     $db = new cls_db();

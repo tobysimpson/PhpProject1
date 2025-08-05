@@ -34,16 +34,6 @@
                         </input>
                     </td>
                 </tr>
-<!--                <tr>
-                    <th>item_val1</th>
-                    <td>
-                        <input type="text" name="item_val1">
-                            <xsl:attribute name="value">
-                                <xsl:value-of select="@item_val1"/>
-                            </xsl:attribute>
-                        </input>
-                    </td>
-                </tr>-->
                 <tr>
                     <th>item_val1</th>
                     <td>
@@ -63,13 +53,28 @@
                 <tr>
                     <th>item_val2</th>
                     <td>
-                        <input type="text" name="item_val2">
-                            <xsl:attribute name="value">
-                                <xsl:value-of select="@item_val2"/>
-                            </xsl:attribute>
-                        </input>
+                        <input type="text" name="item_val2" value="{@item_val2}"/>
                     </td>
                 </tr>
+                <tr>
+                    <th>item_act</th>
+                    <td>
+                        <input type="radio" name="item_act" id="r1" value="1">
+                            <xsl:if test="@item_act = 1">
+                                <xsl:attribute name="checked"/>
+                            </xsl:if>
+                        </input>
+                        <label for="r1">active</label>
+                        <xsl:text>  </xsl:text>
+                        <input type="radio" name="item_act" id="r2" value="0">  
+                            <xsl:if test="@item_act = 0">
+                                <xsl:attribute name="checked"/>
+                            </xsl:if>
+                        </input>
+                        <label for="r2">inactive</label>
+                    </td>
+                </tr>
+                
                 <tr>
                     <td>
                     </td>
