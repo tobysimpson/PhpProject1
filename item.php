@@ -28,7 +28,7 @@ function item_lst() {
     $db = new cls_db();
 //    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
 //    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_item_list()");
+    $db->conn->multi_query("CALL sp_item_lst()");
     $dom = cls_xml::mul2dom($db->conn, "item/item_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
@@ -36,18 +36,30 @@ function item_lst() {
 
 
 
+//function item_edt() {
+//    $db = new cls_db();
+//    $item_id = filter_input(INPUT_GET, "item_id", FILTER_VALIDATE_INT);
+//    $qry = $db->conn->prepare("SELECT * FROM item_info WHERE item_id = {$item_id};");
+////    $qry->bind_param("i", $item_id);
+//    $qry->execute();
+//    $res = $qry->get_result();
+//    $xml = cls_xml::res2dom($res);
+//    $xsl = cls_xml::file2dom("item/item_edt.xsl");
+//    echo cls_xml::xsltrans($xml, $xsl);
+//    $res->close();
+//}
+
+
 function item_edt() {
     $db = new cls_db();
     $item_id = filter_input(INPUT_GET, "item_id", FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("SELECT * FROM item_info WHERE item_id = {$item_id};");
-//    $qry->bind_param("i", $item_id);
-    $qry->execute();
-    $res = $qry->get_result();
-    $xml = cls_xml::res2dom($res);
-    $xsl = cls_xml::file2dom("item/item_edt.xsl");
-    echo cls_xml::xsltrans($xml, $xsl);
-    $res->close();
+    $db->conn->multi_query("CALL sp_item_edt({$item_id})");
+    $dom = cls_xml::mul2dom($db->conn, "item/item_edt.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
 }
+
+
 
 
 function item_upd() {
