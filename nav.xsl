@@ -52,6 +52,24 @@
     <xsl:template name="menu">
         <table width="100%" class="table2">
             <tr>
+                <th style="text-align:left">catalogue</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="grp.php">group</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="tbl.php">table</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="col.php">column</a>
+                </td>
+            </tr>
+            <tr>
                 <th style="text-align:left">item</th>
             </tr>
             <tr>
