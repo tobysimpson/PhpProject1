@@ -29,7 +29,9 @@
                             </a>
                         </td>
                         <!--head--> 
-                        <td/>
+                        <td style="vertical-align:bottom;">
+                            
+                        </td>
                     </tr>
                     <tr>
                         <!-- navigation -->
