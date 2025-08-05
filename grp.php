@@ -24,6 +24,7 @@ switch ($mth) {
 }
 
 
+
 function grp_lst() {
     $db = new cls_db();
 //    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);

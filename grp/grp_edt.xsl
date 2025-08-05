@@ -14,59 +14,59 @@
         <form action="item.php?mth=upd" method="post">
             <table class="table2">
                 <tr>
-                    <th>item_id</th>
+                    <th>grp_id</th>
                     <td>
-                        <input type="text" name="item_id" readonly="true">
+                        <input type="text" name="grp_id" readonly="true">
                             <xsl:attribute name="value">
-                                <xsl:value-of select="@item_id"/>
+                                <xsl:value-of select="@grp_id"/>
                             </xsl:attribute>
                         </input>
                     </td>
                 </tr>
                 <tr>
-                    <th>item_name</th>
+                    <th>grp_name</th>
                     <td>
-                        <input type="text" name="item_name" length="20">
+                        <input type="text" name="grp_name" length="20">
                             <xsl:attribute name="value">
-                                <xsl:value-of select="@item_name"/>
+                                <xsl:value-of select="@grp_name"/>
                             </xsl:attribute>
                         </input>
                     </td>
                 </tr>
                 <tr>
-                    <th>item_val1</th>
+                    <th>grp_val1</th>
                     <td>
-                        <xsl:variable name="item_val1" select="@item_val1"/>
-                        <select name="item_val1">
+                        <xsl:variable name="grp_val1" select="@grp_val1"/>
+                        <select name="grp_val1">
                             <xsl:for-each select="//root/tbl[2]/row">
-                                <option value="{@item_id}">
-                                    <xsl:if test="@item_id = $item_val1">
+                                <option value="{@grp_id}">
+                                    <xsl:if test="@grp_id = $grp_val1">
                                         <xsl:attribute name="selected">selected</xsl:attribute>
                                     </xsl:if>
-                                    <xsl:value-of select="@item_name"/>
+                                    <xsl:value-of select="@grp_name"/>
                                 </option>
                             </xsl:for-each>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <th>item_val2</th>
+                    <th>grp_val2</th>
                     <td>
-                        <input type="text" name="item_val2" value="{@item_val2}"/>
+                        <input type="text" name="grp_val2" value="{@grp_val2}"/>
                     </td>
                 </tr>
                 <tr>
-                    <th>item_act</th>
+                    <th>grp_act</th>
                     <td>
-                        <input type="radio" name="item_act" id="r1" value="1">
-                            <xsl:if test="@item_act = 1">
+                        <input type="radio" name="grp_act" id="r1" value="1">
+                            <xsl:if test="@grp_act = 1">
                                 <xsl:attribute name="checked"/>
                             </xsl:if>
                         </input>
                         <label for="r1">active</label>
                         <xsl:text>  </xsl:text>
-                        <input type="radio" name="item_act" id="r2" value="0">  
-                            <xsl:if test="@item_act = 0">
+                        <input type="radio" name="grp_act" id="r2" value="0">  
+                            <xsl:if test="@grp_act = 0">
                                 <xsl:attribute name="checked"/>
                             </xsl:if>
                         </input>
