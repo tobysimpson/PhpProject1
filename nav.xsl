@@ -74,7 +74,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="item.php">item_list</a>
+                    <a href="item.php">item</a>
                 </td>
             </tr>
         </table>

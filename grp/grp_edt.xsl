@@ -11,7 +11,7 @@
     
     
     <xsl:template match="root/tbl[1]/row">
-        <form action="item.php?mth=upd" method="post">
+        <form action="grp.php?mth=upd" method="post">
             <table class="table2">
                 <tr>
                     <th>grp_id</th>

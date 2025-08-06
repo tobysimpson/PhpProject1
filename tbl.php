@@ -48,13 +48,12 @@ function tbl_edt() {
 function tbl_upd() {
     $db = new cls_db();
     $tbl_id   = filter_input(INPUT_POST, "tbl_id",   FILTER_VALIDATE_INT);
-    $tbl_name = filter_input(INPUT_POST, "tbl_name", FILTER_SANITIZE_STRING);
-    $tbl_val1 = filter_input(INPUT_POST, "tbl_val1", FILTER_VALIDATE_INT);
-    $tbl_val2 = filter_input(INPUT_POST, "tbl_val2", FILTER_VALIDATE_FLOAT);
     $tbl_act  = filter_input(INPUT_POST, "tbl_act",  FILTER_VALIDATE_INT);
+    $grp_id   = filter_input(INPUT_POST, "grp_id",   FILTER_VALIDATE_INT);
+    $tbl_name = filter_input(INPUT_POST, "tbl_name", FILTER_SANITIZE_STRING);
 //    echo $tbl_id,$tbl_name,$tbl_val1,$tbl_val2,$tbl_act;'
-    $db->conn->multi_query("CALL sp_tbl_upd({$tbl_id},{$tbl_act},'{$tbl_name}',{$tbl_val1},{$tbl_val2})");
-    header("Location: item.php");
+    $db->conn->multi_query("CALL sp_tbl_upd({$tbl_id},{$tbl_act},{$grp_id},'{$tbl_name}')");
+    header("Location: tbl.php");
 }
 
 
@@ -62,5 +61,5 @@ function tbl_ins() {
     $db = new cls_db();
     $qry = $db->conn->prepare("INSERT INTO tbl_info VALUES ();");
     $qry->execute();
-    header("Location: item.php");
+    header("Location: tbl.php");
 }

@@ -13,6 +13,7 @@
     <xsl:template match="root/tbl[1]">
         <table class="table1">
             <tr>
+                <th>tbl_id</th>
                 <th>col_id</th>
                 <th>col_act</th>
                 <th>col_date</th>
@@ -24,7 +25,7 @@
             <xsl:apply-templates select="row"/>
             <tr>
                 <td>        
-                    <form action="item.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
+                    <form action="col.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
                         <input type="submit" value="new"/>
                     </form>
                 </td>
@@ -35,6 +36,9 @@
     
     <xsl:template match="row">
         <tr>
+            <td>
+                <xsl:value-of select="@tbl_id"/>
+            </td>
             <td>
                 <xsl:value-of select="@col_id"/>
             </td>
@@ -54,7 +58,7 @@
                 <xsl:value-of select="@col_val2"/>
             </td>
             <td>
-                <a href="item.php?mth=edt&amp;col_id={@col_id}">edit</a>
+                <a href="col.php?mth=edt&amp;col_id={@col_id}">edit</a>
             </td>
         </tr>
     </xsl:template>

@@ -48,13 +48,11 @@ function col_edt() {
 function col_upd() {
     $db = new cls_db();
     $col_id   = filter_input(INPUT_POST, "col_id",   FILTER_VALIDATE_INT);
-    $col_name = filter_input(INPUT_POST, "col_name", FILTER_SANITIZE_STRING);
-    $col_val1 = filter_input(INPUT_POST, "col_val1", FILTER_VALIDATE_INT);
-    $col_val2 = filter_input(INPUT_POST, "col_val2", FILTER_VALIDATE_FLOAT);
     $col_act  = filter_input(INPUT_POST, "col_act",  FILTER_VALIDATE_INT);
-//    echo $col_id,$col_name,$col_val1,$col_val2,$col_act;'
-    $db->conn->multi_query("CALL sp_col_upd({$col_id},{$col_act},'{$col_name}',{$col_val1},{$col_val2})");
-    header("Location: item.php");
+    $tbl_id   = filter_input(INPUT_POST, "tbl_id",   FILTER_VALIDATE_INT);
+    $col_name = filter_input(INPUT_POST, "col_name", FILTER_SANITIZE_STRING);
+    $db->conn->multi_query("CALL sp_col_upd({$col_id},{$col_act},{$tbl_id},'{$col_name}')");
+    header("Location: col.php");
 }
 
 
@@ -62,5 +60,5 @@ function col_ins() {
     $db = new cls_db();
     $qry = $db->conn->prepare("INSERT INTO col_info VALUES ();");
     $qry->execute();
-    header("Location: item.php");
+    header("Location: col.php");
 }

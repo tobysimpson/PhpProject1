@@ -51,12 +51,10 @@ function grp_upd() {
     $db = new cls_db();
     $grp_id   = filter_input(INPUT_POST, "grp_id",   FILTER_VALIDATE_INT);
     $grp_name = filter_input(INPUT_POST, "grp_name", FILTER_SANITIZE_STRING);
-    $grp_val1 = filter_input(INPUT_POST, "grp_val1", FILTER_VALIDATE_INT);
-    $grp_val2 = filter_input(INPUT_POST, "grp_val2", FILTER_VALIDATE_FLOAT);
     $grp_act  = filter_input(INPUT_POST, "grp_act",  FILTER_VALIDATE_INT);
 //    echo $grp_id,$grp_name,$grp_val1,$grp_val2,$grp_act;'
-    $db->conn->multi_query("CALL sp_grp_upd({$grp_id},{$grp_act},'{$grp_name}',{$grp_val1},{$grp_val2})");
-    header("Location: item.php");
+    $db->conn->multi_query("CALL sp_grp_upd({$grp_id},{$grp_act},'{$grp_name}')");
+    header("Location: grp.php");
 }
 
 
@@ -64,5 +62,5 @@ function grp_ins() {
     $db = new cls_db();
     $qry = $db->conn->prepare("INSERT INTO grp_info VALUES ();");
     $qry->execute();
-    header("Location: item.php");
+    header("Location: grp.php");
 }

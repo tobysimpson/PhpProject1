@@ -24,7 +24,7 @@
             <xsl:apply-templates select="row"/>
             <tr>
                 <td>        
-                    <form action="item.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
+                    <form action="grp.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
                         <input type="submit" value="new"/>
                     </form>
                 </td>
@@ -54,7 +54,7 @@
                 <xsl:value-of select="@grp_val2"/>
             </td>
             <td>
-                <a href="item.php?mth=edt&amp;grp_id={@grp_id}">edit</a>
+                <a href="grp.php?mth=edt&amp;grp_id={@grp_id}">edit</a>
             </td>
         </tr>
     </xsl:template>
