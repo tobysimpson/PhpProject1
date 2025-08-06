@@ -37,12 +37,13 @@
                     <td></td>
                     <td>
                         <table class="table1">
-                            <tr>
-                                <th>tbl_id</th>
-                                <th style="text-align:left">tbl_name</th>
-                            </tr>
+                            
                             <xsl:for-each select="//root/tbl[2]/row[@grp_id=$grp_id]">
                                 <xsl:variable name="tbl_id" select="@tbl_id"/>
+                                <tr>
+                                    <th>tbl_id</th>
+                                    <th style="text-align:left">tbl_name</th>
+                                </tr>
                                 <tr>
                                     <td>
                                         <xsl:value-of select="@tbl_id"/>
