@@ -58,7 +58,8 @@ function col_upd() {
 
 function col_ins() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("INSERT INTO col_info VALUES ();");
+    $tbl_id   = filter_input(INPUT_POST, "tbl_id",   FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("INSERT INTO col_info (tbl_id) VALUES ({$tbl_id});");
     $qry->execute();
-    header("Location: col.php");
+    header("Location: grp.php");
 }

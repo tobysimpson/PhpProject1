@@ -59,7 +59,8 @@ function tbl_upd() {
 
 function tbl_ins() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("INSERT INTO tbl_info VALUES ();");
+    $grp_id   = filter_input(INPUT_POST, "grp_id",   FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("INSERT INTO tbl_info (grp_id) VALUES ({$grp_id});");
     $qry->execute();
-    header("Location: tbl.php");
+    header("Location: grp.php");
 }

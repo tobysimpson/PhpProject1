@@ -74,8 +74,7 @@ function grp_upd() {
 
 function grp_ins() {
     $db = new cls_db();
-    $grp_id   = filter_input(INPUT_POST, "grp_id",   FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("INSERT INTO grp_info (grp_id) VALUES ({$grp_id});");
+    $qry = $db->conn->prepare("INSERT INTO grp_info VALUES ();");
     $qry->execute();
-    header("Location: grp.php");
+    header("Location: grp.php?mth=lst");
 }
