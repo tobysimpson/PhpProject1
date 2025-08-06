@@ -56,7 +56,12 @@
             </tr>
             <tr>
                 <td>
-                    <a href="grp.php">group</a>
+                    <a href="grp.php">all</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="grp.php?mth=lst">group</a>
                 </td>
             </tr>
             <tr>

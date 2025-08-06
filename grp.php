@@ -19,10 +19,24 @@ switch ($mth) {
     case "ins":
         grp_ins();
         break;
+    case "all":
+        grp_all();
+        break;
     default:
-        grp_lst();
+        grp_all();
 }
 
+
+
+function grp_all() {
+    $db = new cls_db();
+//    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+//    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_grp_all()");
+    $dom = cls_xml::mul2dom($db->conn, "grp/grp_all.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
 
 
 function grp_lst() {
@@ -60,7 +74,8 @@ function grp_upd() {
 
 function grp_ins() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("INSERT INTO grp_info VALUES ();");
+    $grp_id   = filter_input(INPUT_POST, "grp_id",   FILTER_VALIDATE_INT);
+    $qry = $db->conn->prepare("INSERT INTO grp_info (grp_id) VALUES ({$grp_id});");
     $qry->execute();
     header("Location: grp.php");
 }
