@@ -24,38 +24,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>grp_name</th>
-                    <td>
-                        <input type="text" name="grp_name" length="20">
-                            <xsl:attribute name="value">
-                                <xsl:value-of select="@grp_name"/>
-                            </xsl:attribute>
-                        </input>
-                    </td>
-                </tr>
-                <tr>
-                    <th>grp_val1</th>
-                    <td>
-                        <xsl:variable name="grp_val1" select="@grp_val1"/>
-                        <select name="grp_val1">
-                            <xsl:for-each select="//root/tbl[2]/row">
-                                <option value="{@grp_id}">
-                                    <xsl:if test="@grp_id = $grp_val1">
-                                        <xsl:attribute name="selected">selected</xsl:attribute>
-                                    </xsl:if>
-                                    <xsl:value-of select="@grp_name"/>
-                                </option>
-                            </xsl:for-each>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>grp_val2</th>
-                    <td>
-                        <input type="text" name="grp_val2" value="{@grp_val2}"/>
-                    </td>
-                </tr>
-                <tr>
                     <th>grp_act</th>
                     <td>
                         <input type="radio" name="grp_act" id="r1" value="1">
@@ -73,6 +41,19 @@
                         <label for="r2">inactive</label>
                     </td>
                 </tr>
+                <tr>
+                    <th>grp_name</th>
+                    <td>
+                        <input type="text" name="grp_name" length="20">
+                            <xsl:attribute name="value">
+                                <xsl:value-of select="@grp_name"/>
+                            </xsl:attribute>
+                        </input>
+                    </td>
+                </tr>
+
+
+         
                 
                 <tr>
                     <td>

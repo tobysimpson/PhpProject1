@@ -16,10 +16,7 @@
                 <th>tbl_id</th>
                 <th>col_id</th>
                 <th>col_act</th>
-                <th>col_date</th>
                 <th>col_name</th>
-                <th>col_val1</th>
-                <th>col_val2</th>
                 <th/>
             </tr>
             <xsl:apply-templates select="row"/>
@@ -45,17 +42,9 @@
             <td>
                 <xsl:value-of select="@col_act"/>
             </td>
-            <td>
-                <xsl:value-of select="@col_date"/>
-            </td>
+
             <td style="text-align:left">
                 <xsl:value-of select="@col_name"/>
-            </td>
-            <td>
-                <xsl:value-of select="@col_val1"/>
-            </td>
-            <td style="text-align:right">
-                <xsl:value-of select="@col_val2"/>
             </td>
             <td>
                 <a href="col.php?mth=edt&amp;col_id={@col_id}">edit</a>

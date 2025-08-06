@@ -15,10 +15,7 @@
             <tr>
                 <th>grp_id</th>
                 <th>grp_act</th>
-                <th>grp_date</th>
                 <th>grp_name</th>
-                <th>grp_val1</th>
-                <th>grp_val2</th>
                 <th/>
             </tr>
             <xsl:apply-templates select="row"/>
@@ -41,17 +38,8 @@
             <td>
                 <xsl:value-of select="@grp_act"/>
             </td>
-            <td>
-                <xsl:value-of select="@grp_date"/>
-            </td>
             <td style="text-align:left">
                 <xsl:value-of select="@grp_name"/>
-            </td>
-            <td>
-                <xsl:value-of select="@grp_val1"/>
-            </td>
-            <td style="text-align:right">
-                <xsl:value-of select="@grp_val2"/>
             </td>
             <td>
                 <a href="grp.php?mth=edt&amp;grp_id={@grp_id}">edit</a>

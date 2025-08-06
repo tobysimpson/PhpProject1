@@ -16,10 +16,7 @@
                 <th>grp_id</th>
                 <th>tbl_id</th>
                 <th>tbl_act</th>
-                <th>tbl_date</th>
                 <th>tbl_name</th>
-                <th>tbl_val1</th>
-                <th>tbl_val2</th>
                 <th/>
             </tr>
             <xsl:apply-templates select="row"/>
@@ -45,17 +42,8 @@
             <td>
                 <xsl:value-of select="@tbl_act"/>
             </td>
-            <td>
-                <xsl:value-of select="@tbl_date"/>
-            </td>
             <td style="text-align:left">
                 <xsl:value-of select="@tbl_name"/>
-            </td>
-            <td>
-                <xsl:value-of select="@tbl_val1"/>
-            </td>
-            <td style="text-align:right">
-                <xsl:value-of select="@tbl_val2"/>
             </td>
             <td>
                 <a href="tbl.php?mth=edt&amp;tbl_id={@tbl_id}">edit</a>

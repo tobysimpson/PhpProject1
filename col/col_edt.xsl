@@ -67,15 +67,6 @@
                         </input>
                     </td>
                 </tr>
-                
-                <tr>
-                    <th>col_val2</th>
-                    <td>
-                        <input type="text" name="col_val2" value="{@col_val2}"/>
-                    </td>
-                </tr>
-
-                
                 <tr>
                     <td>
                     </td>
