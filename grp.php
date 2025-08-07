@@ -19,31 +19,39 @@ switch ($mth) {
     case "ins":
         grp_ins();
         break;
-    case "brw":
-        grp_brw();
+    case "all":
+        grp_all();
         break;
     case "tbl":
         grp_tbl();
         break;
     default:
-        grp_lst();
+        grp_brw();
 }
 
+
+
+function grp_all() {
+    $db = new cls_db();
+    $db->conn->multi_query("CALL sp_grp_all()");
+    $dom = cls_xml::mul2dom($db->conn, "grp/grp_all.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
 
 
 function grp_brw() {
     $db = new cls_db();
     $db->conn->multi_query("CALL sp_grp_brw()");
     $dom = cls_xml::mul2dom($db->conn, "grp/grp_brw.xsl");
-//    $dom = cls_xml::mul2dom($db->conn);
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
 
-
 function grp_lst() {
     $db = new cls_db();
-    $db->conn->multi_query("CALL sp_grp_lst()");
+    $grp_act = filter_input(INPUT_GET, "grp_act", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_grp_lst({$grp_act})");
     $dom = cls_xml::mul2dom($db->conn, "grp/grp_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();

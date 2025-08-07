@@ -26,9 +26,8 @@ switch ($mth) {
 
 function col_lst() {
     $db = new cls_db();
-//    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-//    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_col_lst()");
+    $col_act = filter_input(INPUT_GET, "col_act", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_col_lst({$col_act})");
     $dom = cls_xml::mul2dom($db->conn, "col/col_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();

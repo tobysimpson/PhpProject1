@@ -56,30 +56,48 @@
             </tr>
             <tr>
                 <td>
-                    <a href="grp.php?mth=lst">groups</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <a href="grp.php?mth=brw">browse</a>
                 </td>
             </tr>
             <tr>
-                <th style="text-align:left">list</th>
+                <td>
+                    <a href="grp.php?mth=all">summary</a>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:left">active</th>
             </tr>
             <tr>
                 <td>
-                    <a href="grp.php?mth=lst">groups</a>
+                    <a href="grp.php?mth=lst&amp;grp_act=1">groups</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="tbl.php?mth=lst">tables</a>
+                    <a href="tbl.php?mth=lst&amp;tbl_act=1">tables</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="col.php?mth=lst">columns</a>
+                    <a href="col.php?mth=lst&amp;col_act=1">columns</a>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:left">inactive</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="grp.php?mth=lst&amp;grp_act=0">groups</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="tbl.php?mth=lst&amp;tbl_act=0">tables</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="col.php?mth=lst&amp;col_act=0">columns</a>
                 </td>
             </tr>
             <tr>

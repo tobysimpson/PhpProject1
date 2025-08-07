@@ -24,7 +24,7 @@
                     </td>
 
                     <td style="text-align:left">
-                        <a href="grp.php?mth=tbl&amp;grp_id={@grp_id}">
+                        <a href="grp.php?mth=edt&amp;grp_id={@grp_id}">
                             <xsl:value-of select="@grp_name"/>
                         </a>
                     </td>
@@ -33,13 +33,6 @@
                     </td>
                 </tr>
             </xsl:for-each>
-            <tr>
-                <td>        
-                    <form action="grp.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
-                        <input type="submit" value="new"/>
-                    </form>
-                </td>
-            </tr>
         </table>
     </xsl:template>
 </xsl:stylesheet>

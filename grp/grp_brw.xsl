@@ -10,74 +10,36 @@
     </xsl:template>
     
 
-    <xsl:template match="root">
+    <xsl:template match="root/tbl[1]">
         <table class="table1">
- 
-            <xsl:for-each select="tbl[1]/row">
-                <xsl:variable name="grp_id" select="@grp_id"/>
-                <tr>
-                    <th>grp_id</th>
-                    <th style="text-align:left">grp_name</th>
-                </tr>
+            <tr>
+                <th>grp_id</th>
+                <th>grp_name</th>
+                <th>grp_act</th>
+            </tr>
+            <xsl:for-each select="row">
                 <tr>
                     <td>
                         <xsl:value-of select="@grp_id"/>
                     </td>
+
                     <td style="text-align:left">
                         <a href="grp.php?mth=tbl&amp;grp_id={@grp_id}">
                             <xsl:value-of select="@grp_name"/>
                         </a>
                     </td>
-                </tr>
-                <tr>
-                    <td></td>
                     <td>
-                        <table class="table1">
-                            
-                            <xsl:for-each select="//root/tbl[2]/row[@grp_id=$grp_id]">
-                                <xsl:variable name="tbl_id" select="@tbl_id"/>
-                                <tr>
-                                    <th>tbl_id</th>
-                                    <th style="text-align:left">tbl_name</th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <xsl:value-of select="@tbl_id"/>
-                                    </td>
-                                    <td style="text-align:left">
-                                        <a href="tbl.php?mth=col&amp;tbl_id={@tbl_id}">
-                                            <xsl:value-of select="@tbl_name"/>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <table class="table1">
-                                            <tr>
-                                                <th>col_id</th>
-                                                <th style="text-align:left">col_name</th>
-                                            </tr>
-                                            <xsl:for-each select="//root/tbl[3]/row[@tbl_id=$tbl_id]">
-                                                <tr>
-                                                    <td>
-                                                        <xsl:value-of select="@col_id"/>
-                                                    </td>
-                                                    <td style="text-align:left">
-                                                        <a href="col.php?mth=edt&amp;col_id={@col_id}">
-                                                            <xsl:value-of select="@col_name"/>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </xsl:for-each>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </xsl:for-each>
-                        </table>
+                        <xsl:value-of select="@grp_act"/>
                     </td>
                 </tr>
             </xsl:for-each>
+            <tr>
+                <td>        
+                    <form action="grp.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
+                        <input type="submit" value="new"/>
+                    </form>
+                </td>
+            </tr>
         </table>
     </xsl:template>
 </xsl:stylesheet>

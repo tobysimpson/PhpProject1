@@ -29,7 +29,8 @@ switch ($mth) {
 
 function tbl_lst() {
     $db = new cls_db();
-    $db->conn->multi_query("CALL sp_tbl_lst()");
+    $tbl_act = filter_input(INPUT_GET, "tbl_act", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_tbl_lst({$tbl_act})");
     $dom = cls_xml::mul2dom($db->conn, "tbl/tbl_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
