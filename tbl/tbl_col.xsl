@@ -21,7 +21,7 @@
                 <td>
                     <xsl:value-of select="@tbl_id"/>
                 </td>
-                <td style="text-align:left">
+                <td>
                     <a href="tbl.php?mth=edt&amp;tbl_id={@tbl_id}">
                         <xsl:value-of select="@tbl_name"/>
                     </a>
@@ -35,18 +35,35 @@
         <table class="table1">
             <tr>
                 <th>col_id</th>
+                <th>col_pos</th>
                 <th>col_name</th>
+                <th>col_desc</th>
+                <th>col_typ</th>
+                <th>col_dec</th>
                 <th>col_act</th>
             </tr>
             <xsl:for-each select="//root/tbl[2]/row">
+                <!--<xsl:sort select="@col_pos"/>-->
                 <tr>
                     <td>
                         <xsl:value-of select="@col_id"/>
                     </td>
-                    <td style="text-align:left">
+                    <td>
+                        <xsl:value-of select="@col_pos"/>
+                    </td>
+                    <td>
                         <a href="col.php?mth=edt&amp;col_id={@col_id}">
                             <xsl:value-of select="@col_name"/>
                         </a>
+                    </td>
+                    <td style="text-align:left">
+                        <xsl:value-of select="@col_desc"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@col_typ"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@col_dec"/>
                     </td>
                     <td>
                         <xsl:value-of select="@col_act"/>
@@ -63,10 +80,4 @@
             </tr>
         </table>
     </xsl:template>
-    
-    
-
-    
-    
-    
 </xsl:stylesheet>

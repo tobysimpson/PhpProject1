@@ -15,8 +15,9 @@
             <tr>
                 <th>tbl_id</th>
                 <th>col_id</th>
+                <th>col_pos</th>
                 <th>col_name</th>
-                <th>col_ord</th>
+                <th>col_desc</th>
                 <th>col_typ</th>
                 <th>col_dec</th>
                 <th>col_act</th>
@@ -28,14 +29,17 @@
                     </td>
                     <td>
                         <xsl:value-of select="@col_id"/>
-                    </td> 
-                    <td style="text-align:left">
+                    </td>
+                    <td>
+                        <xsl:value-of select="@col_pos"/>
+                    </td>
+                    <td>
                         <a href="col.php?mth=edt&amp;col_id={@col_id}">
                             <xsl:value-of select="@col_name"/>
                         </a>
                     </td>
-                    <td>
-                        <xsl:value-of select="@col_ord"/>
+                    <td style="text-align:left">
+                        <xsl:value-of select="@col_desc"/>
                     </td>
                     <td>
                         <xsl:value-of select="@col_typ"/>

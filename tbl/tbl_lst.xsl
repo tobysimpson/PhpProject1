@@ -16,6 +16,7 @@
                 <th>grp_id</th>
                 <th>tbl_id</th>
                 <th>tbl_name</th>
+                <th>tbl_desc</th>
                 <th>tbl_act</th>
             </tr>
             <xsl:for-each select="row">
@@ -26,10 +27,13 @@
                     <td>
                         <xsl:value-of select="@tbl_id"/>
                     </td>
-                    <td style="text-align:left">
+                    <td>
                         <a href="tbl.php?mth=edt&amp;tbl_id={@tbl_id}">
                             <xsl:value-of select="@tbl_name"/>
                         </a>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@tbl_desc"/>
                     </td>
                     <td>
                         <xsl:value-of select="@tbl_act"/>

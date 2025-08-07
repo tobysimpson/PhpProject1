@@ -22,8 +22,7 @@
                     <td>
                         <xsl:value-of select="@grp_id"/>
                     </td>
-
-                    <td style="text-align:left">
+                    <td>
                         <a href="grp.php?mth=tbl&amp;grp_id={@grp_id}">
                             <xsl:value-of select="@grp_name"/>
                         </a>

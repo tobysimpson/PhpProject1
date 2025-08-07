@@ -16,11 +16,47 @@
                 <tr>
                     <th>col_id</th>
                     <td>
-                        <input type="text" name="col_id" readonly="true">
-                            <xsl:attribute name="value">
-                                <xsl:value-of select="@col_id"/>
-                            </xsl:attribute>
-                        </input>
+                        <input type="text" name="col_id" readonly="true" value="{@col_id}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>tbl_id</th>
+                    <td>
+                        <input type="text" name="tbl_id" readonly="true" value="{@tbl_id}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>col_pos</th>
+                    <td>
+                        <input type="text" name="col_pos" value="{@col_pos}"/>
+                    </td>
+                </tr>
+                <!--                <tr>
+                    <th>tbl_id</th>
+                    <td>
+                        <xsl:variable name="tbl_id" select="@tbl_id"/>
+                        <select name="tbl_id">
+                            <xsl:for-each select="//root/tbl[2]/row">
+                                <option value="{@tbl_id}">
+                                    <xsl:if test="@tbl_id = $tbl_id">
+                                        <xsl:attribute name="selected">selected</xsl:attribute>
+                                    </xsl:if>
+                                    <xsl:value-of select="@tbl_name"/>
+                                </option>
+                            </xsl:for-each>
+                        </select>
+                    </td>
+                </tr>-->
+                <tr>
+                    <th>col_name</th>
+                    <td>
+                        <input type="text" name="col_name" value="{@col_name}" length="20" readonly="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>col_desc</th>
+                    <td>
+                        <input type="text" name="col_desc" value="{@col_desc}" length="20"/>
                     </td>
                 </tr>
                 <tr>
@@ -39,32 +75,6 @@
                             </xsl:if>
                         </input>
                         <label for="r2">inactive</label>
-                    </td>
-                </tr>
-                <tr>
-                    <th>tbl_id</th>
-                    <td>
-                        <xsl:variable name="tbl_id" select="@tbl_id"/>
-                        <select name="tbl_id">
-                            <xsl:for-each select="//root/tbl[2]/row">
-                                <option value="{@tbl_id}">
-                                    <xsl:if test="@tbl_id = $tbl_id">
-                                        <xsl:attribute name="selected">selected</xsl:attribute>
-                                    </xsl:if>
-                                    <xsl:value-of select="@tbl_name"/>
-                                </option>
-                            </xsl:for-each>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>col_name</th>
-                    <td>
-                        <input type="text" name="col_name" length="20">
-                            <xsl:attribute name="value">
-                                <xsl:value-of select="@col_name"/>
-                            </xsl:attribute>
-                        </input>
                     </td>
                 </tr>
                 <tr>

@@ -12,7 +12,6 @@
 
     <xsl:template match="root">
         <table class="table1">
- 
             <xsl:for-each select="tbl[1]/row">
                 <xsl:variable name="grp_id" select="@grp_id"/>
                 <tr>
@@ -33,7 +32,6 @@
                     <td></td>
                     <td>
                         <table class="table1">
-                            
                             <xsl:for-each select="//root/tbl[2]/row[@grp_id=$grp_id]">
                                 <xsl:variable name="tbl_id" select="@tbl_id"/>
                                 <tr>
@@ -56,17 +54,26 @@
                                         <table class="table1">
                                             <tr>
                                                 <th>col_id</th>
+                                                <th>col_pos</th>
                                                 <th style="text-align:left">col_name</th>
+                                                <th style="text-align:left">col_desc</th>
                                             </tr>
                                             <xsl:for-each select="//root/tbl[3]/row[@tbl_id=$tbl_id]">
+                                                <!--<xsl:sort select="@col_pos" data-type="number"/>-->
                                                 <tr>
                                                     <td>
                                                         <xsl:value-of select="@col_id"/>
                                                     </td>
-                                                    <td style="text-align:left">
+                                                    <td>
+                                                        <xsl:value-of select="@col_pos"/>
+                                                    </td>
+                                                    <td>
                                                         <a href="col.php?mth=edt&amp;col_id={@col_id}">
                                                             <xsl:value-of select="@col_name"/>
                                                         </a>
+                                                    </td>
+                                                    <td style="text-align:left">
+                                                        <xsl:value-of select="@col_desc"/>
                                                     </td>
                                                 </tr>
                                             </xsl:for-each>

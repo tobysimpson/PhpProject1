@@ -21,7 +21,7 @@
                 <td>
                     <xsl:value-of select="@grp_id"/>
                 </td>
-                <td style="text-align:left">
+                <td>
                     <a href="grp.php?mth=edt&amp;grp_id={@grp_id}">
                         <xsl:value-of select="@grp_name"/>
                     </a>
@@ -43,7 +43,7 @@
                     <td>
                         <xsl:value-of select="@tbl_id"/>
                     </td>
-                    <td style="text-align:left">
+                    <td>
                         <a href="tbl.php?mth=col&amp;tbl_id={@tbl_id}">
                             <xsl:value-of select="@tbl_name"/>
                         </a>
@@ -62,11 +62,5 @@
                 </td>
             </tr>
         </table>
-    </xsl:template>
-    
-    
-
-    
-    
-    
+    </xsl:template>  
 </xsl:stylesheet>

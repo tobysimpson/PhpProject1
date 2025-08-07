@@ -47,10 +47,11 @@ function col_edt() {
 function col_upd() {
     $db = new cls_db();
     $col_id   = filter_input(INPUT_POST, "col_id",   FILTER_VALIDATE_INT);
-    $col_act  = filter_input(INPUT_POST, "col_act",  FILTER_VALIDATE_INT);
     $tbl_id   = filter_input(INPUT_POST, "tbl_id",   FILTER_VALIDATE_INT);
+    $col_pos  = filter_input(INPUT_POST, "col_pos",  FILTER_VALIDATE_FLOAT);
+    $col_act  = filter_input(INPUT_POST, "col_act",  FILTER_VALIDATE_INT);
     $col_name = filter_input(INPUT_POST, "col_name", FILTER_SANITIZE_STRING);
-    $db->conn->multi_query("CALL sp_col_upd({$col_id},{$col_act},{$tbl_id},'{$col_name}')");
+    $db->conn->multi_query("CALL sp_col_upd({$col_id},{$tbl_id},{$col_pos},{$col_act},'{$col_name}')");
     header("Location: tbl.php?mth=col&tbl_id={$tbl_id}");
 }
 
@@ -58,7 +59,6 @@ function col_upd() {
 function col_ins() {
     $db = new cls_db();
     $tbl_id   = filter_input(INPUT_POST, "tbl_id",   FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("INSERT INTO col_info (tbl_id) VALUES ({$tbl_id});");
-    $qry->execute();
+    $db->conn->multi_query("CALL sp_col_ins({$tbl_id})");
     header("Location: tbl.php?mth=col&tbl_id={$tbl_id}");
 }
