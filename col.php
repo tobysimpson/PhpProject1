@@ -52,7 +52,7 @@ function col_upd() {
     $tbl_id   = filter_input(INPUT_POST, "tbl_id",   FILTER_VALIDATE_INT);
     $col_name = filter_input(INPUT_POST, "col_name", FILTER_SANITIZE_STRING);
     $db->conn->multi_query("CALL sp_col_upd({$col_id},{$col_act},{$tbl_id},'{$col_name}')");
-    header("Location: col.php");
+    header("Location: tbl.php?mth=col&tbl_id={$tbl_id}");
 }
 
 
@@ -61,5 +61,5 @@ function col_ins() {
     $tbl_id   = filter_input(INPUT_POST, "tbl_id",   FILTER_VALIDATE_INT);
     $qry = $db->conn->prepare("INSERT INTO col_info (tbl_id) VALUES ({$tbl_id});");
     $qry->execute();
-    header("Location: grp.php");
+    header("Location: tbl.php?mth=col&tbl_id={$tbl_id}");
 }

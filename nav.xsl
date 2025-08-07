@@ -56,22 +56,30 @@
             </tr>
             <tr>
                 <td>
-                    <a href="grp.php">all</a>
+                    <a href="grp.php?mth=lst">groups</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="grp.php?mth=lst">group</a>
+                    <a href="grp.php?mth=brw">browse</a>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:left">list</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="grp.php?mth=lst">groups</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="tbl.php">table</a>
+                    <a href="tbl.php?mth=lst">tables</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="col.php">column</a>
+                    <a href="col.php?mth=lst">columns</a>
                 </td>
             </tr>
             <tr>

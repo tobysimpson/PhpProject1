@@ -15,43 +15,29 @@
             <tr>
                 <th>tbl_id</th>
                 <th>col_id</th>
-                <th>col_act</th>
                 <th>col_name</th>
+                <th>col_act</th>
                 <th/>
             </tr>
-            <xsl:apply-templates select="row"/>
-            <tr>
-                <td>        
-                    <form action="col.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
-                        <input type="submit" value="new"/>
-                    </form>
-                </td>
-            </tr>
-        </table>
-    </xsl:template>
-    
-    
-    <xsl:template match="row">
-        <tr>
-            <td>
-                <xsl:value-of select="@tbl_id"/>
-            </td>
-            <td>
-                <xsl:value-of select="@col_id"/>
-            </td>
-            <td>
-                <xsl:value-of select="@col_act"/>
-            </td>
+            <xsl:for-each select="row">
+                <tr>
+                    <td>
+                        <xsl:value-of select="@tbl_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@col_id"/>
+                    </td> 
+                    <td style="text-align:left">
+                        <a href="col.php?mth=edt&amp;col_id={@col_id}">
+                            <xsl:value-of select="@col_name"/>
+                        </a>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@col_act"/>
+                    </td>
+                </tr>
+            </xsl:for-each>
 
-            <td style="text-align:left">
-                <xsl:value-of select="@col_name"/>
-            </td>
-            <td>
-                <a href="col.php?mth=edt&amp;col_id={@col_id}">edit</a>
-            </td>
-        </tr>
-    </xsl:template>
-    
-    
-    
+        </table>
+    </xsl:template>    
 </xsl:stylesheet>

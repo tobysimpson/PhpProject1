@@ -19,6 +19,9 @@ switch ($mth) {
     case "ins":
         tbl_ins();
         break;
+    case "col":
+        tbl_col();
+        break;
     default:
         tbl_lst();
 }
@@ -26,10 +29,17 @@ switch ($mth) {
 
 function tbl_lst() {
     $db = new cls_db();
-//    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-//    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_tbl_lst()");
     $dom = cls_xml::mul2dom($db->conn, "tbl/tbl_lst.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
+
+function tbl_col() {
+    $db = new cls_db();
+    $tbl_id = filter_input(INPUT_GET, "tbl_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_tbl_col({$tbl_id})");
+    $dom = cls_xml::mul2dom($db->conn, "tbl/tbl_col.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
@@ -53,7 +63,7 @@ function tbl_upd() {
     $tbl_name = filter_input(INPUT_POST, "tbl_name", FILTER_SANITIZE_STRING);
 //    echo $tbl_id,$tbl_name,$tbl_val1,$tbl_val2,$tbl_act;'
     $db->conn->multi_query("CALL sp_tbl_upd({$tbl_id},{$tbl_act},{$grp_id},'{$tbl_name}')");
-    header("Location: tbl.php");
+    header("Location: tbl.php?mth=col&tbl_id={$tbl_id}");
 }
 
 
@@ -62,5 +72,5 @@ function tbl_ins() {
     $grp_id   = filter_input(INPUT_POST, "grp_id",   FILTER_VALIDATE_INT);
     $qry = $db->conn->prepare("INSERT INTO tbl_info (grp_id) VALUES ({$grp_id});");
     $qry->execute();
-    header("Location: grp.php");
+    header("Location: grp.php?mth=tbl&grp_id={$grp_id}");
 }

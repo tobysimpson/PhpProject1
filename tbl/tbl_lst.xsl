@@ -15,42 +15,27 @@
             <tr>
                 <th>grp_id</th>
                 <th>tbl_id</th>
-                <th>tbl_act</th>
                 <th>tbl_name</th>
-                <th/>
+                <th>tbl_act</th>
             </tr>
-            <xsl:apply-templates select="row"/>
-            <tr>
-                <td>        
-                    <form action="tbl.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
-                        <input type="submit" value="new"/>
-                    </form>
-                </td>
-            </tr>
+            <xsl:for-each select="row">
+                <tr>
+                    <td>
+                        <xsl:value-of select="@grp_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@tbl_id"/>
+                    </td>
+                    <td style="text-align:left">
+                        <a href="tbl.php?mth=edt&amp;tbl_id={@tbl_id}">
+                            <xsl:value-of select="@tbl_name"/>
+                        </a>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@tbl_act"/>
+                    </td>
+                </tr>
+            </xsl:for-each>
         </table>
     </xsl:template>
-    
-    
-    <xsl:template match="row">
-        <tr>
-            <td>
-                <xsl:value-of select="@grp_id"/>
-            </td>
-            <td>
-                <xsl:value-of select="@tbl_id"/>
-            </td>
-            <td>
-                <xsl:value-of select="@tbl_act"/>
-            </td>
-            <td style="text-align:left">
-                <xsl:value-of select="@tbl_name"/>
-            </td>
-            <td>
-                <a href="tbl.php?mth=edt&amp;tbl_id={@tbl_id}">edit</a>
-            </td>
-        </tr>
-    </xsl:template>
-    
-    
-    
 </xsl:stylesheet>

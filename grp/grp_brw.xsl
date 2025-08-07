@@ -24,14 +24,10 @@
                         <xsl:value-of select="@grp_id"/>
                     </td>
                     <td style="text-align:left">
-                        <xsl:value-of select="@grp_name"/>
+                        <a href="grp.php?mth=tbl&amp;grp_id={@grp_id}">
+                            <xsl:value-of select="@grp_name"/>
+                        </a>
                     </td>
-                    <!--                    <td>
-                        <form action="tbl.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
-                            <input type="hidden" name="grp_id" value="{$grp_id}"/>
-                            <input type="submit" value="add tbl"/>
-                        </form>
-                    </td>-->
                 </tr>
                 <tr>
                     <td></td>
@@ -49,14 +45,10 @@
                                         <xsl:value-of select="@tbl_id"/>
                                     </td>
                                     <td style="text-align:left">
-                                        <xsl:value-of select="@tbl_name"/>
+                                        <a href="tbl.php?mth=col&amp;tbl_id={@tbl_id}">
+                                            <xsl:value-of select="@tbl_name"/>
+                                        </a>
                                     </td>
-                                    <!--                                    <td>
-                                        <form action="col.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
-                                            <input type="hidden" name="tbl_id" value="{$tbl_id}"/>
-                                            <input type="submit" value="add col"/>
-                                        </form>
-                                    </td>-->
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -72,7 +64,9 @@
                                                         <xsl:value-of select="@col_id"/>
                                                     </td>
                                                     <td style="text-align:left">
-                                                        <xsl:value-of select="@col_name"/>
+                                                        <a href="col.php?mth=edt&amp;col_id={@col_id}">
+                                                            <xsl:value-of select="@col_name"/>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             </xsl:for-each>

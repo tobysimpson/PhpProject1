@@ -19,21 +19,23 @@ switch ($mth) {
     case "ins":
         grp_ins();
         break;
-    case "all":
-        grp_all();
+    case "brw":
+        grp_brw();
+        break;
+    case "tbl":
+        grp_tbl();
         break;
     default:
-        grp_all();
+        grp_lst();
 }
 
 
 
-function grp_all() {
+function grp_brw() {
     $db = new cls_db();
-//    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-//    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_grp_all()");
-    $dom = cls_xml::mul2dom($db->conn, "grp/grp_all.xsl");
+    $db->conn->multi_query("CALL sp_grp_brw()");
+    $dom = cls_xml::mul2dom($db->conn, "grp/grp_brw.xsl");
+//    $dom = cls_xml::mul2dom($db->conn);
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
@@ -41,15 +43,20 @@ function grp_all() {
 
 function grp_lst() {
     $db = new cls_db();
-//    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-//    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_grp_lst()");
     $dom = cls_xml::mul2dom($db->conn, "grp/grp_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
 
-
+function grp_tbl() {
+    $db = new cls_db();
+    $grp_id = filter_input(INPUT_GET, "grp_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_grp_tbl({$grp_id})");
+    $dom = cls_xml::mul2dom($db->conn, "grp/grp_tbl.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
 
 function grp_edt() {
     $db = new cls_db();
@@ -68,7 +75,7 @@ function grp_upd() {
     $grp_act  = filter_input(INPUT_POST, "grp_act",  FILTER_VALIDATE_INT);
 //    echo $grp_id,$grp_name,$grp_val1,$grp_val2,$grp_act;'
     $db->conn->multi_query("CALL sp_grp_upd({$grp_id},{$grp_act},'{$grp_name}')");
-    header("Location: grp.php");
+    header("Location: grp.php?mth=tbl&grp_id={$grp_id}");
 }
 
 

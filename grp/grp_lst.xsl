@@ -14,11 +14,25 @@
         <table class="table1">
             <tr>
                 <th>grp_id</th>
-                <th>grp_act</th>
                 <th>grp_name</th>
-                <th/>
+                <th>grp_act</th>
             </tr>
-            <xsl:apply-templates select="row"/>
+            <xsl:for-each select="row">
+                <tr>
+                    <td>
+                        <xsl:value-of select="@grp_id"/>
+                    </td>
+
+                    <td style="text-align:left">
+                        <a href="grp.php?mth=tbl&amp;grp_id={@grp_id}">
+                            <xsl:value-of select="@grp_name"/>
+                        </a>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@grp_act"/>
+                    </td>
+                </tr>
+            </xsl:for-each>
             <tr>
                 <td>        
                     <form action="grp.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
@@ -28,25 +42,4 @@
             </tr>
         </table>
     </xsl:template>
-    
-    
-    <xsl:template match="row">
-        <tr>
-            <td>
-                <xsl:value-of select="@grp_id"/>
-            </td>
-            <td>
-                <xsl:value-of select="@grp_act"/>
-            </td>
-            <td style="text-align:left">
-                <xsl:value-of select="@grp_name"/>
-            </td>
-            <td>
-                <a href="grp.php?mth=edt&amp;grp_id={@grp_id}">edit</a>
-            </td>
-        </tr>
-    </xsl:template>
-    
-    
-    
 </xsl:stylesheet>
