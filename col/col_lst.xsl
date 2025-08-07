@@ -16,8 +16,10 @@
                 <th>tbl_id</th>
                 <th>col_id</th>
                 <th>col_name</th>
+                <th>col_ord</th>
+                <th>col_typ</th>
+                <th>col_dec</th>
                 <th>col_act</th>
-                <th/>
             </tr>
             <xsl:for-each select="row">
                 <tr>
@@ -31,6 +33,15 @@
                         <a href="col.php?mth=edt&amp;col_id={@col_id}">
                             <xsl:value-of select="@col_name"/>
                         </a>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@col_ord"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@col_typ"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@col_dec"/>
                     </td>
                     <td>
                         <xsl:value-of select="@col_act"/>
