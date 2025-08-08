@@ -19,8 +19,8 @@ switch ($mth) {
     case "ins":
         grp_ins();
         break;
-    case "all":
-        grp_all();
+    case "ovw":
+        grp_ovw();
         break;
     case "tbl":
         grp_tbl();
@@ -31,10 +31,10 @@ switch ($mth) {
 
 
 
-function grp_all() {
+function grp_ovw() {
     $db = new cls_db();
-    $db->conn->multi_query("CALL sp_grp_all()");
-    $dom = cls_xml::mul2dom($db->conn, "grp/grp_all.xsl");
+    $db->conn->multi_query("CALL sp_grp_ovw()");
+    $dom = cls_xml::mul2dom($db->conn, "grp/grp_ovw.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
@@ -79,10 +79,12 @@ function grp_edt() {
 function grp_upd() {
     $db = new cls_db();
     $grp_id   = filter_input(INPUT_POST, "grp_id",   FILTER_VALIDATE_INT);
-    $grp_name = filter_input(INPUT_POST, "grp_name", FILTER_SANITIZE_STRING);
+    $grp_pos  = filter_input(INPUT_POST, "grp_pos",  FILTER_VALIDATE_FLOAT);
     $grp_act  = filter_input(INPUT_POST, "grp_act",  FILTER_VALIDATE_INT);
-//    echo $grp_id,$grp_name,$grp_val1,$grp_val2,$grp_act;'
-    $db->conn->multi_query("CALL sp_grp_upd({$grp_id},{$grp_act},'{$grp_name}')");
+    $grp_name = filter_input(INPUT_POST, "grp_name", FILTER_SANITIZE_STRING);
+    $grp_desc = filter_input(INPUT_POST, "grp_desc", FILTER_SANITIZE_STRING);
+//    echo $grp_id,$grp_pos,$grp_act,$grp_name,$grp_desc;
+    $db->conn->multi_query("CALL sp_grp_upd({$grp_id},{$grp_pos},{$grp_act},'{$grp_name}','{$grp_desc}')");
     header("Location: grp.php?mth=tbl&grp_id={$grp_id}");
 }
 

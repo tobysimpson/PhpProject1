@@ -51,7 +51,8 @@ function col_upd() {
     $col_pos  = filter_input(INPUT_POST, "col_pos",  FILTER_VALIDATE_FLOAT);
     $col_act  = filter_input(INPUT_POST, "col_act",  FILTER_VALIDATE_INT);
     $col_name = filter_input(INPUT_POST, "col_name", FILTER_SANITIZE_STRING);
-    $db->conn->multi_query("CALL sp_col_upd({$col_id},{$tbl_id},{$col_pos},{$col_act},'{$col_name}')");
+    $col_desc = filter_input(INPUT_POST, "col_desc", FILTER_SANITIZE_STRING);
+    $db->conn->multi_query("CALL sp_col_upd({$tbl_id},{$col_id},{$col_pos},{$col_act},'{$col_name}','{$col_desc}')");
     header("Location: tbl.php?mth=col&tbl_id={$tbl_id}");
 }
 

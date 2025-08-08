@@ -13,23 +13,35 @@
     <xsl:template match="root/tbl[1]/row">
         <table class="table1">
             <tr>
+                <th>grp_id</th>
                 <th>tbl_id</th>
+                <th>tbl_pos</th>
                 <th>tbl_name</th>
+                <th>tbl_desc</th>
                 <th>tbl_act</th>
             </tr>
-            <tr>
-                <td>
-                    <xsl:value-of select="@tbl_id"/>
-                </td>
-                <td>
-                    <a href="tbl.php?mth=edt&amp;tbl_id={@tbl_id}">
-                        <xsl:value-of select="@tbl_name"/>
-                    </a>
-                </td>
-                <td>
-                    <xsl:value-of select="@tbl_act"/>
-                </td>
-            </tr>
+<tr>
+                    <td>
+                        <xsl:value-of select="@grp_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@tbl_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@tbl_pos"/>
+                    </td>
+                    <td>
+                        <a href="tbl.php?mth=edt&amp;tbl_id={@tbl_id}">
+                            <xsl:value-of select="@tbl_name"/>
+                        </a>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@tbl_desc"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@tbl_act"/>
+                    </td>
+                </tr>
         </table>
         <p/>
         <table class="table1">

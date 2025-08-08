@@ -58,12 +58,14 @@ function tbl_edt() {
 
 function tbl_upd() {
     $db = new cls_db();
-    $tbl_id   = filter_input(INPUT_POST, "tbl_id",   FILTER_VALIDATE_INT);
-    $tbl_act  = filter_input(INPUT_POST, "tbl_act",  FILTER_VALIDATE_INT);
     $grp_id   = filter_input(INPUT_POST, "grp_id",   FILTER_VALIDATE_INT);
+    $tbl_id   = filter_input(INPUT_POST, "tbl_id",   FILTER_VALIDATE_INT);
+    $tbl_pos  = filter_input(INPUT_POST, "tbl_pos",  FILTER_VALIDATE_FLOAT);
+    $tbl_act  = filter_input(INPUT_POST, "tbl_act",  FILTER_VALIDATE_INT);
     $tbl_name = filter_input(INPUT_POST, "tbl_name", FILTER_SANITIZE_STRING);
+    $tbl_desc = filter_input(INPUT_POST, "tbl_desc", FILTER_SANITIZE_STRING);
 //    echo $tbl_id,$tbl_name,$tbl_val1,$tbl_val2,$tbl_act;'
-    $db->conn->multi_query("CALL sp_tbl_upd({$tbl_id},{$tbl_act},{$grp_id},'{$tbl_name}')");
+    $db->conn->multi_query("CALL sp_tbl_upd({$grp_id},{$tbl_id},{$tbl_pos},{$tbl_act},'{$tbl_name}','{$tbl_desc}')");
     header("Location: tbl.php?mth=col&tbl_id={$tbl_id}");
 }
 
@@ -71,7 +73,6 @@ function tbl_upd() {
 function tbl_ins() {
     $db = new cls_db();
     $grp_id   = filter_input(INPUT_POST, "grp_id",   FILTER_VALIDATE_INT);
-    $qry = $db->conn->prepare("INSERT INTO tbl_info (grp_id) VALUES ({$grp_id});");
-    $qry->execute();
+    $db->conn->multi_query("CALL sp_tbl_ins({$grp_id})");
     header("Location: grp.php?mth=tbl&grp_id={$grp_id}");
 }

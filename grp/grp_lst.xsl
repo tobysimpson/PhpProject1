@@ -14,6 +14,7 @@
         <table class="table1">
             <tr>
                 <th>grp_id</th>
+                <th>grp_pos</th>
                 <th>grp_name</th>
                 <th>grp_desc</th>
                 <th>grp_act</th>
@@ -22,6 +23,9 @@
                 <tr>
                     <td>
                         <xsl:value-of select="@grp_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@grp_pos"/>
                     </td>
                     <td>
                         <a href="grp.php?mth=edt&amp;grp_id={@grp_id}">

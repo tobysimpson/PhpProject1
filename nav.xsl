@@ -61,7 +61,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="grp.php?mth=all">summary</a>
+                    <a href="grp.php?mth=ovw">overview</a>
                 </td>
             </tr>
             <tr>

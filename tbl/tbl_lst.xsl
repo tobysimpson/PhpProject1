@@ -15,6 +15,7 @@
             <tr>
                 <th>grp_id</th>
                 <th>tbl_id</th>
+                <th>tbl_pos</th>
                 <th>tbl_name</th>
                 <th>tbl_desc</th>
                 <th>tbl_act</th>
@@ -26,6 +27,9 @@
                     </td>
                     <td>
                         <xsl:value-of select="@tbl_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@tbl_pos"/>
                     </td>
                     <td>
                         <a href="tbl.php?mth=edt&amp;tbl_id={@tbl_id}">

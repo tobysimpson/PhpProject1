@@ -50,13 +50,13 @@
                 <tr>
                     <th>col_name</th>
                     <td>
-                        <input type="text" name="col_name" value="{@col_name}" length="20" readonly="true"/>
+                        <input type="text" name="col_name" value="{@col_name}" length="25" readonly="true"/>
                     </td>
                 </tr>
                 <tr>
                     <th>col_desc</th>
                     <td>
-                        <input type="text" name="col_desc" value="{@col_desc}" length="20"/>
+                        <input type="text" name="col_desc" value="{@col_desc}" length="45"/>
                     </td>
                 </tr>
                 <tr>
