@@ -20,28 +20,28 @@
                 <th>tbl_desc</th>
                 <th>tbl_act</th>
             </tr>
-<tr>
-                    <td>
-                        <xsl:value-of select="@grp_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@tbl_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@tbl_pos"/>
-                    </td>
-                    <td>
-                        <a href="tbl.php?mth=edt&amp;tbl_id={@tbl_id}">
-                            <xsl:value-of select="@tbl_name"/>
-                        </a>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@tbl_desc"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@tbl_act"/>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    <xsl:value-of select="@grp_id"/>
+                </td>
+                <td>
+                    <xsl:value-of select="@tbl_id"/>
+                </td>
+                <td>
+                    <xsl:value-of select="@tbl_pos"/>
+                </td>
+                <td>
+                    <a href="tbl.php?mth=edt&amp;tbl_id={@tbl_id}">
+                        <xsl:value-of select="@tbl_name"/>
+                    </a>
+                </td>
+                <td>
+                    <xsl:value-of select="@tbl_desc"/>
+                </td>
+                <td>
+                    <xsl:value-of select="@tbl_act"/>
+                </td>
+            </tr>
         </table>
         <p/>
         <table class="table1">
@@ -51,7 +51,9 @@
                 <th>col_name</th>
                 <th>col_desc</th>
                 <th>col_typ</th>
+                <th>col_len</th>
                 <th>col_dec</th>
+                <th>col_unq</th>
                 <th>col_act</th>
             </tr>
             <xsl:for-each select="//root/tbl[2]/row">
@@ -75,7 +77,13 @@
                         <xsl:value-of select="@col_typ"/>
                     </td>
                     <td>
+                        <xsl:value-of select="@col_len"/>
+                    </td>
+                    <td>
                         <xsl:value-of select="@col_dec"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@col_unq"/>
                     </td>
                     <td>
                         <xsl:value-of select="@col_act"/>

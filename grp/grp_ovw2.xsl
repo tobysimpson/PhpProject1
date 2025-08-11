@@ -44,7 +44,7 @@
                     </tr>
                 </table>   
                 <p/>
-                <div style="margin-left:40px;">
+                <div style="margin-left:50px;">
                     <xsl:for-each select="//root/tbl[2]/row[@grp_id=$grp_id]">
                         <xsl:variable name="tbl_id" select="@tbl_id"/>
                         <table class="table1">
@@ -76,7 +76,7 @@
                             </tr>
                         </table>
                         <p/>
-                        <div style="margin-left:40px;">
+                        <div style="margin-left:44px;">
                             <table class="table1">
                                 <tr>
                                     <th>col_id</th>
@@ -84,7 +84,9 @@
                                     <th>col_name</th>
                                     <th>col_desc</th>
                                     <th>col_typ</th>
+                                    <th>col_len</th>
                                     <th>col_dec</th>
+                                    <th>col_unq</th>
                                     <th>col_act</th>
                                 </tr>
                                 <xsl:for-each select="//root/tbl[3]/row[@tbl_id=$tbl_id]">
@@ -107,7 +109,13 @@
                                             <xsl:value-of select="@col_typ"/>
                                         </td>
                                         <td>
+                                            <xsl:value-of select="@col_len"/>
+                                        </td>
+                                        <td>
                                             <xsl:value-of select="@col_dec"/>
+                                        </td>
+                                        <td>
+                                            <xsl:value-of select="@col_unq"/>
                                         </td>
                                         <td>
                                             <xsl:value-of select="@col_act"/>

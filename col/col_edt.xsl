@@ -60,6 +60,63 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>col_typ</th>
+                    <td>
+                        <select name="col_typ">
+                            <option value="1">
+                                <xsl:if test="@col_typ = 1">
+                                    <xsl:attribute name="selected">selected</xsl:attribute>
+                                </xsl:if>
+                                <xsl:text>INT</xsl:text>
+                            </option>
+                            <option value="2">
+                                <xsl:if test="@col_typ = 2">
+                                    <xsl:attribute name="selected">selected</xsl:attribute>
+                                </xsl:if>
+                                <xsl:text>FLOAT</xsl:text>
+                            </option>
+                            <option value="3">
+                                <xsl:if test="@col_typ = 3">
+                                    <xsl:attribute name="selected">selected</xsl:attribute>
+                                </xsl:if>
+                                <xsl:text>DATETIME</xsl:text>
+                            </option>
+                            <option value="4">
+                                <xsl:if test="@col_typ = 4">
+                                    <xsl:attribute name="selected">selected</xsl:attribute>
+                                </xsl:if>
+                                <xsl:text>VARCHAR</xsl:text>
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>col_len</th>
+                    <td>
+                        <input type="text" name="col_len" value="{@col_len}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>col_dec</th>
+                    <td>
+                        <input type="text" name="col_dec" value="{@col_dec}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>col_unq</th>
+                    <td>
+                        <input type="text" name="col_unq" value="{@col_unq}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>col_txt</th>
+                    <td>
+                        <textarea name="col_txt" value="{@col_txt}" rows="10" cols="50">
+                            <xsl:value-of select="@col_txt"/>
+                        </textarea>
+                    </td>
+                </tr>
+                <tr>
                     <th>col_act</th>
                     <td>
                         <input type="radio" name="col_act" id="r1" value="1">
