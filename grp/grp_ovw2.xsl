@@ -44,7 +44,7 @@
                     </tr>
                 </table>   
                 <p/>
-                <div style="margin-left:50px;">
+                <div style="margin-left:40px;">
                     <xsl:for-each select="//root/tbl[2]/row[@grp_id=$grp_id]">
                         <xsl:variable name="tbl_id" select="@tbl_id"/>
                         <table class="table1">
@@ -76,7 +76,7 @@
                             </tr>
                         </table>
                         <p/>
-                        <div style="margin-left:44px;">
+                        <div style="margin-left:40px;">
                             <table class="table1">
                                 <tr>
                                     <th>col_id</th>

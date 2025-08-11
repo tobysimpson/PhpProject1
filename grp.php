@@ -91,7 +91,7 @@ function grp_upd() {
 
 function grp_ins() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("INSERT INTO grp_info VALUES ();");
+    $qry = $db->conn->prepare("CALL sp_grp_ins();");
     $qry->execute();
     header("Location: grp.php?mth=lst");
 }
