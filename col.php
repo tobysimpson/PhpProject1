@@ -55,9 +55,10 @@ function col_upd() {
     $col_typ  = filter_input(INPUT_POST, "col_typ",  FILTER_VALIDATE_INT);
     $col_len  = filter_input(INPUT_POST, "col_len",  FILTER_VALIDATE_INT);
     $col_dec  = filter_input(INPUT_POST, "col_dec",  FILTER_VALIDATE_INT);
+    $col_unt  = filter_input(INPUT_POST, "col_unt",  FILTER_SANITIZE_STRING);
     $col_unq  = filter_input(INPUT_POST, "col_unq",  FILTER_VALIDATE_INT);
     $col_txt  = filter_input(INPUT_POST, "col_txt",  FILTER_SANITIZE_STRING);
-    $db->conn->multi_query("CALL sp_col_upd({$tbl_id},{$col_id},{$col_pos},{$col_act},'{$col_name}','{$col_desc}',{$col_typ},{$col_len},{$col_dec},{$col_unq},'{$col_txt}');");
+    $db->conn->multi_query("CALL sp_col_upd({$tbl_id},{$col_id},{$col_pos},{$col_act},'{$col_name}','{$col_desc}',{$col_typ},{$col_len},{$col_dec},'{$col_unt}',{$col_unq},'{$col_txt}');");
     header("Location: tbl.php?mth=col&tbl_id={$tbl_id}");
 }
 

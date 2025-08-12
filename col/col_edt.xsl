@@ -103,6 +103,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>col_unt</th>
+                    <td>
+                        <input type="text" name="col_unt" value="{@col_unt}" length="45"/>
+                    </td>
+                </tr>
+                <tr>
                     <th>col_unq</th>
                     <td>
                         <input type="text" name="col_unq" value="{@col_unq}"/>
