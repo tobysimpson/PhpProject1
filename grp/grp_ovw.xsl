@@ -34,7 +34,6 @@
                 <th>col_len</th>
                 <th>col_dec</th>
                 <th>col_unq</th>
-            
             </tr>
             <xsl:for-each select="tbl[1]/row">
                 <xsl:variable name="grp_id" select="@grp_id"/>
@@ -70,6 +69,8 @@
                     <td></td>
                 </tr>
             
+            
+            
                 <xsl:for-each select="//root/tbl[2]/row[@grp_id=$grp_id]">
                     <xsl:variable name="tbl_id" select="@tbl_id"/>
                     <tr>
@@ -78,6 +79,7 @@
                         <td></td>
                         <td></td>
                     
+                     
                         <td>
                             <xsl:value-of select="@tbl_id"/>
                         </td>
@@ -102,6 +104,8 @@
                         <td></td>
                         <td></td>
                         <td></td>
+                        
+                  
                     </tr>
                     
                 
