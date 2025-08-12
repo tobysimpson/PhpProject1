@@ -10,10 +10,20 @@
     </xsl:template>
     
 
-    <xsl:template match="root/tbl[1]">
+    <xsl:template match="root">
+        
         <table class="table1">
             <tr>
+                <th>grp_id</th>
+                <th>grp_pos</th>
+                <th>grp_name</th>
+                <th>grp_desc</th>
+                <th>grp_act</th>
                 <th>tbl_id</th>
+                <th>tbl_pos</th>
+                <th>tbl_name</th>
+                <th>tbl_desc</th>
+                <th>tbl_act</th>
                 <th>col_id</th>
                 <th>col_pos</th>
                 <th>col_name</th>
@@ -25,10 +35,43 @@
                 <th>col_unq</th>
                 <th>col_act</th>
             </tr>
-            <xsl:for-each select="row">
+        
+            <xsl:for-each select="tbl[1]/row">
                 <tr>
+       
+                    <td>
+                        <xsl:value-of select="@grp_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@grp_pos"/>
+                    </td>
+                    <td>
+                        <a href="grp.php?mth=tbl&amp;grp_id={@grp_id}">
+                            <xsl:value-of select="@grp_name"/>
+                        </a>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@grp_desc"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@grp_act"/>
+                    </td>
                     <td>
                         <xsl:value-of select="@tbl_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@tbl_pos"/>
+                    </td>
+                    <td>
+                        <a href="tbl.php?mth=col&amp;tbl_id={@tbl_id}">
+                            <xsl:value-of select="@tbl_name"/>
+                        </a>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@tbl_desc"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@tbl_act"/>
                     </td>
                     <td>
                         <xsl:value-of select="@col_id"/>
@@ -44,7 +87,7 @@
                     <td style="text-align:left">
                         <xsl:value-of select="@col_desc"/>
                     </td>
-                    <td style="text-align:left">
+                    <td>
                         <xsl:value-of select="@col_unt"/>
                     </td>
                     <td>
@@ -65,7 +108,6 @@
                     </td>
                 </tr>
             </xsl:for-each>
-
-        </table>
-    </xsl:template>    
+        </table>   
+    </xsl:template>
 </xsl:stylesheet>

@@ -22,14 +22,15 @@ switch ($mth) {
     case "ovw":
         grp_ovw();
         break;
+    case "all":
+        grp_all();
+        break;
     case "tbl":
         grp_tbl();
         break;
     default:
         grp_brw();
 }
-
-
 
 function grp_ovw() {
     $db = new cls_db();
@@ -39,6 +40,13 @@ function grp_ovw() {
     echo $dom->saveXML();
 }
 
+function grp_all() {
+    $db = new cls_db();
+    $db->conn->multi_query("SELECT * FROM vw_grp_all;");
+    $dom = cls_xml::mul2dom($db->conn, "grp/grp_all.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
 
 function grp_brw() {
     $db = new cls_db();
@@ -75,19 +83,17 @@ function grp_edt() {
     echo $dom->saveXML();
 }
 
-
 function grp_upd() {
     $db = new cls_db();
-    $grp_id   = filter_input(INPUT_POST, "grp_id",   FILTER_VALIDATE_INT);
-    $grp_pos  = filter_input(INPUT_POST, "grp_pos",  FILTER_VALIDATE_FLOAT);
-    $grp_act  = filter_input(INPUT_POST, "grp_act",  FILTER_VALIDATE_INT);
+    $grp_id = filter_input(INPUT_POST, "grp_id", FILTER_VALIDATE_INT);
+    $grp_pos = filter_input(INPUT_POST, "grp_pos", FILTER_VALIDATE_FLOAT);
+    $grp_act = filter_input(INPUT_POST, "grp_act", FILTER_VALIDATE_INT);
     $grp_name = filter_input(INPUT_POST, "grp_name", FILTER_SANITIZE_STRING);
     $grp_desc = filter_input(INPUT_POST, "grp_desc", FILTER_SANITIZE_STRING);
 //    echo $grp_id,$grp_pos,$grp_act,$grp_name,$grp_desc;
     $db->conn->multi_query("CALL sp_grp_upd({$grp_id},{$grp_pos},{$grp_act},'{$grp_name}','{$grp_desc}')");
     header("Location: grp.php?mth=tbl&grp_id={$grp_id}");
 }
-
 
 function grp_ins() {
     $db = new cls_db();

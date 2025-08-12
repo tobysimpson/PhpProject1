@@ -50,10 +50,11 @@
                 <th>col_pos</th>
                 <th>col_name</th>
                 <th>col_desc</th>
+                <th>col_unt</th>
                 <th>col_typ</th>
                 <th>col_len</th>
                 <th>col_dec</th>
-                <th>col_unt</th>
+                
                 <th>col_unq</th>
                 <th>col_act</th>
             </tr>
@@ -75,6 +76,9 @@
                         <xsl:value-of select="@col_desc"/>
                     </td>
                     <td>
+                        <xsl:value-of select="@col_unt"/>
+                    </td>
+                    <td>
                         <xsl:value-of select="@col_typ"/>
                     </td>
                     <td>
@@ -82,9 +86,6 @@
                     </td>
                     <td>
                         <xsl:value-of select="@col_dec"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@col_unt"/>
                     </td>
                     <td>
                         <xsl:value-of select="@col_unq"/>
