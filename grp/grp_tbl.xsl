@@ -10,7 +10,7 @@
     </xsl:template>
     
 
-    <xsl:template match="root/tbl[1]/row">
+    <xsl:template match="root">
         <table class="table1">
             <tr>
                 <th>grp_id</th>
@@ -19,29 +19,11 @@
                 <th>grp_desc</th>
                 <th>grp_act</th>
             </tr>
-            <tr>
-                <td>
-                    <xsl:value-of select="@grp_id"/>
-                </td>
-                <td>
-                    <xsl:value-of select="@grp_pos"/>
-                </td>
-                <td>
-                    <a href="grp.php?mth=edt&amp;grp_id={@grp_id}">
-                        <xsl:value-of select="@grp_name"/>
-                    </a>
-                </td>
-                <td>
-                    <xsl:value-of select="@grp_desc"/>
-                </td>
-                <td>
-                    <xsl:value-of select="@grp_act"/>
-                </td>
-            </tr>
+            <xsl:apply-templates select="tbl[1]/row" mode="grp"/>
         </table>
         <p/>
         <table class="table1">
-             <tr>
+            <tr>
                 <th>grp_id</th>
                 <th>tbl_id</th>
                 <th>tbl_pos</th>
@@ -49,30 +31,7 @@
                 <th>tbl_desc</th>
                 <th>tbl_act</th>
             </tr>
-            <xsl:for-each select="//root/tbl[2]/row">
-                <tr>
-                    <td>
-                        <xsl:value-of select="@grp_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@tbl_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@tbl_pos"/>
-                    </td>
-                    <td>
-                        <a href="tbl.php?mth=col&amp;tbl_id={@tbl_id}">
-                            <xsl:value-of select="@tbl_name"/>
-                        </a>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@tbl_desc"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@tbl_act"/>
-                    </td>
-                </tr>
-            </xsl:for-each>
+            <xsl:apply-templates select="tbl[2]/row" mode="tbl"/>
             <tr>
                 <td>        
                     <form action="tbl.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
@@ -83,4 +42,56 @@
             </tr>
         </table>
     </xsl:template>  
+    
+    
+    <xsl:template match="row" mode="grp">
+        <tr>
+            <td>
+                <xsl:value-of select="@grp_id"/>
+            </td>
+            <td>
+                <xsl:value-of select="@grp_pos"/>
+            </td>
+            <td>
+                <a href="grp.php?mth=edt&amp;grp_id={@grp_id}">
+                    <xsl:value-of select="@grp_name"/>
+                </a>
+            </td>
+            <td>
+                <xsl:value-of select="@grp_desc"/>
+            </td>
+            <td>
+                <xsl:value-of select="@grp_act"/>
+            </td>
+        </tr>
+    </xsl:template>
+    
+    
+    <xsl:template match="row" mode="tbl">
+        <tr>
+            <td>
+                <xsl:value-of select="@grp_id"/>
+            </td>
+            <td>
+                <xsl:value-of select="@tbl_id"/>
+            </td>
+            <td>
+                <xsl:value-of select="@tbl_pos"/>
+            </td>
+            <td>
+                <a href="tbl.php?mth=col&amp;tbl_id={@tbl_id}">
+                    <xsl:value-of select="@tbl_name"/>
+                </a>
+            </td>
+            <td>
+                <xsl:value-of select="@tbl_desc"/>
+            </td>
+            <td>
+                <xsl:value-of select="@tbl_act"/>
+            </td>
+        </tr>
+    </xsl:template>
+    
+    
+    
 </xsl:stylesheet>

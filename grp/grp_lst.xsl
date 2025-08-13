@@ -19,27 +19,34 @@
                 <th>grp_desc</th>
                 <th>grp_act</th>
             </tr>
-            <xsl:for-each select="row">
-                <tr>
-                    <td>
-                        <xsl:value-of select="@grp_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@grp_pos"/>
-                    </td>
-                    <td>
-                        <a href="grp.php?mth=edt&amp;grp_id={@grp_id}">
-                            <xsl:value-of select="@grp_name"/>
-                        </a>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@grp_desc"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@grp_act"/>
-                    </td>
-                </tr>
-            </xsl:for-each>
+            <xsl:apply-templates select="row" mode="grp"/>
         </table>
     </xsl:template>
+    
+    
+    
+    <xsl:template match="row" mode="grp">
+        <tr>
+            <td>
+                <xsl:value-of select="@grp_id"/>
+            </td>
+            <td>
+                <xsl:value-of select="@grp_pos"/>
+            </td>
+            <td>
+                <a href="grp.php?mth=edt&amp;grp_id={@grp_id}">
+                    <xsl:value-of select="@grp_name"/>
+                </a>
+            </td>
+            <td>
+                <xsl:value-of select="@grp_desc"/>
+            </td>
+            <td>
+                <xsl:value-of select="@grp_act"/>
+            </td>
+        </tr>
+    </xsl:template>
+    
+    
+    
 </xsl:stylesheet>
