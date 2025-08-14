@@ -67,7 +67,7 @@
                     <xsl:value-of select="@tbl_name"/>
                 </a>
             </td>
-            <td>
+            <td style="text-align:left">
                 <xsl:value-of select="@tbl_desc"/>
             </td>
             <td>
