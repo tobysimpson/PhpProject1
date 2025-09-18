@@ -64,8 +64,9 @@ function tbl_upd() {
     $tbl_act  = filter_input(INPUT_POST, "tbl_act",  FILTER_VALIDATE_INT);
     $tbl_name = filter_input(INPUT_POST, "tbl_name", FILTER_SANITIZE_STRING);
     $tbl_desc = filter_input(INPUT_POST, "tbl_desc", FILTER_SANITIZE_STRING);
+    $tbl_txt = filter_input(INPUT_POST, "tbl_txt",  FILTER_SANITIZE_STRING);
 //    echo $tbl_id,$tbl_name,$tbl_val1,$tbl_val2,$tbl_act;'
-    $db->conn->multi_query("CALL sp_tbl_upd({$grp_id},{$tbl_id},{$tbl_pos},{$tbl_act},'{$tbl_name}','{$tbl_desc}')");
+    $db->conn->multi_query("CALL sp_tbl_upd({$grp_id},{$tbl_id},{$tbl_pos},{$tbl_act},'{$tbl_name}','{$tbl_desc}','{$tbl_txt}')");
     header("Location: tbl.php?mth=col&tbl_id={$tbl_id}");
 }
 

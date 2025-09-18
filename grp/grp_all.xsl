@@ -90,7 +90,7 @@
                     <td>
                         <xsl:value-of select="@col_unt"/>
                     </td>
-                    <td>
+                    <td style="text-align:left">
                         <xsl:value-of select="@col_typ"/>
                     </td>
                     <td>

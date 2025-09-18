@@ -55,6 +55,14 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>tbl_txt</th>
+                    <td>
+                        <textarea name="tbl_txt" value="{@tbl_txt}" rows="10" cols="50">
+                            <xsl:value-of select="@tbl_txt"/>
+                        </textarea>
+                    </td>
+                </tr>
+                <tr>
                     <th>tbl_act</th>
                     <td>
                         <input type="radio" name="tbl_act" id="r1" value="1">

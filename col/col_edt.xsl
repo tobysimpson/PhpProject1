@@ -87,7 +87,7 @@
                                     <xsl:attribute name="selected">selected</xsl:attribute>
                                 </xsl:if>
                                 <xsl:text>DATETIME</xsl:text>
-                            </option>'
+                            </option>
                             <option value="VARCHAR">
                                 <xsl:if test="@col_typ = 'VARCHAR'">
                                     <xsl:attribute name="selected">selected</xsl:attribute>
