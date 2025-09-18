@@ -70,26 +70,26 @@
                     <th>col_typ</th>
                     <td>
                         <select name="col_typ">
-                            <option value="1">
-                                <xsl:if test="@col_typ = 1">
+                            <option value="INT">
+                                <xsl:if test="@col_typ = 'INT'">
                                     <xsl:attribute name="selected">selected</xsl:attribute>
                                 </xsl:if>
                                 <xsl:text>INT</xsl:text>
                             </option>
-                            <option value="2">
-                                <xsl:if test="@col_typ = 2">
+                            <option value="FLOAT">
+                                <xsl:if test="@col_typ = 'FLOAT'">
                                     <xsl:attribute name="selected">selected</xsl:attribute>
                                 </xsl:if>
                                 <xsl:text>FLOAT</xsl:text>
                             </option>
-                            <option value="3">
-                                <xsl:if test="@col_typ = 3">
+                            <option value="DATETIME">
+                                <xsl:if test="@col_typ = 'DATETIME'">
                                     <xsl:attribute name="selected">selected</xsl:attribute>
                                 </xsl:if>
                                 <xsl:text>DATETIME</xsl:text>
-                            </option>
-                            <option value="4">
-                                <xsl:if test="@col_typ = 4">
+                            </option>'
+                            <option value="VARCHAR">
+                                <xsl:if test="@col_typ = 'VARCHAR'">
                                     <xsl:attribute name="selected">selected</xsl:attribute>
                                 </xsl:if>
                                 <xsl:text>VARCHAR</xsl:text>

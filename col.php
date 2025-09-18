@@ -52,7 +52,7 @@ function col_upd() {
     $col_act  = filter_input(INPUT_POST, "col_act",  FILTER_VALIDATE_INT);
     $col_name = filter_input(INPUT_POST, "col_name", FILTER_SANITIZE_STRING);
     $col_desc = filter_input(INPUT_POST, "col_desc", FILTER_SANITIZE_STRING);
-    $col_typ  = filter_input(INPUT_POST, "col_typ",  FILTER_VALIDATE_INT);
+    $col_typ  = filter_input(INPUT_POST, "col_typ",  FILTER_VALIDATE_STRING);
     $col_len  = filter_input(INPUT_POST, "col_len",  FILTER_VALIDATE_INT);
     $col_dec  = filter_input(INPUT_POST, "col_dec",  FILTER_VALIDATE_INT);
     $col_unt  = filter_input(INPUT_POST, "col_unt",  FILTER_SANITIZE_STRING);

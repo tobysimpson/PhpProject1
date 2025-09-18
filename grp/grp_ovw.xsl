@@ -57,16 +57,15 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     
-                  
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                 </tr>
             
             
@@ -98,7 +97,6 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                    
                         <td></td>
                         <td></td>
                         <td></td>
