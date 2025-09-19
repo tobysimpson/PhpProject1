@@ -36,7 +36,7 @@
         
         <form action="item.php?mth=upl" method="post" enctype="multipart/form-data">
             <input type="file" name="fileToUpload" id="fileToUpload"></input>
-            <input type="submit" value="upload" name="submit"></input>
+            <input type="submit" value="Upload" name="submit"></input>
         </form>
         
         
