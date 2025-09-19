@@ -30,6 +30,16 @@
                 </td>
             </tr>
         </table>
+        
+        
+<p/>
+        
+        <form action="item.php?mth=upl" method="post" enctype="multipart/form-data">
+            <input type="file" name="fileToUpload" id="fileToUpload"></input>
+            <input type="submit" value="upload" name="submit"></input>
+        </form>
+        
+        
     </xsl:template>
     
     
