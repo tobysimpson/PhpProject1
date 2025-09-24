@@ -13,18 +13,18 @@
     <xsl:template match="root/tbl[1]">
         <table class="table1">
             <tr>
-                <th>item_id</th>
-                <th>item_act</th>
-                <th>item_date</th>
-                <th>item_name</th>
-                <th>item_val1</th>
-                <th>item_val2</th>
+                <th>itm_id</th>
+                <th>itm_act</th>
+                <th>itm_date</th>
+                <th>itm_name</th>
+                <th>itm_val1</th>
+                <th>itm_val2</th>
                 <th/>
             </tr>
             <xsl:apply-templates select="row"/>
             <tr>
                 <td>        
-                    <form action="item.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
+                    <form action="itm.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
                         <input type="submit" value="new"/>
                     </form>
                 </td>
@@ -34,7 +34,7 @@
         
 <p/>
         
-        <form action="item.php?mth=upl" method="post" enctype="multipart/form-data">
+        <form action="itm.php?mth=upl" method="post" enctype="multipart/form-data">
             <input type="file" name="fileToUpload" id="fileToUpload"></input>
             <input type="submit" value="Upload" name="submit"></input>
         </form>
@@ -46,25 +46,25 @@
     <xsl:template match="row">
         <tr>
             <td>
-                <xsl:value-of select="@item_id"/>
+                <xsl:value-of select="@itm_id"/>
             </td>
             <td>
-                <xsl:value-of select="@item_act"/>
+                <xsl:value-of select="@itm_act"/>
             </td>
             <td>
-                <xsl:value-of select="@item_date"/>
+                <xsl:value-of select="@itm_date"/>
             </td>
             <td style="text-align:left">
-                <xsl:value-of select="@item_name"/>
+                <xsl:value-of select="@itm_name"/>
             </td>
             <td>
-                <xsl:value-of select="@item_val1"/>
+                <xsl:value-of select="@itm_val1"/>
             </td>
             <td style="text-align:right">
-                <xsl:value-of select="@item_val2"/>
+                <xsl:value-of select="@itm_val2"/>
             </td>
             <td>
-                <a href="item.php?mth=edt&amp;item_id={@item_id}">edit</a>
+                <a href="itm.php?mth=edt&amp;itm_id={@itm_id}">edit</a>
             </td>
         </tr>
     </xsl:template>

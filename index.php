@@ -4,6 +4,6 @@
 
 //header("Location: usr.php?mth=edit");
 
-header("Location: grp.php");
+header("Location: itm.php?mth=lst");
 
 

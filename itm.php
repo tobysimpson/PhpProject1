@@ -2,69 +2,80 @@
 
 require_once "cls_db.php";
 require_once "cls_xml.php";
-require_once "cls_usr.php";
 
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
-switch ($mth) {
-    case "lst":
-        item_lst();
-        break;
-    case "edt":
-        item_edt();
-        break;
-    case "upd":
-        item_upd();
-        break;
-    case "ins":
-        item_ins();
-        break;
-    case "upl":
-        item_upl();
-        break;
-    default:
-        item_lst();
-}
 
-function item_lst() {
+//print_r(explode("_",$mth)[1]);
+
+//echo "itm_".$mth;
+
+$func = "itm_".$mth;
+$func();
+
+//call
+//call_user_func("itm_" . $mth ."()");
+
+
+//switch ($mth) {
+//    case "lst":
+//        itm_lst();
+//        break;
+//    case "edt":
+//        itm_edt();
+//        break;
+//    case "upd":
+//        itm_upd();
+//        break;
+//    case "ins":
+//        itm_ins();
+//        break;
+//    case "upl":
+//        itm_upl();
+//        break;
+//    default:
+//        itm_lst();
+//}
+
+function itm_lst() {
     $db = new cls_db();
 //    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
 //    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_item_lst()");
-    $dom = cls_xml::mul2dom($db->conn, "item/item_lst.xsl");
+    $db->conn->multi_query("CALL sp_itm_lst()");
+    $dom = cls_xml::mul2dom($db->conn, "itm/itm_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
 
-function item_edt() {
+function itm_edt() {
     $db = new cls_db();
-    $item_id = filter_input(INPUT_GET, "item_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_item_edt({$item_id})");
-    $dom = cls_xml::mul2dom($db->conn, "item/item_edt.xsl");
+    $itm_id = filter_input(INPUT_GET, "itm_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_itm_edt({$itm_id})");
+    $dom = cls_xml::mul2dom($db->conn, "itm/itm_edt.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
 
-function item_upd() {
+function itm_upd() {
     $db = new cls_db();
-    $item_id = filter_input(INPUT_POST, "item_id", FILTER_VALIDATE_INT);
-    $item_name = filter_input(INPUT_POST, "item_name", FILTER_SANITIZE_STRING);
-    $item_val1 = filter_input(INPUT_POST, "item_val1", FILTER_VALIDATE_INT);
-    $item_val2 = filter_input(INPUT_POST, "item_val2", FILTER_VALIDATE_FLOAT);
-    $item_act = filter_input(INPUT_POST, "item_act", FILTER_VALIDATE_INT);
-//    echo $item_id,$item_name,$item_val1,$item_val2,$item_act;'
-    $db->conn->multi_query("CALL sp_item_upd({$item_id},{$item_act},'{$item_name}',{$item_val1},{$item_val2})");
-    header("Location: item.php");
+    $itm_id = filter_input(INPUT_POST, "itm_id", FILTER_VALIDATE_INT);
+    $itm_name = filter_input(INPUT_POST, "itm_name", FILTER_SANITIZE_STRING);
+    $itm_val1 = filter_input(INPUT_POST, "itm_val1", FILTER_VALIDATE_INT);
+    $itm_val2 = filter_input(INPUT_POST, "itm_val2", FILTER_VALIDATE_FLOAT);
+    $itm_act = filter_input(INPUT_POST, "itm_act", FILTER_VALIDATE_INT);
+//    echo $itm_id,$itm_name,$itm_val1,$itm_val2,$itm_act;'
+    $db->conn->multi_query("CALL sp_itm_upd({$itm_id},{$itm_act},'{$itm_name}',{$itm_val1},{$itm_val2})");
+    header("Location: itm.php");
 }
 
-function item_ins() {
+function itm_ins() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("INSERT INTO item_info VALUES ();");
+    $qry = $db->conn->prepare("INSERT INTO itm_info VALUES ();");
     $qry->execute();
-    header("Location: item.php");
+    header("Location: itm.php");
 }
 
-function item_upl() {
+function itm_upl() {
     $db = new cls_db();
 //    
 //    
