@@ -65,14 +65,14 @@ function itm_upd() {
     $itm_act = filter_input(INPUT_POST, "itm_act", FILTER_VALIDATE_INT);
 //    echo $itm_id,$itm_name,$itm_val1,$itm_val2,$itm_act;'
     $db->conn->multi_query("CALL sp_itm_upd({$itm_id},{$itm_act},'{$itm_name}',{$itm_val1},{$itm_val2})");
-    header("Location: itm.php");
+    header("Location: itm.php?mth=lst");
 }
 
 function itm_ins() {
     $db = new cls_db();
     $qry = $db->conn->prepare("INSERT INTO itm_info VALUES ();");
     $qry->execute();
-    header("Location: itm.php");
+    header("Location: itm.php?mth=lst");
 }
 
 function itm_upl() {
