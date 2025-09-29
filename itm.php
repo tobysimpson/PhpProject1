@@ -106,8 +106,8 @@ function itm_upl() {
     echo '<br/>';
 //    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.tbl_0001 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"';";
     
-    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.tbl_0001 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (col_0001, col_0002, col_0003);";
-
+//    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.tbl_0001 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (col_0001, col_0002, col_0003);";
+    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.bsm2 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (lvl,name,col_2020,col_2025,col_2030,col_2035,col_2040,col_2045,col_2050);";
     
     echo $sql1;
     echo '<br/>';

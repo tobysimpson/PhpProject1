@@ -16,7 +16,9 @@
             <a href="prm.php?mth=brw&amp;id={@id}">
                 <xsl:value-of select="@name"/>
             </a>
-            <xsl:text> / </xsl:text>
+            <xsl:if test="not(position() = last())">
+                <xsl:text> / </xsl:text>
+            </xsl:if>
         </xsl:for-each>
         
         <p/>
@@ -25,10 +27,9 @@
                 <th>id</th>
                 <th>name</th>
                 <th>unit</th>
-                <th>ts</th>
             </tr>
             <xsl:for-each select="tbl[2]/row">
-                <xsl:sort select="@pos" data-type="number" />
+<!--                <xsl:sort select="@pos" data-type="number" />-->
                 <xsl:variable name="id0" select="@id"/>
                 <tr>
                     <td>
@@ -41,9 +42,6 @@
                     </td>
                     <td>
                         <xsl:value-of select="@unit"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@ts"/>
                     </td>
                 </tr>
             </xsl:for-each>

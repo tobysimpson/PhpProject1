@@ -14,7 +14,7 @@ function prm_lst() {
     $db = new cls_db();
 //    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
 //    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("SELECT * FROM vw_prm ORDER BY p0,p1,p2,p3,p4");
+    $db->conn->multi_query("SELECT * FROM vw_prm ORDER BY path");
     $dom = cls_xml::mul2dom($db->conn, "prm/prm_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();

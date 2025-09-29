@@ -56,17 +56,12 @@
             </tr>
             <tr>
                 <td>
+                    <a href="prm.php?mth=brw&amp;id=2423">browse</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <a href="prm.php?mth=lst">lst</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="prm.php?mth=all">all</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="prm.php?mth=brw&amp;id=2421">browse</a>
                 </td>
             </tr>
             <tr>
