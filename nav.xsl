@@ -52,6 +52,24 @@
     <xsl:template name="menu">
         <table width="100%" class="table2">
             <tr>
+                <th style="text-align:left">prm</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="prm.php?mth=lst">lst</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="prm.php?mth=all">all</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="prm.php?mth=brw&amp;id=2421">browse</a>
+                </td>
+            </tr>
+            <tr>
                 <th style="text-align:left">test</th>
             </tr>
             <tr>
@@ -59,6 +77,7 @@
                     <a href="itm.php?mth=lst">item</a>
                 </td>
             </tr>
+
         </table>
     </xsl:template>
 </xsl:stylesheet>

@@ -7,48 +7,70 @@ require_once "cls_xml.php";
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 
 //call
-$func = "itm_".$mth;
+$func = "prm_".$mth;
 $func();
 
-function itm_lst() {
+function prm_lst() {
     $db = new cls_db();
 //    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
 //    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_itm_lst()");
-    $dom = cls_xml::mul2dom($db->conn, "itm/itm_lst.xsl");
+    $db->conn->multi_query("SELECT * FROM vw_prm ORDER BY p0,p1,p2,p3,p4");
+    $dom = cls_xml::mul2dom($db->conn, "prm/prm_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
 
-function itm_edt() {
+function prm_all() {
     $db = new cls_db();
-    $itm_id = filter_input(INPUT_GET, "itm_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_itm_edt({$itm_id})");
-    $dom = cls_xml::mul2dom($db->conn, "itm/itm_edt.xsl");
+//    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+//    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_prm_all();");
+    $dom = cls_xml::mul2dom($db->conn, "prm/prm_all.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
 
-function itm_upd() {
+
+function prm_brw() {
     $db = new cls_db();
-    $itm_id = filter_input(INPUT_POST, "itm_id", FILTER_VALIDATE_INT);
-    $itm_name = filter_input(INPUT_POST, "itm_name", FILTER_SANITIZE_STRING);
-    $itm_val1 = filter_input(INPUT_POST, "itm_val1", FILTER_VALIDATE_INT);
-    $itm_val2 = filter_input(INPUT_POST, "itm_val2", FILTER_VALIDATE_FLOAT);
-    $itm_act = filter_input(INPUT_POST, "itm_act", FILTER_VALIDATE_INT);
-//    echo $itm_id,$itm_name,$itm_val1,$itm_val2,$itm_act;'
-    $db->conn->multi_query("CALL sp_itm_upd({$itm_id},{$itm_act},'{$itm_name}',{$itm_val1},{$itm_val2})");
-    header("Location: itm.php?mth=lst");
+    $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_prm_brw({$id});");
+    $dom = cls_xml::mul2dom($db->conn, "prm/prm_brw.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
 }
 
-function itm_ins() {
+
+
+function prm_edt() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("INSERT INTO itm_info VALUES ();");
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_prm_edt({$prm_id})");
+    $dom = cls_xml::mul2dom($db->conn, "prm/prm_edt.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
+
+function prm_upd() {
+    $db = new cls_db();
+    $prm_id = filter_input(INPUT_POST, "prm_id", FILTER_VALIDATE_INT);
+    $prm_name = filter_input(INPUT_POST, "prm_name", FILTER_SANITIZE_STRING);
+    $prm_val1 = filter_input(INPUT_POST, "prm_val1", FILTER_VALIDATE_INT);
+    $prm_val2 = filter_input(INPUT_POST, "prm_val2", FILTER_VALIDATE_FLOAT);
+    $prm_act = filter_input(INPUT_POST, "prm_act", FILTER_VALIDATE_INT);
+//    echo $prm_id,$prm_name,$prm_val1,$prm_val2,$prm_act;'
+    $db->conn->multi_query("CALL sp_prm_upd({$prm_id},{$prm_act},'{$prm_name}',{$prm_val1},{$prm_val2})");
+    header("Location: prm.php?mth=lst");
+}
+
+function prm_ins() {
+    $db = new cls_db();
+    $qry = $db->conn->prepare("INSERT INTO prm_info VALUES ();");
     $qry->execute();
-    header("Location: itm.php?mth=lst");
+    header("Location: prm.php?mth=lst");
 }
 
-function itm_upl() {
+function prm_upl() {
     $db = new cls_db();
 //    
 //    
