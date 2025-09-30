@@ -61,7 +61,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="prm.php?mth=lst">lst</a>
+                    <a href="prm.php?mth=pth">path</a>
                 </td>
             </tr>
             <tr>
