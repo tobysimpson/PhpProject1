@@ -52,7 +52,7 @@
     <xsl:template name="menu">
         <table width="100%" class="table2">
             <tr>
-                <th style="text-align:left">prm</th>
+                <th style="text-align:left">parameters</th>
             </tr>
             <tr>
                 <td>
@@ -62,6 +62,14 @@
             <tr>
                 <td>
                     <a href="prm.php?mth=pth">path</a>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:left">uploads</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="upl.php?mth=lst">list</a>
                 </td>
             </tr>
             <tr>
