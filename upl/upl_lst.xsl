@@ -9,8 +9,18 @@
         <xsl:call-template name="page"/> 
     </xsl:template>
     
+    
+
 
     <xsl:template match="root">
+        
+        <form action="upl.php?mth=ins" method="post" enctype="multipart/form-data">
+            <input type="file" name="fileToUpload" id="fileToUpload"></input>
+            <input type="submit" value="Upload" name="submit"></input>
+        </form>
+
+        <p/>
+        
         <table class="table1">
             <tr>
                 <th>ts</th>
@@ -41,5 +51,10 @@
                 </tr>
             </xsl:for-each>
         </table>
+        
+
+        
+        
+        
     </xsl:template>
 </xsl:stylesheet>

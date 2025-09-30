@@ -43,7 +43,7 @@ function upl_prm() {
 }
 
 
-function upl_upl() {
+function upl_ins() {
     $db = new cls_db();
 
     print_r($_FILES);
@@ -78,7 +78,7 @@ function upl_upl() {
         
     echo '<br/>';
 //    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.tbl_0001 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"';";
-    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.tbl_0001 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (col_0001, col_0002, col_0003);";
+    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.cub1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (id,scn,yr,u);";
 
     
     echo $sql1;
@@ -99,4 +99,6 @@ function upl_upl() {
     $files2 = scandir($dir);
     print_r($files2);
     
+    
+    header("Location: upl.php?mth=lst");
 }
