@@ -14,7 +14,7 @@
         <table class="table1">
             <tr>
                 <th>ts</th>
-                <th>id</th>
+                <th>prm_id</th>
                 <th>scn</th>
                 <th>yr</th>
                 <th>u</th>
@@ -25,7 +25,7 @@
                         <xsl:value-of select="@ts"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@id"/>
+                        <xsl:value-of select="@prm_id"/>
                     </td>
                     <td>
                         <xsl:value-of select="@scn"/>

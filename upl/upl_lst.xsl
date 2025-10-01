@@ -17,7 +17,7 @@
         
         <table class="table1">
             <tr>
-                <th>id</th>
+                <th>prm_id</th>
                 <th>scn</th>
                 <th>yr</th>
                 <th>u</th>
@@ -41,7 +41,7 @@
         <p>Scientific format with many decimals will preserve numerical precision</p>
         
         <form action="upl.php?mth=ins" method="post" enctype="multipart/form-data">
-            <input type="file" name="fileToUpload" id="fileToUpload"></input>
+            <input type="file" name="fileToUpload" prm_id="fileToUpload"></input>
             <input type="submit" value="Upload" name="submit"></input>
         </form>
 
@@ -51,7 +51,7 @@
             <tr>
                 <th>ts</th>
                 <th>rows</th>
-                <th>ids</th>
+                <th>prm_ids</th>
                 <th>scns</th>
                 <th>yrs</th>
             </tr>
@@ -66,7 +66,7 @@
                         <xsl:value-of select="@n"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@id"/>
+                        <xsl:value-of select="@prm_id"/>
                     </td>
                     <td>
                         <xsl:value-of select="@scn"/>

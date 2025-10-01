@@ -52,7 +52,7 @@
     <xsl:template name="menu">
         <table width="100%" class="table2">
             <tr>
-                <th style="text-align:left">parameters</th>
+                <th style="text-align:left">parameter</th>
             </tr>
             <tr>
                 <td>
@@ -65,18 +65,21 @@
                 </td>
             </tr>
             <tr>
-                <th style="text-align:left">uploads</th>
+                <th style="text-align:left">upload</th>
             </tr>
             <tr>
                 <td>
                     <a href="upl.php?mth=lst">list</a>
                 </td>
             </tr>
-<!--           <tr>
+            <tr>
+                <th style="text-align:left">report</th>
+            </tr>
+            <tr>
                 <td>
-                    <a href="upl.php?mth=new">ins</a>
+                    <a href="rpt.php?mth=lst">list</a>
                 </td>
-            </tr>-->
+            </tr>
             <tr>
                 <th style="text-align:left">test</th>
             </tr>

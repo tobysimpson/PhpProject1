@@ -16,8 +16,8 @@ $func();
 
 function rpt_lst() {
     $db = new cls_db();
-    $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_rpt_lst({$id});");
+//    $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("SELECT * FROM rpt JOIN scn ORDER BY rpt_id, scn_id;");
     $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
@@ -25,9 +25,10 @@ function rpt_lst() {
 
 function rpt_dsp() {
     $db = new cls_db();
-    $ts = filter_input(INPUT_GET, "ts", FILTER_SANITIZE_STRING);
-    $db->conn->multi_query("SELECT * FROM cub1 where ts = '{$ts}' ORDER BY id,scn,yr;");
-    $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_dsp.xsl");
+    $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
+    $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_rpt1({$rpt_id},{$scn_id});");
+    $dom = cls_xml::mul2dom($db->conn, "rpt/rpt1_dsp.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
