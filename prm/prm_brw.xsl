@@ -127,7 +127,7 @@
         
         <p/>
         
-        <table>
+        <table class="table1">
             <tr>
                 <th>prm_id</th>
                 <th>scn_id</th>
@@ -142,6 +142,7 @@
             
             <xsl:for-each select="//root/tbl[3]/row[generate-id() = generate-id(key('scn',@scn_id)[1])]">
                 <xsl:variable name="scn_id" select= "@scn_id"/>
+                <xsl:variable name="scn_name" select= "@scn_name"/>
             
             
                 <xsl:for-each select="//root/tbl[3]/row[generate-id() = generate-id(key('prm',@prm_id)[1])]">
@@ -152,7 +153,7 @@
                             <xsl:value-of select="$prm_id"/>
                         </td>
                         <td>
-                            <xsl:value-of select="$scn_id"/>
+                            <xsl:value-of select="@scn_id"/>
                         </td>
                         <td style="text-align:left;">
                             <xsl:value-of select="$path"/>

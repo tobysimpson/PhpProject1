@@ -57,7 +57,7 @@
             
         
         
-        <table>
+        <table class="table1">
             <tr>
                 <th>prm_id</th>
                 <th>scn_id</th>
@@ -82,7 +82,7 @@
                     </td>
                     <xsl:for-each select="//root/tbl[1]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
                         <xsl:variable name="yr" select= "@yr"/>
-                        <td>
+                        <td style="text-align:right;">
                             <!--<xsl:value-of select="$prm_id"/>,<xsl:value-of select="$yr"/>-->
                             <xsl:value-of select="//root/tbl[1]/row[@prm_id = $prm_id and @yr = $yr]/@u"/>
                         </td>

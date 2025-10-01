@@ -22,6 +22,15 @@ function upl_lst() {
     echo $dom->saveXML();
 }
 
+function upl_frm() {
+    $db = new cls_db();
+//    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("SELECT 'toby is cool!' as text;");
+    $dom = cls_xml::mul2dom($db->conn, "upl/upl_frm.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
+
 function upl_dsp() {
     $db = new cls_db();
     $ts = filter_input(INPUT_GET, "ts", FILTER_SANITIZE_STRING);

@@ -65,14 +65,6 @@
                 </td>
             </tr>
             <tr>
-                <th style="text-align:left">upload</th>
-            </tr>
-            <tr>
-                <td>
-                    <a href="upl.php?mth=lst">list</a>
-                </td>
-            </tr>
-            <tr>
                 <th style="text-align:left">report</th>
             </tr>
             <tr>
@@ -81,13 +73,27 @@
                 </td>
             </tr>
             <tr>
+                <th style="text-align:left">upload</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="upl.php?mth=lst">list</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="upl.php?mth=frm">form</a>
+                </td>
+            </tr>
+            
+<!--            <tr>
                 <th style="text-align:left">test</th>
             </tr>
             <tr>
                 <td>
                     <a href="itm.php?mth=lst">item</a>
                 </td>
-            </tr>
+            </tr>-->
 
         </table>
     </xsl:template>
