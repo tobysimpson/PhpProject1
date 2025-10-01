@@ -1,6 +1,6 @@
 <?php
 
-
+//for upload?
 //header('Content-Type: text/html; charset=utf-8');
 
 require_once "cls_db.php";
@@ -78,7 +78,8 @@ function upl_ins() {
         
     echo '<br/>';
 //    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.tbl_0001 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"';";
-    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.cub1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (id,scn,yr,u);";
+    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.cub1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (id,scn,yr,u);";
+//    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.cub1 CHARACTER SET UTF8 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (id,scn,yr,u);";
 
     
     echo $sql1;

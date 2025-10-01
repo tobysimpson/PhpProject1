@@ -16,7 +16,7 @@
         <table class="table1">
             <tr>
                 
-                <th>id</th>
+                <th>prm_id</th>
                 <th>lvl</th>
                 <th>leaf</th>
                 <th>name</th>
@@ -25,7 +25,7 @@
                 <xsl:sort select="@lvl" data-type="number" order="ascending"/>
                 <tr>
                     <td>
-                        <xsl:value-of select="@id"/>
+                        <xsl:value-of select="@prm_id"/>
                     </td>
                     <td>
                         <xsl:value-of select="@lvl"/>
@@ -35,7 +35,7 @@
                     </td>
                 
                     <td style="text-align:left;" >
-                        <a href="prm.php?mth=brw&amp;id={@id}">
+                        <a href="prm.php?mth=brw&amp;prm_id={@prm_id}">
                             <xsl:value-of select="@name"/>
                         </a>
                     </td>
@@ -47,7 +47,7 @@
 
         <table class="table1">
             <tr>
-                <th>id</th>
+                <th>prm_id</th>
                 <th>lvl</th>
                 <th>leaf</th>
                 <th>name</th>
@@ -57,7 +57,7 @@
             <xsl:for-each select="tbl[2]/row">
                 <tr>
                     <td>
-                        <xsl:value-of select="@id"/>
+                        <xsl:value-of select="@prm_id"/>
                     </td>
                     <td>
                         <xsl:value-of select="@lvl"/>
@@ -66,7 +66,7 @@
                         <xsl:value-of select="@leaf"/>
                     </td>
                     <td style="text-align:left;" >
-                        <a href="prm.php?mth=brw&amp;id={@id}">
+                        <a href="prm.php?mth=brw&amp;prm_id={@prm_id}">
                             <xsl:value-of select="@name"/>
                         </a>
                     </td>
@@ -85,7 +85,7 @@
         
         <table class="table1">
             <tr>
-                <th>id</th>
+                <th>prm_id</th>
                 <th>ts</th>
                 <th>scn</th>
                 <th>yr</th>
@@ -94,10 +94,10 @@
             <xsl:for-each select="tbl[3]/row">
                 <tr>
                     <td>
-                        <xsl:value-of select="@id"/>
+                        <xsl:value-of select="@prm_id"/>
                     </td>
                     <td>
-                        <a href="upl.php?mth=prm&amp;id={@id}&amp;ts={@ts}">
+                        <a href="upl.php?mth=prm&amp;prm_id={@prm_id}&amp;ts={@ts}">
                             <xsl:value-of select="@ts"/>
                         </a>
                     </td>

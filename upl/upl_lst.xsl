@@ -14,6 +14,32 @@
 
     <xsl:template match="root">
         
+        
+        <table class="table1">
+            <tr>
+                <th>id</th>
+                <th>scn</th>
+                <th>yr</th>
+                <th>u</th>
+            </tr>
+            <tr>
+                <td>INT</td>
+                <td>INT</td>
+                <td>INT</td>
+                <td>DOUBLE</td>
+            </tr>
+            <tr>
+                <td>Parameter ID</td>
+                <td>Scenario as integer 1-4</td>
+                <td>Year - as an integer</td>
+                <td>Value - floating point decimal</td>
+            </tr>
+        </table>
+        
+        <p>Please submit *.csv files in Latin1 encoding (not utf-8)</p>
+        <p>No headers please, just values</p>
+        <p>Scientific format with many decimals will preserve numerical precision</p>
+        
         <form action="upl.php?mth=ins" method="post" enctype="multipart/form-data">
             <input type="file" name="fileToUpload" id="fileToUpload"></input>
             <input type="submit" value="Upload" name="submit"></input>
@@ -24,10 +50,10 @@
         <table class="table1">
             <tr>
                 <th>ts</th>
-                <th>n</th>
-                <th>id</th>
-                <th>scn</th>
-                <th>yr</th>
+                <th>rows</th>
+                <th>ids</th>
+                <th>scns</th>
+                <th>yrs</th>
             </tr>
             <xsl:for-each select="tbl[1]/row">
                 <tr>

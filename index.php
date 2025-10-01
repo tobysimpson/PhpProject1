@@ -4,6 +4,6 @@
 
 //header("Location: itm.php?mth=lst");
 
-header("Location: prm.php?mth=brw&id=2423");
+header("Location: prm.php?mth=brw&prm_id=2423");
 
 

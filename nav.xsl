@@ -56,7 +56,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="prm.php?mth=brw&amp;id=2423">browse</a>
+                    <a href="prm.php?mth=brw&amp;prm_id=2423">browse</a>
                 </td>
             </tr>
             <tr>
