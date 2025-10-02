@@ -60,7 +60,7 @@
         <table class="table1">
             <tr>
                 <th>prm_id</th>
-                <th>scn_id</th>
+                <th>scn_name</th>
                 <th>path</th>
                 <xsl:for-each select="//root/tbl[1]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
                     <th>
