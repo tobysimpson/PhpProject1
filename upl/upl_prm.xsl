@@ -15,7 +15,7 @@
             <tr>
                 <th>ts</th>
                 <th>prm_id</th>
-                <th>scn</th>
+                <th>scn_id</th>
                 <th>yr</th>
                 <th>u</th>
             </tr>
@@ -28,7 +28,7 @@
                         <xsl:value-of select="@prm_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@scn"/>
+                        <xsl:value-of select="@scn_id"/>
                     </td>
                     <td>
                         <xsl:value-of select="@yr"/>

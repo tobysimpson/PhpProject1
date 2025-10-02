@@ -16,7 +16,7 @@
     <xsl:template match="root">
         
         
-        <table class="table1">
+<!--        <table class="table1">
             <tr>
                 <th>rpt_id</th>
                 <th>scn_id</th>
@@ -53,7 +53,7 @@
        
      
             
-        <p/>
+        <p/>-->
             
         
         
