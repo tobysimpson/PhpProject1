@@ -53,7 +53,7 @@ function upl_prm() {
 
 
 function upl_ins() {
-    $db = new cls_db();
+//    $db = new cls_db();
 
     print_r($_FILES);
 
@@ -64,51 +64,72 @@ function upl_ins() {
 //    print_r($_FILES["fileToUpload"]["name"]);
 
 
-    $dir = "/var/lib/mysql-files/";
+//    $dir = "/var/lib/mysql-files/";
     $tmp_name = $_FILES["fileToUpload"]["tmp_name"];
-    $name = basename($tmp_name);
+//    $name = basename($tmp_name);
 //    $name = $_FILES["fileToUpload"]["name"];
 
-    echo $tmp_name;
-    echo '<br/>';
-    echo $dir . $name;
-    echo '<br/>';
-
-    try {
-        move_uploaded_file($tmp_name, $dir . $name);
-    } catch (Exception $e) {
-        echo $e->getMessage();
-    }
-
-
-    $files1 = scandir("/tmp");
-    print_r($files1);
-
-        
-    echo '<br/>';
-//    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.tbl_0001 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"';";
-    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.cub1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
-//    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.cub1 CHARACTER SET UTF8 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
-
     
-    echo $sql1;
-    echo '<br/>';
     
-    try {
-        $res1 = $db->conn->query($sql1);
-        print_r($res1);
-    } catch (Exception $e) {
-        echo $e->getMessage();
+//    $handle = fopen($tmp_name,'r');
+//    while ( ($data = fgetcsv($handle) ) !== FALSE ) {
+//    print_r($data);
+//    }
+    
+    
+    $rows   = array_map('str_getcsv', file($tmp_name));
+    $header = array_shift($rows);
+    $csv    = array();
+    foreach($rows as $row) {
+        $csv[] = array_combine($header, $row);
     }
     
     
-    unlink($dir.$name);
+    print_r($csv);
     
     
-    echo '<br/>';
-    $files2 = scandir($dir);
-    print_r($files2);
     
     
-    header("Location: upl.php?mth=lst");
+//    echo $tmp_name;
+//    echo '<br/>';
+//    echo $dir . $name;
+//    echo '<br/>';
+//
+//    try {
+//        move_uploaded_file($tmp_name, $dir . $name);
+//    } catch (Exception $e) {
+//        echo $e->getMessage();
+//    }
+//
+//
+//    $files1 = scandir("/tmp");
+//    print_r($files1);
+//
+//        
+//    echo '<br/>';
+////    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.tbl_0001 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"';";
+//    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.cub1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
+////    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.cub1 CHARACTER SET UTF8 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
+//
+//    
+//    echo $sql1;
+//    echo '<br/>';
+//    
+//    try {
+//        $res1 = $db->conn->query($sql1);
+//        print_r($res1);
+//    } catch (Exception $e) {
+//        echo $e->getMessage();
+//    }
+//    
+//    
+//    unlink($dir.$name);
+//    
+//    
+//    echo '<br/>';
+//    $files2 = scandir($dir);
+//    print_r($files2);
+//    
+//    
+//    header("Location: upl.php?mth=lst");
 }

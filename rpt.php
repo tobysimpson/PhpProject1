@@ -29,8 +29,7 @@ function rpt_dsp() {
     $dsp = filter_input(INPUT_GET, "dsp", FILTER_VALIDATE_INT);
     $fmt = filter_input(INPUT_GET, "fmt", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_rpt1({$rpt_id},{$scn_id});");
-    
-    
+
     switch ($fmt) {
         case 1:
             header('Content-Type: text/html');
@@ -55,27 +54,24 @@ function rpt_dsp() {
     echo cls_xml::xsltrans($xml, $xsl);
 }
 
-//
-////    header('Content-Type: text/xml');
-//    echo $dom->saveXML();
+function rpt_frm() {
+    $db = new cls_db();
+//    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("SELECT 1 as txt;");
+    $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_frm.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
 
+function rpt_ins() {
+    $db = new cls_db();
 
+    print_r($_FILES);
 
-
-//switch ($xsl) {
-//        case 1:
-//            $xsl = cls_xml::file2dom("rpt/rpt_res3.xsl");
-//            header('Content-Type: text/html');
-//            echo cls_xml::xsltrans($xml, $xsl);
-//            break;
-//        case 2:
-//            $xsl = cls_xml::file2dom("rpt/xls_res3.xsl");
-//            header('Content-Type: application/vnd.ms-excel');
-//            header("Content-Disposition: attachment; filename=rpt_res3.xml");
-//            echo cls_xml::xsltrans($xml, $xsl);
-//            break;
-//        default:
-//            header('Content-Type: text/xml');
-//            echo $xml->saveXML();
-//            break;
-//    }
+    $file = fopen('myCSVFile.csv', 'r');
+    while (($line = fgetcsv($file)) !== FALSE) {
+        //$line is an array of the csv elements
+        print_r($line);
+    }
+    fclose($file);
+}

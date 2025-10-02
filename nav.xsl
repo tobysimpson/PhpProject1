@@ -64,7 +64,7 @@
                     <a href="prm.php?mth=pth">path</a>
                 </td>
             </tr>
-<!--            <tr>
+            <!--            <tr>
                 <td>
                     <a href="prm.php?mth=tre">tree</a>
                 </td>
@@ -74,20 +74,25 @@
             </tr>
             <tr>
                 <td>
-                    <a href="rpt.php?mth=lst">list</a>
-                </td>
-            </tr>
-            <tr>
-                <th style="text-align:left">upload</th>
-            </tr>
-            <tr>
-                <td>
-                    <a href="upl.php?mth=lst">list</a>
+                    <a href="rpt.php?mth=lst">download</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="upl.php?mth=frm">form</a>
+                    <a href="rpt.php?mth=frm">upload</a>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:left">raw data</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="upl.php?mth=lst">history</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="upl.php?mth=frm">upload</a>
                 </td>
             </tr>
             

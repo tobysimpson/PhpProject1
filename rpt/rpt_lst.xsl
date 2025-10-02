@@ -22,7 +22,7 @@
                 <th>scn_id</th>
                 <th>scn_name</th>
                 <th colspan="3">pivot</th>
-                <th colspan="3">data</th>
+                <th colspan="3">raw data</th>
             </tr>
             <xsl:for-each select="tbl[1]/row">
                 <tr>
