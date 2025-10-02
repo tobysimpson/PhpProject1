@@ -51,10 +51,13 @@
                             </Cell>
                             <xsl:for-each select="//root/tbl[1]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
                                 <xsl:variable name="yr" select= "@yr"/>
+                                <xsl:variable name="u" select="//root/tbl[1]/row[@prm_id = $prm_id and @yr = $yr]/@u"/>
                                 <Cell>
-                                    <Data ss:Type="Number">
-                                        <xsl:value-of select="//root/tbl[1]/row[@prm_id = $prm_id and @yr = $yr]/@u"/>
-                                    </Data>
+                                    <xsl:if test="number($u) = $u">
+                                        <Data ss:Type="Number">
+                                            <xsl:value-of select="$u"/>
+                                        </Data>
+                                    </xsl:if>
                                 </Cell>
                             </xsl:for-each>
                         </Row>

@@ -57,9 +57,11 @@
                                 </Data>
                             </Cell>
                             <Cell>
-                                <Data ss:Type="Number">
-                                    <xsl:value-of select="@u"/>
-                                </Data>
+                                <xsl:if test="number(@u) = @u">
+                                    <Data ss:Type="Number">
+                                        <xsl:value-of select="@u"/>
+                                    </Data>
+                                </xsl:if>
                             </Cell>
                         </Row>
                     </xsl:for-each> 
