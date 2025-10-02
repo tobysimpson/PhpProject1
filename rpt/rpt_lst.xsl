@@ -21,9 +21,8 @@
                 <th>rpt_name</th>
                 <th>scn_id</th>
                 <th>scn_name</th>
-                <th colspan="2">html</th>
-                <th colspan="2">csv</th>
-                <th colspan="2">xls</th>
+                <th colspan="3">pivot</th>
+                <th colspan="3">data</th>
             </tr>
             <xsl:for-each select="tbl[1]/row">
                 <tr>
@@ -40,22 +39,22 @@
                         <xsl:value-of select="@scn_name"/>
                     </td>
                     <td>
-                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=1&amp;fmt=1">data</a>
+                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=1&amp;fmt=1">html</a>
                     </td>
                     <td>
-                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=2&amp;fmt=1">pivot</a>
+                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=2&amp;fmt=2">csv</a>
                     </td>
                     <td>
-                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=3&amp;fmt=2">data</a>
+                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=3&amp;fmt=3">xls</a>
                     </td>
                     <td>
-                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=4&amp;fmt=2">pivot</a>
+                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=4&amp;fmt=1">html</a>
                     </td>
                     <td>
-                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=5&amp;fmt=3">data</a>
+                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=5&amp;fmt=2">csv</a>
                     </td>
                     <td>
-                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=6&amp;fmt=3">pivot</a>
+                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=6&amp;fmt=3">xls</a>
                     </td>
                 </tr>
             </xsl:for-each>

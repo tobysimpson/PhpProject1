@@ -98,9 +98,9 @@
         
             <table class="table1">
                 <tr>
+                    <th>ts</th>
                     <th>prm_id</th>
                     <th>prm_name</th>
-                    <th>ts</th>
                     <th>scn_id</th>
                     <th>scn_name</th>
                     <th>yr</th>
@@ -109,13 +109,13 @@
                 <xsl:for-each select="tbl[3]/row">
                     <tr>
                         <td>
+                            <xsl:value-of select="@ts"/>
+                        </td>
+                        <td>
                             <xsl:value-of select="@prm_id"/>
                         </td>
                         <td style="text-align:left;">
                             <xsl:value-of select="@name"/>
-                        </td>
-                        <td>
-                            <xsl:value-of select="@ts"/>
                         </td>
                         <td>
                             <xsl:value-of select="@scn_id"/>
@@ -138,9 +138,10 @@
             <table class="table1">
                 <tr>
                     <th>prm_id</th>
+                    <th>prm_name</th>
                     <th>scn_id</th>
                     <th>scn_name</th>
-                    <th>name</th>
+                    
                     <xsl:for-each select="//root/tbl[3]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
                         <th>
                             <xsl:value-of select="@yr"/>

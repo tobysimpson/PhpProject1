@@ -16,7 +16,7 @@
     <xsl:template match="root">
         
         
-        <table class="table1">
+<!--        <table class="table1">
             <tr>
                 <th>rpt_id</th>
                 <th>scn_id</th>
@@ -53,14 +53,14 @@
        
      
             
-<!--        <p/>
+        <p/>-->
             
         
         
         <table class="table1">
             <tr>
                 <th>prm_id</th>
-                <th>scn_id</th>
+                <th>scn_name</th>
                 <th>path</th>
                 <xsl:for-each select="//root/tbl[1]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
                     <th>
@@ -83,14 +83,14 @@
                     <xsl:for-each select="//root/tbl[1]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
                         <xsl:variable name="yr" select= "@yr"/>
                         <td style="text-align:right;">
-                            <xsl:value-of select="$prm_id"/>,<xsl:value-of select="$yr"/>
+                            <!--<xsl:value-of select="$prm_id"/>,<xsl:value-of select="$yr"/>-->
                             <xsl:value-of select="//root/tbl[1]/row[@prm_id = $prm_id and @yr = $yr]/@u"/>
                         </td>
                     </xsl:for-each>
                 </tr>
             </xsl:for-each> 
         </table>
-        -->
+        
         
 
         
