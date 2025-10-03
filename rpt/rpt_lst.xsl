@@ -9,20 +9,16 @@
         <xsl:call-template name="page"/> 
     </xsl:template>
     
-    
-
-
+   
     <xsl:template match="root">
-        
-        
         <table class="table1">
             <tr>
                 <th>rpt_id</th>
                 <th>rpt_name</th>
                 <th>scn_id</th>
                 <th>scn_name</th>
-                <th colspan="3">pivot</th>
-                <th colspan="3">raw data</th>
+                <th colspan="2">html</th>
+                <th colspan="2">download</th>
             </tr>
             <xsl:for-each select="tbl[1]/row">
                 <tr>
@@ -39,28 +35,21 @@
                         <xsl:value-of select="@scn_name"/>
                     </td>
                     <td>
-                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=1&amp;fmt=1">html</a>
+                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=1">view</a>
                     </td>
                     <td>
-                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=2&amp;fmt=2">csv</a>
+                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=2">link</a>
                     </td>
                     <td>
-                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=3&amp;fmt=3">xls</a>
+                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=3">csv</a>
                     </td>
                     <td>
-                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=4&amp;fmt=1">html</a>
-                    </td>
-                    <td>
-                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=5&amp;fmt=2">csv</a>
-                    </td>
-                    <td>
-                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;dsp=6&amp;fmt=3">xls</a>
+                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=4">xls</a>
                     </td>
                 </tr>
             </xsl:for-each>
         </table>
-        
-
-        
     </xsl:template>
 </xsl:stylesheet>
+
+ 

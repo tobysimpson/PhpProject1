@@ -17,7 +17,7 @@
             <xsl:value-of select="@yr"/>
             <xsl:choose>
                 <xsl:when test="position() = last()">
-                    <xsl:text>&#xD;</xsl:text>
+                    <xsl:text>&#xD;&#xA;</xsl:text>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:text>,</xsl:text>
@@ -38,15 +38,13 @@
                 <xsl:value-of select="//root/tbl[1]/row[@prm_id = $prm_id and @yr = $yr]/@u"/>
                 <xsl:choose>
                     <xsl:when test="position() = last()">
-                        <xsl:text>&#xD;</xsl:text>
+                        <xsl:text>&#xD;&#xA;</xsl:text>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:text>,</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:for-each>
-            
         </xsl:for-each>
-
     </xsl:template>
 </xsl:stylesheet>

@@ -28,33 +28,38 @@ function raw_dsp() {
     $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
     $fmt    = filter_input(INPUT_GET, "fmt", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_rpt1({$rpt_id},{$scn_id});");
-    $xml = cls_xml::mul2dom($db->conn);
     switch ($fmt) {
         case 1:
-            $xsl = cls_xml::file2dom("raw/rpt1_htm1.xsl");
-            header('Content-Type: text/html');
+            header('Content-Type: text/xml');
+            $dom = cls_xml::mul2dom($db->conn, "raw/rpt1_htm1.xsl");
+            echo $dom->saveXML();
             break;
         case 2:
-            $xsl = cls_xml::file2dom("raw/rpt1_htm2.xsl");
             header('Content-Type: text/html');
+            $xml = cls_xml::mul2dom($db->conn);
+            $xsl = cls_xml::file2dom("raw/rpt1_htm2.xsl");
+            echo cls_xml::xsltrans($xml, $xsl);
             break;
         case 3:
-            $xsl = cls_xml::file2dom("raw/rpt1_csv.xsl");
             header("Content-type: text/csv");
-            header("Content-Disposition: attachment; filename=raw{$rpt_id}_scn{$scn_id}.csv");
+            header("Content-Disposition: attachment; filename=rpt{$rpt_id}_scn{$scn_id}_raw.csv");
             header("Pragma: no-cache");
             header("Expires: 0");
+            $xml = cls_xml::mul2dom($db->conn);
+            $xsl = cls_xml::file2dom("raw/rpt1_csv.xsl");
+            echo cls_xml::xsltrans($xml, $xsl);
             break;
         case 4:
-            $xsl = cls_xml::file2dom("raw/rpt1_xls.xsl");
             header('Content-Type: application/vnd.ms-excel');
-            header("Content-Disposition: attachment; filename=raw{$rpt_id}_scn{$scn_id}.xls");
+            header("Content-Disposition: attachment; filename=rpt{$rpt_id}_scn{$scn_id}_raw.xls");
+            $xml = cls_xml::mul2dom($db->conn);
+            $xsl = cls_xml::file2dom("raw/rpt1_xls.xsl");
+            echo cls_xml::xsltrans($xml, $xsl);
             break;
         default:
             header('Content-Type: text/xml');
             break;
     }
-    echo cls_xml::xsltrans($xml, $xsl);
 }
 
 function raw_upl() {

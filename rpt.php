@@ -23,35 +23,43 @@ function rpt_lst() {
 }
 
 function rpt_dsp() {
-   $db = new cls_db();
-   $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
-   $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
-   $dsp = filter_input(INPUT_GET, "dsp", FILTER_VALIDATE_INT);
-   $fmt = filter_input(INPUT_GET, "fmt", FILTER_VALIDATE_INT);
-   $db->conn->multi_query("CALL sp_rpt1({$rpt_id},{$scn_id});");
-
-   switch ($fmt) {
-       case 1:
-           header('Content-Type: text/html');
-           break;
-       case 2:
-           header("Content-type: text/csv");
-           header("Content-Disposition: attachment; filename=rpt{$rpt_id}_scn{$scn_id}_dsp{$dsp}.csv");
-           header("Pragma: no-cache");
-           header("Expires: 0");
-           break;
-       case 3:
-           $xsl = cls_xml::file2dom("rpt/xls_res3.xsl");
-           header('Content-Type: application/vnd.ms-excel');
-           header("Content-Disposition: attachment; filename=rpt{$rpt_id}_scn{$scn_id}_dsp{$dsp}.xls");
-           break;
-       default:
-           header('Content-Type: text/html');
-           break;
-   }
-   $xml = cls_xml::mul2dom($db->conn);
-   $xsl = cls_xml::file2dom("rpt/rpt1_dsp{$dsp}.xsl");
-   echo cls_xml::xsltrans($xml, $xsl);
+    $db = new cls_db();
+    $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
+    $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
+    $fmt    = filter_input(INPUT_GET, "fmt", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_rpt1({$rpt_id},{$scn_id});");
+    switch ($fmt) {
+        case 1:
+            header('Content-Type: text/xml');
+            $dom = cls_xml::mul2dom($db->conn, "rpt/rpt1_htm1.xsl");
+            echo $dom->saveXML();
+            break;
+        case 2:
+            header('Content-Type: text/html');
+            $xml = cls_xml::mul2dom($db->conn);
+            $xsl = cls_xml::file2dom("rpt/rpt1_htm2.xsl");
+            echo cls_xml::xsltrans($xml, $xsl);
+            break;
+        case 3:
+            header("Content-type: text/csv");
+            header("Content-Disposition: attachment; filename=rpt{$rpt_id}_scn{$scn_id}_piv.csv");
+            header("Pragma: no-cache");
+            header("Expires: 0");
+            $xml = cls_xml::mul2dom($db->conn);
+            $xsl = cls_xml::file2dom("rpt/rpt1_csv.xsl");
+            echo cls_xml::xsltrans($xml, $xsl);
+            break;
+        case 4:
+            header('Content-Type: application/vnd.ms-excel');
+            header("Content-Disposition: attachment; filename=rpt{$rpt_id}_scn{$scn_id}_piv.xls");
+            $xml = cls_xml::mul2dom($db->conn);
+            $xsl = cls_xml::file2dom("rpt/rpt1_xls.xsl");
+            echo cls_xml::xsltrans($xml, $xsl);
+            break;
+        default:
+            header('Content-Type: text/xml');
+            break;
+    }
 }
 
 function rpt_upl() {
