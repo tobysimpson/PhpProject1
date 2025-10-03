@@ -13,7 +13,7 @@
         <xsl:text>yr,</xsl:text>
         <xsl:text>u</xsl:text>
         <xsl:text>&#xD;&#xA;</xsl:text>     -->
-        <xsl:for-each select="tbl[1]/row">
+        <xsl:for-each select="tbl[4]/row">
             <xsl:value-of select="@prm_id"/>
             <xsl:text>,</xsl:text>
             <xsl:value-of select="@scn_id"/>

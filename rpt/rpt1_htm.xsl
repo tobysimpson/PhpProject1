@@ -10,38 +10,42 @@
     </xsl:template>
     
     
-    <xsl:key name="prm" match="root/tbl[1]/row" use="@prm_id"/>
-    <xsl:key name="yr" match="root/tbl[1]/row" use="@yr"/>
+    <xsl:key name="prm" match="root/tbl[4]/row" use="@prm_id"/>
+    <xsl:key name="yr" match="root/tbl[4]/row" use="@yr"/>
 
     <xsl:template match="root">
         <table class="table1">
             <tr>
                 <th>prm_id</th>
-                <th>scn_name</th>
+                <th>scn_id</th>
                 <th>path</th>
-                <xsl:for-each select="//root/tbl[1]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
+                <th>unit</th>
+                <xsl:for-each select="//root/tbl[4]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
                     <th>
                         <xsl:value-of select="@yr"/>
                     </th>
                 </xsl:for-each>
             </tr>
-            <xsl:for-each select="tbl[1]/row[generate-id() = generate-id(key('prm',@prm_id)[1])]">
+            <xsl:for-each select="tbl[4]/row[generate-id() = generate-id(key('prm',@prm_id)[1])]">
                 <xsl:variable name="prm_id" select= "@prm_id"/>
                 <tr>
                     <td>
                         <xsl:value-of select="@prm_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@scn_name"/>
+                        <xsl:value-of select="@scn_id"/>
                     </td>
                     <td style="text-align:left;">
-                        <xsl:value-of select="@path"/>
+                        <xsl:value-of select="//root/tbl[3]/row[@prm_id = $prm_id]/@path"/>
                     </td>
-                    <xsl:for-each select="//root/tbl[1]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
+                    <td style="text-align:left;">
+                        <xsl:value-of select="//root/tbl[3]/row[@prm_id = $prm_id]/@unit"/>
+                    </td>
+                    <xsl:for-each select="//root/tbl[4]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
                         <xsl:variable name="yr" select= "@yr"/>
                         <td style="text-align:right;">
                             <!--<xsl:value-of select="$prm_id"/>,<xsl:value-of select="$yr"/>-->
-                            <xsl:value-of select="//root/tbl[1]/row[@prm_id = $prm_id and @yr = $yr]/@u"/>
+                            <xsl:value-of select="//root/tbl[4]/row[@prm_id = $prm_id and @yr = $yr]/@u"/>
                         </td>
                     </xsl:for-each>
                 </tr>

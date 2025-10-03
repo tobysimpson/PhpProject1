@@ -31,16 +31,10 @@ function raw_dsp() {
     switch ($fmt) {
         case 1:
             header('Content-Type: text/xml');
-            $dom = cls_xml::mul2dom($db->conn, "raw/rpt1_htm1.xsl");
+            $dom = cls_xml::mul2dom($db->conn, "raw/rpt1_htm.xsl");
             echo $dom->saveXML();
             break;
         case 2:
-            header('Content-Type: text/html');
-            $xml = cls_xml::mul2dom($db->conn);
-            $xsl = cls_xml::file2dom("raw/rpt1_htm2.xsl");
-            echo cls_xml::xsltrans($xml, $xsl);
-            break;
-        case 3:
             header("Content-type: text/csv");
             header("Content-Disposition: attachment; filename=rpt{$rpt_id}_scn{$scn_id}_raw.csv");
             header("Pragma: no-cache");
@@ -49,7 +43,7 @@ function raw_dsp() {
             $xsl = cls_xml::file2dom("raw/rpt1_csv.xsl");
             echo cls_xml::xsltrans($xml, $xsl);
             break;
-        case 4:
+        case 3:
             header('Content-Type: application/vnd.ms-excel');
             header("Content-Disposition: attachment; filename=rpt{$rpt_id}_scn{$scn_id}_raw.xls");
             $xml = cls_xml::mul2dom($db->conn);

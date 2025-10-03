@@ -16,9 +16,9 @@
                 <th>rpt_id</th>
                 <th>rpt_name</th>
                 <th>scn_id</th>
-                <th>scn_name</th>
-                <th colspan="2">html</th>
+                <th>scn_name</th>                <th>view</th>
                 <th colspan="2">download</th>
+
             </tr>
             <xsl:for-each select="tbl[1]/row">
                 <tr>
@@ -35,16 +35,13 @@
                         <xsl:value-of select="@scn_name"/>
                     </td>
                     <td>
-                        <a href="raw.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=1">view</a>
+                        <a href="raw.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=1">html</a>
                     </td>
                     <td>
-                        <a href="raw.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=2">link</a>
+                        <a href="raw.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=2">csv</a>
                     </td>
                     <td>
-                        <a href="raw.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=3">csv</a>
-                    </td>
-                    <td>
-                        <a href="raw.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=4">xls</a>
+                        <a href="raw.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=3">xls</a>
                     </td>
                 </tr>
             </xsl:for-each>

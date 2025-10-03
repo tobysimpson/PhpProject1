@@ -18,26 +18,18 @@
         
         <table class="table1">
             <tr>
-                <th>rpt_id</th>
-                <th>scn_id</th>
                 <th>prm_id</th>
-                <th>path</th>
+                <th>scn_id</th>
                 <th>yr</th>
                 <th>u</th>
             </tr>
-            <xsl:for-each select="tbl[1]/row">
+            <xsl:for-each select="tbl[4]/row">
                 <tr>
-                    <td>
-                        <xsl:value-of select="@rpt_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@scn_id"/>
-                    </td>
                     <td>
                         <xsl:value-of select="@prm_id"/>
                     </td>
-                    <td style="text-align:left;">
-                        <xsl:value-of select="@path"/>
+                    <td>
+                        <xsl:value-of select="@scn_id"/>
                     </td>
                     <td>
                         <xsl:value-of select="@yr"/>

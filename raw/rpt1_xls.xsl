@@ -11,16 +11,10 @@
                 <Table>
                     <Row>
                         <Cell>
-                            <Data ss:Type="String">rpt_id</Data>
-                        </Cell>
-                        <Cell>
-                            <Data ss:Type="String">scn_id</Data>
-                        </Cell>
-                        <Cell>
                             <Data ss:Type="String">prm_id</Data>
                         </Cell>
                         <Cell>
-                            <Data ss:Type="String">path</Data>
+                            <Data ss:Type="String">scn_id</Data>
                         </Cell>
                         <Cell>
                             <Data ss:Type="String">yr</Data>
@@ -29,26 +23,16 @@
                             <Data ss:Type="String">u</Data>
                         </Cell>
                     </Row>
-                    <xsl:for-each select="tbl[1]/row">
+                    <xsl:for-each select="tbl[4]/row">
                         <Row>
-                            <Cell>
-                                <Data ss:Type="Number">
-                                    <xsl:value-of select="@rpt_id"/>
-                                </Data>
-                            </Cell>
-                            <Cell>
-                                <Data ss:Type="Number">
-                                    <xsl:value-of select="@scn_id"/>
-                                </Data>
-                            </Cell>
                             <Cell>
                                 <Data ss:Type="Number">
                                     <xsl:value-of select="@prm_id"/>
                                 </Data>
                             </Cell>
                             <Cell>
-                                <Data ss:Type="String">
-                                    <xsl:value-of select="@path"/>
+                                <Data ss:Type="Number">
+                                    <xsl:value-of select="@scn_id"/>
                                 </Data>
                             </Cell>
                             <Cell>

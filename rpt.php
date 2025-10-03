@@ -31,16 +31,10 @@ function rpt_dsp() {
     switch ($fmt) {
         case 1:
             header('Content-Type: text/xml');
-            $dom = cls_xml::mul2dom($db->conn, "rpt/rpt1_htm1.xsl");
+            $dom = cls_xml::mul2dom($db->conn, "rpt/rpt1_htm.xsl");
             echo $dom->saveXML();
             break;
         case 2:
-            header('Content-Type: text/html');
-            $xml = cls_xml::mul2dom($db->conn);
-            $xsl = cls_xml::file2dom("rpt/rpt1_htm2.xsl");
-            echo cls_xml::xsltrans($xml, $xsl);
-            break;
-        case 3:
             header("Content-type: text/csv");
             header("Content-Disposition: attachment; filename=rpt{$rpt_id}_scn{$scn_id}_piv.csv");
             header("Pragma: no-cache");
@@ -49,7 +43,7 @@ function rpt_dsp() {
             $xsl = cls_xml::file2dom("rpt/rpt1_csv.xsl");
             echo cls_xml::xsltrans($xml, $xsl);
             break;
-        case 4:
+        case 3:
             header('Content-Type: application/vnd.ms-excel');
             header("Content-Disposition: attachment; filename=rpt{$rpt_id}_scn{$scn_id}_piv.xls");
             $xml = cls_xml::mul2dom($db->conn);
@@ -95,7 +89,7 @@ function rpt_ins() {
    //write
    $file2 = fopen($name1, "w");
    for ($i = 0; $i < $n; $i++) {
-       for ($j = 3; $j < $m; $j++) {
+       for ($j = 4; $j < $m; $j++) {
            print_r(array($data[$i][0], $data[$i][1], $head[$j], $data[$i][$j]));
            if (is_numeric($head[$j]) and is_numeric($data[$i][$j])) {
                fputcsv($file2, array($data[$i][0], $data[$i][1], $head[$j], $data[$i][$j]));
