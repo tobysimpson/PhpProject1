@@ -75,7 +75,7 @@ function rpt_ins() {
    $db = new cls_db();
    print_r($_FILES);
    $dir = "/var/lib/mysql-files/";
-   $name1 = $_FILES["file_upload"]["tmp_name"];
+   $name1 = $_FILES["upload_file"]["tmp_name"];
    $name2 = $dir . basename($name1);
    //read
    $file1 = fopen($name1, "r");
