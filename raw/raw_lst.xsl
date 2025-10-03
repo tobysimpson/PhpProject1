@@ -16,7 +16,8 @@
                 <th>rpt_id</th>
                 <th>rpt_name</th>
                 <th>scn_id</th>
-                <th>scn_name</th>                <th>view</th>
+                <th>scn_name</th>                
+                <th>view</th>
                 <th colspan="2">download</th>
 
             </tr>
@@ -25,7 +26,7 @@
                     <td>
                         <xsl:value-of select="@rpt_id"/>
                     </td>
-                    <td>
+                    <td style="text-align:left;">
                         <xsl:value-of select="@rpt_name"/>
                     </td>
                     <td>

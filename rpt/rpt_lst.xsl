@@ -25,7 +25,7 @@
                     <td>
                         <xsl:value-of select="@rpt_id"/>
                     </td>
-                    <td>
+                    <td style="text-align:left;">
                         <xsl:value-of select="@rpt_name"/>
                     </td>
                     <td>

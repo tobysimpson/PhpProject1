@@ -5,17 +5,17 @@
     <xsl:output method="text" encoding="iso-8859-1"/>
     <xsl:strip-space elements="*" />
     
-    <xsl:key name="prm" match="root/tbl[4]/row" use="@prm_id"/>
-    <xsl:key name="yr" match="root/tbl[4]/row" use="@yr"/>
-
     <xsl:template match="root">
-        
-        <xsl:text>prm_id,</xsl:text>
-        <xsl:text>scn_id,</xsl:text>
-        <xsl:text>path,</xsl:text>
-        <xsl:text>unit,</xsl:text>
-        <xsl:for-each select="//root/tbl[4]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
-            <xsl:value-of select="@yr"/>
+        <!-- head -->
+        <xsl:for-each select="//root/tbl[1]/row[1]/@*">
+            <xsl:choose>
+                <xsl:when test="substring-before(name(.),'_') = 'col'">
+                    <xsl:value-of select="substring-after(name(.),'_')"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="name(.)"/>
+                </xsl:otherwise>
+            </xsl:choose>
             <xsl:choose>
                 <xsl:when test="position() = last()">
                     <xsl:text>&#xD;&#xA;</xsl:text>
@@ -25,29 +25,19 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
-            
-        <xsl:for-each select="tbl[4]/row[generate-id() = generate-id(key('prm',@prm_id)[1])]">
-            <xsl:variable name="prm_id" select= "@prm_id"/>
-            <xsl:value-of select="@prm_id"/>
-            <xsl:text>,</xsl:text>
-            <xsl:value-of select="@scn_id"/>
-            <xsl:text>,</xsl:text>
-            <xsl:value-of select="//root/tbl[3]/row[@prm_id = $prm_id]/@path"/>
-            <xsl:text>,</xsl:text>
-            <xsl:value-of select="//root/tbl[3]/row[@prm_id = $prm_id]/@unit"/>
-            <xsl:text>,</xsl:text>
-            <xsl:for-each select="//root/tbl[4]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
-                <xsl:variable name="yr" select= "@yr"/>
-                <xsl:value-of select="//root/tbl[4]/row[@prm_id = $prm_id and @yr = $yr]/@u"/>
-                <xsl:choose>
-                    <xsl:when test="position() = last()">
-                        <xsl:text>&#xD;&#xA;</xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:text>,</xsl:text>
-                    </xsl:otherwise>
-                </xsl:choose>
+        <!-- body -->
+        <xsl:for-each select="tbl[1]/row">
+            <xsl:for-each select="@*">
+                <xsl:value-of select="."/>
+                <xsl:if test="not(position() = last())">
+                    <xsl:text>,</xsl:text>
+                </xsl:if>
             </xsl:for-each>
+            <xsl:if test="not(position() = last())">
+                <xsl:text>&#xD;&#xA;</xsl:text>
+            </xsl:if>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
+    
+ 

@@ -14,20 +14,21 @@ $func = "rpt_" . $mth;
 $func();
 
 function rpt_lst() {
-   $db = new cls_db();
+    $db = new cls_db();
 //    $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
-   $db->conn->multi_query("SELECT * FROM rpt JOIN scn ORDER BY rpt_id, scn_id;");
-   $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_lst.xsl");
-   header('Content-Type: text/xml');
-   echo $dom->saveXML();
+    $db->conn->multi_query("SELECT * FROM rpt JOIN scn ORDER BY rpt_id, scn_id;");
+    $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_lst.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
 }
 
 function rpt_dsp() {
     $db = new cls_db();
     $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
     $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
-    $fmt    = filter_input(INPUT_GET, "fmt", FILTER_VALIDATE_INT);
+    $fmt = filter_input(INPUT_GET, "fmt", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_rpt1({$rpt_id},{$scn_id});");
+
     switch ($fmt) {
         case 1:
             header('Content-Type: text/xml');
@@ -57,69 +58,69 @@ function rpt_dsp() {
 }
 
 function rpt_upl() {
-   $db = new cls_db();
+    $db = new cls_db();
 //    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-   $db->conn->multi_query("SELECT 1 as txt;");
-   $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_upl.xsl");
-   header('Content-Type: text/xml');
-   echo $dom->saveXML();
+    $db->conn->multi_query("SELECT 1 as txt;");
+    $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_upl.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
 }
 
 function rpt_ins() {
-   $db = new cls_db();
-   print_r($_FILES);
-   $dir = "/var/lib/mysql-files/";
-   $name1 = $_FILES["upload_file"]["tmp_name"];
-   $name2 = $dir . basename($name1);
-   //read
-   $file1 = fopen($name1, "r");
-   $head = fgetcsv($file1);
+    $db = new cls_db();
+    print_r($_FILES);
+    $dir = "/var/lib/mysql-files/";
+    $name1 = $_FILES["upload_file"]["tmp_name"];
+    $name2 = $dir . basename($name1);
+    //read
+    $file1 = fopen($name1, "r");
+    $head = fgetcsv($file1);
 //    print_r($head);
-   $data = [];
-   while (($row = fgetcsv($file1, 1000)) !== FALSE) {
-       $data[] = $row;
-   }
-   fclose($file1);
+    $data = [];
+    while (($row = fgetcsv($file1, 1000)) !== FALSE) {
+        $data[] = $row;
+    }
+    fclose($file1);
 //    print_r($data);
 
-   $m = count($head);
-   $n = count($data);
-   echo $m . "," . $n . PHP_EOL;
+    $m = count($head);
+    $n = count($data);
+    echo $m . "," . $n . PHP_EOL;
 
-   //write
-   $file2 = fopen($name1, "w");
-   for ($i = 0; $i < $n; $i++) {
-       for ($j = 4; $j < $m; $j++) {
-           print_r(array($data[$i][0], $data[$i][1], $head[$j], $data[$i][$j]));
-           if (is_numeric($head[$j]) and is_numeric($data[$i][$j])) {
-               fputcsv($file2, array($data[$i][0], $data[$i][1], $head[$j], $data[$i][$j]));
-           }
-       }
-   }
-   fclose($file2);
+    //write
+    $file2 = fopen($name1, "w");
+    for ($i = 0; $i < $n; $i++) {
+        for ($j = 4; $j < $m; $j++) {
+//            print_r(array($data[$i][0], $data[$i][1], $head[$j], $data[$i][$j]));
+            if (is_numeric($head[$j]) and is_numeric($data[$i][$j])) {
+                fputcsv($file2, array($data[$i][0], $data[$i][1], $head[$j], $data[$i][$j]));
+            }
+        }
+    }
+    fclose($file2);
 
-   try {
-       move_uploaded_file($name1, $name2);
-   } catch (Exception $e) {
-       echo $e->getMessage();
-   }
+    try {
+        move_uploaded_file($name1, $name2);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
 
 
-   $files2 = scandir($dir);
-   print_r($files2);
+    $files2 = scandir($dir);
+//    print_r($files2);
 
-   $sql1 = "LOAD DATA INFILE '" . $name2 . "' INTO TABLE db2.cub1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
+    $sql1 = "LOAD DATA INFILE '" . $name2 . "' INTO TABLE db2.cub1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
 //    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.cub1 CHARACTER SET UTF8 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
 
-   try {
-       $res1 = $db->conn->query($sql1);
-       print_r($res1);
-   } catch (Exception $e) {
-       echo $e->getMessage();
-   }
+    try {
+        $res1 = $db->conn->query($sql1);
+//        print_r($res1);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
 
-   //    unlink($name1);
-   unlink($name2);
+    //    unlink($name1);
+    unlink($name2);
 
-   header("Location: upl.php?mth=lst");
+    header("Location: upl.php?mth=lst");
 }
