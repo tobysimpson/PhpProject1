@@ -79,7 +79,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="rpt.php?mth=frm">upload</a>
+                    <a href="rpt.php?mth=upl">upload</a>
                 </td>
             </tr>
             <tr>
@@ -87,14 +87,23 @@
             </tr>
             <tr>
                 <td>
-                    <a href="upl.php?mth=lst">history</a>
+                    <a href="raw.php?mth=lst">download</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="upl.php?mth=frm">upload</a>
+                    <a href="raw.php?mth=upl">upload</a>
                 </td>
             </tr>
+            <tr>
+                <th style="text-align:left">upload</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="upl.php?mth=lst">history</a>
+                </td>
+            </tr>
+
             
             <!--            <tr>
                 <th style="text-align:left">test</th>

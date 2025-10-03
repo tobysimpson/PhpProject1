@@ -21,12 +21,11 @@
         <p/>
 
         
-        <form action="upl.php?mth=ins" method="post" enctype="multipart/form-data">
-            <input type="file" name="fileToUpload" prm_id="fileToUpload"></input>
-            <input type="submit" value="Upload" name="submit"></input>
+        <form action="rpt.php?mth=ins" method="post" enctype="multipart/form-data">
+            <input type="file" name="upload_file"></input>
+            <input type="submit" value="upload" name="submit"></input>
         </form>
 
-        
-        
+
     </xsl:template>
 </xsl:stylesheet>
