@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" 
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                >
     <xsl:output method="html" encoding="utf-8"/>
     
     <xsl:include href="../nav.xsl"/>
@@ -9,7 +10,8 @@
         <xsl:call-template name="page"/> 
     </xsl:template>
     
-
+    <xsl:decimal-format name="test" NaN=""/>
+ 
     <xsl:template match="root">
         <table class="table1">
             <tr>
@@ -38,8 +40,8 @@
                         <xsl:value-of select="@unit"/>
                     </td>
                     <xsl:for-each select="@*[substring-before(name(.),'_') = 'col']">
-                        <td>
-                            <xsl:value-of select="."/>
+                        <td style="text-align:right;">
+                            <xsl:value-of select="format-number(.,'#,##0.0000','test')"/>
                         </td>
                     </xsl:for-each>
                 </tr>

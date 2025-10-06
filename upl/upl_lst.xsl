@@ -13,9 +13,6 @@
 
 
     <xsl:template match="root">
-        
-
-        
         <table class="table1">
             <tr>
                 <th>ts</th>
@@ -38,7 +35,7 @@
                         <xsl:value-of select="@prm_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@scn"/>
+                        <xsl:value-of select="@scn_id"/>
                     </td>
                     <td>
                         <xsl:value-of select="@yr"/>
