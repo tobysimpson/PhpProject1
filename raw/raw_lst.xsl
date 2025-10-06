@@ -41,9 +41,9 @@
                     <td>
                         <a href="raw.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=2">csv</a>
                     </td>
-                    <td>
+<!--                    <td>
                         <a href="raw.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=3">xls</a>
-                    </td>
+                    </td>-->
                 </tr>
             </xsl:for-each>
         </table>

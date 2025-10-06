@@ -7,15 +7,12 @@
     
     <xsl:template match="root">
         <!-- head -->
-        <xsl:for-each select="//root/tbl[1]/row[1]/@*">
-            <xsl:choose>
-                <xsl:when test="substring-before(name(.),'_') = 'col'">
-                    <xsl:value-of select="substring-after(name(.),'_')"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="name(.)"/>
-                </xsl:otherwise>
-            </xsl:choose>
+        <xsl:text>prm_id,</xsl:text>
+        <xsl:text>scn_id,</xsl:text>
+        <xsl:text>path,</xsl:text>
+        <xsl:text>unit,</xsl:text>
+        <xsl:for-each select="//root/tbl[1]/row[1]/@*[substring-before(name(.),'_') = 'col']">
+            <xsl:value-of select="substring-after(name(.),'_')"/>
             <xsl:choose>
                 <xsl:when test="position() = last()">
                     <xsl:text>&#xD;&#xA;</xsl:text>
@@ -25,9 +22,18 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
+       
         <!-- body -->
         <xsl:for-each select="tbl[1]/row">
-            <xsl:for-each select="@*">
+            <xsl:value-of select="@prm_id"/>
+            <xsl:text>,</xsl:text>
+            <xsl:value-of select="@scn_id"/>
+            <xsl:text>,"</xsl:text>
+            <xsl:value-of select="@path"/>
+            <xsl:text>","</xsl:text>
+            <xsl:value-of select="@unit"/>
+            <xsl:text>",</xsl:text>
+            <xsl:for-each select="@*[substring-before(name(.),'_') = 'col']">
                 <xsl:value-of select="."/>
                 <xsl:if test="not(position() = last())">
                     <xsl:text>,</xsl:text>

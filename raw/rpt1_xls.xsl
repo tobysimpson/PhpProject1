@@ -23,7 +23,7 @@
                             <Data ss:Type="String">u</Data>
                         </Cell>
                     </Row>
-                    <xsl:for-each select="tbl[4]/row">
+                    <xsl:for-each select="tbl[1]/row">
                         <Row>
                             <Cell>
                                 <Data ss:Type="Number">

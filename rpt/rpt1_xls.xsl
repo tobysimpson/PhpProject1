@@ -2,9 +2,6 @@
 <!--<?mso-application progid="Excel.Sheet"?>-->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     
-    <xsl:key name="prm" match="root/tbl[4]/row" use="@prm_id"/>
-    <xsl:key name="yr" match="root/tbl[4]/row" use="@yr"/>
-    
     <xsl:template match="root">
         <Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
                   xmlns:o="urn:schemas-microsoft-com:office:office"
@@ -26,50 +23,47 @@
                         <Cell>
                             <Data ss:Type="String">unit</Data>
                         </Cell>
-                        <xsl:for-each select="//root/tbl[4]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
+                        <xsl:for-each select="tbl[1]/row[1]/@*[substring-before(name(.),'_') = 'col']">
                             <Cell>
                                 <Data ss:Type="String">
-                                    <xsl:value-of select="@yr"/>
+                                    <xsl:value-of select="substring-after(name(.),'_')"/>
                                 </Data>
                             </Cell>
                         </xsl:for-each>
                     </Row>
-                    <xsl:for-each select="tbl[4]/row[generate-id() = generate-id(key('prm',@prm_id)[1])]">
-                        <xsl:variable name="prm_id" select= "@prm_id"/>
+                    <xsl:for-each select="tbl[1]/row">
                         <Row>
                             <Cell>
                                 <Data ss:Type="Number">
-                                    <xsl:value-of select="$prm_id"/>
+                                    <xsl:value-of select="@prm_id"/>
                                 </Data>
                             </Cell>
                             <Cell>
-                                <Data ss:Type="String">
+                                <Data ss:Type="Number">
                                     <xsl:value-of select="@scn_id"/>
                                 </Data>
                             </Cell>
                             <Cell>
                                 <Data ss:Type="String">
-                                    <xsl:value-of select="//root/tbl[3]/row[@prm_id = $prm_id]/@path"/>
+                                    <xsl:value-of select="@path"/>
                                 </Data>
                             </Cell>
                             <Cell>
                                 <Data ss:Type="String">
-                                    <xsl:value-of select="//root/tbl[3]/row[@prm_id = $prm_id]/@unit"/>
+                                    <xsl:value-of select="@unit"/>
                                 </Data>
                             </Cell>
-                            <xsl:for-each select="//root/tbl[4]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
-                                <xsl:variable name="yr" select= "@yr"/>
-                                <xsl:variable name="u" select="//root/tbl[4]/row[@prm_id = $prm_id and @yr = $yr]/@u"/>
+                            <xsl:for-each select="@*[substring-before(name(.),'_') = 'col']">
                                 <Cell>
-                                    <xsl:if test="number($u) = $u">
+                                    <xsl:if test="number(.) = .">
                                         <Data ss:Type="Number">
-                                            <xsl:value-of select="$u"/>
+                                            <xsl:value-of select="."/>
                                         </Data>
                                     </xsl:if>
                                 </Cell>
                             </xsl:for-each>
                         </Row>
-                    </xsl:for-each> 
+                    </xsl:for-each>
                 </Table>
             </Worksheet>
         </Workbook>

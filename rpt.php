@@ -27,7 +27,7 @@ function rpt_dsp() {
     $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
     $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
     $fmt = filter_input(INPUT_GET, "fmt", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_rpt1({$rpt_id},{$scn_id});");
+    $db->conn->multi_query("CALL sp_rpt1_piv({$rpt_id},{$scn_id});");
 
     switch ($fmt) {
         case 1:

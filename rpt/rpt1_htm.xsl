@@ -13,26 +13,32 @@
     <xsl:template match="root">
         <table class="table1">
             <tr>
-                <xsl:for-each select="//root/tbl[1]/row[1]/@*">
+                <th>prm_id</th>
+                <th>scn_id</th>
+                <th>path</th>
+                <th>unit</th>
+                <xsl:for-each select="//root/tbl[1]/row[1]/@*[substring-before(name(.),'_') = 'col']">
                     <th>
-                        <xsl:choose>
-                            <xsl:when test="substring-before(name(.),'_') = 'col'">
-                                <xsl:value-of select="substring-after(name(.),'_')"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="name(.)"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:value-of select="substring-after(name(.),'_')"/>
                     </th>
                 </xsl:for-each>
             </tr>
             <xsl:for-each select="tbl[1]/row">
                 <tr>
-                    <xsl:for-each select="@*">
+                    <td>
+                        <xsl:value-of select="@prm_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@scn_id"/>
+                    </td>
+                    <td style="text-align:left;">
+                        <xsl:value-of select="translate(@path,',',' ')"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@unit"/>
+                    </td>
+                    <xsl:for-each select="@*[substring-before(name(.),'_') = 'col']">
                         <td>
-                            <xsl:if test="contains(name(), 'path')">
-                                <xsl:attribute name="style">text-align:left;</xsl:attribute>
-                            </xsl:if>
                             <xsl:value-of select="."/>
                         </td>
                     </xsl:for-each>
