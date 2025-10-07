@@ -206,6 +206,14 @@
                     </xsl:for-each> 
                 </xsl:for-each>
             </table>
+            
+            <p class="h1">plot</p>
+            
+            <a href="plt.php?mth=lin1&amp;prm_id={tbl[3]/row/@prm_id}&amp;fmt=1">
+                <img src="plt.php?mth=lin1&amp;prm_id={tbl[3]/row/@prm_id}&amp;fmt=2"/>
+            </a>
+            
+            
         </xsl:if>
         
         
