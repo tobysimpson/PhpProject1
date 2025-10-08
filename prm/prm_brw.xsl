@@ -173,7 +173,7 @@
             <p class="h1">plot</p>
             
             <a href="plt.php?mth=lin1&amp;prm_id={tbl[3]/row/@prm_id}&amp;fmt=3">
-                <img width="400px" src="plt.php?mth=lin1&amp;prm_id={tbl[3]/row/@prm_id}&amp;fmt=2"/>
+                <img width="600px" src="plt.php?mth=lin1&amp;prm_id={tbl[3]/row/@prm_id}&amp;fmt=2"/>
             </a>
             
              <p class="h1">data</p>
