@@ -1,136 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
-                xmlns:php="http://php.net/xsl">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     
-    <xsl:output method="xml" omit-xml-declaration="yes" indent="yes"/>
+    <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>
 
-    <!--    <xsl:include href="../plot.xsl"/>
-    <xsl:include href="../nav.xsl"/>-->
-    
-       
-    <xsl:variable name="ph">100</xsl:variable>
-    <xsl:variable name="pw">200</xsl:variable>
-        
-    <xsl:variable name="h" select="$ph + 100"/>
-    <xsl:variable name="w" select="$pw + 100"/>
-    
-    <xsl:variable name="ho" select="50"/>
-    <xsl:variable name="wo" select="50"/>
-    
-  
+    <xsl:variable name="h" select="200"/>
+    <xsl:variable name="w" select="400"/>
     
     <xsl:variable name="t_min" select="root/tbl[5]/row/@t_min" />
     <xsl:variable name="t_rng" select="root/tbl[5]/row/@t_rng" />
+    <xsl:variable name="t_tic" select="root/tbl[5]/row/@t_tic" />
+    
     <xsl:variable name="u_min" select="root/tbl[5]/row/@u_min" />
     <xsl:variable name="u_rng" select="root/tbl[5]/row/@u_rng" />
     <xsl:variable name="u_tic" select="root/tbl[5]/row/@u_tic" />
-
-    
-<!--    <xsl:variable name="tt" select="root/tbl[2]/row/@yr" />
-<xsl:variable name="tt2" select="root/tbl[4]/row/@yr" />
-<xsl:variable name="vv" select="root/tbl[2]/row/@tj" />
-<xsl:variable name="vv" select="root/tbl[*]/row/@*[name()='tj' or name()='reg' or name()='fwd']" />-->
-    
-<!--<xsl:variable name="tt" select="$tt1 | $tt2" />-->
-
-<!--    <xsl:variable name="tmin">
-    <xsl:call-template name="min">
-        <xsl:with-param name="nodes" select="$tt" />
-    </xsl:call-template>
-</xsl:variable>
-            
-<xsl:variable name="tmax">
-    <xsl:call-template name="max">
-        <xsl:with-param name="nodes" select="$tt" />
-    </xsl:call-template>
-</xsl:variable>
-             
-<xsl:variable name="vmin">
-    <xsl:call-template name="min0">
-        <xsl:with-param name="nodes" select="$vv" />
-    </xsl:call-template>
-</xsl:variable>
-            
-<xsl:variable name="vmax">
-    <xsl:call-template name="max0">
-        <xsl:with-param name="nodes" select="$vv" />
-    </xsl:call-template>
-</xsl:variable>
-            
-            
-<xsl:variable name="ttick">
-    <xsl:call-template name="tick">
-        <xsl:with-param name="rng" select="$tmax - $tmin" />
-    </xsl:call-template>
-</xsl:variable> 
-            
-<xsl:variable name="vtick">
-    <xsl:call-template name="tick">
-        <xsl:with-param name="rng" select="$vmax - $vmin" />
-    </xsl:call-template>
-</xsl:variable> -->
-                
-<!--<xsl:variable name="ttick" select="1.00"/>-->
-<!--<xsl:variable name="vtick" select="0.25"/>-->
-                
-<!--    <xsl:variable name="trng" select="$tmax - $tmin"/>
-<xsl:variable name="vinf" select="(floor($vmin div $vtick)) * $vtick"/>
-<xsl:variable name="vsup" select="(ceiling($vmax div $vtick)) * $vtick"/>
-<xsl:variable name="vrng" select="$vsup - $vinf"/>
-
-            
-<xsl:variable name="tdash" select="$pw * $ttick div $trng * 0.125"/>
-<xsl:variable name="vdash" select="$ph * $vtick div $vrng * 0.125"/>-->
-    
    
-<xsl:template match="root">
-    <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <!--<script xlink:href="xmlhttp.js"></script>-->
-        <style>* { font-size: 10pt; font-family: sans-serif; font-weight: 300; }</style> 
+    <xsl:template match="root">
+        <svg viewBox="0 0 {$w} {$h}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <style>* { font-size: 10pt; font-family: sans-serif; font-weight: 300; }</style> 
             
+            <g id="title" transform="translate(0,10)">
+                <text x="0" y="0" alignment-baseline="middle">
+                    <xsl:value-of select="tbl[1]/row/@prm_id"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="tbl[1]/row/@path"/>
+                </text>
+                <text x="0" y="20" alignment-baseline="middle">
+                    <xsl:value-of select="format-number(tbl[5]/row/@u_min,'0.00000')"/>
+                    <xsl:text>, </xsl:text>
+                    <xsl:value-of select="format-number(tbl[5]/row/@u_max,'0.00000')"/>
+                    <xsl:text>, </xsl:text>
+                    <xsl:value-of select="format-number(tbl[5]/row/@u_rng,'0.00000')"/>
+                    <xsl:text>, </xsl:text>
+                    <xsl:value-of select="format-number(tbl[5]/row/@u_tic,'0.00000')"/>
+                </text>
+                <text x="0" y="40" alignment-baseline="middle">
+                    <xsl:value-of select="format-number(tbl[5]/row/@t_min,'0.00000')"/>
+                    <xsl:text>, </xsl:text>
+                    <xsl:value-of select="format-number(tbl[5]/row/@t_max,'0.00000')"/>
+                    <xsl:text>, </xsl:text>
+                    <xsl:value-of select="format-number(tbl[5]/row/@t_rng,'0.00000')"/>
+                    <xsl:text>, </xsl:text>
+                    <xsl:value-of select="format-number(tbl[5]/row/@t_tic,'0.00000')"/>
+                </text>
+            </g>
 
-        <g id="title" transform="translate(0,10)">
-            <text x="0" y="00" alignment-baseline="middle">
-                <xsl:value-of select="tbl[1]/row/@prm_id"/>
-                <xsl:text> - </xsl:text>
-                <xsl:value-of select="tbl[1]/row/@path"/>
-            </text>
-            <text x="0" y="20" alignment-baseline="middle">
-                <xsl:value-of select="format-number(tbl[5]/row/@u_min,'0.00000')"/>
-                <xsl:text>, </xsl:text>
-                <xsl:value-of select="format-number(tbl[5]/row/@u_max,'0.00000')"/>
-                <xsl:text>, </xsl:text>
-                <xsl:value-of select="format-number(tbl[5]/row/@u_rng,'0.00000')"/>
-                <xsl:text>, </xsl:text>
-                <xsl:value-of select="format-number(tbl[5]/row/@u_tic,'0.00000')"/>
-            </text>
-            <text x="0" y="40" alignment-baseline="middle">
-                <xsl:value-of select="format-number(tbl[5]/row/@t_min,'0.00000')"/>
-                <xsl:text>, </xsl:text>
-                <xsl:value-of select="format-number(tbl[5]/row/@t_max,'0.00000')"/>
-                <xsl:text>, </xsl:text>
-                <xsl:value-of select="format-number(tbl[5]/row/@t_rng,'0.00000')"/>
-                <xsl:text>, </xsl:text>
-                <xsl:value-of select="format-number(tbl[5]/row/@t_tic,'0.00000')"/>
-            </text>
-        </g>
+            <g id="plot" transform="translate(0,0)">
+                <rect width="{$w}" height="{$h}" x="0" y="0" rx="10" ry="10" stroke="blue" fill="none" />
+                
+                <!--                <g id="lines">
+                    <xsl:for-each select="tbl[2]/row">
+                        <xsl:variable name="scn_id" select="$scn_id"/>
+                        <xsl:variable name="line1">
+                            <xsl:for-each select="tbl[4]/row[@scn_id = $scn_id]">
+                                <xsl:variable name="i" select="position()"/>
+                                <xsl:variable name="x" select="format-number($w * (@yr - $t_min) div $t_rng,'0.0000')"/>
+                                <xsl:variable name="y" select="format-number($h * (1 - (@u - $u_min) div $u_rng),'0.0000')"/>
+                                <xsl:choose>
+                                    <xsl:when test="position()=1">
+                                        <xsl:text>M </xsl:text>
+                                        <xsl:value-of select="$x"/>
+                                        <xsl:text>,</xsl:text>
+                                        <xsl:value-of select="$y"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:text> L </xsl:text>
+                                        <xsl:value-of select="$x"/>
+                                        <xsl:text>,</xsl:text>
+                                        <xsl:value-of select="$y"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:for-each>
+                        </xsl:variable>
+                    </xsl:for-each>
+                    <path fill="none"  d="{$line1}" stroke-width="1" stroke="#6666FF" />
+                </g>-->
                 
 
-        <g id="plot" transform="translate({$wo},{$ho})"> 
-            <g id="dots">
+                <g id="range">
+                    <circle cx="0" cy="0" r="1" stroke="red" fill="red"/>
+                    <circle cx="{$w}" cy="0" r="1" stroke="red" fill="red"/>
+                    <circle cx="0" cy="{$h}" r="1" stroke="red" fill="red"/>
+                    <circle cx="{$w}" cy="{$h}" r="1" stroke="red" fill="red"/>
+                </g>
+                
                 <g id="series">
-                    <xsl:for-each select="tbl[4]/row">
-                        <xsl:variable name="i" select="position()"/>
-                        <xsl:variable name="x" select="format-number($pw * (@yr - $t_min) div $t_rng,'0.0000')"/>
-                        <xsl:variable name="y" select="format-number($ph * (1 - (@u - $u_min) div $u_rng),'0.0000')"/>
-                        <circle cx="{$x}" cy="{$y}" r="2" stroke="#6666FF" fill="#6666FF"/>
+                    <xsl:for-each select="tbl[2]/row">
+                        <xsl:variable name="scn_id" select="@scn_id"/>
+                        <g id="dots">
+                            <xsl:for-each select="//root/tbl[4]/row[@scn_id = $scn_id]">
+                                <xsl:variable name="i" select="position()"/>
+                                <xsl:variable name="x" select="format-number($w * (@yr - $t_min) div $t_rng,'0.0000')"/>
+                                <xsl:variable name="y" select="format-number($h * (1 - (@u - $u_min) div $u_rng),'0.0000')"/>
+                                <circle cx="{$x}" cy="{$y}" r="2" stroke="#6666FF" fill="#6666FF"/>
+                                <text x="{$x}" y="{$y}" text-anchor="middle" alignment-baseline="middle">
+                                    <xsl:value-of select="format-number(@u,'0.000')"/>
+                                </text>
+                            </xsl:for-each>
+                        </g>
                     </xsl:for-each>
                 </g>
             </g>
-        </g>
-            
-    </svg>
-</xsl:template>
+        </svg>
+    </xsl:template>
 </xsl:stylesheet>
 
             

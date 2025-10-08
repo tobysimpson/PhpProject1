@@ -36,6 +36,7 @@ function rpt_dsp() {
             echo $dom->saveXML();
             break;
         case 2:
+//            header ('Content-Type: text/plain'); //display in browser
             header("Content-type: text/csv");
             header("Content-Disposition: attachment; filename=rpt{$rpt_id}_scn{$scn_id}_piv.csv");
             header("Pragma: no-cache");

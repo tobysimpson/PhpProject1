@@ -124,44 +124,7 @@
         
         
         <xsl:if test="not(count(tbl[4]/row) = 0)">
-            <p class="h1">data</p>
-            <table class="table1">
-                <tr>
-                    <th>ts</th>
-                    <th>prm_id</th>
-                    <th>prm_name</th>
-                    <th>scn_id</th>
-                    <th>scn_name</th>
-                    <th>yr</th>
-                    <th>u</th>
-                </tr>
-                <xsl:for-each select="tbl[4]/row">
-                    <tr>
-                        <td>
-                            <xsl:value-of select="@ts"/>
-                        </td>
-                        <td>
-                            <xsl:value-of select="@prm_id"/>
-                        </td>
-                        <td style="text-align:left;">
-                            <xsl:value-of select="@name"/>
-                        </td>
-                        <td>
-                            <xsl:value-of select="@scn_id"/>
-                        </td>
-                        <td>
-                            <xsl:value-of select="@scn_name"/>
-                        </td>
-                        <td>
-                            <xsl:value-of select="@yr"/>
-                        </td>
-                        <td style="text-align:right;">
-                            <xsl:value-of select="@u"/>
-                        </td>
-                    </tr>
-                </xsl:for-each>
-            </table>
-        
+           
             <p class="h1">pivot</p>
         
             <table class="table1">
@@ -209,10 +172,48 @@
             
             <p class="h1">plot</p>
             
-            <a href="plt.php?mth=lin1&amp;prm_id={tbl[3]/row/@prm_id}&amp;fmt=1">
-                <img src="plt.php?mth=lin1&amp;prm_id={tbl[3]/row/@prm_id}&amp;fmt=2"/>
+            <a href="plt.php?mth=lin1&amp;prm_id={tbl[3]/row/@prm_id}&amp;fmt=3">
+                <img width="400px" src="plt.php?mth=lin1&amp;prm_id={tbl[3]/row/@prm_id}&amp;fmt=2"/>
             </a>
             
+             <p class="h1">data</p>
+             
+            <table class="table1">
+                <tr>
+                    <th>ts</th>
+                    <th>prm_id</th>
+                    <th>prm_name</th>
+                    <th>scn_id</th>
+                    <th>scn_name</th>
+                    <th>yr</th>
+                    <th>u</th>
+                </tr>
+                <xsl:for-each select="tbl[4]/row">
+                    <tr>
+                        <td>
+                            <xsl:value-of select="@ts"/>
+                        </td>
+                        <td>
+                            <xsl:value-of select="@prm_id"/>
+                        </td>
+                        <td style="text-align:left;">
+                            <xsl:value-of select="@name"/>
+                        </td>
+                        <td>
+                            <xsl:value-of select="@scn_id"/>
+                        </td>
+                        <td>
+                            <xsl:value-of select="@scn_name"/>
+                        </td>
+                        <td>
+                            <xsl:value-of select="@yr"/>
+                        </td>
+                        <td style="text-align:right;">
+                            <xsl:value-of select="@u"/>
+                        </td>
+                    </tr>
+                </xsl:for-each>
+            </table>
             
         </xsl:if>
         
