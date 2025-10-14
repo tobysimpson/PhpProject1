@@ -16,7 +16,7 @@ $func();
 function rpt_lst() {
     $db = new cls_db();
 //    $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("SELECT * FROM rpt JOIN scn ORDER BY rpt.pos, scn_id;");
+    $db->conn->multi_query("SELECT * FROM rpt JOIN scn ORDER BY rpt.rpt_name, scn_id;");
     $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();

@@ -30,7 +30,7 @@ function prm_brw() {
 
 function prm_pth() {
     $db = new cls_db();
-    $db->conn->multi_query("SELECT * FROM vw_prm_path ORDER BY pos0,pos1,pos2,pos3,pos4,pos5,pos6,pos7;");
+    $db->conn->multi_query("SELECT * FROM vw_prm_path ORDER BY name0,name1,name2,name3,name4,name5,name6,name7;");
     $dom = cls_xml::mul2dom($db->conn, "prm/prm_pth.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
@@ -38,7 +38,7 @@ function prm_pth() {
 
 function prm_tre() {
     $db = new cls_db();
-    $db->conn->multi_query("SELECT prm_id, pid, lvl, pos, leaf, name FROM db2.prm ORDER BY pid, pos;");
+    $db->conn->multi_query("SELECT * FROM prm ORDER BY path;");
     $dom = cls_xml::mul2dom($db->conn, "prm/prm_tre.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();

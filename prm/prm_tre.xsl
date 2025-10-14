@@ -16,24 +16,23 @@
                 <th>prm_id</th>
                 <th>lvl</th>
                 <th>leaf</th>
-                <th>name</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>0</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
             </tr>
-            <xsl:apply-templates select="row[@lvl = 0]"/>
+            <xsl:apply-templates select="row"/>
         </table>
     </xsl:template>
     
     
     <xsl:template match="row">
-        <xsl:variable name="prm_id" select="@prm_id"/>
         <tr>
             <td>
                 <xsl:value-of select="@prm_id"/>
@@ -44,14 +43,13 @@
             <td>
                 <xsl:value-of select="@leaf"/>
             </td>
-            <td colspan="{@lvl}"/>
-            <td colspan="10" style="text-align:left;">
+            <td colspan="{@lvl + 1}"/>
+            <td colspan="{10 - @lvl}" style="text-align:left;">
                 <a href="prm.php?mth=brw&amp;prm_id={@prm_id0}">
                     <xsl:value-of select="@name"/>
                 </a>
             </td>
         </tr>
-        <xsl:apply-templates select="//root/tbl[1]/row[@pid = $prm_id]"/>
     </xsl:template>
     
     

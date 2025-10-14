@@ -21,7 +21,7 @@
     <xsl:variable name="u_tic" select="root/tbl[5]/row/@u_tic" />
     
     <xsl:variable name="dash" select="5"/>
-    <xsl:variable name="cc" select="'FDB97531'"/>
+    <xsl:variable name="cc" select="'FC9630'"/>
     
    
     <xsl:template match="root">
@@ -113,7 +113,7 @@
                 </g>
             </g>
             
-            <g id="key" transform="translate({$mw},{$mh + $ph + 45})">
+            <g id="key" transform="translate({$mw + 200},{$mh + $ph + 45})">
                 <xsl:for-each select="tbl[2]/row">
                     <xsl:variable name="i" select="position()"/>
                     <xsl:variable name="x" select="($i - 1) * 80"/>
