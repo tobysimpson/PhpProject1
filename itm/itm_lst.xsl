@@ -19,9 +19,9 @@
                 <th>itm_name</th>
                 <th>itm_val1</th>
                 <th>itm_val2</th>
-                <th/>
+                <th colspan="2"/>
             </tr>
-            <xsl:apply-templates select="row"/>
+            <xsl:apply-templates select="./row"/>
             <tr>
                 <td>        
                     <form action="itm.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
@@ -32,12 +32,12 @@
         </table>
         
         
-<p/>
+<!--<p/>
         
         <form action="itm.php?mth=upl" method="post" enctype="multipart/form-data">
             <input type="file" name="fileToUpload" id="fileToUpload"></input>
             <input type="submit" value="Upload" name="submit"></input>
-        </form>
+        </form>-->
         
         
     </xsl:template>
@@ -65,6 +65,9 @@
             </td>
             <td>
                 <a href="itm.php?mth=edt&amp;itm_id={@itm_id}">edit</a>
+            </td>
+            <td>
+                <a href="itm.php?mth=tst&amp;itm_id={@itm_id}">test</a>
             </td>
         </tr>
     </xsl:template>

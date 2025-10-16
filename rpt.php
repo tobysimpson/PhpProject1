@@ -16,7 +16,7 @@ $func();
 function rpt_lst() {
     $db = new cls_db();
 //    $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("SELECT * FROM rpt JOIN scn ORDER BY rpt.rpt_name, scn_id;");
+    $db->conn->multi_query("SELECT scn.*, rpt.* FROM rpt JOIN scn ORDER BY rpt.rpt_name, scn_id;");
     $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
@@ -25,9 +25,10 @@ function rpt_lst() {
 function rpt_dsp() {
     $db = new cls_db();
     $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
+    $rpt_typ = filter_input(INPUT_GET, "rpt_typ", FILTER_VALIDATE_INT);
     $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
     $fmt = filter_input(INPUT_GET, "fmt", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_rpt1_piv({$rpt_id},{$scn_id});");
+    $db->conn->multi_query("CALL sp_rpt{$rpt_typ}({$rpt_id},{$scn_id});");
 
     switch ($fmt) {
         case 1:
@@ -54,6 +55,8 @@ function rpt_dsp() {
             break;
         default:
             header('Content-Type: text/xml');
+            $dom = cls_xml::mul2dom($db->conn);
+            echo $dom->saveXML();
             break;
     }
 }

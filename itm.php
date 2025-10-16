@@ -7,7 +7,7 @@ require_once "cls_xml.php";
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 
 //call
-$func = "itm_".$mth;
+$func = "itm_" . $mth;
 $func();
 
 function itm_lst() {
@@ -102,32 +102,28 @@ function itm_upl() {
     $files1 = scandir("/tmp");
     print_r($files1);
 
-        
     echo '<br/>';
 //    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.tbl_0001 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"';";
-    
 //    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.tbl_0001 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (col_0001, col_0002, col_0003);";
-    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.bsm2 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (lvl,name,col_2020,col_2025,col_2030,col_2035,col_2040,col_2045,col_2050);";
-    
+    $sql1 = "LOAD DATA INFILE '" . $dir . $name . "' INTO TABLE db2.bsm2 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (lvl,name,col_2020,col_2025,col_2030,col_2035,col_2040,col_2045,col_2050);";
+
     echo $sql1;
     echo '<br/>';
-    
+
     try {
         $res1 = $db->conn->query($sql1);
         print_r($res1);
     } catch (Exception $e) {
         echo $e->getMessage();
     }
-    
-    
-    unlink($dir.$name);
-    
-    
+
+
+    unlink($dir . $name);
+
     echo '<br/>';
     $files2 = scandir($dir);
     print_r($files2);
-    
-    
+
 //
 //    echo '<br/>';
 //
@@ -146,4 +142,28 @@ function itm_upl() {
 //    } catch (Exception $e) {
 //        echo $e->getMessage();
 //    }
+}
+
+function itm_tst() {
+    $db = new cls_db();
+    $itm_id = filter_input(INPUT_GET, "itm_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_itm_tst({$itm_id})");
+
+//    do {
+        if ($res = $db->conn->store_result()) {
+            while ($row = $res->fetch_row()) {
+                printf("%s\n", $row[0]);
+            }
+        }
+        /* print divider */
+        if ($db->conn->more_results()) {
+            printf("-----------------\n");
+        }
+//    } while ($db->conn->next_result());
+    
+    $res->data_seek(0); //reset
+
+    $dom = cls_xml::mul2dom($db->conn, "itm/itm_tst.xsl");
+//    header('Content-Type: text/xml');
+    echo $dom->saveXML();
 }

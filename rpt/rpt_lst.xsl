@@ -14,6 +14,7 @@
         <table class="table1">
             <tr>
                 <th>rpt_id</th>
+                <th>rpt_typ</th>
                 <th>rpt_name</th>
                 <th>scn_id</th>
                 <th>scn_name</th>
@@ -25,6 +26,9 @@
                     <td>
                         <xsl:value-of select="@rpt_id"/>
                     </td>
+                    <td>
+                        <xsl:value-of select="@rpt_typ"/>
+                    </td>
                     <td style="text-align:left;">
                         <xsl:value-of select="@rpt_name"/>
                     </td>
@@ -35,13 +39,13 @@
                         <xsl:value-of select="@scn_name"/>
                     </td>
                     <td>
-                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=1">html</a>
+                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;rpt_typ={@rpt_typ}&amp;fmt=1">html</a>
                     </td>
                     <td>
-                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=2">csv</a>
+                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;rpt_typ={@rpt_typ}&amp;fmt=2">csv</a>
                     </td>
                     <td>
-                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=3">xls</a>
+                        <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;rpt_typ={@rpt_typ}&amp;fmt=3">xls</a>
                     </td>
                 </tr>
             </xsl:for-each>

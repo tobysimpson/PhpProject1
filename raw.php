@@ -16,7 +16,7 @@ $func();
 function raw_lst() {
     $db = new cls_db();
 //    $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("SELECT * FROM rpt JOIN scn ORDER BY rpt.pos, scn_id;");
+    $db->conn->multi_query("SELECT * FROM rpt JOIN scn ORDER BY rpt.rpt_name, scn_id;");
     $dom = cls_xml::mul2dom($db->conn, "raw/raw_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
@@ -27,11 +27,11 @@ function raw_dsp() {
     $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
     $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
     $fmt    = filter_input(INPUT_GET, "fmt", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_rpt1_raw({$rpt_id},{$scn_id});");
+    $db->conn->multi_query("CALL sp_rpt0({$rpt_id},{$scn_id});");
     switch ($fmt) {
         case 1:
             header('Content-Type: text/xml');
-            $dom = cls_xml::mul2dom($db->conn, "raw/rpt1_htm.xsl");
+            $dom = cls_xml::mul2dom($db->conn, "raw/rpt0_htm.xsl");
             echo $dom->saveXML();
             break;
         case 2:
@@ -40,14 +40,14 @@ function raw_dsp() {
             header("Pragma: no-cache");
             header("Expires: 0");
             $xml = cls_xml::mul2dom($db->conn);
-            $xsl = cls_xml::file2dom("raw/rpt1_csv.xsl");
+            $xsl = cls_xml::file2dom("raw/rpt0_csv.xsl");
             echo cls_xml::xsltrans($xml, $xsl);
             break;
         case 3:
             header('Content-Type: application/vnd.ms-excel');
             header("Content-Disposition: attachment; filename=rpt{$rpt_id}_scn{$scn_id}_raw.xls");
             $xml = cls_xml::mul2dom($db->conn);
-            $xsl = cls_xml::file2dom("raw/rpt1_xls.xsl");
+            $xsl = cls_xml::file2dom("raw/rpt0_xls.xsl");
             echo cls_xml::xsltrans($xml, $xsl);
             break;
         default:

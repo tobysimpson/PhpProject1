@@ -108,6 +108,7 @@ class cls_xml {
 
         $root = $dom->createElement('root');
         $dom->appendChild($root);
+        
 
         do {
             $res = $conn->store_result();

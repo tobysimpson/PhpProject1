@@ -64,7 +64,7 @@
                     <a href="prm.php?mth=pth">path</a>
                 </td>
             </tr>
-<!--            <tr>
+            <!--            <tr>
                 <td>
                     <a href="prm.php?mth=tre">tree</a>
                 </td>
@@ -105,12 +105,17 @@
             </tr>
 
             
-            <!--            <tr>
-                <th style="text-align:left">test</th>
+            <tr>
+                <th style="text-align:left">item (test)</th>
             </tr>
             <tr>
                 <td>
-                    <a href="itm.php?mth=lst">item</a>
+                    <a href="itm.php?mth=lst">list</a>
+                </td>
+            </tr>
+<!--            <tr>
+                <td>
+                    <a href="itm.php?mth=tst">test</a>
                 </td>
             </tr>-->
 
