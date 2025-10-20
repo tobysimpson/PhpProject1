@@ -21,7 +21,7 @@
                 <th>itm_val2</th>
                 <th colspan="2"/>
             </tr>
-            <xsl:apply-templates select="./row"/>
+            <xsl:apply-templates select="row"/>
             <tr>
                 <td>        
                     <form action="itm.php?mth=ins" method="post" style="margin:0px; padding:0px; display:inline;">
@@ -43,7 +43,7 @@
     </xsl:template>
     
     
-    <xsl:template match="row">
+    <xsl:template match="tbl[1]/row">
         <tr>
             <td>
                 <xsl:value-of select="@itm_id"/>

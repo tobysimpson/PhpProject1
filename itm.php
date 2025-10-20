@@ -93,8 +93,11 @@ function itm_upl() {
 function itm_tst() {
     $db = new cls_db();
     //$itm_id = filter_input(INPUT_GET, "itm_id", FILTER_VALIDATE_INT);
+//    $xsl = filter_input(INPUT_POST, "xsl", FILTER_SANITIZE_STRING);
+    $xsl = "itm/itm_lst.xsl";
     $db->conn->multi_query("CALL sp_itm_tst()");
     $dom = new DOMDocument('1.0', 'utf-8');
+    $dom->appendChild($dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="' . $xsl . '"'));
     $root = $dom->appendChild($dom->createElement('root'));
     do {
         $res = $db->conn->store_result();
@@ -104,5 +107,6 @@ function itm_tst() {
             $res->free();
         }
     } while ($db->conn->next_result());
+    header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
