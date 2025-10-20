@@ -90,23 +90,19 @@ function itm_upl() {
 //    print_r($files2);
 }
 
-
 function itm_tst() {
     $db = new cls_db();
     //$itm_id = filter_input(INPUT_GET, "itm_id", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_itm_tst()");
     $dom = new DOMDocument('1.0', 'utf-8');
     $root = $dom->appendChild($dom->createElement('root'));
-    //loop result sets
     do {
         $res = $db->conn->store_result();
         if ($res) {
-            //add table
-//            $arr = $res->fetch_all(MYSQLI_NUM);
-//            print_r($arr);
-            cls_xml::res2tbl($dom, $root, $res);
+            $arr = $res->fetch_all(MYSQLI_ASSOC);
+            cls_xml::arr2tbl($dom, $root, $arr);
             $res->free();
         }
     } while ($db->conn->next_result());
-//    echo $dom->saveXML();
+    echo $dom->saveXML();
 }

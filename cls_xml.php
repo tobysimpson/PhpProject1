@@ -95,10 +95,28 @@ class cls_xml {
         }
         return $dom;
     }
+    
+    
+    /*
+     * =========================
+     * newer functions
+     * =========================
+     */
 
     public static function res2tbl($dom, $root, $res) {
         $tbl = $root->appendChild($dom->createElement('tbl'));
         while ($row = $res->fetch_assoc()) {
+            $node = $dom->createElement('row');
+            foreach ($row as $key => $val) {
+                $node->setAttribute($key, $val);
+            }
+            $tbl->appendChild($node);
+        }
+    }
+
+    public static function arr2tbl($dom, $root, $arr) {
+        $tbl = $root->appendChild($dom->createElement('tbl'));
+        foreach ($arr as $row) {
             $node = $dom->createElement('row');
             foreach ($row as $key => $val) {
                 $node->setAttribute($key, $val);
