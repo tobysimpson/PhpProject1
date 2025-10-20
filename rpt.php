@@ -63,7 +63,6 @@ function rpt_dsp() {
     }
 }
 
-
 function rpt_upl() {
     $db = new cls_db();
 //    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
@@ -130,4 +129,22 @@ function rpt_ins() {
     unlink($name2);
 
     header("Location: upl.php?mth=lst");
+}
+
+function rpt_tst() {
+    $db = new cls_db();
+    $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
+//    $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
+    $res = $db->conn->query("SELECT * FROM rpt WHERE rpt_id = {$rpt_id};");
+    if ($res->num_rows > 0) {
+        $row = $res->fetch_assoc();
+        print_r($row);
+        $rpt_name = $row['rpt_name'];
+        $rpt_typ = $row['rpt_typ'];
+        printf("%d %d %s\n", $rpt_id, $rpt_typ, $rpt_name);
+    }
+    else
+    {
+        printf("no :0)\n");
+    }
 }
