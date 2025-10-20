@@ -18,8 +18,7 @@
                 <th>rpt_name</th>
                 <th>scn_id</th>
                 <th>scn_name</th>
-                <th>view</th>
-                <th colspan="2">download</th>
+                <th colspan="2"></th>
             </tr>
             <xsl:for-each select="tbl[1]/row">
                 <tr>
@@ -44,9 +43,9 @@
                     <td>
                         <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;rpt_typ={@rpt_typ}&amp;fmt=2">csv</a>
                     </td>
-                    <td>
+<!--                    <td>
                         <a href="rpt.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;rpt_typ={@rpt_typ}&amp;fmt=3">xls</a>
-                    </td>
+                    </td>-->
                 </tr>
             </xsl:for-each>
         </table>

@@ -96,38 +96,39 @@ class cls_xml {
         return $dom;
     }
 
-    
+    public static function res2tbl($dom, $root, $res) {
+        $tbl = $root->appendChild($dom->createElement('tbl'));
+        while ($row = $res->fetch_assoc()) {
+            $node = $dom->createElement('row');
+            foreach ($row as $key => $val) {
+                $node->setAttribute($key, $val);
+            }
+            $tbl->appendChild($node);
+        }
+    }
+
+    /*
+     * =========================
+     * queries
+     * =========================
+     */
+
     public static function mul2dom($conn, $xsl = "") {
         $dom = new DOMDocument('1.0', 'utf-8');
         $dom->formatOutput = true;
-
         if (strlen($xsl) > 0) {
             $prc = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="' . $xsl . '"');
             $dom->appendChild($prc);
         }
-
         $root = $dom->createElement('root');
         $dom->appendChild($root);
-        
-
         do {
             $res = $conn->store_result();
-
             if ($res) {
-                $rows = $dom->createElement('tbl');
-                $root->appendChild($rows);
-
-                while ($row = $res->fetch_assoc()) {
-                    $node = $dom->createElement('row');
-                    foreach ($row as $key => $val) {
-                        $node->setAttribute($key, $val);
-                    }
-                    $rows->appendChild($node);
-                }
+                cls_xml::res2tbl($dom, $root, $res);
+                $res->free();
             }
         } while ($conn->next_result());
-
         return $dom;
     }
-
 }
