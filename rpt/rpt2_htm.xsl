@@ -16,6 +16,11 @@
                 <th>
                     <xsl:value-of select="tbl[1]/row[1]/@rpt_id"/>
                 </th>
+                <th>
+                    <xsl:value-of select="tbl[1]/row[1]/@scn_id"/>
+                </th>
+                
+                <td/>
                 <xsl:for-each select="//root/tbl[1]/row">
                     <th>
                         <xsl:value-of select="@yr"/>
@@ -23,29 +28,38 @@
                 </xsl:for-each>
             </tr>
             <tr>
-                <th>
-                    <xsl:value-of select="tbl[1]/row[1]/@scn_id"/>
-                </th>
+                <td/>
+                <td/>
+                <td/>
                 <xsl:for-each select="//root/tbl[1]/row">
                     <th>
-                        <xsl:value-of select="@name2"/>
+                        <xsl:value-of select="@stc_io_name"/>
                     </th>
                 </xsl:for-each>
             </tr>
             <tr>
-                <th>
+                <!--                <th>
                     <xsl:value-of select="tbl[1]/row[1]/@rpt_typ"/>
-                </th>
+                </th>-->
+                <td/>
+                <td/>
+                <td/>
                 <xsl:for-each select="//root/tbl[1]/row">
                     <th>
-                        <xsl:value-of select="@name3"/>
+                        <xsl:value-of select="@stc_reg_name"/>
                     </th>
                 </xsl:for-each>
             </tr>
             <xsl:for-each select="tbl[2]/row">
                 <tr>
-                    <td nowrap="">
-                        <xsl:value-of select="@per"/>
+                    <td>
+                        <xsl:value-of select="@stc_qtr_name"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@stc_wkd_name"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@stc_day_name"/>
                     </td>
                     <xsl:for-each select="@*[substring-before(name(.),'_') = 'col']">
                         <td style="text-align:right;">

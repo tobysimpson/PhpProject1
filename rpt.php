@@ -22,6 +22,15 @@ function rpt_lst() {
     echo $dom->saveXML();
 }
 
+function rpt_upl() {
+    $db = new cls_db();
+//    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("SELECT 1 as txt;");
+    $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_upl.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
+
 function rpt_dsp() {
     $db = new cls_db();
     $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
@@ -63,14 +72,7 @@ function rpt_dsp() {
     }
 }
 
-function rpt_upl() {
-    $db = new cls_db();
-//    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("SELECT 1 as txt;");
-    $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_upl.xsl");
-    header('Content-Type: text/xml');
-    echo $dom->saveXML();
-}
+
 
 function rpt_ins() {
     $db = new cls_db();
@@ -112,14 +114,15 @@ function rpt_ins() {
     }
 
 
-    $files2 = scandir($dir);
+//    $files2 = scandir($dir);
 //    print_r($files2);
 
     $sql1 = "LOAD DATA INFILE '" . $name2 . "' INTO TABLE db2.cub1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
 //    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.cub1 CHARACTER SET UTF8 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
 
     try {
-        $res1 = $db->conn->query($sql1);
+        $db->conn->query($sql1);
+//        $res1 = $db->conn->query($sql1);
 //        print_r($res1);
     } catch (Exception $e) {
         echo $e->getMessage();
