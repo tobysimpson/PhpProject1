@@ -9,17 +9,19 @@
         <xsl:call-template name="page"/> 
     </xsl:template>
     
+    <xsl:decimal-format name="test" NaN=""/>
+    
 
     <xsl:template match="root">
         <table class="table1">
             <tr>
+                
                 <th>
                     <xsl:value-of select="tbl[1]/row[1]/@rpt_id"/>
                 </th>
                 <th>
                     <xsl:value-of select="tbl[1]/row[1]/@scn_id"/>
                 </th>
-                
                 <td/>
                 <xsl:for-each select="//root/tbl[1]/row">
                     <th>
@@ -38,9 +40,6 @@
                 </xsl:for-each>
             </tr>
             <tr>
-                <!--                <th>
-                    <xsl:value-of select="tbl[1]/row[1]/@rpt_typ"/>
-                </th>-->
                 <td/>
                 <td/>
                 <td/>
@@ -63,7 +62,7 @@
                     </td>
                     <xsl:for-each select="@*[substring-before(name(.),'_') = 'col']">
                         <td style="text-align:right;">
-                            <xsl:value-of select="."/>
+                            <xsl:value-of select="format-number(.,'#,##0.0000','test')"/>
                         </td>
                     </xsl:for-each>
                 </tr>

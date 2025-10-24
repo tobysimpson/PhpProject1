@@ -32,12 +32,12 @@
         </table>
         
         
-<!--<p/>
+        <p/>
         
         <form action="itm.php?mth=upl" method="post" enctype="multipart/form-data">
-            <input type="file" name="fileToUpload" id="fileToUpload"></input>
+            <input type="file" name="upfile" id="upfile"></input>
             <input type="submit" value="Upload" name="submit"></input>
-        </form>-->
+        </form>
         
         
     </xsl:template>

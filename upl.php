@@ -15,8 +15,8 @@ $func();
 
 function upl_lst() {
     $db = new cls_db();
-    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_upl_lst({$prm_id});");
+//    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_upl_lst();");
     $dom = cls_xml::mul2dom($db->conn, "upl/upl_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();

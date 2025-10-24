@@ -9,19 +9,20 @@
         <xsl:call-template name="page"/> 
     </xsl:template>
     
-
+   
     <xsl:template match="root">
         <table class="table1">
             <tr>
                 <th>rpt_id</th>
                 <th>rpt_name</th>
-                <th>scn_id</th>
-                <th>scn_name</th>                
-                <th>view</th>
-                <th colspan="2">download</th>
-
+                <xsl:for-each select="tbl[1]/row">
+                    <th colspan="2">
+                        <xsl:value-of select="@scn_name"/>
+                    </th>
+                </xsl:for-each>
             </tr>
-            <xsl:for-each select="tbl[1]/row">
+            <xsl:for-each select="tbl[2]/row">
+                <xsl:variable name="rpt" select="."/>
                 <tr>
                     <td>
                         <xsl:value-of select="@rpt_id"/>
@@ -29,23 +30,18 @@
                     <td style="text-align:left;">
                         <xsl:value-of select="@rpt_name"/>
                     </td>
-                    <td>
-                        <xsl:value-of select="@scn_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@scn_name"/>
-                    </td>
-                    <td>
-                        <a href="raw.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=1">html</a>
-                    </td>
-                    <td>
-                        <a href="raw.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=2">csv</a>
-                    </td>
-<!--                    <td>
-                        <a href="raw.php?mth=dsp&amp;rpt_id={@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=3">xls</a>
-                    </td>-->
+                    <xsl:for-each select="//root/tbl[1]/row">
+                        <td>
+                            <a href="raw.php?mth=dsp&amp;rpt_id={$rpt/@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=1">htm</a>
+                        </td>
+                        <td>
+                            <a href="raw.php?mth=dsp&amp;rpt_id={$rpt/@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=2">csv</a>
+                        </td>
+                    </xsl:for-each>
                 </tr>
             </xsl:for-each>
         </table>
     </xsl:template>
 </xsl:stylesheet>
+
+ 

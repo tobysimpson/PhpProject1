@@ -1,8 +1,5 @@
 <?php
 
-//for rptoad?
-//header('Content-Type: text/html; charset=utf-8');
-
 require_once "cls_db.php";
 require_once "cls_xml.php";
 
@@ -15,8 +12,7 @@ $func();
 
 function rpt_lst() {
     $db = new cls_db();
-//    $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("SELECT scn.*, rpt.* FROM rpt JOIN scn ORDER BY rpt.rpt_name, scn_id;");
+    $db->conn->multi_query("SELECT * FROM scn ORDER BY scn_name; SELECT * FROM rpt ORDER BY rpt_name;");
     $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
@@ -35,17 +31,17 @@ function rpt_dsp() {
     $db = new cls_db();
     $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
     $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
-    $rpt_typ = filter_input(INPUT_GET, "rpt_typ", FILTER_VALIDATE_INT);
     $fmt = filter_input(INPUT_GET, "fmt", FILTER_VALIDATE_INT);
+    $rpt_typ = rpt_typ($rpt_id);
     $db->conn->multi_query("CALL sp_rpt{$rpt_typ}({$rpt_id},{$scn_id});");
-
-    $fname = sprintf("rpt%02d_scn%02d_typ%02d", $rpt_id, $scn_id, $rpt_typ);
+    $xml = cls_xml::mul2dom($db->conn);
+    $fname = sprintf("rpt%02d_scn%02d", $rpt_id, $scn_id);
 
     switch ($fmt) {
         case 1:
             header('Content-Type: text/xml');
-            $dom = cls_xml::mul2dom($db->conn, "rpt/rpt{$rpt_typ}_htm.xsl");
-            echo $dom->saveXML();
+            cls_xml::procxsl($xml, "rpt/rpt{$rpt_typ}_htm.xsl");
+            echo $xml->saveXML();
             break;
         case 2:
 //            header ('Content-Type: text/plain'); //display in browser
@@ -53,21 +49,18 @@ function rpt_dsp() {
             header("Content-Disposition: attachment; filename={$fname}.csv");
             header("Pragma: no-cache");
             header("Expires: 0");
-            $xml = cls_xml::mul2dom($db->conn);
             $xsl = cls_xml::file2dom("rpt/rpt{$rpt_typ}_csv.xsl");
             echo cls_xml::xsltrans($xml, $xsl);
             break;
         case 3:
             header('Content-Type: application/vnd.ms-excel');
             header("Content-Disposition: attachment; filename={$fname}.xls");
-            $xml = cls_xml::mul2dom($db->conn);
             $xsl = cls_xml::file2dom("rpt/rpt{$rpt_typ}_xls.xsl");
             echo cls_xml::xsltrans($xml, $xsl);
             break;
         default:
             header('Content-Type: text/xml');
-            $dom = cls_xml::mul2dom($db->conn);
-            echo $dom->saveXML();
+            echo $xml->saveXML();
             break;
     }
 }
@@ -134,20 +127,9 @@ function rpt_ins() {
     header("Location: upl.php?mth=lst");
 }
 
-function rpt_tst() {
+function rpt_typ($rpt_id) {
     $db = new cls_db();
-    $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
-//    $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
     $res = $db->conn->query("SELECT * FROM rpt WHERE rpt_id = {$rpt_id};");
-    if ($res->num_rows > 0) {
-        $row = $res->fetch_assoc();
-        print_r($row);
-        $rpt_name = $row['rpt_name'];
-        $rpt_typ = $row['rpt_typ'];
-        printf("%d %d %s\n", $rpt_id, $rpt_typ, $rpt_name);
-    }
-    else
-    {
-        printf("no :0)\n");
-    }
+    $row = $res->fetch_assoc();
+    return $row['rpt_typ'];
 }

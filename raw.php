@@ -1,8 +1,5 @@
 <?php
 
-//for rawoad?
-//header('Content-Type: text/html; charset=utf-8');
-
 require_once "cls_db.php";
 require_once "cls_xml.php";
 
@@ -15,8 +12,7 @@ $func();
 
 function raw_lst() {
     $db = new cls_db();
-//    $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("SELECT * FROM rpt JOIN scn ORDER BY rpt.rpt_name, scn_id;");
+    $db->conn->multi_query("SELECT * FROM scn ORDER BY scn_name; SELECT * FROM rpt ORDER BY rpt_name;");
     $dom = cls_xml::mul2dom($db->conn, "raw/raw_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
@@ -28,26 +24,27 @@ function raw_dsp() {
     $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
     $fmt    = filter_input(INPUT_GET, "fmt", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_rpt0({$rpt_id},{$scn_id});");
+    $xml = cls_xml::mul2dom($db->conn);
+    $fname = sprintf("raw%02d_scn%02d", $rpt_id, $scn_id);
+
     switch ($fmt) {
         case 1:
             header('Content-Type: text/xml');
-            $dom = cls_xml::mul2dom($db->conn, "raw/rpt0_htm.xsl");
-            echo $dom->saveXML();
+            cls_xml::procxsl($xml, "raw/raw_htm.xsl");
+            echo $xml->saveXML();
             break;
         case 2:
             header("Content-type: text/csv");
-            header("Content-Disposition: attachment; filename=rpt{$rpt_id}_scn{$scn_id}_raw.csv");
+            header("Content-Disposition: attachment; filename={$fname}.csv");
             header("Pragma: no-cache");
             header("Expires: 0");
-            $xml = cls_xml::mul2dom($db->conn);
-            $xsl = cls_xml::file2dom("raw/rpt0_csv.xsl");
+            $xsl = cls_xml::file2dom("raw/raw_csv.xsl");
             echo cls_xml::xsltrans($xml, $xsl);
             break;
         case 3:
             header('Content-Type: application/vnd.ms-excel');
-            header("Content-Disposition: attachment; filename=rpt{$rpt_id}_scn{$scn_id}_raw.xls");
-            $xml = cls_xml::mul2dom($db->conn);
-            $xsl = cls_xml::file2dom("raw/rpt0_xls.xsl");
+            header("Content-Disposition: attachment; filename=r{$fname}.xls");
+            $xsl = cls_xml::file2dom("raw/raw_xls.xsl");
             echo cls_xml::xsltrans($xml, $xsl);
             break;
         default:

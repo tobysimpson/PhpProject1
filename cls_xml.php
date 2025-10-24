@@ -1,13 +1,11 @@
 <?php
 
 class cls_xml {
-
     /*
      * =========================
      * transforms
      * =========================
      */
-
 
     public static function file2dom($filename) {
         $dom = new DOMDocument;
@@ -22,12 +20,17 @@ class cls_xml {
         return $proc->transformToXML($xml);
     }
 
+    public static function procxsl($xml, $xsl) {
+        $prc = $xml->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="' . $xsl . '"');
+        $xml->insertBefore($prc, $xml->documentElement);
+        return $xml;
+    }
+
     /*
      * =========================
      * recordsets
      * =========================
      */
-
 
     public static function res2tbl($dom, $root, $res) {
         $tbl = $root->appendChild($dom->createElement('tbl'));
@@ -60,12 +63,14 @@ class cls_xml {
     public static function mul2dom($conn, $xsl = "") {
         $dom = new DOMDocument('1.0', 'utf-8');
         $dom->formatOutput = true;
-        if (strlen($xsl) > 0) {
-            $prc = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="' . $xsl . '"');
-            $dom->appendChild($prc);
-        }
+        //root
         $root = $dom->createElement('root');
         $dom->appendChild($root);
+        //xsl (after root)
+        if (strlen($xsl) > 0) {
+            self::procxsl($dom, $xsl);
+        }
+        //tables
         do {
             $res = $conn->store_result();
             if ($res) {
@@ -75,4 +80,5 @@ class cls_xml {
         } while ($conn->next_result());
         return $dom;
     }
+
 }
