@@ -62,7 +62,7 @@
                     </td>
                     <xsl:for-each select="@*[substring-before(name(.),'_') = 'col']">
                         <td style="text-align:right;">
-                            <xsl:value-of select="format-number(.,'#,##0.0000','test')"/>
+                            <xsl:value-of select="format-number(.,'#,##0.00000','test')"/>
                         </td>
                     </xsl:for-each>
                 </tr>

@@ -15,6 +15,7 @@
             <tr>
                 <th>rpt_id</th>
                 <th>rpt_name</th>
+                <th>rpt_typ</th>
                 <xsl:for-each select="tbl[1]/row">
                     <th colspan="2">
                         <xsl:value-of select="@scn_name"/>
@@ -29,6 +30,9 @@
                     </td>
                     <td style="text-align:left;">
                         <xsl:value-of select="@rpt_name"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@rpt_typ"/>
                     </td>
                     <xsl:for-each select="//root/tbl[1]/row">
                         <td>
