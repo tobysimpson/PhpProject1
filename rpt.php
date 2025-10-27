@@ -77,31 +77,26 @@ function rpt_typ($rpt_id) {
 function rpt_ins() {
 //    print_r($_FILES);
     $dir = "/var/lib/mysql-files/";
-    $name1 = $_FILES["upfile"]["name"];
-    $name2 = $_FILES["upfile"]["tmp_name"];
-    $name3 = $dir . basename($name2);
+    $name0 = $_FILES["upfile"]["name"];
+    $name1 = $_FILES["upfile"]["tmp_name"];
+    $name2 = $dir . basename($name1);
     
-    $names = array($name1, $name2, $name3);
+    $names = array($name0, $name1, $name2);
 
-    echo $name1 . PHP_EOL;
-    echo $name2 . PHP_EOL;
-    echo $name3 . PHP_EOL;
-
-    preg_match_all('/\d+/', $name1, $matches);
+    preg_match_all('/\d+/', $name0, $matches);
 //    print_r($matches);
 
     [$rpt_id, $scn_id] = $matches[0];
     
     $rpt_typ = rpt_typ($rpt_id);
 
-    echo intval($rpt_id) . PHP_EOL;
-    echo $rpt_typ . PHP_EOL;
-    echo intval($scn_id) . PHP_EOL;
+    
+    echo $rpt_id . PHP_EOL;
+    echo $scn_id . PHP_EOL;
     
     //call
     $func = "rpt{$rpt_typ}_ins";
     $func(intval($rpt_id), intval($scn_id), $names);
-    
 }
 
 function rpt1_ins($rpt_id, $scn_id, $names) {
@@ -113,7 +108,7 @@ function rpt1_ins($rpt_id, $scn_id, $names) {
     
     //parse
     $data = [];
-    while (($row = fgetcsv($file1, 1000)) !== FALSE) {
+    while (($row = fgetcsv($file1)) !== FALSE) {
         $data[] = $row;
     }
     fclose($file1);
@@ -155,6 +150,8 @@ function rpt1_ins($rpt_id, $scn_id, $names) {
     header("Location: upl.php?mth=lst");
 }
 
+
+
 function rpt2_ins($rpt_id, $scn_id, $names) {
     $db = new cls_db();
 
@@ -166,9 +163,14 @@ function rpt2_ins($rpt_id, $scn_id, $names) {
     $head2 = fgetcsv($file1);
     $head3 = fgetcsv($file1);
 
+    
+//    echo implode(',', $head1) . PHP_EOL;
+//    echo implode(',', $head2) . PHP_EOL;
+//    echo implode(',', $head3) . PHP_EOL;
+
     //parse
     $data1 = [];
-    while (($row1 = fgetcsv($file1, 1000)) !== FALSE) {
+    while (($row1 = fgetcsv($file1)) !== FALSE) {
         $data1[] = $row1;
     }
 
@@ -179,6 +181,9 @@ function rpt2_ins($rpt_id, $scn_id, $names) {
     //write
     $m = count($head1);
     $n = count($data1);
+    
+    echo $m . PHP_EOL;
+    echo $n . PHP_EOL;
 
     $file2 = fopen($names[1], "w");
     for ($i = 0; $i < $n; $i++) {
@@ -186,7 +191,7 @@ function rpt2_ins($rpt_id, $scn_id, $names) {
 //            echo $i . ' ' . $j . PHP_EOL;
             if (is_numeric($data1[$i][$j])) {
                 $row2 = array($rpt_id, $scn_id, $head1[$j], $data1[$i][0], $data1[$i][1], $data1[$i][2], $head2[$j], $head3[$j], $data1[$i][$j]);
-                echo implode(',', $row2) . PHP_EOL;
+//                echo sprintf("%03d %03d",$i, $j) . ' ' . implode(',', $row2) . PHP_EOL;
                 fputcsv($file2, $row2);
             }
         }

@@ -130,7 +130,7 @@ function itm_upl() {
 //    echo implode(',', $head3) . PHP_EOL;
 
     $data1 = [];
-    while (($row1 = fgetcsv($file1, 1000)) !== FALSE) {
+    while (($row1 = fgetcsv($file1)) !== FALSE) {
         $data1[] = $row1;
     }
     fclose($file1);
