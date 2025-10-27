@@ -66,30 +66,63 @@ function rpt_dsp() {
 }
 
 
+function rpt_typ($rpt_id) {
+    $db = new cls_db();
+    $res = $db->conn->query("SELECT * FROM rpt WHERE rpt_id = {$rpt_id};");
+    $row = $res->fetch_assoc();
+    return $row['rpt_typ'];
+}
+
 
 function rpt_ins() {
-    $db = new cls_db();
-    print_r($_FILES);
+//    print_r($_FILES);
     $dir = "/var/lib/mysql-files/";
-    $name1 = $_FILES["upload_file"]["tmp_name"];
-    $name2 = $dir . basename($name1);
+    $name1 = $_FILES["upfile"]["name"];
+    $name2 = $_FILES["upfile"]["tmp_name"];
+    $name3 = $dir . basename($name2);
+    
+    $names = array($name1, $name2, $name3);
+
+    echo $name1 . PHP_EOL;
+    echo $name2 . PHP_EOL;
+    echo $name3 . PHP_EOL;
+
+    preg_match_all('/\d+/', $name1, $matches);
+//    print_r($matches);
+
+    [$rpt_id, $scn_id] = $matches[0];
+    
+    $rpt_typ = rpt_typ($rpt_id);
+
+    echo intval($rpt_id) . PHP_EOL;
+    echo $rpt_typ . PHP_EOL;
+    echo intval($scn_id) . PHP_EOL;
+    
+    //call
+    $func = "rpt{$rpt_typ}_ins";
+    $func(intval($rpt_id), intval($scn_id), $names);
+    
+}
+
+function rpt1_ins($rpt_id, $scn_id, $names) {
+    $db = new cls_db();
+
     //read
-    $file1 = fopen($name1, "r");
+    $file1 = fopen($names[1], "r");
     $head = fgetcsv($file1);
-//    print_r($head);
+    
+    //parse
     $data = [];
     while (($row = fgetcsv($file1, 1000)) !== FALSE) {
         $data[] = $row;
     }
     fclose($file1);
-//    print_r($data);
-
-    $m = count($head);
-    $n = count($data);
-    echo $m . "," . $n . PHP_EOL;
 
     //write
-    $file2 = fopen($name1, "w");
+    $m = count($head);
+    $n = count($data);
+
+    $file2 = fopen($names[1], "w");
     for ($i = 0; $i < $n; $i++) {
         for ($j = 4; $j < $m; $j++) {
 //            print_r(array($data[$i][0], $data[$i][1], $head[$j], $data[$i][$j]));
@@ -100,36 +133,89 @@ function rpt_ins() {
     }
     fclose($file2);
 
+    //move
     try {
-        move_uploaded_file($name1, $name2);
+        move_uploaded_file($names[1], $names[2]);
     } catch (Exception $e) {
         echo $e->getMessage();
     }
 
-
-//    $files2 = scandir($dir);
-//    print_r($files2);
-
-    $sql1 = "LOAD DATA INFILE '" . $name2 . "' INTO TABLE db2.cub1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
-//    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.cub1 CHARACTER SET UTF8 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
+    //load
+    $sql1 = "LOAD DATA INFILE '" . $names[2] . "' INTO TABLE db2.cub1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
 
     try {
         $db->conn->query($sql1);
-//        $res1 = $db->conn->query($sql1);
-//        print_r($res1);
     } catch (Exception $e) {
         echo $e->getMessage();
     }
 
-    //    unlink($name1);
-    unlink($name2);
+    //clean
+    unlink($names[2]);
 
     header("Location: upl.php?mth=lst");
 }
 
-function rpt_typ($rpt_id) {
+function rpt2_ins($rpt_id, $scn_id, $names) {
     $db = new cls_db();
-    $res = $db->conn->query("SELECT * FROM rpt WHERE rpt_id = {$rpt_id};");
-    $row = $res->fetch_assoc();
-    return $row['rpt_typ'];
+
+    //open
+    $file1 = fopen($names[1], "r");
+
+    //read
+    $head1 = fgetcsv($file1);
+    $head2 = fgetcsv($file1);
+    $head3 = fgetcsv($file1);
+
+    //parse
+    $data1 = [];
+    while (($row1 = fgetcsv($file1, 1000)) !== FALSE) {
+        $data1[] = $row1;
+    }
+
+    //close
+    fclose($file1);
+
+    
+    //write
+    $m = count($head1);
+    $n = count($data1);
+
+    $file2 = fopen($names[1], "w");
+    for ($i = 0; $i < $n; $i++) {
+        for ($j = 3; $j < $m; $j++) {
+//            echo $i . ' ' . $j . PHP_EOL;
+            if (is_numeric($data1[$i][$j])) {
+                $row2 = array($rpt_id, $scn_id, $head1[$j], $data1[$i][0], $data1[$i][1], $data1[$i][2], $head2[$j], $head3[$j], $data1[$i][$j]);
+                echo implode(',', $row2) . PHP_EOL;
+                fputcsv($file2, $row2);
+            }
+        }
+    }
+    fclose($file2);
+
+    try {
+        move_uploaded_file($names[1], $names[2]);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+
+    $sql1 = "TRUNCATE TABLE db2.in_rpt2";
+    $sql2 = "LOAD DATA INFILE '" . $names[2] . "' INTO TABLE db2.in_rpt2 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (rpt_id,scn_id,yr,stc_qtr_name,stc_wkd_name,stc_day_name,stc_io_name,stc_reg_name,u);";
+    $sql3 = "CALL db2.sp_rpt2_ins()";
+
+    try {
+        $db->conn->query($sql1);
+        $db->conn->query($sql2);
+        $db->conn->query($sql3);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+    unlink($names[1]);
+    unlink($names[2]);
+
+//    $files2 = scandir($dir);
+//    print_r($files2);
+    header("Location: upl.php?mth=lst");
 }

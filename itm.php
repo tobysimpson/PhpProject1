@@ -43,7 +43,7 @@ function itm_upd() {
 
 function itm_ins() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("INSERT INTO itm_info VALUES ();");
+    $qry = $db->conn->prepare("INSERT INTO itm VALUES ();");
     $qry->execute();
     header("Location: itm.php?mth=lst");
 }
@@ -90,26 +90,7 @@ function itm_ins() {
 ////    print_r($files2);
 //}
 
-function itm_tst() {
-    $db = new cls_db();
-    //$itm_id = filter_input(INPUT_GET, "itm_id", FILTER_VALIDATE_INT);
-//    $xsl = filter_input(INPUT_POST, "xsl", FILTER_SANITIZE_STRING);
-    $xsl = "itm/itm_lst.xsl";
-    $db->conn->multi_query("CALL sp_itm_tst()");
-    $dom = new DOMDocument('1.0', 'utf-8');
-    $dom->appendChild($dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="' . $xsl . '"'));
-    $root = $dom->appendChild($dom->createElement('root'));
-    do {
-        $res = $db->conn->store_result();
-        if ($res) {
-            $arr = $res->fetch_all(MYSQLI_ASSOC);
-            cls_xml::arr2tbl($dom, $root, $arr);
-            $res->free();
-        }
-    } while ($db->conn->next_result());
-    header('Content-Type: text/xml');
-    echo $dom->saveXML();
-}
+
 
 function itm_upl() {
     $db = new cls_db();
@@ -131,13 +112,15 @@ function itm_upl() {
     echo $rpt_id . PHP_EOL;
     echo $scn_id . PHP_EOL;
 
-    
+    //open
+    $file1 = fopen($name2, "r");
+
     //==========
     // type dependent
     //==========
-    
+
+
     //read
-    $file1 = fopen($name2, "r");
     $head1 = fgetcsv($file1);
     $head2 = fgetcsv($file1);
     $head3 = fgetcsv($file1);

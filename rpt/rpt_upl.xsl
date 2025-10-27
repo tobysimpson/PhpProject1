@@ -22,7 +22,7 @@
 
         
         <form action="rpt.php?mth=ins" method="post" enctype="multipart/form-data">
-            <input type="file" name="upload_file"></input>
+            <input type="file" name="upfile"></input>
             <input type="submit" value="upload" name="submit"></input>
         </form>
 

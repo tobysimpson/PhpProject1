@@ -66,9 +66,6 @@
             <td>
                 <a href="itm.php?mth=edt&amp;itm_id={@itm_id}">edit</a>
             </td>
-            <td>
-                <a href="itm.php?mth=tst&amp;itm_id={@itm_id}">test</a>
-            </td>
         </tr>
     </xsl:template>
     

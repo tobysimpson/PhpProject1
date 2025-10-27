@@ -113,12 +113,11 @@
                     <a href="itm.php?mth=lst">list</a>
                 </td>
             </tr>
-            <tr>
+<!--            <tr>
                 <td>
                     <a href="itm.php?mth=tst">test</a>
                 </td>
-            </tr>
-
+            </tr>-->
         </table>
     </xsl:template>
 </xsl:stylesheet>
