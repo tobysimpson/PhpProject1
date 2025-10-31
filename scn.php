@@ -12,7 +12,7 @@ $func();
 
 function scn_lst() {
     $db = new cls_db();
-    $db->conn->multi_query("SELECT * FROM scn ORDER BY scn_sps, shk_pos;");
+    $db->conn->multi_query("CALL sp_scn_lst();");
     $dom = cls_xml::mul2dom($db->conn, "scn/scn_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();

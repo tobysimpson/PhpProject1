@@ -17,3 +17,12 @@ function ind_lst() {
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
+
+
+function ind_scn() {
+    $db = new cls_db();
+    $db->conn->multi_query("SELECT * FROM ind_scn;");
+    $dom = cls_xml::mul2dom($db->conn, "ind/ind_scn.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}

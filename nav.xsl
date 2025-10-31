@@ -96,6 +96,11 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <a href="ind.php?mth=scn">indicator/scenario</a>
+                </td>
+            </tr>
+            <tr>
                 <th style="text-align:left">raw data</th>
             </tr>
             <tr>

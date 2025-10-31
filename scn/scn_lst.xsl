@@ -15,12 +15,12 @@
             <tr>
                 <th>scn_id</th>
                 <th>scn_sps</th>
-                <th>shk_fin</th>
-                <th>shk_hot</th>
-                <th>shk_cld</th>
-                <th>shk_soc</th>
-                <th>shk_nuc</th>
-                <th>scn_name</th>
+                <th>sps_code</th>
+                <th>shk_id</th>
+                <th>shk_name</th>
+                <th>shk_code</th>
+                <th>shk_lvl</th>
+                <th>scn_code</th>
             </tr>
             <xsl:for-each select="//root/tbl[1]/row">
                 <tr>
@@ -31,22 +31,23 @@
                         <xsl:value-of select="@scn_sps"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@shk_fin"/>
+                        <xsl:value-of select="@sps_code"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@shk_hot"/>
+                        <xsl:value-of select="@shk_id"/>
+                    </td>
+                    
+                    <td style="text-align:left;">
+                        <xsl:value-of select="@shk_name"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@shk_cld"/>
+                        <xsl:value-of select="@shk_code"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@shk_soc"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@shk_nuc"/>
+                        <xsl:value-of select="@shk_lvl"/>
                     </td>
                     <td style="text-align:left;">
-                        <xsl:value-of select="@scn_name"/>
+                        <xsl:value-of select="@scn_code"/>
                     </td>
                 </tr>
             </xsl:for-each>
