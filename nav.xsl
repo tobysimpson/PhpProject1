@@ -52,7 +52,7 @@
     <xsl:template name="menu">
         <table width="100%" class="table2">
             <tr>
-                <th style="text-align:left">parameter</th>
+                <th style="text-align:left">series</th>
             </tr>
             <tr>
                 <td>
@@ -64,13 +64,8 @@
                     <a href="prm.php?mth=pth">path</a>
                 </td>
             </tr>
-            <!--            <tr>
-                <td>
-                    <a href="prm.php?mth=tre">tree</a>
-                </td>
-            </tr>-->
             <tr>
-                <th style="text-align:left">report</th>
+                <th style="text-align:left">exchange</th>
             </tr>
             <tr>
                 <td>
@@ -80,6 +75,24 @@
             <tr>
                 <td>
                     <a href="rpt.php?mth=upl">upload</a>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:left">mcda</th>
+            </tr> 
+            <tr>
+                <td>
+                    <a href="ind.php?mth=lst">indicator</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="shk.php?mth=lst">shock</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="scn.php?mth=lst">scenario</a>
                 </td>
             </tr>
             <tr>
@@ -106,14 +119,14 @@
 
             
             <tr>
-                <th style="text-align:left">item (test)</th>
+                <th style="text-align:left">test</th>
             </tr>
             <tr>
                 <td>
                     <a href="itm.php?mth=lst">list</a>
                 </td>
             </tr>
-<!--            <tr>
+            <!--            <tr>
                 <td>
                     <a href="itm.php?mth=tst">test</a>
                 </td>
