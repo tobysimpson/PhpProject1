@@ -19,7 +19,7 @@
                 <th>ind_id</th>
                 <th>ind_code</th>
                 <th>ind_name</th>
-                <th>ind_unit</th>
+                
                 
                 <th>scn_id</th>
                 <th>scn_sps</th>
@@ -32,6 +32,7 @@
                 <th>shk_yr</th>
                 
                 <th>prm_id</th>
+                <th>ind_unit</th>
             </tr>
             <xsl:for-each select="//root/tbl[1]/row">
                 <tr>
@@ -51,9 +52,7 @@
                     <td  style="text-align:left;">
                         <xsl:value-of select="@ind_name"/>
                     </td>
-                    <td>
-                        <xsl:value-of select="@ind_unit"/>
-                    </td>
+                    
                     
                     <td>
                         <xsl:value-of select="@scn_id"/>
@@ -84,6 +83,9 @@
                     
                     <td>
                         <xsl:value-of select="@prm_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@ind_unit"/>
                     </td>
                 </tr>
             </xsl:for-each>

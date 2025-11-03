@@ -13,8 +13,8 @@
     <xsl:template match="root">
         <table class="table1">
             <tr>
-                <th>ind_typ_id</th>
-                <th>ind_typ_name</th>
+                <th>cat_id</th>
+                <th>cat_name</th>
                 <th>ind_id</th>
                 <th>ind_code</th>
                 <th>ind_name</th>
@@ -23,10 +23,10 @@
             <xsl:for-each select="//root/tbl[1]/row">
                 <tr>
                     <td>
-                        <xsl:value-of select="@ind_typ_id"/>
+                        <xsl:value-of select="@cat_id"/>
                     </td>
                     <td style="text-align:left;">
-                        <xsl:value-of select="@ind_typ_name"/>
+                        <xsl:value-of select="@cat_name"/>
                     </td>
                     <td>
                         <xsl:value-of select="@ind_id"/>

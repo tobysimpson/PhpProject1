@@ -12,7 +12,7 @@ $func();
 
 function rpt_lst() {
     $db = new cls_db();
-    $db->conn->multi_query("SELECT * FROM scn WHERE scn_id IN (1,2,3,4) ORDER BY scn_sps, shk_pos; SELECT * FROM rpt ORDER BY rpt_name;");
+    $db->conn->multi_query("SELECT * FROM scn WHERE scn_id IN (1,2,3,4) ORDER BY scn_sps, shk_id, shk_lvl; SELECT * FROM rpt ORDER BY rpt_name;");
     $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();

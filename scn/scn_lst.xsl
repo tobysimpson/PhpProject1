@@ -20,7 +20,7 @@
                 <th>shk_name</th>
                 <th>shk_code</th>
                 <th>shk_lvl</th>
-                <th>scn_code</th>
+                <th>lvl_code</th>
             </tr>
             <xsl:for-each select="//root/tbl[1]/row">
                 <tr>
@@ -46,8 +46,8 @@
                     <td>
                         <xsl:value-of select="@shk_lvl"/>
                     </td>
-                    <td style="text-align:left;">
-                        <xsl:value-of select="@scn_code"/>
+                    <td>
+                        <xsl:value-of select="@lvl_code"/>
                     </td>
                 </tr>
             </xsl:for-each>

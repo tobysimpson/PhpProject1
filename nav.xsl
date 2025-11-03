@@ -87,12 +87,12 @@
             </tr>
             <tr>
                 <td>
-                    <a href="shk.php?mth=lst">shock</a>
+                    <a href="scn.php?mth=lst">scenario</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="scn.php?mth=lst">scenario</a>
+                    <a href="shk.php?mth=lst">shock</a>
                 </td>
             </tr>
             <tr>
