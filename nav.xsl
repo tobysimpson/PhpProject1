@@ -97,7 +97,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="ind.php?mth=scn">indicator/scenario</a>
+                    <a href="ind.php?mth=scn">all</a>
                 </td>
             </tr>
             <tr>
