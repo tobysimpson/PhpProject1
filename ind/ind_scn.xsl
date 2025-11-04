@@ -30,9 +30,6 @@
                 
                 <th>shk_lvl</th>
                 <th>shk_yr</th>
-                
-                <th>prm_id</th>
-                <th>ind_unit</th>
             </tr>
             <xsl:for-each select="//root/tbl[1]/row">
                 <tr>
@@ -58,7 +55,6 @@
                         <xsl:value-of select="@scn_id"/>
                     </td>
                     <td>
-                        <xsl:text>SPS</xsl:text>
                         <xsl:value-of select="@scn_sps"/>
                     </td>
 
@@ -78,14 +74,6 @@
                     </td>
                     <td>
                         <xsl:value-of select="@shk_yr"/>
-                    </td>
-                    
-                    
-                    <td>
-                        <xsl:value-of select="@prm_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@ind_unit"/>
                     </td>
                 </tr>
             </xsl:for-each>
