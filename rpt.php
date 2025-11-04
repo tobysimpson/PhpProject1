@@ -206,7 +206,7 @@ function rpt2_ins($rpt_id, $scn_id, $names) {
 
 
     $sql1 = "TRUNCATE TABLE db2.in_rpt2";
-    $sql2 = "LOAD DATA INFILE '" . $names[2] . "' INTO TABLE db2.in_rpt2 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (rpt_id,scn_id,yr,stc_qtr_name,stc_wkd_name,stc_day_name,stc_io_name,stc_reg_name,u);";
+    $sql2 = "LOAD DATA INFILE '" . $names[2] . "' INTO TABLE db2.in_rpt2 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (rpt_id,scn_id,yr,qtr,wkd,day,io,reg,u);";
     $sql3 = "CALL db2.sp_rpt2_ins()";
 
     try {

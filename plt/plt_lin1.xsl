@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" 
+                xmlns:php="http://php.net/xsl">
     
     <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>
 
@@ -9,7 +10,7 @@
     <xsl:variable name="mw" select="30"/>
     <xsl:variable name="mh" select="40"/>
     
-    <xsl:variable name="pw" select="700"/>
+    <xsl:variable name="pw" select="680"/>
     <xsl:variable name="ph" select="450"/>
     
     <xsl:variable name="t_min" select="root/tbl[5]/row/@t_min" />
@@ -22,6 +23,14 @@
     
     <xsl:variable name="dash" select="5"/>
     <xsl:variable name="cc" select="'FC9630'"/>
+    
+    
+    <xsl:template name="fmt">
+        <xsl:param name="x"/>
+        <xsl:if test="number($x) = number($x)">
+            <xsl:value-of select="php:function('sprintf','%6.3e', number($x))"/>
+        </xsl:if>
+    </xsl:template>
     
    
     <xsl:template match="root">
@@ -113,10 +122,10 @@
                 </g>
             </g>
             
-            <g id="key" transform="translate({$mw + 200},{$mh + $ph + 45})">
+            <g id="key" transform="translate({$mw + 100},{$mh + $ph + 45})">
                 <xsl:for-each select="tbl[2]/row">
                     <xsl:variable name="i" select="position()"/>
-                    <xsl:variable name="x" select="($i - 1) * 80"/>
+                    <xsl:variable name="x" select="($i - 1) * 120"/>
                     <xsl:variable name="c" select="substring($cc,$i,1)"/>
                     <line x1="{$x}" x2="{$x + 20}" y1="0" y2="0" stroke-width="2" stroke="{concat('#6666',$c,$c)}"/>
                     <text x="{$x + 30}" y="0" text-anchor="left" alignment-baseline="middle">
@@ -133,8 +142,11 @@
         <xsl:param name="i"/>
         <xsl:param name="n" select="10"/>
         <xsl:variable name="y" select="format-number($ph * $i * $u_tic div $u_rng,'0.000')"/>
-        <text xmlns="http://www.w3.org/2000/svg" x="{$pw + 65}" y="{$y}" alignment-baseline="middle" text-anchor="end">
-            <xsl:value-of select="format-number($u_min + ($n - $i) * $u_tic,'0.000')"/>
+        <text xmlns="http://www.w3.org/2000/svg" x="{$pw + 80}" y="{$y}" alignment-baseline="middle" text-anchor="end">
+            <!--<xsl:value-of select="format-number($u_min + ($n - $i) * $u_tic,'0.000')"/>-->
+            <xsl:call-template name="fmt">
+                <xsl:with-param name="x" select="$u_min + ($n - $i) * $u_tic"/>
+            </xsl:call-template>
         </text>
         <!--<line xmlns="http://www.w3.org/2000/svg" x1="{-$dash}" y1="{$y}" x2="{$pw + $dash}" y2="{$y}" stroke="lightgrey"/>-->
         <!--        <line xmlns="http://www.w3.org/2000/svg" x1="{-$dash}" y1="{$y}" x2="{$pw + $dash}" y2="{$y}" stroke="lightgrey" stroke-dasharray="{$dash},{$dash}" stroke-dashoffset="{-0.5 * $dash}" />-->
