@@ -35,7 +35,7 @@ table {
 }
 
 th, td{
-    padding: 4px 4px; /* tb lr */
+    padding: 4px 5px; /* tb lr */
     border: 1px solid #dddddd;
     white-space: nowrap;
 }

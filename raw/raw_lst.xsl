@@ -15,30 +15,63 @@
             <tr>
                 <th>rpt_id</th>
                 <th>rpt_name</th>
-                <xsl:for-each select="tbl[1]/row">
-                    <th colspan="2">
-                        <xsl:value-of select="@scn_code"/>
-                    </th>
-                </xsl:for-each>
+                <th>rpt_typ</th>
+                <th>scn_id</th>
+                <th>sps_id</th>
+                <th>sps_code</th>
+                <th>shk_id</th>
+                <th>shk_code</th>
+                <th>shk_lvl</th>
+                <th>htm</th>
+                <th>download</th>
             </tr>
-            <xsl:for-each select="tbl[2]/row">
+            <xsl:for-each select="tbl[1]/row">
                 <xsl:variable name="rpt" select="."/>
-                <tr>
-                    <td>
-                        <xsl:value-of select="@rpt_id"/>
-                    </td>
-                    <td style="text-align:left;">
-                        <xsl:value-of select="@rpt_name"/>
-                    </td>
-                    <xsl:for-each select="//root/tbl[1]/row">
+                <xsl:for-each select="//root/tbl[2]/row">
+                    <tr>
                         <td>
-                            <a href="raw.php?mth=htm&amp;rpt_id={$rpt/@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=1">htm</a>
+                            <xsl:value-of select="$rpt/@rpt_id"/>
+                        </td>
+                        <td style="text-align:left;">
+                            <xsl:value-of select="$rpt/@rpt_name"/>
                         </td>
                         <td>
-                            <a href="raw.php?mth=csv&amp;rpt_id={$rpt/@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=2">csv</a>
+                            <xsl:value-of select="$rpt/@rpt_typ"/>
                         </td>
-                    </xsl:for-each>
-                </tr>
+                        <td>
+                            <xsl:value-of select="@scn_id"/>
+                        </td>
+                        <td>
+                            <xsl:value-of select="@sps_id"/>
+                        </td>
+                        <td>
+                            <xsl:value-of select="@sps_code"/>
+                        </td>
+                        <td>
+                            <xsl:value-of select="@shk_id"/>
+                        </td>
+                        <td>
+                            <xsl:value-of select="@shk_code"/>
+                        </td>
+                        <td>
+                            <xsl:value-of select="@shk_lvl"/>
+                        </td>
+                        <td style="text-align:left;">
+                            <a href="raw.php?mth=htm&amp;rpt_id={$rpt/@rpt_id}&amp;scn_id={@scn_id}">
+                                <xsl:value-of select="@scn_code"/>  
+                            </a>
+                        </td>
+                        <td style="text-align:left;">
+                            <a href="raw.php?mth=csv&amp;rpt_id={$rpt/@rpt_id}&amp;scn_id={@scn_id}">
+                                <xsl:text>raw</xsl:text>
+                                <xsl:value-of select="format-number($rpt/@rpt_id,'00')"/>
+                                <xsl:text>_scn</xsl:text>
+                                <xsl:value-of select="format-number(@scn_id,'00')"/>
+                                <xsl:text>.csv</xsl:text>
+                            </a>
+                        </td>
+                    </tr>
+                </xsl:for-each>
             </xsl:for-each>
         </table>
     </xsl:template>

@@ -12,7 +12,7 @@ $func();
 
 function raw_lst() {
     $db = new cls_db();
-    $db->conn->multi_query("SELECT * FROM scn ORDER BY scn_code; SELECT * FROM rpt ORDER BY rpt_name;");
+    $db->conn->multi_query("SELECT * FROM rpt ORDER BY rpt_name; SELECT * FROM scn ORDER BY sps_id, shk_id, shk_lvl;");
     $dom = cls_xml::mul2dom($db->conn, "raw/raw_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
