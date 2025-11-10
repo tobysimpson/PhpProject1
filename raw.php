@@ -12,18 +12,47 @@ $func();
 
 function raw_lst() {
     $db = new cls_db();
-    $db->conn->multi_query("SELECT * FROM scn ORDER BY scn_name; SELECT * FROM rpt ORDER BY rpt_name;");
+    $db->conn->multi_query("SELECT * FROM scn ORDER BY scn_code; SELECT * FROM rpt ORDER BY rpt_name;");
     $dom = cls_xml::mul2dom($db->conn, "raw/raw_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
+
+
+function raw_htm() {
+    $db = new cls_db();
+    $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
+    $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_raw1({$rpt_id},{$scn_id});");
+    $xml = cls_xml::mul2dom($db->conn);
+    header('Content-Type: text/xml');
+    cls_xml::procxsl($xml, "raw/raw_htm.xsl");
+    echo $xml->saveXML();
+}
+
+
+function raw_csv() {
+    $db = new cls_db();
+    $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
+    $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_raw1({$rpt_id},{$scn_id});");
+    $xml = cls_xml::mul2dom($db->conn);
+    $fname = sprintf("raw%02d_scn%02d", $rpt_id, $scn_id);
+    header("Content-type: text/csv");
+    header("Content-Disposition: attachment; filename={$fname}.csv");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+    $xsl = cls_xml::file2dom("raw/raw_csv.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
+}
+
 
 function raw_dsp() {
     $db = new cls_db();
     $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
     $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
     $fmt    = filter_input(INPUT_GET, "fmt", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_rpt0({$rpt_id},{$scn_id});");
+    $db->conn->multi_query("CALL sp_raw1({$rpt_id},{$scn_id});");
     $xml = cls_xml::mul2dom($db->conn);
     $fname = sprintf("raw%02d_scn%02d", $rpt_id, $scn_id);
 
@@ -52,6 +81,8 @@ function raw_dsp() {
             break;
     }
 }
+
+
 
 function raw_upl() {
     $db = new cls_db();

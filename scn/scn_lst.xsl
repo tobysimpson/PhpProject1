@@ -14,12 +14,13 @@
         <table class="table1">
             <tr>
                 <th>scn_id</th>
-                <th>scn_sps</th>
+                <th>sps_id</th>
+                <th>sps_code</th>
                 <th>shk_id</th>
                 <th>shk_name</th>
                 <th>shk_code</th>
                 <th>shk_lvl</th>
-                <th>lvl_code</th>
+                <th>scn_code</th>
             </tr>
             <xsl:for-each select="//root/tbl[1]/row">
                 <tr>
@@ -27,7 +28,10 @@
                         <xsl:value-of select="@scn_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@scn_sps"/>
+                        <xsl:value-of select="@sps_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@sps_code"/>
                     </td>
                     <td>
                         <xsl:value-of select="@shk_id"/>
@@ -42,8 +46,8 @@
                     <td>
                         <xsl:value-of select="@shk_lvl"/>
                     </td>
-                    <td>
-                        <xsl:value-of select="@lvl_code"/>
+                    <td  style="text-align:left;">
+                        <xsl:value-of select="@scn_code"/>
                     </td>
                 </tr>
             </xsl:for-each>

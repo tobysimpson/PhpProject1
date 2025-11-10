@@ -69,7 +69,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="rpt.php?mth=lst">download</a>
+                    <a href="rpt.php?mth=lst">report</a>
                 </td>
             </tr>
             <tr>

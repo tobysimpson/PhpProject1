@@ -17,7 +17,7 @@
                 <th>rpt_name</th>
                 <xsl:for-each select="tbl[1]/row">
                     <th colspan="2">
-                        <xsl:value-of select="@scn_name"/>
+                        <xsl:value-of select="@scn_code"/>
                     </th>
                 </xsl:for-each>
             </tr>
@@ -32,10 +32,10 @@
                     </td>
                     <xsl:for-each select="//root/tbl[1]/row">
                         <td>
-                            <a href="raw.php?mth=dsp&amp;rpt_id={$rpt/@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=1">htm</a>
+                            <a href="raw.php?mth=htm&amp;rpt_id={$rpt/@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=1">htm</a>
                         </td>
                         <td>
-                            <a href="raw.php?mth=dsp&amp;rpt_id={$rpt/@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=2">csv</a>
+                            <a href="raw.php?mth=csv&amp;rpt_id={$rpt/@rpt_id}&amp;scn_id={@scn_id}&amp;fmt=2">csv</a>
                         </td>
                     </xsl:for-each>
                 </tr>

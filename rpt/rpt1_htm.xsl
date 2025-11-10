@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" 
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                >
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" 
+                xmlns:php="http://php.net/xsl">
+    
     <xsl:output method="html" encoding="utf-8"/>
     
     <xsl:include href="../nav.xsl"/>
@@ -10,7 +10,15 @@
         <xsl:call-template name="page"/> 
     </xsl:template>
     
-    <xsl:decimal-format name="test" NaN=""/>
+    <xsl:template name="fmt">
+        <xsl:param name="x"/>
+        <xsl:if test="number($x) = number($x)">
+            <xsl:value-of select="php:function('sprintf','%9.7E', number($x))"/>
+            <!--<xsl:value-of select="number($x)"/>-->
+        </xsl:if>
+    </xsl:template>
+    
+    <!--<xsl:decimal-format name="test" NaN=""/>-->
  
     <xsl:template match="root">
         <table class="table1">
@@ -41,7 +49,11 @@
                     </td>
                     <xsl:for-each select="@*[substring-before(name(.),'_') = 'col']">
                         <td style="text-align:right;">
-                            <xsl:value-of select="format-number(.,'#,##0.0000','test')"/>
+                            <!--<xsl:value-of select="format-number(.,'#,##0.0000','test')"/>-->
+                            <!--<xsl:value-of select="."/>-->
+                            <xsl:call-template name="fmt">
+                                <xsl:with-param name="x" select="."/>
+                            </xsl:call-template>
                         </td>
                     </xsl:for-each>
                 </tr>

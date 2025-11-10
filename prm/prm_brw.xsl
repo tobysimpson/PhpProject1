@@ -132,7 +132,7 @@
                     <th>prm_id</th>
                     <th>prm_name</th>
                     <th>scn_id</th>
-                    <th>scn_name</th>
+                    <th>scn_code</th>
                     <xsl:for-each select="//root/tbl[4]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
                         <th>
                             <xsl:value-of select="@yr"/>
@@ -141,7 +141,7 @@
                 </tr>
                 <xsl:for-each select="//root/tbl[4]/row[generate-id() = generate-id(key('scn',@scn_id)[1])]">
                     <xsl:variable name="scn_id" select= "@scn_id"/>
-                    <xsl:variable name="scn_name" select= "@scn_name"/>
+                    <xsl:variable name="scn_code" select= "@scn_code"/>
                     <xsl:for-each select="//root/tbl[4]/row[generate-id() = generate-id(key('prm',@prm_id)[1])]">
                         <xsl:variable name="prm_id" select= "@prm_id"/>
                         <xsl:variable name="prm_name" select= "@name"/>
@@ -156,7 +156,7 @@
                                 <xsl:value-of select="$scn_id"/>
                             </td>
                             <td>
-                                <xsl:value-of select="$scn_name"/>
+                                <xsl:value-of select="$scn_code"/>
                             </td>
                             <xsl:for-each select="//root/tbl[4]/row[generate-id() = generate-id(key('yr',@yr)[1])]">
                                 <xsl:variable name="yr" select= "@yr"/>
@@ -184,7 +184,7 @@
                     <th>prm_id</th>
                     <th>prm_name</th>
                     <th>scn_id</th>
-                    <th>scn_name</th>
+                    <th>scn_code</th>
                     <th>yr</th>
                     <th>u</th>
                 </tr>
@@ -203,7 +203,7 @@
                             <xsl:value-of select="@scn_id"/>
                         </td>
                         <td>
-                            <xsl:value-of select="@scn_name"/>
+                            <xsl:value-of select="@scn_code"/>
                         </td>
                         <td>
                             <xsl:value-of select="@yr"/>

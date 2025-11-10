@@ -22,7 +22,8 @@
                 
                 
                 <th>scn_id</th>
-                <th>scn_sps</th>
+                <th>sps_id</th>
+                <th>sps_code</th>
                 
                 <th>shk_id</th>
                 <th>shk_code</th>
@@ -55,7 +56,10 @@
                         <xsl:value-of select="@scn_id"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@scn_sps"/>
+                        <xsl:value-of select="@sps_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@sps_code"/>
                     </td>
 
                     
