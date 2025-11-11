@@ -41,11 +41,11 @@ function rpt_htm() {
     $db = new cls_db();
     $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
     $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
-    $rpt_typ = rpt_typ($rpt_id); //hack
-    $db->conn->multi_query("CALL sp_dsp_rpt{$rpt_typ}({$rpt_id},{$scn_id});");
+//    $rpt_typ = rpt_typ($rpt_id); //hack
+    $db->conn->multi_query("CALL sp_dsp_rpt1({$rpt_id},{$scn_id});");
     $xml = cls_xml::mul2dom($db->conn);
     header('Content-Type: text/html');
-    $xsl = cls_xml::file2dom("rpt/rpt{$rpt_typ}_htm.xsl");
+    $xsl = cls_xml::file2dom("rpt/rpt1_htm.xsl");
     echo cls_xml::xsltrans($xml, $xsl);
 }
 
@@ -53,8 +53,8 @@ function rpt_csv() {
     $db = new cls_db();
     $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
     $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
-    $rpt_typ = rpt_typ($rpt_id); //hack
-    $db->conn->multi_query("CALL sp_dsp_rpt{$rpt_typ}({$rpt_id},{$scn_id});");
+//    $rpt_typ = rpt_typ($rpt_id); //hack
+    $db->conn->multi_query("CALL sp_dsp_rpt1({$rpt_id},{$scn_id});");
     $xml = cls_xml::mul2dom($db->conn);
     $fname = sprintf("rpt%02d_scn%02d", $rpt_id, $scn_id);
     //header ('Content-Type: text/plain'); //display in browser
@@ -62,7 +62,7 @@ function rpt_csv() {
     header("Content-Disposition: attachment; filename={$fname}.csv");
     header("Pragma: no-cache");
     header("Expires: 0");
-    $xsl = cls_xml::file2dom("rpt/rpt{$rpt_typ}_csv.xsl");
+    $xsl = cls_xml::file2dom("rpt/rpt1_csv.xsl");
     echo cls_xml::xsltrans($xml, $xsl);
 }
 
@@ -70,8 +70,8 @@ function rpt_xml() {
     $db = new cls_db();
     $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
     $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
-    $rpt_typ = rpt_typ($rpt_id); //hack
-    $db->conn->multi_query("CALL sp_dsp_rpt{$rpt_typ}({$rpt_id},{$scn_id});");
+//    $rpt_typ = rpt_typ($rpt_id); //hack
+    $db->conn->multi_query("CALL sp_dsp_rpt1({$rpt_id},{$scn_id});");
     $xml = cls_xml::mul2dom($db->conn);
     header("Content-type: text/xml");
     echo $xml->saveXML();
@@ -83,12 +83,12 @@ function rpt_xls() {
     $rpt_id = filter_input(INPUT_GET, "rpt_id", FILTER_VALIDATE_INT);
     $scn_id = filter_input(INPUT_GET, "scn_id", FILTER_VALIDATE_INT);
     $rpt_typ = rpt_typ($rpt_id); //hack
-    $db->conn->multi_query("CALL sp_dsp_rpt{$rpt_typ}({$rpt_id},{$scn_id});");
+    $db->conn->multi_query("CALL sp_dsp_rpt1({$rpt_id},{$scn_id});");
     $xml = cls_xml::mul2dom($db->conn);
     $fname = sprintf("rpt%02d_scn%02d", $rpt_id, $scn_id);
     header('Content-Type: application/vnd.ms-excel');
     header("Content-Disposition: attachment; filename={$fname}.xls");
-    $xsl = cls_xml::file2dom("rpt/rpt{$rpt_typ}_xls.xsl");
+    $xsl = cls_xml::file2dom("rpt/rpt1_xls.xsl");
     echo cls_xml::xsltrans($xml, $xsl);
 }
 
