@@ -61,6 +61,11 @@
             </tr>
             <tr>
                 <td>
+                    <a href="prm.php?mth=lst">list</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <a href="prm.php?mth=pth">path</a>
                 </td>
             </tr>
@@ -74,7 +79,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="rpt.php?mth=upl">upload</a>
+                    <a href="rpt.php?mth=nav">upload</a>
                 </td>
             </tr>
             <tr>
@@ -87,14 +92,15 @@
             </tr>
             <tr>
                 <td>
-                    <a href="scn.php?mth=lst">scenario</a>
+                    <a href="shk.php?mth=lst">shock</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="shk.php?mth=lst">shock</a>
+                    <a href="scn.php?mth=lst">scenario</a>
                 </td>
             </tr>
+
             <tr>
                 <td>
                     <a href="ind.php?mth=scn">all</a>
@@ -110,7 +116,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="raw.php?mth=upl">upload</a>
+                    <a href="raw.php?mth=nav">upload</a>
                 </td>
             </tr>
             <tr>
@@ -118,11 +124,10 @@
             </tr>
             <tr>
                 <td>
-                    <a href="upl.php?mth=lst">history</a>
+                    <a href="upl.php?mth=hst">history</a>
                 </td>
             </tr>
 
-            
             <tr>
                 <th style="text-align:left">test</th>
             </tr>

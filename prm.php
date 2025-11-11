@@ -12,7 +12,7 @@ $func();
 
 function prm_lst() {
     $db = new cls_db();
-    $db->conn->multi_query("SELECT * FROM prm");
+    $db->conn->multi_query("SELECT * FROM prm ORDER BY path");
     $dom = cls_xml::mul2dom($db->conn, "prm/prm_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
@@ -36,20 +36,3 @@ function prm_pth() {
     echo $dom->saveXML();
 }
 
-function prm_tre() {
-    $db = new cls_db();
-    $db->conn->multi_query("SELECT * FROM prm ORDER BY path;");
-    $dom = cls_xml::mul2dom($db->conn, "prm/prm_tre.xsl");
-    header('Content-Type: text/xml');
-    echo $dom->saveXML();
-}
-
-function prm_hst() {
-    $db = new cls_db();
-    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $ts = filter_input(INPUT_GET, "ts", FILTER_SANITIZE_STRING);
-    $db->conn->multi_query("SELECT * FROM cub1 where prm_id = {$prm_id} AND ts = '{$ts}' ORDER BY prm_id,scn,yr;");
-    $dom = cls_xml::mul2dom($db->conn, "prm/prm_hst.xsl");
-    header('Content-Type: text/xml');
-    echo $dom->saveXML();
-}

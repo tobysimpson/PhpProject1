@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" 
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:output method="html" encoding="utf-8"/>
+    
+    <xsl:include href="../nav.xsl"/>
+    
+    <xsl:template match="/">
+        <xsl:call-template name="page"/> 
+    </xsl:template>
+    
+    
+
+
+    <xsl:template match="root">
+        <p>Please submit *.csv files in Latin1 encoding (not utf-8)</p>
+        <p>Please do not put commas in the text fields.</p>
+        <p>Scientific format with many decimals will preserve numerical precision.</p>        
+        <table>
+            <tr>
+                <th>Type 1</th>
+                <td>
+                    The standard format as downloaded above (bsm_stem, gem-e3, stem_expanse, stem_bsm etc.), with series on rows and years in column headings.
+                    <p/>
+                    
+                    <table class="table1">
+                        <tr>
+                            <th>prm_id</th>
+                            <th>scn_id</th>
+                            <th>path</th>
+                            <th>unit</th>
+                            <th>INT</th>
+                            <th>INT</th>
+                            <th>INT</th>
+                            <th>etc.</th>
+                        </tr> 
+                        <tr>
+                            <td>INT</td>
+                            <td>INT</td>
+                            <td>TXT</td>
+                            <td>TXT</td>
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
+                            <td>etc.</td>
+                        </tr>
+                    </table>
+                    <p/>
+                    Values for parameter (prm_id) and scenario (scn_id) should correspond with the values on the database.
+                    <p/>
+                    The values for path and unit are optional as they are not stored.
+                    <p/>
+                    <form action="upl.php?mth=rpt1" method="post" enctype="multipart/form-data">
+                        <input type="file" name="upfile"></input>
+                        <input type="submit" value="upload" name="submit"></input>
+                    </form>
+                </td>
+            </tr>
+        </table>
+  
+
+
+
+    </xsl:template>
+</xsl:stylesheet>

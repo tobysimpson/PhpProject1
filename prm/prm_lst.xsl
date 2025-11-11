@@ -13,8 +13,10 @@
     <xsl:template match="root/tbl[1]">
         <table class="table1">
             <tr>
-                <th>id</th>
+                <th>prm_id</th>
+                <th>pid</th>
                 <th>lvl</th>
+                <th>leaf</th>
                 <th>path</th>
              
             </tr>
@@ -29,10 +31,16 @@
     <xsl:template match="row">
         <tr>
             <td>
-                <xsl:value-of select="@id"/>
+                <xsl:value-of select="@prm_id"/>
+            </td>
+            <td>
+                <xsl:value-of select="@pid"/>
             </td>
             <td>
                 <xsl:value-of select="@lvl"/>
+            </td>
+            <td>
+                <xsl:value-of select="@leaf"/>
             </td>
             <td style="text-align:left">
                 <xsl:value-of select="@path"/>

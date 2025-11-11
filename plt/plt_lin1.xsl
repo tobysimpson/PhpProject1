@@ -129,7 +129,7 @@
                     <xsl:variable name="c" select="substring($cc,$i,1)"/>
                     <line x1="{$x}" x2="{$x + 20}" y1="0" y2="0" stroke-width="2" stroke="{concat('#6666',$c,$c)}"/>
                     <text x="{$x + 30}" y="0" text-anchor="left" alignment-baseline="middle">
-                        <xsl:value-of select="@scn_name"/>
+                        <xsl:value-of select="@scn_code"/>
                     </text>
                 </xsl:for-each>
             </g>

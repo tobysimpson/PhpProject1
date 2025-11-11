@@ -32,18 +32,12 @@
                 <td>INT</td>
                 <td>DOUBLE</td>
             </tr>
-            <tr>
-                <td>Parameter ID</td>
-                <td>Scenario ID - Integer for SPS1-4</td>
-                <td>Year - as an integer</td>
-                <td>Value - floating point decimal</td>
-            </tr>
         </table>
         
         <p/>
 
         
-        <form action="upl.php?mth=ins" method="post" enctype="multipart/form-data">
+        <form action="raw.php?mth=upl" method="post" enctype="multipart/form-data">
             <input type="file" name="upload_file" prm_id="fileToUpload"></input>
             <input type="submit" value="Upload" name="submit"></input>
         </form>

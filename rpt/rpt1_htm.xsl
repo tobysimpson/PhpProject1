@@ -50,10 +50,10 @@
                     <xsl:for-each select="@*[substring-before(name(.),'_') = 'col']">
                         <td style="text-align:right;">
                             <!--<xsl:value-of select="format-number(.,'#,##0.0000','test')"/>-->
-                            <!--<xsl:value-of select="."/>-->
-                            <xsl:call-template name="fmt">
+                            <xsl:value-of select="."/>
+<!--                            <xsl:call-template name="fmt">
                                 <xsl:with-param name="x" select="."/>
-                            </xsl:call-template>
+                            </xsl:call-template>-->
                         </td>
                     </xsl:for-each>
                 </tr>
