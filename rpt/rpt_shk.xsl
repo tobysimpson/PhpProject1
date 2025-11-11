@@ -64,7 +64,7 @@
                 <th>shk_code</th>
                 <th>shk_lvl</th>
                 <th>htm</th>
-                <th>download</th>
+                <th colspan="2">download</th>
             </tr>
             <xsl:for-each select="tbl[3]/row">
                 <tr>
@@ -98,6 +98,15 @@
                             <xsl:text>_scn</xsl:text>
                             <xsl:value-of select="format-number(@scn_id,'00')"/>
                             <xsl:text>.csv</xsl:text>
+                        </a>
+                    </td>
+                    <td style="text-align:left;">
+                        <a href="rpt.php?mth=xls&amp;rpt_id={$rpt/@rpt_id}&amp;scn_id={@scn_id}">
+                            <xsl:text>rpt</xsl:text>
+                            <xsl:value-of select="format-number($rpt/@rpt_id,'00')"/>
+                            <xsl:text>_scn</xsl:text>
+                            <xsl:value-of select="format-number(@scn_id,'00')"/>
+                            <xsl:text>.xls</xsl:text>
                         </a>
                     </td>
                     <!--                    <td>
