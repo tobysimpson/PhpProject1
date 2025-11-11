@@ -10,6 +10,7 @@ $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 $func = "raw_" . $mth;
 $func();
 
+
 function raw_lst() {
     $db = new cls_db();
     $db->conn->multi_query("SELECT * FROM rpt ORDER BY rpt_name; SELECT * FROM scn ORDER BY sps_id, shk_id, shk_lvl;");
@@ -50,7 +51,6 @@ function raw_csv() {
 
 function raw_nav() {
     $db = new cls_db();
-//    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
     $db->conn->multi_query("SELECT 1 as txt;");
     $dom = cls_xml::mul2dom($db->conn, "raw/raw_nav.xsl");
     header('Content-Type: text/xml');
@@ -82,11 +82,7 @@ function raw_upl() {
     print_r($files1);
 
         
-//    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.tbl_0001 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"';";
     $sql1 = "LOAD DATA INFILE '" . $dir.$name2 . "' INTO TABLE db2.cub1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
-//    $sql1 = "LOAD DATA INFILE '" . $dir.$name . "' INTO TABLE db2.cub1 CHARACTER SET UTF8 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
-
-    
     echo $sql1 . PHP_EOL;
 
     try {

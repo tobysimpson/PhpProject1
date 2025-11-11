@@ -93,6 +93,58 @@ function upl_rpt1() {
 }
 
 
+
+
+
+//premise
+function upl_prem1() {
+//    header('Content-Type: text/plain');
+//    echo 'upl_prem1' . PHP_EOL;
+//    echo 'post_max_size = ' . ini_get('post_max_size') . PHP_EOL;
+//    echo 'upload_max_filesize = ' . ini_get('upload_max_filesize') . PHP_EOL;
+    
+    $db = new cls_db();
+    print_r($_FILES);
+    $dir = "/var/lib/mysql-files/";
+    $name0 = $_FILES["upfile"]["name"];
+    $name1 = $_FILES["upfile"]["tmp_name"];
+    $name2 = $dir . basename($name1);
+    
+//    echo $name0 . PHP_EOL;
+//    echo $name1 . PHP_EOL;
+//    echo $name2 . PHP_EOL;
+    
+    $names = array($name0, $name1, $name2);
+
+    try {
+        move_uploaded_file($names[1], $names[2]);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+
+    $sql1 = "TRUNCATE TABLE db2.in_prem1";
+    $sql2 = "LOAD DATA INFILE '" . $names[2] . "' INTO TABLE db2.in_prem1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' IGNORE 1 LINES (sector,variable,year,region,model,scenario,impact,location,value,unit);";
+    $sql3 = "CALL db2.sp_ins_prem1()";
+
+    try {
+        $db->conn->query($sql1);
+        $db->conn->query($sql2);
+        $db->conn->query($sql3);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+    unlink($names[1]);
+    unlink($names[2]);
+
+    $files2 = scandir($dir);
+    print_r($files2);
+    header("Location: upl.php?mth=hst");
+}
+
+
+
 //stem_flex_grid
 function upl_flex1() {
     $db = new cls_db();
@@ -173,84 +225,3 @@ function upl_flex1() {
     header("Location: upl.php?mth=hst");
 }
 
-
-
-//premise
-function upl_prem1() {
-    $db = new cls_db();
-//    print_r($_FILES);
-    $dir = "/var/lib/mysql-files/";
-    $name0 = $_FILES["upfile"]["name"];
-    $name1 = $_FILES["upfile"]["tmp_name"];
-    $name2 = $dir . basename($name1);
-
-    $names = array($name0, $name1, $name2);
-
-    preg_match_all('/\d+/', $name0, $matches);
-//    print_r($matches);
-
-    [$rpt_id, $scn_id] = $matches[0];
-
-    //open
-    $file1 = fopen($names[1], "r");
-
-    //read
-    $head1 = fgetcsv($file1);
-    $head2 = fgetcsv($file1);
-    $head3 = fgetcsv($file1);
-
-    //parse
-    $data1 = [];
-    while (($row1 = fgetcsv($file1)) !== FALSE) {
-        $data1[] = $row1;
-    }
-
-    //close
-    fclose($file1);
-
-    //write
-    $m = count($head1);
-    $n = count($data1);
-
-    echo $m . PHP_EOL;
-    echo $n . PHP_EOL;
-
-    $file2 = fopen($names[1], "w");
-    for ($i = 0; $i < $n; $i++) {
-        for ($j = 3; $j < $m; $j++) {
-//            echo $i . ' ' . $j . PHP_EOL;
-            if (is_numeric($data1[$i][$j])) {
-                $row2 = array($rpt_id, $scn_id, $head1[$j], $data1[$i][0], $data1[$i][1], $data1[$i][2], $head2[$j], $head3[$j], $data1[$i][$j]);
-//                echo sprintf("%03d %03d",$i, $j) . ' ' . implode(',', $row2) . PHP_EOL;
-                fputcsv($file2, $row2);
-            }
-        }
-    }
-    fclose($file2);
-
-    try {
-        move_uploaded_file($names[1], $names[2]);
-    } catch (Exception $e) {
-        echo $e->getMessage() . PHP_EOL;
-    }
-
-
-    $sql1 = "TRUNCATE TABLE db2.in_flex1";
-    $sql2 = "LOAD DATA INFILE '" . $names[2] . "' INTO TABLE db2.in_flex1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (rpt_id,scn_id,yr,qtr,wkd,day,io,reg,u);";
-    $sql3 = "CALL db2.sp_flex1_ins()";
-
-    try {
-        $db->conn->query($sql1);
-        $db->conn->query($sql2);
-        $db->conn->query($sql3);
-    } catch (Exception $e) {
-        echo $e->getMessage() . PHP_EOL;
-    }
-
-    unlink($names[1]);
-    unlink($names[2]);
-
-//    $files2 = scandir($dir);
-//    print_r($files2);
-    header("Location: upl.php?mth=hst");
-}
