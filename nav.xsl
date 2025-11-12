@@ -79,7 +79,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="rpt.php?mth=nav">upload</a>
+                    <a href="upl.php?mth=nav">upload</a>
                 </td>
             </tr>
             <tr>

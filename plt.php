@@ -18,7 +18,8 @@ function plt_lin1() {
 //    $dom = cls_xml::mul2dom($db->conn, "plt/plt_lin1.xsl");
     switch ($fmt) {
         case 1:
-            header('Content-Type: image/svg+xml');
+            header('Content-Type: text/xml');
+//            header('Content-Type: image/svg+xml');
             $dom = cls_xml::mul2dom($db->conn, "plt/plt_lin1.xsl");
             echo $dom->saveXML();
             break;
@@ -42,4 +43,19 @@ function plt_lin1() {
             echo $dom->saveXML();
             break;
     }
+}
+
+
+function plt_lin2() {
+    $db = new cls_db();
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $scn_ids = filter_input(INPUT_GET, "scn_ids", FILTER_SANITIZE_STRING);
+    $db->conn->multi_query("CALL sp_plt_lin2({$prm_id},'{$scn_ids}');");
+
+    header('Content-Type: image/svg+xml');
+    $xml = cls_xml::mul2dom($db->conn);
+    $xsl = cls_xml::file2dom("plt/plt_lin1.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
+//    header('Content-Type: text/xml');
+//    echo $xml->saveXML();
 }

@@ -31,6 +31,7 @@
                 
                 <th>shk_lvl</th>
                 <th>shk_yr</th>
+                <th>prm_id</th>
             </tr>
             <xsl:for-each select="//root/tbl[1]/row">
                 <tr>
@@ -40,7 +41,7 @@
                     <td  style="text-align:left;">
                         <xsl:value-of select="@cat_name"/>
                     </td>
-                    
+
                     <td>
                         <xsl:value-of select="@ind_id"/>
                     </td>
@@ -78,6 +79,9 @@
                     </td>
                     <td>
                         <xsl:value-of select="@shk_yr"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@prm_id"/>
                     </td>
                 </tr>
             </xsl:for-each>

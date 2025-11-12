@@ -32,6 +32,14 @@ function upl_dsp() {
     echo $dom->saveXML();
 }
 
+function upl_nav() {
+    $db = new cls_db();
+    $db->conn->multi_query("SELECT 1 as txt;");
+    $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_nav.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
+
 
 //standard format
 function upl_rpt1() {

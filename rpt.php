@@ -93,14 +93,6 @@ function rpt_xls() {
 }
 
 
-function rpt_nav() {
-    $db = new cls_db();
-    $db->conn->multi_query("SELECT 1 as txt;");
-    $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_nav.xsl");
-    header('Content-Type: text/xml');
-    echo $dom->saveXML();
-}
-
 
 function rpt_typ($rpt_id) {
     $db = new cls_db();
