@@ -234,22 +234,18 @@ function upl_gem1() {
     $name1 = $_FILES["upfile"]["tmp_name"];
     $name2 = $dir . basename($name1);
 
-    $ff = explode("_", $name0, 3);
-//    print_r($ff);
-    echo $ff[0] . " " . $ff[1] . " " . $ff[2] . PHP_EOL;
-    
+   
     //open
     $file1 = fopen($name1, "r");
 
     $s = 1;
     $t = NULL;
-    $n = 0;
 
     //rows
     while (($row1 = fgetcsv($file1)) !== FALSE) {
         $m = count($row1);      //column count
         
-        if ($m > 1) {           //not gap
+        if ($m > 1) {           //not a gap
             if ($s == 1) {      //header
                 $t = $row1;     
                 $s = 0;
@@ -260,10 +256,10 @@ function upl_gem1() {
                 //columns
                 for ($i = 1; $i < $m; $i++)
                 {
-                    echo $m . ' ' . $s . ' ' . $i . ' ' .  $t[0] . ' ' . $row1[0] . ' ' .$t[$i] . ' ' .$row1[$i] . PHP_EOL;
+//                    echo $i;
+                    echo substr($name0, 0, 4) . ' ' . substr($name0, 5, 4) . ' ' .  $t[0] . ' / ' . $row1[0] . ' ' .$t[$i] . ' ' .$row1[$i] . PHP_EOL;
                 }
-                
-                $s = 0;
+                $s = 0; 
             }
         } else {
             $s = 1;     //gap
@@ -275,7 +271,7 @@ function upl_gem1() {
 
 //    unlink($name0);
 
-    echo "done" . PHP_EOL;
+//    echo "done" . PHP_EOL;
 
 //    header("Location: upl.php?mth=hst");
 }
