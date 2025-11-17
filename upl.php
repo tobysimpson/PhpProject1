@@ -234,44 +234,72 @@ function upl_gem1() {
     $name1 = $_FILES["upfile"]["tmp_name"];
     $name2 = $dir . basename($name1);
 
-   
+    $scn_code = substr($name0, 0, 9);
+
     //open
     $file1 = fopen($name1, "r");
 
     $s = 1;
     $t = NULL;
 
-    //rows
+    //read
+    $data = [];
     while (($row1 = fgetcsv($file1)) !== FALSE) {
         $m = count($row1);      //column count
-        
+
         if ($m > 1) {           //not a gap
             if ($s == 1) {      //header
-                $t = $row1;     
+                $t = $row1;
                 $s = 0;
             } else {            //data
-                
-//                echo $m . " " . $s . " " . $t[0] . " / " . $row1[0] . PHP_EOL;
-                
                 //columns
-                for ($i = 1; $i < $m; $i++)
-                {
-//                    echo $i;
-                    echo substr($name0, 0, 4) . ' ' . substr($name0, 5, 4) . ' ' .  $t[0] . ' / ' . $row1[0] . ' ' .$t[$i] . ' ' .$row1[$i] . PHP_EOL;
+                for ($i = 1; $i < 2; $i++) {
+//                    echo $scn_code . ' ' .  $t[0] . ' ' . $row1[0] . ' ' . $t[$i] . ' ' . $row1[$i] . PHP_EOL; //scn_code, prm_name, yr, u)
+                    $data[] = array($scn_code, $t[0], $row1[0], $t[$i], $row1[$i]); //scn, grp, prm, yr, u
                 }
-                $s = 0; 
+                $s = 0;
             }
         } else {
             $s = 1;     //gap
         }
     }
-
-    //close
     fclose($file1);
 
+    //write
+    $n = count($data);
+    $file2 = fopen($name1, "w");
+    for ($i = 0; $i < $n; $i++) {
+        fputcsv($file2, $data[$i]);
+    }
+    fclose($file2);
+
+    //move
+    try {
+        move_uploaded_file($name1, $name2);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+    //insert
+    $sql1 = "TRUNCATE TABLE db2.in_gem1";
+    $sql2 = "LOAD DATA INFILE '" . $name2 . "' INTO TABLE db2.in_gem1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (scn_code, grp_name, prm_name, yr, u);";
+//    $sql3 = "CALL db2.sp_gem1_ins()";
+
+    try {
+        $db->conn->query($sql1);
+        $db->conn->query($sql2);
+//        $db->conn->query($sql3);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+
+
+
+    //close
 //    unlink($name0);
 
-//    echo "done" . PHP_EOL;
+    echo "done" . PHP_EOL;
 
 //    header("Location: upl.php?mth=hst");
 }
