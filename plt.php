@@ -54,7 +54,7 @@ function plt_lin2() {
 
     header('Content-Type: image/svg+xml');
     $xml = cls_xml::mul2dom($db->conn);
-    $xsl = cls_xml::file2dom("plt/plt_lin1.xsl");
+    $xsl = cls_xml::file2dom("plt/plt_lin2.xsl");
     echo cls_xml::xsltrans($xml, $xsl);
 //    header('Content-Type: text/xml');
 //    echo $xml->saveXML();

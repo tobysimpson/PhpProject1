@@ -10,9 +10,8 @@ require_once "cls_xml.php";
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 
 //call
-$func = "upl_".$mth;
+$func = "upl_" . $mth;
 $func();
-
 
 function upl_hst() {
     $db = new cls_db();
@@ -35,11 +34,10 @@ function upl_dsp() {
 function upl_nav() {
     $db = new cls_db();
     $db->conn->multi_query("SELECT 1 as txt;");
-    $dom = cls_xml::mul2dom($db->conn, "rpt/rpt_nav.xsl");
+    $dom = cls_xml::mul2dom($db->conn, "upl/upl_nav.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
-
 
 //standard format
 function upl_rpt1() {
@@ -97,12 +95,8 @@ function upl_rpt1() {
     //clean
     unlink($names[2]);
 
-    header("Location: upl.php?mth=hst"); 
+    header("Location: upl.php?mth=hst");
 }
-
-
-
-
 
 //premise
 function upl_prem1() {
@@ -110,18 +104,18 @@ function upl_prem1() {
 //    echo 'upl_prem1' . PHP_EOL;
 //    echo 'post_max_size = ' . ini_get('post_max_size') . PHP_EOL;
 //    echo 'upload_max_filesize = ' . ini_get('upload_max_filesize') . PHP_EOL;
-    
+
     $db = new cls_db();
     print_r($_FILES);
     $dir = "/var/lib/mysql-files/";
     $name0 = $_FILES["upfile"]["name"];
     $name1 = $_FILES["upfile"]["tmp_name"];
     $name2 = $dir . basename($name1);
-    
+
 //    echo $name0 . PHP_EOL;
 //    echo $name1 . PHP_EOL;
 //    echo $name2 . PHP_EOL;
-    
+
     $names = array($name0, $name1, $name2);
 
     try {
@@ -150,8 +144,6 @@ function upl_prem1() {
     print_r($files2);
     header("Location: upl.php?mth=hst");
 }
-
-
 
 //stem_flex_grid
 function upl_flex1() {
@@ -233,3 +225,57 @@ function upl_flex1() {
     header("Location: upl.php?mth=hst");
 }
 
+//gem csv
+function upl_gem1() {
+    $db = new cls_db();
+//    print_r($_FILES);
+    $dir = "/var/lib/mysql-files/";
+    $name0 = $_FILES["upfile"]["name"];
+    $name1 = $_FILES["upfile"]["tmp_name"];
+    $name2 = $dir . basename($name1);
+
+    $ff = explode("_", $name0, 3);
+//    print_r($ff);
+    echo $ff[0] . " " . $ff[1] . " " . $ff[2] . PHP_EOL;
+    
+    //open
+    $file1 = fopen($name1, "r");
+
+    $s = 1;
+    $t = NULL;
+    $n = 0;
+
+    //rows
+    while (($row1 = fgetcsv($file1)) !== FALSE) {
+        $m = count($row1);      //column count
+        
+        if ($m > 1) {           //not gap
+            if ($s == 1) {      //header
+                $t = $row1;     
+                $s = 0;
+            } else {            //data
+                
+//                echo $m . " " . $s . " " . $t[0] . " / " . $row1[0] . PHP_EOL;
+                
+                //columns
+                for ($i = 1; $i < $m; $i++)
+                {
+                    echo $m . ' ' . $s . ' ' . $i . ' ' .  $t[0] . ' ' . $row1[0] . ' ' .$t[$i] . ' ' .$row1[$i] . PHP_EOL;
+                }
+                
+                $s = 0;
+            }
+        } else {
+            $s = 1;     //gap
+        }
+    }
+
+    //close
+    fclose($file1);
+
+//    unlink($name0);
+
+    echo "done" . PHP_EOL;
+
+//    header("Location: upl.php?mth=hst");
+}

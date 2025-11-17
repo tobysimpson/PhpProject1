@@ -98,7 +98,7 @@
                                 </xsl:choose>
                             </xsl:for-each>
                         </xsl:variable>
-                        <path fill="none" d="{$line1}" stroke-width="1" stroke="{concat('#6666',$c,$c)}"/>
+                        <path fill="none" d="{$line1}" stroke-width="2" stroke="{concat('#6666',$c,$c)}"/>
                     </xsl:for-each>
                 </g>
                 

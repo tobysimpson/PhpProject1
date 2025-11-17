@@ -8,7 +8,7 @@
     <xsl:variable name="h" select="550"/>
     
     <xsl:variable name="mw" select="30"/>
-    <xsl:variable name="mh" select="40"/>
+    <xsl:variable name="mh" select="50"/>
     
     <xsl:variable name="pw" select="680"/>
     <xsl:variable name="ph" select="450"/>
@@ -22,7 +22,7 @@
     <xsl:variable name="u_tic" select="root/tbl[5]/row/@u_tic" />
     
     <xsl:variable name="dash" select="5"/>
-    <xsl:variable name="cc" select="'FC9630'"/>
+    <xsl:variable name="cc" select="'#648fff#785ef0#dc267f#fe6100#ffb000'"/>
     
     
     <xsl:template name="fmt">
@@ -40,7 +40,7 @@
             <!--<rect width="{$w}" height="{$h}" x="0" y="0" stroke="#DDDDDD" fill="none" />-->
             
             <g id="title">
-                <text x="10" y="20" alignment-baseline="top">
+                <!--                <text x="10" y="20" alignment-baseline="top">
                     <xsl:value-of select="tbl[1]/row/@prm_id"/>
                     <xsl:text> - </xsl:text>
                     <xsl:value-of select="tbl[1]/row/@name"/>
@@ -49,7 +49,19 @@
                         <xsl:value-of select="tbl[1]/row/@unit"/>
                         <xsl:text>)</xsl:text> 
                     </xsl:if>
-                </text>
+                </text>-->
+                <foreignObject x="{$mw}" y="5" width="{$pw}" height="100">
+                    <p xmlns="http://www.w3.org/1999/xhtml">
+                        <xsl:value-of select="tbl[1]/row/@prm_id"/>
+                        <xsl:text> - </xsl:text>
+                        <xsl:value-of select="tbl[1]/row/@path"/>
+                        <xsl:if test="not(tbl[1]/row/@unit = '')">
+                            <xsl:text> (</xsl:text>
+                            <xsl:value-of select="tbl[1]/row/@unit"/>
+                            <xsl:text>)</xsl:text> 
+                        </xsl:if>
+                    </p>
+                </foreignObject>
             </g>
 
             <g id="plot" transform="translate({$mw},{$mh})">
@@ -73,10 +85,11 @@
                     </xsl:for-each>  
                 </g> 
                 
+
                 <g id="series">
                     <xsl:for-each select="tbl[2]/row">
                         <xsl:variable name="scn_id" select="@scn_id"/>
-                        <xsl:variable name="c" select="substring($cc,position(),1)"/>
+                        <xsl:variable name="c" select="substring($cc,(position()-1)*7 + 1,7)"/>
                         <xsl:variable name="line1">
                             <xsl:for-each select="//root/tbl[4]/row[@scn_id = $scn_id]">
                                 <xsl:variable name="i" select="position()"/>
@@ -98,37 +111,25 @@
                                 </xsl:choose>
                             </xsl:for-each>
                         </xsl:variable>
-                        <path fill="none" d="{$line1}" stroke-width="1" stroke="{concat('#6666',$c,$c)}"/>
-                    </xsl:for-each>
-                </g>
-                
-                <g id="series">
-                    <xsl:for-each select="tbl[2]/row">
-                        <xsl:variable name="scn_id" select="@scn_id"/>
-                        <xsl:variable name="c" select="substring($cc,position(),1)"/>
+                        <path fill="none" d="{$line1}" stroke-width="2" stroke="{$c}"/>
                         <g id="dots">
                             <xsl:for-each select="//root/tbl[4]/row[@scn_id = $scn_id]">
-                                <xsl:variable name="i" select="position()"/>
-                                <xsl:variable name="x" select="format-number($pw * (@yr - $t_min) div $t_rng,'0.00')"/>
-                                <xsl:variable name="y" select="format-number($ph * (1 - (@u - $u_min) div $u_rng),'0.00')"/>
-                                <circle cx="{$x}" cy="{$y}" r="2" stroke="{concat('#6666',$c,$c)}" fill="{concat('#6666',$c,$c)}"/>
-                                          
-                                <!--                                <text x="{$x}" y="{$y + 20}" text-anchor="middle" alignment-baseline="bottom">
-                                    <xsl:value-of select="format-number(@u,'0.000')"/>
-                                </text>-->
+                                <xsl:variable name="x" select="format-number($pw * (@yr - $t_min) div $t_rng,'0.000')"/>
+                                <xsl:variable name="y" select="format-number($ph * (1 - (@u - $u_min) div $u_rng),'0.000')"/>
+                                <circle cx="{$x}" cy="{$y}" r="3" stroke="{$c}" fill="{$c}"/>
                             </xsl:for-each>
                         </g>
                     </xsl:for-each>
                 </g>
             </g>
             
-            <g id="key" transform="translate({$mw + 100},{$mh + $ph + 45})">
+            <g id="key" transform="translate({$mw + 100},{$mh + $ph + 43})">
                 <xsl:for-each select="tbl[2]/row">
-                    <xsl:variable name="i" select="position()"/>
-                    <xsl:variable name="x" select="($i - 1) * 120"/>
-                    <xsl:variable name="c" select="substring($cc,$i,1)"/>
-                    <line x1="{$x}" x2="{$x + 20}" y1="0" y2="0" stroke-width="2" stroke="{concat('#6666',$c,$c)}"/>
-                    <text x="{$x + 30}" y="0" text-anchor="left" alignment-baseline="middle">
+                    <xsl:variable name="i" select="position()-1"/>
+                    <xsl:variable name="x" select="$i * 140"/>
+                    <xsl:variable name="c" select="substring($cc,($i*7) + 1,7)"/>
+                    <line x1="{$x}" x2="{$x + 20}" y1="-1" y2="-1" stroke-width="3" stroke="{$c}"/>
+                    <text x="{$x + 25}" y="0" text-anchor="left" alignment-baseline="middle">
                         <xsl:value-of select="@scn_code"/>
                     </text>
                 </xsl:for-each>

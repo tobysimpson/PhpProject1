@@ -96,6 +96,46 @@
                     </form>
                 </td>
             </tr>
+            <tr>
+                <th>Type 3</th>
+                <td>
+                    GEM-E3 model output.
+                    <p/>
+                 
+                    <table class="table1">
+                        <tr>
+                            <th>sector</th>
+                            <th>variable</th>
+                            <th>year</th>
+                            <th>region</th>
+                            <th>model</th>
+                            <th>scenario</th>
+                            <th>impact</th>
+                            <th>location</th>
+                            <th>value</th>
+                            <th>unit</th>
+                        </tr> 
+                        <tr>
+                            <td>VARCHAR</td>
+                            <td>VARCHAR</td>
+                            <td>INT</td>
+                            <td>VARCHAR</td>
+                            <td>VARCHAR</td>
+                            <td>VARCHAR</td>
+                            <td>VARCHAR</td>
+                            <td>VARCHAR</td>
+                            <td>DOUBLE</td>
+                            <td>VARCHAR</td>
+                        </tr>
+                    </table>
+                    <p/>
+
+                    <form action="upl.php?mth=gem1" method="post" enctype="multipart/form-data">
+                        <input type="file" name="upfile"></input>
+                        <input type="submit" value="upload" name="submit"></input>
+                    </form>
+                </td>
+            </tr>
         </table>
   
 

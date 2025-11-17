@@ -332,7 +332,7 @@
                         <xsl:value-of select="@prm_id"/>
                     </td>
                     <td>
-                        <a href="upl.php?mth=prm&amp;prm_id={@prm_id}&amp;ts={@ts}">
+                        <a href="upl.php?mth=dsp&amp;prm_id={@prm_id}&amp;ts={@ts}">
                             <xsl:value-of select="@ts"/>
                         </a>
                     </td>
