@@ -253,7 +253,7 @@ function upl_gem1() {
                 $s = 0;
             } else {            //data
                 //columns
-                for ($i = 1; $i < 2; $i++) {
+                for ($i = 1; $i < $m; $i++) {
 //                    echo $scn_code . ' ' .  $t[0] . ' ' . $row1[0] . ' ' . $t[$i] . ' ' . $row1[$i] . PHP_EOL; //scn_code, prm_name, yr, u)
                     $data[] = array($scn_code, $t[0], $row1[0], $t[$i], $row1[$i]); //scn, grp, prm, yr, u
                 }
@@ -283,17 +283,15 @@ function upl_gem1() {
     //insert
     $sql1 = "TRUNCATE TABLE db2.in_gem1";
     $sql2 = "LOAD DATA INFILE '" . $name2 . "' INTO TABLE db2.in_gem1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (scn_code, grp_name, prm_name, yr, u);";
-//    $sql3 = "CALL db2.sp_gem1_ins()";
+    $sql3 = "CALL db2.sp_ins_gem1()";
 
     try {
         $db->conn->query($sql1);
         $db->conn->query($sql2);
-//        $db->conn->query($sql3);
+        $db->conn->query($sql3);
     } catch (Exception $e) {
         echo $e->getMessage() . PHP_EOL;
     }
-
-
 
 
     //close
@@ -301,5 +299,5 @@ function upl_gem1() {
 
     echo "done" . PHP_EOL;
 
-//    header("Location: upl.php?mth=hst");
+    header("Location: upl.php?mth=hst");
 }

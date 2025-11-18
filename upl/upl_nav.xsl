@@ -99,37 +99,27 @@
             <tr>
                 <th>Type 3</th>
                 <td>
-                    GEM-E3 model output.
+                    GEM-E3 model output as report.
                     <p/>
                  
                     <table class="table1">
                         <tr>
-                            <th>sector</th>
-                            <th>variable</th>
-                            <th>year</th>
-                            <th>region</th>
-                            <th>model</th>
-                            <th>scenario</th>
-                            <th>impact</th>
-                            <th>location</th>
-                            <th>value</th>
-                            <th>unit</th>
+                            <th>text</th>
+                            <th>year/value</th>
+                            <th>etc.</th>
+
                         </tr> 
                         <tr>
                             <td>VARCHAR</td>
-                            <td>VARCHAR</td>
-                            <td>INT</td>
-                            <td>VARCHAR</td>
-                            <td>VARCHAR</td>
-                            <td>VARCHAR</td>
-                            <td>VARCHAR</td>
-                            <td>VARCHAR</td>
-                            <td>DOUBLE</td>
-                            <td>VARCHAR</td>
+                            <td>INT/DOUBLE</td>
+                            <td>INT/DOUBLE</td>
                         </tr>
                     </table>
                     <p/>
-
+                    The files should be *.csv named as per the scn_code values in the scenario tables: <a href="scn.php?mth=lst">here</a>.
+                    <p/>
+                    For example SPS1_bas0.csv, SPS3_hot3.csv, etc.
+                    <p/>
                     <form action="upl.php?mth=gem1" method="post" enctype="multipart/form-data">
                         <input type="file" name="upfile"></input>
                         <input type="submit" value="upload" name="submit"></input>
