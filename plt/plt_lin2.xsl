@@ -22,7 +22,7 @@
     <xsl:variable name="u_tic" select="root/tbl[5]/row/@u_tic" />
     
     <xsl:variable name="dash" select="5"/>
-    <xsl:variable name="cc" select="'#648fff#785ef0#dc267f#fe6100#ffb000'"/>
+    <xsl:variable name="cc" select="'#785ef0#648fff#dc267f#fe6100#ffb000'"/>
     
     
     <xsl:template name="fmt">
@@ -89,6 +89,7 @@
                 <g id="series">
                     <xsl:for-each select="tbl[2]/row">
                         <xsl:variable name="scn_id" select="@scn_id"/>
+                        <xsl:variable name="j" select="position()"/>
                         <xsl:variable name="c" select="substring($cc,(position()-1)*7 + 1,7)"/>
                         <xsl:variable name="line1">
                             <xsl:for-each select="//root/tbl[4]/row[@scn_id = $scn_id]">
@@ -116,7 +117,7 @@
                             <xsl:for-each select="//root/tbl[4]/row[@scn_id = $scn_id]">
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $t_min) div $t_rng,'0.000')"/>
                                 <xsl:variable name="y" select="format-number($ph * (1 - (@u - $u_min) div $u_rng),'0.000')"/>
-                                <circle cx="{$x}" cy="{$y}" r="3" stroke="{$c}" fill="{$c}"/>
+                                <circle cx="{$x}" cy="{$y}" r="{6 - $j}" stroke="{$c}" stroke-width="1" fill="none"/>
                             </xsl:for-each>
                         </g>
                     </xsl:for-each>
@@ -128,7 +129,8 @@
                     <xsl:variable name="i" select="position()-1"/>
                     <xsl:variable name="x" select="$i * 140"/>
                     <xsl:variable name="c" select="substring($cc,($i*7) + 1,7)"/>
-                    <line x1="{$x}" x2="{$x + 20}" y1="-1" y2="-1" stroke-width="3" stroke="{$c}"/>
+                    <line x1="{$x}" x2="{$x + 20}" y1="-1" y2="-1" stroke-width="2" stroke="{$c}"/>
+                    <circle cx="{$x+10}" cy="-1" r="{5 - $i}" stroke="{$c}" stroke-width="1" fill="none"/>
                     <text x="{$x + 25}" y="0" text-anchor="left" alignment-baseline="middle">
                         <xsl:value-of select="@scn_code"/>
                     </text>
