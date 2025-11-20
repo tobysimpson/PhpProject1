@@ -1,7 +1,7 @@
 <?php
 
-//for upload?
-//header('Content-Type: text/html; charset=utf-8');
+//folder permissions
+//chmod 777 /var/lib/mysql-files
 
 require_once "cls_db.php";
 require_once "cls_xml.php";
@@ -108,25 +108,38 @@ function upl_prem1() {
     $db = new cls_db();
     print_r($_FILES);
     $dir = "/var/lib/mysql-files/";
-    $name0 = $_FILES["upfile"]["name"];
+//    $name0 = $_FILES["upfile"]["name"];
     $name1 = $_FILES["upfile"]["tmp_name"];
     $name2 = $dir . basename($name1);
 
-//    echo $name0 . PHP_EOL;
-//    echo $name1 . PHP_EOL;
-//    echo $name2 . PHP_EOL;
+    //read
+    $file1 = fopen($name1, "r");
+    $data = [];
+    while (($row1 = fgetcsv($file1)) !== FALSE) {
+        if (count($row1) > 1) {           //avoid double line break
+            $data[] = $row1;
+        }
+    }
+    fclose($file1);
+    
+    //write
+    $n = count($data);
+    $file2 = fopen($name1, "w");
+    for ($i = 0; $i < $n; $i++) {
+        fputcsv($file2, $data[$i]);
+    }
+    fclose($file2);
 
-    $names = array($name0, $name1, $name2);
 
     try {
-        move_uploaded_file($names[1], $names[2]);
+        move_uploaded_file($name1, $name2);
     } catch (Exception $e) {
         echo $e->getMessage() . PHP_EOL;
     }
 
 
     $sql1 = "TRUNCATE TABLE db2.in_prem1";
-    $sql2 = "LOAD DATA INFILE '" . $names[2] . "' INTO TABLE db2.in_prem1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' IGNORE 1 LINES (sector,variable,year,region,model,scenario,impact,location,value,unit);";
+    $sql2 = "LOAD DATA INFILE '" . $name2 . "' INTO TABLE db2.in_prem1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' IGNORE 1 LINES (sector,variable,year,region,model,scenario,impact,location,value,unit);";
     $sql3 = "CALL db2.sp_ins_prem1()";
 
     try {
@@ -137,11 +150,87 @@ function upl_prem1() {
         echo $e->getMessage() . PHP_EOL;
     }
 
-    unlink($names[1]);
-    unlink($names[2]);
+    unlink($name2);
 
-    $files2 = scandir($dir);
-    print_r($files2);
+//    $files2 = scandir($dir);
+//    print_r($files2);
+    header("Location: upl.php?mth=hst");
+}
+
+//gem csv
+function upl_gem1() {
+    $db = new cls_db();
+//    print_r($_FILES);
+    $dir = "/var/lib/mysql-files/";
+    $name0 = $_FILES["upfile"]["name"];
+    $name1 = $_FILES["upfile"]["tmp_name"];
+    $name2 = $dir . basename($name1);
+
+    $scn_code = substr($name0, 0, 9);
+
+    //open
+    $file1 = fopen($name1, "r");
+
+    $s = 1;
+    $t = NULL;
+
+    //read
+    $data = [];
+    while (($row1 = fgetcsv($file1)) !== FALSE) {
+        $m = count($row1);      //column count
+
+        if ($m > 1) {           //not a gap
+            if ($s == 1) {      //header
+                $t = $row1;
+                $s = 0;
+            } else {            //data
+                //columns
+                for ($i = 1; $i < $m; $i++) {
+//                    echo $scn_code . ' ' .  $t[0] . ' ' . $row1[0] . ' ' . $t[$i] . ' ' . $row1[$i] . PHP_EOL; //scn_code, prm_name, yr, u)
+                    $data[] = array($scn_code, $t[0], $row1[0], $t[$i], $row1[$i]); //scn, grp, prm, yr, u
+                }
+                $s = 0;
+            }
+        } else {
+            $s = 1;     //gap
+        }
+    }
+    fclose($file1);
+
+    //write
+    $n = count($data);
+    $file2 = fopen($name1, "w");
+    for ($i = 0; $i < $n; $i++) {
+        fputcsv($file2, $data[$i]);
+    }
+    fclose($file2);
+
+    //move
+    try {
+        move_uploaded_file($name1, $name2);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+    //insert
+    $sql1 = "TRUNCATE TABLE db2.in_gem1";
+    $sql2 = "LOAD DATA INFILE '" . $name2 . "' INTO TABLE db2.in_gem1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (scn_code, grp_name, prm_name, yr, u);";
+    $sql3 = "CALL db2.sp_ins_gem1()";
+
+    try {
+        $db->conn->query($sql1);
+        $db->conn->query($sql2);
+        $db->conn->query($sql3);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+
+    //delete
+    unlink($name2);
+
+    echo "done" . PHP_EOL;
+
     header("Location: upl.php?mth=hst");
 }
 
@@ -222,82 +311,5 @@ function upl_flex1() {
 
 //    $files2 = scandir($dir);
 //    print_r($files2);
-    header("Location: upl.php?mth=hst");
-}
-
-//gem csv
-function upl_gem1() {
-    $db = new cls_db();
-//    print_r($_FILES);
-    $dir = "/var/lib/mysql-files/";
-    $name0 = $_FILES["upfile"]["name"];
-    $name1 = $_FILES["upfile"]["tmp_name"];
-    $name2 = $dir . basename($name1);
-
-    $scn_code = substr($name0, 0, 9);
-
-    //open
-    $file1 = fopen($name1, "r");
-
-    $s = 1;
-    $t = NULL;
-
-    //read
-    $data = [];
-    while (($row1 = fgetcsv($file1)) !== FALSE) {
-        $m = count($row1);      //column count
-
-        if ($m > 1) {           //not a gap
-            if ($s == 1) {      //header
-                $t = $row1;
-                $s = 0;
-            } else {            //data
-                //columns
-                for ($i = 1; $i < $m; $i++) {
-//                    echo $scn_code . ' ' .  $t[0] . ' ' . $row1[0] . ' ' . $t[$i] . ' ' . $row1[$i] . PHP_EOL; //scn_code, prm_name, yr, u)
-                    $data[] = array($scn_code, $t[0], $row1[0], $t[$i], $row1[$i]); //scn, grp, prm, yr, u
-                }
-                $s = 0;
-            }
-        } else {
-            $s = 1;     //gap
-        }
-    }
-    fclose($file1);
-
-    //write
-    $n = count($data);
-    $file2 = fopen($name1, "w");
-    for ($i = 0; $i < $n; $i++) {
-        fputcsv($file2, $data[$i]);
-    }
-    fclose($file2);
-
-    //move
-    try {
-        move_uploaded_file($name1, $name2);
-    } catch (Exception $e) {
-        echo $e->getMessage() . PHP_EOL;
-    }
-
-    //insert
-    $sql1 = "TRUNCATE TABLE db2.in_gem1";
-    $sql2 = "LOAD DATA INFILE '" . $name2 . "' INTO TABLE db2.in_gem1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (scn_code, grp_name, prm_name, yr, u);";
-    $sql3 = "CALL db2.sp_ins_gem1()";
-
-    try {
-        $db->conn->query($sql1);
-        $db->conn->query($sql2);
-        $db->conn->query($sql3);
-    } catch (Exception $e) {
-        echo $e->getMessage() . PHP_EOL;
-    }
-
-
-    //close
-//    unlink($name0);
-
-    echo "done" . PHP_EOL;
-
     header("Location: upl.php?mth=hst");
 }
