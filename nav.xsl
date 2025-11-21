@@ -92,6 +92,11 @@
             </tr>
             <tr>
                 <td>
+                    <a href="scn.php?mth=sps">pathway</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <a href="shk.php?mth=lst">shock</a>
                 </td>
             </tr>
