@@ -95,6 +95,7 @@
                 <th>prm_name</th>
                 <th>lvl</th>
                 <th>leaf</th>
+                <th>calc</th>
                 <th>unit</th>
                 <th>path</th>
             </tr>
@@ -111,6 +112,9 @@
                     </td>
                     <td>
                         <xsl:value-of select="@leaf"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@calc"/>
                     </td>
                     <td>
                         <xsl:value-of select="@unit"/>
