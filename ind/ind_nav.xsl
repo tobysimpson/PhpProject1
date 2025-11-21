@@ -13,32 +13,30 @@
     <xsl:template match="root">
         <table class="table1">
             <tr>
-                <th>ind_id</th>
-                <th>ind_grp</th>
-                <th>ind_code</th>
-                <th>ind_name</th>
-                <th>ind_unit</th>
-                <th>prm_id</th>
+                <th>yr</th>
+                <th>htm</th>
+                <th>csv</th>
+                <th>xls</th>
             </tr>
             <xsl:for-each select="//root/tbl[1]/row">
                 <tr>
                     <td>
-                        <xsl:value-of select="@ind_id"/>
+                        <xsl:value-of select="@yr"/>
                     </td>
                     <td style="text-align:left;">
-                        <xsl:value-of select="@ind_grp"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@ind_code"/>
-                    </td>
-                    <td style="text-align:left;">
-                        <xsl:value-of select="@ind_name"/>
+                        <a href="ind.php?mth=htm&amp;yr={@yr}">
+                            <xsl:value-of select="@yr"/>
+                        </a>
                     </td>
                     <td style="text-align:left;">
-                        <xsl:value-of select="@ind_unit"/>
+                        <a href="ind.php?mth=csv&amp;yr={@yr}">
+                            <xsl:value-of select="@yr"/>
+                        </a>
                     </td>
-                    <td>
-                        <xsl:value-of select="@prm_id"/>
+                    <td style="text-align:left;">
+                        <a href="ind.php?mth=xls&amp;yr={@yr}">
+                            <xsl:value-of select="@yr"/>
+                        </a>
                     </td>
                 </tr>
             </xsl:for-each>

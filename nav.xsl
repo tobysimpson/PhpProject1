@@ -87,11 +87,6 @@
             </tr> 
             <tr>
                 <td>
-                    <a href="ind.php?mth=lst">indicator</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <a href="scn.php?mth=sps">pathway</a>
                 </td>
             </tr>
@@ -105,10 +100,19 @@
                     <a href="scn.php?mth=lst">scenario</a>
                 </td>
             </tr>
-
             <tr>
                 <td>
-                    <a href="ind.php?mth=scn">all</a>
+                    <a href="ind.php?mth=lst">indicator</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="ind.php?mth=scn">indicator/scenario</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="ind.php?mth=nav">report</a>
                 </td>
             </tr>
             <tr>
