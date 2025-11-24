@@ -94,6 +94,6 @@ function ind_csv2() {
     header("Content-Disposition: attachment; filename={$fname}.csv");
     header("Pragma: no-cache");
     header("Expires: 0");
-    $xsl = cls_xml::file2dom("ind/ind1_csv.xsl");
+    $xsl = cls_xml::file2dom("ind/ind_csv2.xsl");
     echo cls_xml::xsltrans($xml, $xsl);
 }
