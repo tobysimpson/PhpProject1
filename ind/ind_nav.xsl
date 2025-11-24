@@ -26,12 +26,12 @@
                         <xsl:value-of select="@yr"/>
                     </td>
                     <td style="text-align:left;">
-                        <a href="ind.php?mth=htm&amp;yr={@yr}">
+                        <a href="ind.php?mth=htm1&amp;yr={@yr}">
                             <xsl:value-of select="@yr"/>
                         </a>
                     </td>
                     <td style="text-align:left;">
-                        <a href="ind.php?mth=csv&amp;yr={@yr}">
+                        <a href="ind.php?mth=csv1&amp;yr={@yr}">
                             <xsl:value-of select="@yr"/>
                         </a>
                     </td>
@@ -51,13 +51,10 @@
                 <th>htm</th>
                 <th>csv</th>
             </tr>
-            
             <xsl:for-each select="//root/tbl[2]/row">
                 <xsl:variable name="shk" select="."/>
                 <xsl:for-each select="//root/tbl[1]/row">
-                    
                     <tr>
-
                         <td>
                             <xsl:value-of select="$shk/@shk_id"/>
                         </td>
