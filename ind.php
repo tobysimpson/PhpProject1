@@ -28,7 +28,7 @@ function ind_scn() {
 
 function ind_nav() {
     $db = new cls_db();
-    $db->conn->multi_query("SELECT yr FROM ind_yr ORDER BY yr;");
+    $db->conn->multi_query("SELECT yr FROM ind_yr ORDER BY yr;select distinct shk_id, shk_code, shk_lvl from scn order by shk_id, shk_lvl;");
     $dom = cls_xml::mul2dom($db->conn, "ind/ind_nav.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
@@ -67,5 +67,35 @@ function ind_xls() {
     header('Content-Type: application/vnd.ms-excel');
     header("Content-Disposition: attachment; filename={$fname}.xls");
     $xsl = cls_xml::file2dom("ind/ind1_xls.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
+}
+
+
+
+function ind_htm2() {
+    $db = new cls_db();
+    $yr = filter_input(INPUT_GET, "yr", FILTER_VALIDATE_INT);
+    $shk_id = filter_input(INPUT_GET, "shk_id", FILTER_VALIDATE_INT);
+    $shk_lvl = filter_input(INPUT_GET, "shk_lvl", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_ind_rpt2({$yr},{$shk_id},{$shk_lvl});");
+    $dom = cls_xml::mul2dom($db->conn, "ind/ind_htm2.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
+
+function ind_csv2() {
+    $db = new cls_db();
+    $yr = filter_input(INPUT_GET, "yr", FILTER_VALIDATE_INT);
+    $shk_id = filter_input(INPUT_GET, "shk_id", FILTER_VALIDATE_INT);
+    $shk_lvl = filter_input(INPUT_GET, "shk_lvl", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_ind_rpt2({$yr},{$shk_id},{$shk_lvl});");
+    $xml = cls_xml::mul2dom($db->conn);
+    $fname = sprintf("shk%d_lvl%d_%4d", $shk_id, $shk_lvl, $yr);
+//    header ('Content-Type: text/plain'); //display in browser
+    header("Content-type: text/csv");
+    header("Content-Disposition: attachment; filename={$fname}.csv");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+    $xsl = cls_xml::file2dom("ind/ind1_csv.xsl");
     echo cls_xml::xsltrans($xml, $xsl);
 }
