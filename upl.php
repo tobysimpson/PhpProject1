@@ -121,7 +121,7 @@ function upl_prem1() {
         }
     }
     fclose($file1);
-    
+
     //write
     $n = count($data);
     $file2 = fopen($name1, "w");
@@ -129,7 +129,6 @@ function upl_prem1() {
         fputcsv($file2, $data[$i]);
     }
     fclose($file2);
-
 
     try {
         move_uploaded_file($name1, $name2);
@@ -234,8 +233,64 @@ function upl_gem1() {
     header("Location: upl.php?mth=hst");
 }
 
-//stem_flex_grid
+//flexeco
 function upl_flex1() {
+    $db = new cls_db();
+//    print_r($_FILES);
+    $dir = "/var/lib/mysql-files/";
+//    $name0 = $_FILES["upfile"]["name"];
+    $name1 = $_FILES["upfile"]["tmp_name"];
+    $name2 = $dir . basename($name1);
+
+    //read
+    $file1 = fopen($name1, "r");
+    $data = [];
+    while (($row1 = fgetcsv($file1)) !== FALSE) {
+        $data[] = $row1;
+    }
+    fclose($file1);
+    
+//    print_r($data);
+
+    //write
+    $n = count($data);
+    $file2 = fopen($name1, "w");
+    for ($i = 1; $i < $n; $i++) {
+//        print_r($data[$i]);
+//        print_r(array($data[$i][0],$data[$i][1],$data[$i][2],$data[$i][3],$data[$i][4],$data[$i][5],19982,$data[$i][6]));
+        fputcsv($file2, array($data[$i][0],$data[$i][1],$data[$i][2],$data[$i][3],$data[$i][4],$data[$i][5],19982,$data[$i][6]));
+        fputcsv($file2, array($data[$i][0],$data[$i][1],$data[$i][2],$data[$i][3],$data[$i][4],$data[$i][5],19983,$data[$i][7]));
+    }
+    fclose($file2);
+
+    try {
+        move_uploaded_file($name1, $name2);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+
+    $sql1 = "TRUNCATE TABLE db2.in_flex1";
+    $sql2 = "LOAD DATA INFILE '" . $name2 . "' INTO TABLE db2.in_flex1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (scn_key,pathway,shock,intensity,model,year,prm_id,u);";
+    $sql3 = "CALL db2.sp_ins_flex1()";
+
+    try {
+        $db->conn->query($sql1);
+        $db->conn->query($sql2);
+        $db->conn->query($sql3);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+    unlink($name2);
+//
+//    $files2 = scandir($dir);
+//    print_r($files2);
+//    header("Location: upl.php?mth=hst");
+}
+
+//stem_grid - renamed will need de-bugging
+function upl_stem2() {
     $db = new cls_db();
 //    print_r($_FILES);
     $dir = "/var/lib/mysql-files/";
@@ -296,7 +351,7 @@ function upl_flex1() {
 
     $sql1 = "TRUNCATE TABLE db2.in_flex1";
     $sql2 = "LOAD DATA INFILE '" . $names[2] . "' INTO TABLE db2.in_flex1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (rpt_id,scn_id,yr,qtr,wkd,day,io,reg,u);";
-    $sql3 = "CALL db2.sp_flex1_ins()";
+    $sql3 = "CALL db2.sp_ins_stem2()";
 
     try {
         $db->conn->query($sql1);
