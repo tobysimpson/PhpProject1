@@ -162,6 +162,39 @@
                     </form>
                 </td>
             </tr>
+            
+            
+            <tr>
+                <th>cli1</th>
+                <td>
+                    STEM cli1 test.
+                    <p/>
+                 
+                    <table class="table1">
+                        <tr>
+                            <th>txt1</th>
+                            <th>txt2</th>
+                            <th>yr_2020</th>
+                           
+                        </tr> 
+                        <tr>
+                            <td>VARCHAR</td>
+                            <td>VARCHAR</td>
+                            <td>DOUBLE</td>
+
+                        </tr>
+                    </table>
+                    <p/>
+                    <p>Please submit *.csv file in Latin1 encoding (not utf-8)</p>
+                    <p/>
+                    <form action="upl.php?mth=cli1" method="post" enctype="multipart/form-data">
+                        <input type="file" name="upfile"></input>
+                        <input type="submit" value="upload" name="submit"></input>
+                    </form>
+                </td>
+            </tr>
+            
+            
         </table>
   
 

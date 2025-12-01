@@ -368,3 +368,52 @@ function upl_stem2() {
 //    print_r($files2);
     header("Location: upl.php?mth=hst");
 }
+
+
+
+//premise
+function upl_cli1() {
+//    header('Content-Type: text/plain');
+//    echo 'upl_prem1' . PHP_EOL;
+//    echo 'post_max_size = ' . ini_get('post_max_size') . PHP_EOL;
+//    echo 'upload_max_filesize = ' . ini_get('upload_max_filesize') . PHP_EOL;
+
+    $db = new cls_db();
+    print_r($_FILES);
+    $dir = "/var/lib/mysql-files/";
+//    $name0 = $_FILES["upfile"]["name"];
+    $name1 = $_FILES["upfile"]["tmp_name"];
+    $name2 = $dir . basename($name1);
+
+
+    try {
+        move_uploaded_file($name1, $name2);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+
+    $sql1 = "TRUNCATE TABLE db2.in_cli1";
+    $sql2 = "LOAD DATA INFILE '" . $name2 . "' INTO TABLE db2.in_cli1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (txt1, txt2, @yr_2020, @yr_2022, @yr_2025, @yr_2030, @yr_2040, @yr_2050) SET "; 
+    $sql2 .= "yr_2020 = IF(LENGTH(@yr_2020)>0, @yr_2020, NULL),";
+    $sql2 .= "yr_2022 = IF(LENGTH(@yr_2022)>0, @yr_2022, NULL),";
+    $sql2 .= "yr_2025 = IF(LENGTH(@yr_2025)>0, @yr_2025, NULL),";
+    $sql2 .= "yr_2030 = IF(LENGTH(@yr_2030)>0, @yr_2030, NULL),";
+    $sql2 .= "yr_2040 = IF(LENGTH(@yr_2040)>0, @yr_2040, NULL),";
+    $sql2 .= "yr_2050 = IF(LENGTH(@yr_2050)>0, @yr_2050, NULL);";
+
+//    $sql3 = "CALL db2.sp_ins_cli1()";
+
+    try {
+        $db->conn->query($sql1);
+        $db->conn->query($sql2);
+//        $db->conn->query($sql3);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+    unlink($name1);
+    unlink($name2);
+
+//    header("Location: upl.php?mth=hst");
+}
