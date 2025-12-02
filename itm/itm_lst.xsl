@@ -11,6 +11,8 @@
     
 
     <xsl:template match="root/tbl[1]">
+        
+        
         <table class="table1">
             <tr>
                 <th>itm_id</th>
@@ -19,6 +21,7 @@
                 <th>itm_name</th>
                 <th>itm_val1</th>
                 <th>itm_val2</th>
+                <th>itm_val3</th>
                 <th colspan="2"/>
             </tr>
             <xsl:apply-templates select="row"/>
@@ -34,7 +37,7 @@
         
         <p/>
         
-<!--        <form action="itm.php?mth=upl" method="post" enctype="multipart/form-data">
+        <!--        <form action="itm.php?mth=upl" method="post" enctype="multipart/form-data">
             <input type="file" name="upfile" id="upfile"></input>
             <input type="submit" value="Upload" name="submit"></input>
         </form>-->
@@ -62,6 +65,9 @@
             </td>
             <td style="text-align:right">
                 <xsl:value-of select="@itm_val2"/>
+            </td>
+            <td style="text-align:right">
+                <xsl:value-of select="@itm_val3"/>
             </td>
             <td>
                 <a href="itm.php?mth=edt&amp;itm_id={@itm_id}">edit</a>
