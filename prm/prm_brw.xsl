@@ -259,7 +259,7 @@
                             <td>
                                 <xsl:value-of select="$scn_id"/>
                             </td>
-                            <td>
+                            <td style="text-align:left;">
                                 <xsl:value-of select="$scn_code"/>
                             </td>
                             <xsl:for-each select="//root/tbl[4]/row[generate-id() = generate-id(key('yr',@yr)[1])]">

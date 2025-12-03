@@ -163,6 +163,35 @@
                 </td>
             </tr>
             
+            <tr>
+                <th>stem1</th>
+                <td>
+                    stem1
+                    <p/>
+                 
+                    <table class="table1">
+                        <tr>
+                            <th>txt1</th>
+                            <th>yr_2020</th>
+                        </tr> 
+                        <tr>
+                            <td>VARCHAR</td>
+                            <td>DOUBLE</td>
+
+
+                        </tr>
+                    </table>
+                    <p/>
+                    <p>Please submit *.csv file in Latin1 encoding (not utf-8)</p>
+                    <p/>
+                    <form action="upl.php?mth=stem1" method="post" enctype="multipart/form-data">
+                        <input type="file" name="upfile"></input>
+                        <input type="submit" value="upload" name="submit"></input>
+                    </form>
+                </td>
+            </tr>
+           
+            
             
             <tr>
                 <th>cli1</th>
@@ -175,11 +204,21 @@
                             <th>txt1</th>
                             <th>txt2</th>
                             <th>yr_2020</th>
+                            <th>yr_2022</th>
+                            <th>yr_2025</th>
+                            <th>yr_2030</th>
+                            <th>yr_2040</th>
+                            <th>yr_2050</th>
                            
                         </tr> 
                         <tr>
                             <td>VARCHAR</td>
                             <td>VARCHAR</td>
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
                             <td>DOUBLE</td>
 
                         </tr>
@@ -196,9 +235,5 @@
             
             
         </table>
-  
-
-
-
     </xsl:template>
 </xsl:stylesheet>

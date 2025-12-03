@@ -109,7 +109,7 @@
                             <xsl:text>.xls</xsl:text>
                         </a>
                     </td>
-                    <!--                    <td>
+<!--                    <td>
                         <a href="rpt.php?mth=xml&amp;rpt_id={$rpt/@rpt_id}&amp;scn_id={@scn_id}">xml</a>
                     </td>-->
                 </tr>

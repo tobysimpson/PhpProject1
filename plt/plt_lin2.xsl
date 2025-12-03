@@ -28,7 +28,7 @@
     <xsl:template name="fmt">
         <xsl:param name="x"/>
         <xsl:if test="number($x) = number($x)">
-            <xsl:value-of select="php:function('sprintf','%6.3e', number($x))"/>
+            <xsl:value-of select="php:function('sprintf','%6.3E', number($x))"/>
         </xsl:if>
     </xsl:template>
     
