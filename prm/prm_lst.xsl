@@ -18,7 +18,7 @@
                 <th>lvl</th>
                 <th>leaf</th>
                 <th>path</th>
-             
+                <th>unit</th>
             </tr>
             <xsl:apply-templates select="row"/>
 
@@ -45,7 +45,9 @@
             <td style="text-align:left">
                 <xsl:value-of select="@path"/>
             </td>
-
+            <td>
+                <xsl:value-of select="@unit"/>
+            </td>
         </tr>
     </xsl:template>
     

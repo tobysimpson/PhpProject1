@@ -112,7 +112,7 @@
                                 </xsl:choose>
                             </xsl:for-each>
                         </xsl:variable>
-                        <path fill="none" d="{$line1}" stroke-width="2" stroke="{$c}"/>
+                        <path fill="none" d="{$line1}" stroke-width="1" stroke="{$c}" stroke-linecap="round" stroke-linejoin="round"/>
                         <g id="dots">
                             <xsl:for-each select="//root/tbl[4]/row[@scn_id = $scn_id]">
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $t_min) div $t_rng,'0.000')"/>
@@ -129,7 +129,7 @@
                     <xsl:variable name="i" select="position()-1"/>
                     <xsl:variable name="x" select="$i * 140"/>
                     <xsl:variable name="c" select="substring($cc,($i*7) + 1,7)"/>
-                    <line x1="{$x}" x2="{$x + 20}" y1="-1" y2="-1" stroke-width="2" stroke="{$c}"/>
+                    <line x1="{$x}" x2="{$x + 20}" y1="-1" y2="-1" stroke-width="1" stroke="{$c}" stroke-linecap="round"/>
                     <circle cx="{$x+10}" cy="-1" r="{5 - $i}" stroke="{$c}" stroke-width="1" fill="none"/>
                     <text x="{$x + 25}" y="0" text-anchor="left" alignment-baseline="middle">
                         <xsl:value-of select="@scn_code"/>

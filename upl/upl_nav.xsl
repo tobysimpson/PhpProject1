@@ -171,14 +171,30 @@
                  
                     <table class="table1">
                         <tr>
-                            <th>txt1</th>
-                            <th>yr_2020</th>
+                            <th>model</th>
+                            <th>scenario</th>
+                            <th>region</th>
+                            <th>variable</th>
+                            <th>unit</th>
+                            <th>2020</th>
+                            <th>2022</th>
+                            <th>2025</th>
+                            <th>2030</th>
+                            <th>2040</th>
+                            <th>2050</th>
                         </tr> 
                         <tr>
                             <td>VARCHAR</td>
+                            <td>VARCHAR</td>
+                            <td>VARCHAR</td>
+                            <td>VARCHAR</td>
+                            <td>VARCHAR</td>
                             <td>DOUBLE</td>
-
-
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
                         </tr>
                     </table>
                     <p/>

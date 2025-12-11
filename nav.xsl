@@ -116,6 +116,11 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <a href="mc.php?mth=test1&amp;mc_id=1">test1</a>
+                </td>
+            </tr>
+            <tr>
                 <th style="text-align:left">raw data</th>
             </tr>
             <tr>
