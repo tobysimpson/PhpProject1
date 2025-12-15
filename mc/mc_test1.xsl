@@ -116,7 +116,7 @@
                 </tr>
             </xsl:for-each>
         </table>
-<!--        <p class="h1">preference</p>
+        <p class="h1">preference</p>
         <table class="table1">
             <tr>
                 <th>mcg_id</th>
@@ -142,13 +142,18 @@
                         <xsl:for-each select="//root/tbl[3]/row">
                             <xsl:variable name="mca2" select="."/>
                             <td>
-                                <xsl:value-of select="//root/tbl[5]/row[@mcg_id = $mcg/@mcg_id and @mca_id1 = $mca1/@mca_id and @mca_id2 = $mca2/@mca_id]/@p1"/>
+                                <xsl:if test="not($mca1/@mca_id = $mca2/@mca_id)">
+                                    <xsl:variable name="p" select="//root/tbl[5]/row[@mcg_id = $mcg/@mcg_id and @mca_id1 = $mca1/@mca_id and @mca_id2 = $mca2/@mca_id]"/>
+                                    <xsl:value-of select="format-number($p/@p1,'0.0000')"/>
+<!--                                    <xsl:text> / </xsl:text>
+                                    <xsl:value-of select="format-number($p/@p2,'0.0000')"/>-->
+                                </xsl:if>
                             </td>
                         </xsl:for-each>
                     </tr>
                 </xsl:for-each>
             </xsl:for-each>
-        </table>-->
+        </table>
         <p class="h1">single criterion flow</p>
         <table class="table1">
             <tr>
@@ -177,7 +182,7 @@
                     </th>
                     <xsl:for-each select="//root/tbl[2]/row">
                         <xsl:variable name="mcg" select="."/>
-                        <xsl:variable name="row" select="//root/tbl[5]/row[@mcg_id = $mcg/@mcg_id and @mca_id = $mca/@mca_id]"/>
+                        <xsl:variable name="row" select="//root/tbl[6]/row[@mcg_id = $mcg/@mcg_id and @mca_id = $mca/@mca_id]"/>
                         <td>
                             <xsl:value-of select="format-number($row/@phi1,'0.00000')"/>
                         </td>

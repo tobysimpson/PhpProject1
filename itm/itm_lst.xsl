@@ -70,6 +70,9 @@
                 <xsl:value-of select="@itm_val3"/>
             </td>
             <td>
+                <input type="range" min="-1" max="+1" value="{@itm_val1}"/>
+            </td>
+            <td>
                 <a href="itm.php?mth=edt&amp;itm_id={@itm_id}">edit</a>
             </td>
         </tr>
