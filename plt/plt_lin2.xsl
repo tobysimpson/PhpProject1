@@ -80,7 +80,7 @@
                         <!--<line x1="{$x}" y1="{-$dash}" x2="{$x}" y2="{$ph + $dash}" stroke="lightgray" stroke-dasharray="{$dash},{$dash}" stroke-dashoffset="{-0.5 * $dash}"/>-->   
                         <!--<line x1="{$x}" y1="{-$dash}" x2="{$x}" y2="{$ph + $dash}" stroke="lightgray" />-->  
                         <text x="{$x}" y="{$ph + 20}" text-anchor="middle" alignment-baseline="middle">
-                            <xsl:value-of select="@yr"/>
+                            <xsl:value-of select="substring(@yr,3,2)"/>
                         </text>
                     </xsl:for-each>  
                 </g> 

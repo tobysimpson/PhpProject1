@@ -286,7 +286,7 @@ function upl_flex1() {
 //
 //    $files2 = scandir($dir);
 //    print_r($files2);
-//    header("Location: upl.php?mth=hst");
+    header("Location: upl.php?mth=hst");
 }
 
 

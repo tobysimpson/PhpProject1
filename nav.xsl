@@ -97,7 +97,10 @@
             </tr>
             <tr>
                 <td>
-                    <a href="scn.php?mth=lst">scenario</a>
+                    <a href="scn.php?mth=htm">scenario</a>
+                    <xsl:text> (</xsl:text>
+                    <a href="scn.php?mth=csv">csv</a>
+                    <xsl:text>)</xsl:text>
                 </td>
             </tr>
             <tr>
@@ -117,7 +120,12 @@
             </tr>
             <tr>
                 <td>
-                    <a href="mc.php?mth=test1&amp;mc_id=1">test1</a>
+                    <a href="mc.php?mth=test1&amp;mc_id=1">mc_test1</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="mc.php?mth=test2">mc_test2</a>
                 </td>
             </tr>
             <tr>

@@ -22,7 +22,7 @@
                     <td>
                         <xsl:value-of select="@mc_id"/>
                     </td>
-                    <td>
+                    <td style="text-align:left;">
                         <xsl:value-of select="@mc_name"/>
                     </td>
                 </tr>
@@ -48,7 +48,7 @@
                     <td>
                         <xsl:value-of select="@mcg_id"/>
                     </td>
-                    <td>
+                    <td style="text-align:left;">
                         <xsl:value-of select="@mcg_name"/>
                     </td>
                     <td>
@@ -63,7 +63,7 @@
                     <td>
                         <xsl:value-of select="@mcg_q"/>
                     </td>
-                    <td>
+                    <td style="text-align:right;">
                         <xsl:value-of select="@mcg_w"/>
                     </td>
                 </tr>
@@ -84,7 +84,7 @@
                     <td>
                         <xsl:value-of select="@mca_id"/>
                     </td>
-                    <td>
+                    <td style="text-align:left;">
                         <xsl:value-of select="@mca_name"/>
                     </td>
                 </tr>
@@ -96,7 +96,7 @@
                 <th/>
                 <xsl:for-each select="//root/tbl[2]/row">
                     <xsl:variable name="mcg" select="."/>
-                    <th>
+                    <th style="text-align:left;">
                         <xsl:value-of select="$mcg/@mcg_name"/>
                     </th>
                 </xsl:for-each>
@@ -116,7 +116,7 @@
                 </tr>
             </xsl:for-each>
         </table>
-        <p class="h1">preference</p>
+<!--        <p class="h1">preference</p>
         <table class="table1">
             <tr>
                 <th>mcg_id</th>
@@ -145,15 +145,15 @@
                                 <xsl:if test="not($mca1/@mca_id = $mca2/@mca_id)">
                                     <xsl:variable name="p" select="//root/tbl[5]/row[@mcg_id = $mcg/@mcg_id and @mca_id1 = $mca1/@mca_id and @mca_id2 = $mca2/@mca_id]"/>
                                     <xsl:value-of select="format-number($p/@p1,'0.0000')"/>
-<!--                                    <xsl:text> / </xsl:text>
-                                    <xsl:value-of select="format-number($p/@p2,'0.0000')"/>-->
+                                    <xsl:text> / </xsl:text>
+                                    <xsl:value-of select="format-number($p/@p2,'0.0000')"/>
                                 </xsl:if>
                             </td>
                         </xsl:for-each>
                     </tr>
                 </xsl:for-each>
             </xsl:for-each>
-        </table>
+        </table>-->
         <p class="h1">single criterion flow</p>
         <table class="table1">
             <tr>
@@ -177,22 +177,39 @@
             <xsl:for-each select="tbl[3]/row">
                 <xsl:variable name="mca" select="."/>
                 <tr>
-                    <th>
+                    <th style="text-align:left;">
                         <xsl:value-of select="$mca/@mca_name"/>
                     </th>
                     <xsl:for-each select="//root/tbl[2]/row">
                         <xsl:variable name="mcg" select="."/>
-                        <xsl:variable name="row" select="//root/tbl[6]/row[@mcg_id = $mcg/@mcg_id and @mca_id = $mca/@mca_id]"/>
-                        <td>
+                        <xsl:variable name="row" select="//root/tbl[5]/row[@mcg_id = $mcg/@mcg_id and @mca_id = $mca/@mca_id]"/>
+                        <td style="text-align:right;">
                             <xsl:value-of select="format-number($row/@phi1,'0.00000')"/>
                         </td>
-                        <td>
+                        <td style="text-align:right;">
                             <xsl:value-of select="format-number($row/@phi2,'0.00000')"/>
                         </td>
-                        <td>
+                        <td style="text-align:right;">
                             <xsl:value-of select="format-number($row/@phi,'0.00000')"/>
                         </td>
                     </xsl:for-each>
+                </tr>
+            </xsl:for-each>
+        </table>
+        <p class="h1">net flow weighted sum</p>
+        <table class="table1">
+            <tr>
+                <th>mca_id</th>
+                <th>phi_w</th>
+            </tr>
+            <xsl:for-each select="tbl[6]/row">
+                <tr>
+                    <td>
+                        <xsl:value-of select="@mca_id"/>
+                    </td>
+                    <td style="text-align:right;">
+                        <xsl:value-of select="format-number(@phi_w,'0.00000')"/>
+                    </td>
                 </tr>
             </xsl:for-each>
         </table>

@@ -19,6 +19,9 @@
                 <th>ind_name</th>
                 <th>ind_unit</th>
                 <th>prm_id</th>
+                <th>ind_pref</th>
+                <th>ind_sca</th>
+                <th>ind_w</th>
             </tr>
             <xsl:for-each select="//root/tbl[1]/row">
                 <tr>
@@ -39,6 +42,15 @@
                     </td>
                     <td>
                         <xsl:value-of select="@prm_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@ind_pref"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@ind_sca"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@ind_w"/>
                     </td>
                 </tr>
             </xsl:for-each>

@@ -27,4 +27,28 @@ function scn_lst() {
     echo $dom->saveXML();
 }
 
+function scn_htm() {
+    $db = new cls_db();
+    $db->conn->multi_query("CALL sp_scn_lst();");
+    $dom = cls_xml::mul2dom($db->conn, "scn/scn_htm.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
+
+function scn_csv() {
+    $db = new cls_db();
+    $db->conn->multi_query("CALL sp_scn_lst();");
+    $xml = cls_xml::mul2dom($db->conn);
+    $fname = sprintf("scn_csv");
+    //header ('Content-Type: text/plain'); //display in browser
+    header("Content-type: text/csv");
+    header("Content-Disposition: attachment; filename={$fname}.csv");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+    $xsl = cls_xml::file2dom("scn/scn_csv.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
+}
+
+
+
 

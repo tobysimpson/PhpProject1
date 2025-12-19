@@ -23,3 +23,12 @@ function mc_test1() {
 }
 
 
+function mc_test2() {
+    $db = new cls_db();
+    $db->conn->multi_query("CALL sp_mc_test2();");
+    $dom = cls_xml::mul2dom($db->conn, "mc/mc_test2.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
+
+

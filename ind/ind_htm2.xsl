@@ -9,10 +9,42 @@
         <xsl:call-template name="page"/> 
     </xsl:template>
     
-  
+    <xsl:template match="root">
+        <table class="table1">
+            <tr>
+                <th>ind_id</th>
+                <th>ind_name</th>
+                <xsl:for-each select="tbl[2]/row">
+<!--                    <th>
+                        <xsl:value-of select="@scn_id"/>
+                    </th>-->
+                    <th>
+                        <xsl:value-of select="@scn_code"/>
+                    </th>
+                </xsl:for-each>
+            </tr>
+            <xsl:for-each select="tbl[1]/row">
+                <xsl:variable name="ind" select="."/>
+                <tr>
+                    <td>
+                        <xsl:value-of select="$ind/@ind_id"/>
+                    </td>
+                    <td style="text-align:left;">
+                        <xsl:value-of select="$ind/@ind_name"/>
+                    </td>
+                    <xsl:for-each select="//root/tbl[2]/row">
+                        <xsl:variable name="scn" select="."/>
+                        <td style="text-align:right;">
+                            <xsl:value-of select="//root/tbl[3]/row[@scn_id = $scn/@scn_id and @ind_id = $ind/@ind_id]/@u"/>
+                        </td>
+                    </xsl:for-each>
+                </tr>
+            </xsl:for-each>
+        </table>
+    </xsl:template>
 
  
-    <xsl:template match="root">
+    <!--    <xsl:template match="root">
         <table class="table1">
             <tr>
                 <th>scn_code</th>
@@ -37,5 +69,5 @@
                 </tr>
             </xsl:for-each>
         </table>
-    </xsl:template>
+    </xsl:template>-->
 </xsl:stylesheet>
