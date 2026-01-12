@@ -19,6 +19,7 @@
                 <th>ind_name</th>
                 <th>ind_unit</th>
                 <th>prm_id</th>
+                <th>ind_owner</th>
                 <th>ind_pref</th>
                 <th>ind_sca</th>
                 <th>ind_w</th>
@@ -42,6 +43,9 @@
                     </td>
                     <td>
                         <xsl:value-of select="@prm_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@ind_owner"/>
                     </td>
                     <td>
                         <xsl:value-of select="@ind_pref"/>
