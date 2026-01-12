@@ -42,7 +42,9 @@
                         <xsl:value-of select="@ind_unit"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@prm_id"/>
+                        <a href="https://toby.euler.usi.ch/prm.php?mth=brw&amp;prm_id={@prm_id}">
+                            <xsl:value-of select="@prm_id"/>
+                        </a>
                     </td>
                     <td>
                         <xsl:value-of select="@ind_owner"/>
