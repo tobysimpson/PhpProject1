@@ -11,6 +11,19 @@
     
    
     <xsl:template match="root">
+        <p class="h1">group</p>
+        <table class="table1">
+            <tr>
+                <th>ind_grp</th>
+            </tr>
+            <xsl:for-each select="tbl[1]/row">
+                <tr>
+                    <td style="text-align:left;">
+                        <xsl:value-of select="@ind_grp"/>
+                    </td>
+                </tr>
+            </xsl:for-each>
+        </table>
         <p class="h1">indicator</p>
         <table class="table1">
             <tr>
@@ -22,7 +35,7 @@
                 <th>ind_sca</th>
                 <th>ind_w</th>
             </tr>
-            <xsl:for-each select="tbl[1]/row">
+            <xsl:for-each select="tbl[2]/row">
                 <tr>
                     <td>
                         <xsl:value-of select="@ind_id"/>
@@ -57,7 +70,7 @@
                 <th>shk_lvl</th>
                 <th>scn_code</th>
             </tr>
-            <xsl:for-each select="tbl[2]/row">
+            <xsl:for-each select="tbl[3]/row">
                 <tr>
                     <td>
                         <xsl:value-of select="@scn_id"/>
@@ -83,7 +96,7 @@
             <tr>
                 <th>yr</th>
             </tr>
-            <xsl:for-each select="tbl[3]/row">
+            <xsl:for-each select="tbl[4]/row">
                 <tr>
                     <td>
                         <xsl:value-of select="@yr"/>
@@ -97,7 +110,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <xsl:for-each select="//root/tbl[1]/row">
+                <xsl:for-each select="//root/tbl[2]/row">
                     <xsl:variable name="ind" select="."/>
                     <th colspan="3">
                         <xsl:value-of select="$ind/@ind_name"/>
@@ -108,16 +121,16 @@
                 <th>yr</th>
                 <th>scn_id</th>
                 <th>scn_code</th>
-                <xsl:for-each select="//root/tbl[1]/row">
-                    <xsl:variable name="ind" select="."/>
+                <xsl:for-each select="//root/tbl[2]/row">
+                    <!--<xsl:variable name="ind" select="."/>-->
                     <th>pos</th>
                     <th>neg</th>
                     <th>net</th>
                 </xsl:for-each>
             </tr>
-            <xsl:for-each select="//root/tbl[3]/row">
+            <xsl:for-each select="//root/tbl[4]/row">
                 <xsl:variable name="yr" select="."/>
-                <xsl:for-each select="//root/tbl[2]/row">
+                <xsl:for-each select="//root/tbl[3]/row">
                     <xsl:variable name="scn" select="."/>
                     <tr>
                         <td>
@@ -129,9 +142,9 @@
                         <td>
                             <xsl:value-of select="$scn/@scn_code"/>
                         </td>
-                        <xsl:for-each select="//root/tbl[1]/row">
+                        <xsl:for-each select="//root/tbl[2]/row">
                             <xsl:variable name="ind" select="."/>
-                            <xsl:variable name="row" select="//root/tbl[4]/row[@yr = $yr/@yr and @ind_id = $ind/@ind_id and @scn_id = $scn/@scn_id]"/>
+                            <xsl:variable name="row" select="//root/tbl[5]/row[@yr = $yr/@yr and @ind_id = $ind/@ind_id and @scn_id = $scn/@scn_id]"/>
                             <td style="text-align:right;">
                                 <xsl:value-of select="$row/@phi1"/>
                             </td>
@@ -153,7 +166,7 @@
                 <th>scn_id</th>
                 <th>phi_w</th>
             </tr>
-            <xsl:for-each select="tbl[5]/row">
+            <xsl:for-each select="tbl[6]/row">
                 <tr>
                     <td>
                         <xsl:value-of select="@yr"/>

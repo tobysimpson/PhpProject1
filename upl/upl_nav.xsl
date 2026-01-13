@@ -250,6 +250,46 @@
             </tr>
             
             
+            <tr>
+                <th>xpn1</th>
+                <td>
+                    Expanse Gini index, prm_id = 23360, but you can submit others once defined.
+                    <p/>
+                 
+                    <table class="table1">
+                        <tr>
+                            <th>sps_code</th>
+                            <th>shk_code</th>
+                            <th>shk_lvl</th>
+                            <th>prm_id</th>
+                            <th>yr</th>
+                            <th>u</th>
+
+                        </tr> 
+                        <tr>
+                            <td>VARCHAR(4)</td>
+                            <td>VARCHAR(3)</td>
+                            <td>INT</td>
+                            <td>INT</td>
+                            <td>INT</td>
+                            <td>DOUBLE</td>
+
+
+                        </tr>
+                    </table>
+                    <p/>
+                    <p>Please submit *.csv file in Latin1 encoding (not utf-8)</p>
+                    <p/>
+                    <form action="upl.php?mth=xpn1" method="post" enctype="multipart/form-data">
+                        <input type="file" name="upfile"></input>
+                        <input type="submit" value="upload" name="submit"></input>
+                    </form>
+                </td>
+            </tr>
+            
+            
+            
+            
         </table>
     </xsl:template>
 </xsl:stylesheet>
