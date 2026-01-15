@@ -521,5 +521,46 @@ function upl_xpn1() {
     unlink($name1);
     unlink($name2);
 
-//    header("Location: upl.php?mth=hst");
+    header("Location: upl.php?mth=hst");
+}
+
+
+//ipw - bern
+function upl_ipw1() {
+//    header('Content-Type: text/plain');
+//    echo 'upl_prem1' . PHP_EOL;
+//    echo 'post_max_size = ' . ini_get('post_max_size') . PHP_EOL;
+//    echo 'upload_max_filesize = ' . ini_get('upload_max_filesize') . PHP_EOL;
+
+    $db = new cls_db();
+    print_r($_FILES);
+    $dir = "/var/lib/mysql-files/";
+//    $name0 = $_FILES["upfile"]["name"];
+    $name1 = $_FILES["upfile"]["tmp_name"];
+    $name2 = $dir . basename($name1);
+
+
+    try {
+        move_uploaded_file($name1, $name2);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+
+    $sql1 = "TRUNCATE TABLE db2.in_ipw1";
+    $sql2 = "LOAD DATA INFILE '" . $name2 . "' INTO TABLE db2.in_ipw1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (scn_id, sps_code, prm_id, path, u);"; 
+    $sql3 = "CALL db2.sp_ins_ipw1()";
+
+    try {
+        $db->conn->query($sql1);
+        $db->conn->query($sql2);
+        $db->conn->query($sql3);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+    unlink($name1);
+    unlink($name2);
+
+    header("Location: upl.php?mth=hst");
 }

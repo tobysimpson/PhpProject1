@@ -288,7 +288,37 @@
             </tr>
             
             
-            
+            <tr>
+                <th>ipw1</th>
+                <td>
+                    Bern - Aadaptation Need Indicator and sub-indices.
+                    <p/>
+                 
+                    <table class="table1">
+                        <tr>
+                            <th>scn_id</th>
+                            <th>sps_code</th>
+                            <th>prm_id</th>
+                            <th>path</th>
+                            <th>u</th>
+                        </tr> 
+                        <tr>
+                            <td>INT</td>
+                            <td>VARCHAR(4)</td>
+                            <td>INT</td>
+                            <td>VARCHAR(150)</td>
+                            <td>DOUBLE</td>
+                        </tr>
+                    </table>
+                    <p/>
+                    <p>Please submit *.csv file in Latin1 encoding (not utf-8)</p>
+                    <p/>
+                    <form action="upl.php?mth=ipw1" method="post" enctype="multipart/form-data">
+                        <input type="file" name="upfile"></input>
+                        <input type="submit" value="upload" name="submit"></input>
+                    </form>
+                </td>
+            </tr>
             
         </table>
     </xsl:template>

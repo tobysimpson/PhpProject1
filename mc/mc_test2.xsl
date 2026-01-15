@@ -11,7 +11,7 @@
     
    
     <xsl:template match="root">
-        <p class="h1">group</p>
+<!--        <p class="h1">group</p>
         <table class="table1">
             <tr>
                 <th>ind_grp</th>
@@ -23,7 +23,7 @@
                     </td>
                 </tr>
             </xsl:for-each>
-        </table>
+        </table>-->
         <p class="h1">indicator</p>
         <table class="table1">
             <tr>
@@ -61,7 +61,7 @@
                 </tr>
             </xsl:for-each>
         </table>
-        <p class="h1">scenario</p>
+<!--        <p class="h1">scenario</p>
         <table class="table1">
             <tr>
                 <th>scn_id</th>
@@ -90,8 +90,8 @@
                     
                 </tr>
             </xsl:for-each>
-        </table>
-        <p class="h1">year</p>
+        </table>-->
+<!--        <p class="h1">year</p>
         <table class="table1">
             <tr>
                 <th>yr</th>
@@ -103,7 +103,7 @@
                     </td>
                 </tr>
             </xsl:for-each>
-        </table>
+        </table>-->
         <p class="h1">single criterion flow</p>
         <table class="table1">
             <tr>
@@ -175,7 +175,7 @@
                         <xsl:value-of select="@scn_id"/>
                     </td>
                     <td style="text-align:right;">
-                        <xsl:value-of select="format-number(@phi_w,'0.00000')"/>
+                        <xsl:value-of select="@phi_w"/>
                     </td>
                 </tr>
             </xsl:for-each>
