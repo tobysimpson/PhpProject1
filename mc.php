@@ -11,8 +11,6 @@ $func = "mc_" . $mth;
 $func();
 
 
-
-
 function mc_test1() {
     $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
     $db = new cls_db();
