@@ -19,23 +19,43 @@
                     <td>
                         <xsl:value-of select="$yr"/>
                     </td>
+                    <td></td>
                 </tr>
                 
 
                 <xsl:for-each select="//root/tbl[1]/row">
                     <xsl:variable name="prm_id" select="@prm_id"/>
-    
+                    <tr>
+                        <td></td>
+                        <td>
+                            <xsl:value-of select="$prm_id"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <xsl:for-each select="//root/tbl[2]/row">
+                            <th>
+                                <xsl:value-of select="@scn_id"/>
+                            </th>
+                        </xsl:for-each>
+                    </tr>
                     <xsl:for-each select="//root/tbl[2]/row">
                         <xsl:variable name="scn_id1" select="@scn_id"/>
-                        
-                        <xsl:for-each select="//root/tbl[2]/row">
-                            <xsl:variable name="scn_id2" select="@scn_id"/>
-                        
-                            
-                            <!--<xsl:value-of select="format-number(//root/tbl[4]/row[@scn_id1 = $scn_id1 and @scn_id2 = $scn_id2 and @prm_id = $prm_id and @yr = $yr]/@u, '#,##0.0000', 'fmt1')"/>-->
-                        
-                        </xsl:for-each>
-               
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <th>
+                                <xsl:value-of select="$scn_id1"/>
+                            </th>
+                            <xsl:for-each select="//root/tbl[2]/row">
+                                <xsl:variable name="scn_id2" select="@scn_id"/>
+                                <td style="text-align:right;">
+                                    <xsl:value-of select="format-number(//root/tbl[4]/row[@scn_id1 = $scn_id1 and @scn_id2 = $scn_id2 and @prm_id = $prm_id and @yr = $yr]/@d, '#,##0.0000', 'fmt1')"/>
+                                </td>
+                            </xsl:for-each>
+                        </tr>
                     </xsl:for-each>
                 </xsl:for-each>
             </xsl:for-each>
