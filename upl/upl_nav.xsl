@@ -293,7 +293,9 @@
                 <td>
                     Bern - Aadaptation Need Indicator and sub-indices.
                     <p/>
-                 
+                    semi-colon separated (;) not comma separated!
+                    <p/>
+            
                     <table class="table1">
                         <tr>
                             <th>scn_id</th>

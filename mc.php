@@ -38,42 +38,40 @@ function mc_lst() {
     echo $dom->saveXML();
 }
 
-function mc_mc1() {
+function mc_prm() {
     $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
     $db = new cls_db();
-    $db->conn->multi_query("SELECT * FROM vw_mc1 WHERE mc_id = {$mc_id} ORDER BY yr,prm_id,scn_id;");
-    $dom = cls_xml::mul2dom($db->conn, "mc/mc_mc1.xsl");
+    $db->conn->multi_query("CALL sp_mc_prm({$mc_id});");
+    $dom = cls_xml::mul2dom($db->conn, "mc/mc_prm.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
 
-function mc_mc2() {
+function mc_scn() {
     $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
     $db = new cls_db();
-    $db->conn->multi_query("SELECT * FROM vw_mc2 WHERE mc_id = {$mc_id} ;");
-    $dom = cls_xml::mul2dom($db->conn, "mc/mc_mc2.xsl");
-    header('Content-Type: text/xml');
-    echo $dom->saveXML();
-}
-
-
-function mc_mc3() {
-    $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
-    $db = new cls_db();
-    $db->conn->multi_query("SELECT * FROM vw_mc3 WHERE mc_id = {$mc_id} ;");
-    $dom = cls_xml::mul2dom($db->conn, "mc/mc_mc3.xsl");
+    $db->conn->multi_query("SELECT * FROM mc_scn WHERE mc_id = {$mc_id}");
+    $dom = cls_xml::mul2dom($db->conn, "mc/mc_scn.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
 
 
-function mc_mc4() {
+function mc_cal2() {
     $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
     $db = new cls_db();
-    $db->conn->multi_query("SELECT * FROM vw_mc4 WHERE mc_id = {$mc_id} ;");
-    $dom = cls_xml::mul2dom($db->conn, "mc/mc_mc4.xsl");
+    $db->conn->multi_query("CALL sp_mc_cal2({$mc_id});");
+    $dom = cls_xml::mul2dom($db->conn, "mc/mc_cal2.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
 
 
+function mc_cal3() {
+    $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
+    $db = new cls_db();
+    $db->conn->multi_query("CALL sp_mc_cal3({$mc_id});");
+    $dom = cls_xml::mul2dom($db->conn, "mc/mc_cal3.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}

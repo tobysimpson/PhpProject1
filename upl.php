@@ -548,7 +548,8 @@ function upl_ipw1() {
 
 
     $sql1 = "TRUNCATE TABLE db2.in_ipw1";
-    $sql2 = "LOAD DATA INFILE '" . $name2 . "' INTO TABLE db2.in_ipw1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (scn_id, sps_code, prm_id, path, u);"; 
+    $sql2 = "LOAD DATA INFILE '" . $name2 . "' INTO TABLE db2.in_ipw1 CHARACTER SET latin1 FIELDS TERMINATED BY ';' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (scn_id, sps_code, prm_id, path, u) SET "; 
+    $sql2 .= "sps_code = TRIM(sps_code);";
     $sql3 = "CALL db2.sp_ins_ipw1()";
 
     try {

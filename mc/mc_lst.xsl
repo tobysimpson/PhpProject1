@@ -15,7 +15,7 @@
             <tr>
                 <th>mc_id</th>
                 <th>mc_name</th>
-                <th colspan="4"></th>
+                <th colspan="7"></th>
             </tr>
             <xsl:apply-templates select="row"/>
         </table>
@@ -33,17 +33,15 @@
                 <xsl:value-of select="@mc_name"/>
             </td>
             <td>
-                <a href="mc.php?mth=mc1&amp;mc_id={@mc_id}">mc1</a>
+                <a href="mc.php?mth=prm&amp;mc_id={@mc_id}">prm</a>
             </td>
             <td>
-                <a href="mc.php?mth=mc2&amp;mc_id={@mc_id}">mc2</a>
+                <a href="mc.php?mth=cal2&amp;mc_id={@mc_id}">cal2</a>
             </td>
             <td>
-                <a href="mc.php?mth=mc3&amp;mc_id={@mc_id}">mc3</a>
+                <a href="mc.php?mth=cal3&amp;mc_id={@mc_id}">cal3</a>
             </td>
-            <td>
-                <a href="mc.php?mth=mc4&amp;mc_id={@mc_id}">mc4</a>
-            </td>
+
         </tr>
     </xsl:template>
     
