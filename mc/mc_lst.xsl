@@ -36,10 +36,16 @@
                 <a href="mc.php?mth=prm&amp;mc_id={@mc_id}">prm</a>
             </td>
             <td>
+                <a href="mc.php?mth=scn&amp;mc_id={@mc_id}">scn</a>
+            </td>
+            <td>
                 <a href="mc.php?mth=cal2&amp;mc_id={@mc_id}">cal2</a>
             </td>
             <td>
                 <a href="mc.php?mth=cal3&amp;mc_id={@mc_id}">cal3</a>
+            </td>
+            <td>
+                <a href="mc.php?mth=cal4&amp;mc_id={@mc_id}">cal4</a>
             </td>
 
         </tr>
