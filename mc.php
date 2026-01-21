@@ -93,9 +93,9 @@ function mc_prf1() {
     $db->conn->multi_query("CALL sp_mc_prf1({$prm_id},{$scn_id},{$yr});");
     $xml = cls_xml::mul2dom($db->conn, "mc/mc_prf1.xsl");
     
-    header('Content-Type: text/xml');
-//    header('Content-Type: image/svg+xml');
-//    $xsl = cls_xml::file2dom("mc/mc_prf1.xsl");
-//    echo cls_xml::xsltrans($xml, $xsl);
-    echo $xml->saveXML();
+    header('Content-Type: image/svg+xml');
+    $xsl = cls_xml::file2dom("mc/mc_prf1.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
+//    header('Content-Type: text/xml');
+//    echo $xml->saveXML();
 }
