@@ -92,6 +92,7 @@ function raw_upl() {
         echo $e->getMessage();
     }
     
+    unlink($dir.$name1);
     unlink($dir.$name2);
     
     echo '<br/>';

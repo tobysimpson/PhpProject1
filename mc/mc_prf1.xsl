@@ -3,14 +3,14 @@
     
     <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>
 
-    <xsl:variable name="w" select="850"/>
-    <xsl:variable name="h" select="500"/>
+    <xsl:variable name="w" select="800"/>
+    <xsl:variable name="h" select="600"/>
     
     <xsl:variable name="mw" select="10"/>
     <xsl:variable name="mh" select="30"/>
     
-    <xsl:variable name="pw" select="650"/>
-    <xsl:variable name="ph" select="460"/>
+    <xsl:variable name="pw" select="600"/>
+    <xsl:variable name="ph" select="560"/>
     
 
     
@@ -28,6 +28,8 @@
     <xsl:variable name="y0" select="$ph * $u_max div $u_rng"/>
     <xsl:variable name="x0" select="$mw + $pw"/>
     
+    
+    <xsl:decimal-format name="fmt1" decimal-separator="." grouping-separator="," NaN=""/>
    
     <xsl:template match="root">
         <svg viewBox="0 0 {$w} {$h}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -71,9 +73,11 @@
                         <line x1="{$x}" y1="{$y0}" x2="{$x}" y2="{$y2}" stroke="#fe6100"   stroke-width="{0.75 * $bw}"/>
                         <line x1="{$x}" y1="{$y3}" x2="{$x0}" y2="{$y3}" stroke="#cccccc" stroke-width="1" stroke-dasharray="5,5"/>
                         <text x="{$x0+5}" y="{$y3}" alignment-baseline="middle">
+                            <xsl:value-of select="format-number(@phi,'#,##0.000','fmt1')"/>
+                            <xsl:text> </xsl:text>
                             <xsl:value-of select="//root/tbl[1]/row[@prm_id = $prm_id]/@prm_name"/>
                         </text>
-                        <circle cx="{$x}" cy="{$y3}" r="4" stroke-width="2" stroke="#333333" fill="none"/>
+                        <circle cx="{$x}" cy="{$y3}" r="4" stroke-width="2" stroke="black" fill="none"/>
                     </xsl:for-each>
                 </g>
 
@@ -101,7 +105,7 @@
                             </xsl:choose>
                         </xsl:for-each>
                     </xsl:variable>
-                    <path fill="none" d="{$line1}" stroke="#333333" stroke-width="2" stroke-linecap="round"/>
+                    <path fill="none" d="{$line1}" stroke="black" stroke-width="2" stroke-linecap="round"/>
                 </g>
                 
             </g>

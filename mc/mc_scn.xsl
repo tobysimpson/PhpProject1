@@ -32,27 +32,26 @@
         <p/>
         <table class="table1">
             <tr>
-                <th>mc_id</th>
-                <th>yr</th>
                 <th>scn_id</th>
-                <th></th>
-            </tr>
-            <xsl:for-each select="tbl[3]/row">
-                <tr>
-                    <td>
-                        <xsl:value-of select="@mc_id"/>
-                    </td>
-                    <td>
+                <xsl:for-each select="//root/tbl[3]/row">
+                    <th>
                         <xsl:value-of select="@yr"/>
-                    </td>
+                    </th>
+                </xsl:for-each>
+            </tr>
+            <xsl:for-each select="tbl[2]/row">
+                <xsl:variable name="scn_id" select="@scn_id"/>
+                <tr>
                     <td>
                         <xsl:value-of select="@scn_id"/>
                     </td>
-                    <td>
-                        <a href="mc.php?mth=prf1&amp;mc_id={@mc_id}&amp;scn_id={@scn_id}&amp;yr={@yr}">
-                            <img width="450px" src="mc.php?mth=prf1&amp;mc_id={@mc_id}&amp;scn_id={@scn_id}&amp;yr={@yr}"/>
-                        </a>
-                    </td>
+                    <xsl:for-each select="//root/tbl[3]/row">
+                        <td>
+                            <a href="mc.php?mth=prf1&amp;mc_id={@mc_id}&amp;scn_id={$scn_id}&amp;yr={@yr}">
+                                <img width="100%" src="mc.php?mth=prf1&amp;mc_id={@mc_id}&amp;scn_id={$scn_id}&amp;yr={@yr}"/>
+                            </a>
+                        </td>
+                    </xsl:for-each>
                 </tr>
             </xsl:for-each>
         </table>
