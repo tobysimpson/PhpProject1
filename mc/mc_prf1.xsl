@@ -33,7 +33,7 @@
    
     <xsl:template match="root">
         <svg viewBox="0 0 {$w} {$h}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <style>* { font-size: 10pt; font-family: sans-serif; font-weight: 300; }</style> 
+            <style>* { font-size: 8pt; font-family: sans-serif; font-weight: 300; }</style> 
             
             <rect width="{$w}" height="{$h}" x="0" y="0" stroke="#DDDDDD" fill="none" />
             
@@ -58,9 +58,10 @@
                 </text>
             </g>
 
-
+           
             <g id="plot" transform="translate({$mw},{$mh})">
                 <rect width="{$pw}" height="{$ph}" x="0" y="0" stroke="#DDDDDD" fill="none" />
+                <line x1="0" y1="{$y0}" x2="{$pw}" y2="{$y0}" stroke="#999999"   stroke-width="1" />
                 <g id="bars">
                     <xsl:for-each select="tbl[3]/row">
                         <xsl:variable name="prm_id" select="@prm_id"/>
@@ -69,21 +70,20 @@
                         <xsl:variable name="y1" select="$ph * ($u_max - @p1) div $u_rng"/>
                         <xsl:variable name="y2" select="$ph * ($u_max + @p2) div $u_rng"/>
                         <xsl:variable name="y3" select="$ph * ($u_max - @phi) div $u_rng"/>
+                        
                         <line x1="{$x}" y1="{$y0}" x2="{$x}" y2="{$y1}" stroke="#ffb000" stroke-width="{0.75 * $bw}"/>
                         <line x1="{$x}" y1="{$y0}" x2="{$x}" y2="{$y2}" stroke="#fe6100"   stroke-width="{0.75 * $bw}"/>
-                        <line x1="{$x}" y1="{$y3}" x2="{$x0}" y2="{$y3}" stroke="#cccccc" stroke-width="1" stroke-dasharray="5,5"/>
+                        <line x1="{$x}" y1="{$y3}" x2="{$x0}" y2="{$y3}" stroke="#cccccc" stroke-width="1" stroke-dasharray="2,2" stroke-dashoffset="1"/>
                         <text x="{$x0+5}" y="{$y3}" alignment-baseline="middle">
-<!--                            <xsl:value-of select="format-number(@phi,'#,##0.000','fmt1')"/>
-                            <xsl:text> </xsl:text>-->
                             <xsl:value-of select="//root/tbl[1]/row[@prm_id = $prm_id]/@prm_name"/>
                         </text>
-                        <circle cx="{$x}" cy="{$y3}" r="4" stroke-width="2" stroke="#444444" fill="none"/>
-                        <text x="{$x}" y="{$y3+15}" alignment-baseline="middle" text-anchor="middle">
+                        <circle cx="{$x}" cy="{$y3}" r="2" stroke-width="1" stroke="#333333" fill="none"/>
+                        <text x="{$x}" y="{$y3+10}" alignment-baseline="middle" text-anchor="middle">
                             <xsl:value-of select="format-number(@phi,'#,##0.00','fmt1')"/>
                         </text>
                     </xsl:for-each>
                 </g>
-                <line x1="0" y1="{$y0}" x2="{$pw}" y2="{$y0}" stroke="#999999"   stroke-width="1" />
+                
                 <g id="line">
                     <xsl:variable name="line1">
                         <xsl:for-each select="tbl[3]/row">
@@ -106,7 +106,7 @@
                             </xsl:choose>
                         </xsl:for-each>
                     </xsl:variable>
-                    <path fill="none" d="{$line1}" stroke="#444444" stroke-width="2" stroke-linecap="round"/>
+                    <path fill="none" d="{$line1}" stroke="#333333" stroke-width="1" stroke-linecap="round"/>
                 </g>
                 
             </g>
