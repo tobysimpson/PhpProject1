@@ -35,7 +35,7 @@
         <svg viewBox="0 0 {$w} {$h}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <style>* { font-size: 8pt; font-family: sans-serif; font-weight: 300; }</style> 
             
-            <rect width="{$w}" height="{$h}" x="0" y="0" stroke="#DDDDDD" fill="none" />
+            <!--<rect width="{$w}" height="{$h}" x="0" y="0" stroke="#DDDDDD" fill="none" />-->
             
             
             <g id="title">
@@ -73,13 +73,13 @@
                         
                         <line x1="{$x}" y1="{$y0}" x2="{$x}" y2="{$y1}" stroke="#ffb000" stroke-width="{0.75 * $bw}"/>
                         <line x1="{$x}" y1="{$y0}" x2="{$x}" y2="{$y2}" stroke="#fe6100"   stroke-width="{0.75 * $bw}"/>
-                        <line x1="{$x}" y1="{$y3}" x2="{$x0}" y2="{$y3}" stroke="#cccccc" stroke-width="1" stroke-dasharray="2,2" stroke-dashoffset="1"/>
+                        <line x1="{$x}" y1="{$y3}" x2="{$x0}" y2="{$y3}" stroke="#cccccc" stroke-width="1" stroke-dasharray="4,4" stroke-dashoffset="0"/>
                         <text x="{$x0+5}" y="{$y3}" alignment-baseline="middle">
                             <xsl:value-of select="//root/tbl[1]/row[@prm_id = $prm_id]/@prm_name"/>
                         </text>
                         <circle cx="{$x}" cy="{$y3}" r="2" stroke-width="1" stroke="#333333" fill="none"/>
                         <text x="{$x}" y="{$y3+10}" alignment-baseline="middle" text-anchor="middle">
-                            <xsl:value-of select="format-number(@phi,'#,##0.00','fmt1')"/>
+                            <xsl:value-of select="format-number(@phi,'#,##0.000','fmt1')"/>
                         </text>
                     </xsl:for-each>
                 </g>
