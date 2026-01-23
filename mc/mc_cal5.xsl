@@ -16,29 +16,18 @@
             <tr>
                 <th>mc_id</th>
                 <th>yr</th>
-                <th>prm_id</th>
-                <th>mc_w1</th>
                 <th>scn_id</th>
                 <th>pos</th>
                 <th>neg</th>
                 <th>net</th>
             </tr>
             <xsl:for-each select="//root/tbl[4]/row">
-
                 <tr>
                     <td>
                         <xsl:value-of select="@mc_id"/>
                     </td>
                     <td>
                         <xsl:value-of select="@yr"/>
-                    </td>
-                    <td>
-                        <a href= "prm.php?mth=brw&amp;prm_id={@prm_id}">
-                            <xsl:value-of select="@prm_id"/>
-                        </a>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@mc_w1"/>
                     </td>
                     <td>
                         <xsl:value-of select="@scn_id"/>

@@ -108,17 +108,17 @@
                     <a href="ind.php?mth=lst">indicator</a>
                 </td>
             </tr>
-            <tr>
+<!--            <tr>
                 <td>
                     <a href="ind.php?mth=scn">indicator/scenario</a>
                 </td>
-            </tr>
+            </tr>-->
             <tr>
                 <td>
                     <a href="ind.php?mth=nav">report</a>
                 </td>
             </tr>
-            <tr>
+<!--            <tr>
                 <td>
                     <a href="mc.php?mth=test1&amp;mc_id=1">mc_test1</a>
                 </td>
@@ -127,7 +127,7 @@
                 <td>
                     <a href="mc.php?mth=test2">mc_test2</a>
                 </td>
-            </tr>
+            </tr>-->
             <tr>
                 <td>
                     <a href="mc.php?mth=lst">list</a>

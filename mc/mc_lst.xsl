@@ -47,7 +47,9 @@
             <td>
                 <a href="mc.php?mth=cal4&amp;mc_id={@mc_id}">cal4</a>
             </td>
-
+            <td>
+                <a href="mc.php?mth=cal5&amp;mc_id={@mc_id}">cal5</a>
+            </td>
         </tr>
     </xsl:template>
     
