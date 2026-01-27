@@ -18,7 +18,7 @@
                 <th>ts</th>
                 <th>rows</th>
                 <th>prm_ids</th>
-                <th>scns</th>
+                <th>scn_ids</th>
                 <th>yrs</th>
             </tr>
             <xsl:for-each select="tbl[1]/row">
@@ -37,7 +37,7 @@
                     <td>
                         <xsl:value-of select="@scn_id"/>
                     </td>
-                    <td style="text-align:left;">
+                    <td>
                         <xsl:value-of select="@yr"/>
                     </td>
                 </tr>
