@@ -4,13 +4,13 @@
     <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>
 
     <xsl:variable name="w" select="800"/>
-    <xsl:variable name="h" select="600"/>
+    <xsl:variable name="h" select="500"/>
     
     <xsl:variable name="mw" select="10"/>
     <xsl:variable name="mh" select="30"/>
     
     <xsl:variable name="pw" select="600"/>
-    <xsl:variable name="ph" select="560"/>
+    <xsl:variable name="ph" select="460"/>
     
 
     

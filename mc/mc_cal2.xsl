@@ -23,12 +23,12 @@
                         <xsl:value-of select="@yr"/>
                     </td>
                 </tr>
-                <!--<table class="table1">-->
+
                     <tr>
                         <td/>
                         <xsl:for-each select="//root/tbl[1]/row">
                             <th style="width:150px;">
-                                <xsl:value-of select="@prm_id"/>
+                                <xsl:value-of select="@prm_name"/>
                             </th>
                         </xsl:for-each>
                     </tr>
@@ -36,7 +36,7 @@
                         <xsl:variable name="scn_id" select="@scn_id"/>
                         <tr>
                             <th>
-                                <xsl:value-of select="$scn_id"/>
+                                <xsl:value-of select="@scn_code"/>
                             </th>
                         
                             <xsl:for-each select="//root/tbl[1]/row">

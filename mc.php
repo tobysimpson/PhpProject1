@@ -56,6 +56,14 @@ function mc_scn() {
     echo $dom->saveXML();
 }
 
+function mc_cal1() {
+    $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
+    $db = new cls_db();
+    $db->conn->multi_query("CALL sp_mc_cal1({$mc_id});");
+    $dom = cls_xml::mul2dom($db->conn, "mc/mc_cal1.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
 
 function mc_cal2() {
     $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);

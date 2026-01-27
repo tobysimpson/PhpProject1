@@ -128,7 +128,7 @@
         </table>
         
         
-        <xsl:if test="not(count(tbl[4]/row) = 0)">
+        <xsl:if test="not(count(tbl[6]/row) = 0)">
             
             <p class="h1">pathways</p>
             

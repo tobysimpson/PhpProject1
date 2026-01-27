@@ -37,6 +37,9 @@
             </td>
             <td>
                 <a href="mc.php?mth=scn&amp;mc_id={@mc_id}">scn</a>
+            </td>            
+            <td>
+                <a href="mc.php?mth=cal1&amp;mc_id={@mc_id}">cal1</a>
             </td>
             <td>
                 <a href="mc.php?mth=cal2&amp;mc_id={@mc_id}">cal2</a>
