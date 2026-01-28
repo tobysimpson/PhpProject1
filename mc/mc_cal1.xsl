@@ -15,22 +15,27 @@
         <table class="table1">
             <tr>
                 <th>mc_id</th>
-                <th>yr</th>
+                
                 <th>prm_id</th>
+                <th>mc_sgn</th>
+                <th>mc_pref</th>
+                <th>mc_w</th>
+                <th>mc_p</th>
+                <th>mc_q</th>
+                <th>yr</th>
                 <th>scn_id</th>
-                <th>u_n</th>
+                <th>u</th>
+                <th>n</th>
                 <th>u_avg</th>
                 <th>u_std</th>
-                
+                <th>z</th>
             </tr>
             <xsl:for-each select="//root/tbl[1]/row">
                 <tr>
                     <td>
                         <xsl:value-of select="@mc_id"/>
                     </td>
-                    <td>
-                        <xsl:value-of select="@yr"/>
-                    </td>
+                    
                     <td>
                         <a href= "prm.php?mth=brw&amp;prm_id={@prm_id}">
                             <xsl:value-of select="@prm_id"/>
@@ -38,11 +43,31 @@
                     </td>
                     
                     <td>
+                        <xsl:value-of select="@mc_sgn"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@mc_pref"/>
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:value-of select="format-number(@mc_w,'#,##0.0000','fmt1')"/>
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:value-of select="format-number(@mc_p,'#,##0.0000','fmt1')"/>
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:value-of select="format-number(@mc_q,'#,##0.0000','fmt1')"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@yr"/>
+                    </td>
+                    <td>
                         <xsl:value-of select="@scn_id"/>
                     </td>
-                    
                     <td style="text-align:right">
-                        <xsl:value-of select="format-number(@u_n,'#,##0.0000','fmt1')"/>
+                        <xsl:value-of select="format-number(@u,'#,##0.0000','fmt1')"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@n"/>
                     </td>
                     <td style="text-align:right">
                         <xsl:value-of select="format-number(@u_avg,'#,##0.0000','fmt1')"/>
@@ -50,7 +75,9 @@
                     <td style="text-align:right">
                         <xsl:value-of select="format-number(@u_std,'#,##0.0000','fmt1')"/>
                     </td>
-                    
+                    <td style="text-align:right">
+                        <xsl:value-of select="format-number(@z,'#,##0.0000','fmt1')"/>
+                    </td>
                 </tr>
             </xsl:for-each>
         </table>

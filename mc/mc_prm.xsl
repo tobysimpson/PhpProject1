@@ -30,8 +30,8 @@
                 <th>mc_pref</th>
                 <th>mc_w0</th>
                 <th>mc_w1</th>
-                <th>mc_avg</th>
-                <th>mc_std</th>
+<!--                <th>mc_avg</th>
+                <th>mc_std</th>-->
              
             </tr>
             <xsl:apply-templates select="tbl[2]/row"/>
@@ -83,12 +83,12 @@
             <td>
                 <xsl:value-of select="format-number(@mc_w1, '#,##0.0000', 'fmt1')"/>
             </td>
-            <td  style="text-align:right;">
+<!--            <td  style="text-align:right;">
                 <xsl:value-of select="format-number(@mc_avg,'#,##0.0000')"/>
             </td>
             <td style="text-align:right;">
                 <xsl:value-of select="format-number(@mc_std,'#,##0.0000')"/>
-            </td>
+            </td>-->
 
         </tr>
     </xsl:template>

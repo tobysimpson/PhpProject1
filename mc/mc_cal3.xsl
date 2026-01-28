@@ -17,11 +17,16 @@
                 <th>mc_id</th>
                 <th>yr</th>
                 <th>prm_id</th>
-                <th>mc_w1</th>
+                <th>mc_w</th>
                 <th>scn_id1</th>
                 <th>scn_id2</th>
                 <th>u1</th>
                 <th>u2</th>
+                <th>n</th>
+                <th>u_avg</th>
+                <th>u_std</th>
+                <th>z1</th>
+                <th>z2</th>
                 <th>d</th>
                 <th>p1</th>
                 <th>p2</th>
@@ -40,7 +45,7 @@
                             <xsl:value-of select="@prm_id"/>
                         </a>
                     </td>
-                    <td><xsl:value-of select="@mc_w1"/></td>
+                    <td><xsl:value-of select="format-number(@mc_w,'#,##0.0000','fmt1')"/></td>
                     <td>
                         <xsl:value-of select="@scn_id1"/>
                     </td>
@@ -52,6 +57,21 @@
                     </td>
                     <td style="text-align:right">
                         <xsl:value-of select="format-number(@u2,'#,##0.0000','fmt1')"/>
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:value-of select="format-number(@n,'#,##0.0000','fmt1')"/>
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:value-of select="format-number(@u_avg,'#,##0.0000','fmt1')"/>
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:value-of select="format-number(@u_std,'#,##0.0000','fmt1')"/>
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:value-of select="format-number(@z1,'#,##0.0000','fmt1')"/>
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:value-of select="format-number(@z2,'#,##0.0000','fmt1')"/>
                     </td>
                     <td style="text-align:right">
                         <xsl:value-of select="format-number(@d,'#,##0.0000','fmt1')"/>
