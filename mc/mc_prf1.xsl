@@ -4,29 +4,30 @@
     <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>
 
     <xsl:variable name="w" select="800"/>
-    <xsl:variable name="h" select="500"/>
+    <xsl:variable name="h" select="450"/>
     
     <xsl:variable name="mw" select="10"/>
-    <xsl:variable name="mh" select="30"/>
+    <xsl:variable name="mh" select="40"/>
     
     <xsl:variable name="pw" select="600"/>
-    <xsl:variable name="ph" select="460"/>
+    <xsl:variable name="ph" select="400"/>
     
 
     
     <xsl:variable name="u_min" select="root/tbl[4]/row/@u_min" />
     <xsl:variable name="u_max" select="root/tbl[4]/row/@u_max" />
     <xsl:variable name="u_rng" select="root/tbl[4]/row/@u_rng" />
-    <xsl:variable name="u_tic" select="root/tbl[4]/row/@u_tic" />
+    <!--<xsl:variable name="u_tic" select="root/tbl[4]/row/@u_tic" />-->
     
     <xsl:variable name="dash" select="5"/>
     <xsl:variable name="cc" select="'FC9630'"/>
     
     <xsl:variable name="x_rng" select="root/tbl[4]/row/@x_rng" />
     <xsl:variable name="bw" select="$pw div $x_rng"/>
-    <xsl:variable name="tc" select="$u_rng div $u_tic"/>
+    <!--<xsl:variable name="tc" select="$u_rng div $u_tic"/>-->
     <xsl:variable name="y0" select="$ph * $u_max div $u_rng"/>
     <xsl:variable name="x0" select="$mw + $pw"/>
+    <!--<xsl:variable name="ny" select="count(//root/tbl[1]/row)"/>-->
     
     
     <xsl:decimal-format name="fmt1" decimal-separator="." grouping-separator="," NaN=""/>
@@ -70,15 +71,20 @@
                         <xsl:variable name="y1" select="$ph * ($u_max - @p1) div $u_rng"/>
                         <xsl:variable name="y2" select="$ph * ($u_max + @p2) div $u_rng"/>
                         <xsl:variable name="y3" select="$ph * ($u_max - @phi) div $u_rng"/>
+                        <xsl:variable name="y4" select="$ph * (position() + 1) div ($x_rng + 3)"/>
                         
-                        <line x1="{$x}" y1="{$y0}" x2="{$x}" y2="{$y1}" stroke="#ffb000" stroke-width="{0.75 * $bw}"/>
-                        <line x1="{$x}" y1="{$y0}" x2="{$x}" y2="{$y2}" stroke="#fe6100"   stroke-width="{0.75 * $bw}"/>
-                        <line x1="{$x}" y1="{$y3}" x2="{$x0}" y2="{$y3}" stroke="#cccccc" stroke-width="1" stroke-dasharray="4,4" stroke-dashoffset="0"/>
-                        <text x="{$x0+5}" y="{$y3}" alignment-baseline="middle">
+                        <line x1="{$x}" y1="{$y0}" x2="{$x}" y2="{$y1}" stroke="#ffb000" stroke-width="{0.7 * $bw}"/>
+                        <line x1="{$x}" y1="{$y0}" x2="{$x}" y2="{$y2}" stroke="#fe6100"   stroke-width="{0.7 * $bw}"/>
+                        
+                        <line x1="{$x}" y1="{$y3}" x2="{$pw}" y2="{$y3}" stroke="#cccccc" stroke-width="1" stroke-dasharray="3,5" stroke-dashoffset="0" stroke-linecap="round"/>
+                        <line x1="{$pw+38}" y1="{$y4}" x2="{$pw}" y2="{$y3}" stroke="#cccccc" stroke-width="1" stroke-dasharray="3,5" stroke-dashoffset="0" stroke-linecap="round"/>
+                        <text x="{$pw+40}" y="{$y4}" alignment-baseline="middle">
                             <xsl:value-of select="//root/tbl[1]/row[@prm_id = $prm_id]/@prm_name"/>
+                            <!--<xsl:value-of select="position()"/>/<xsl:value-of select="$ny"/>,<xsl:value-of select="$y4"/>-->
                         </text>
+                        
                         <circle cx="{$x}" cy="{$y3}" r="2" stroke-width="1" stroke="#333333" fill="none"/>
-                        <text x="{$x}" y="{$y3+10}" alignment-baseline="middle" text-anchor="middle">
+                        <text x="{$x}" y="{$y3 - 8}" alignment-baseline="middle" text-anchor="middle">
                             <xsl:value-of select="format-number(@phi,'#,##0.000','fmt1')"/>
                         </text>
                     </xsl:for-each>
