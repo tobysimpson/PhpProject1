@@ -79,13 +79,18 @@
             </tr>
             <tr>
                 <td>
+                    <a href="tpl.php?mth=lst">template</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <a href="upl.php?mth=nav">upload</a>
                 </td>
             </tr>
             <tr>
                 <th style="text-align:left">mcda</th>
             </tr> 
-<!--            <tr>
+            <!--            <tr>
                 <td>
                     <a href="scn.php?mth=sps">pathway</a>
                 </td>
@@ -108,7 +113,7 @@
                     <a href="ind.php?mth=lst">indicator</a>
                 </td>
             </tr>
-<!--            <tr>
+            <!--            <tr>
                 <td>
                     <a href="ind.php?mth=scn">indicator/scenario</a>
                 </td>
@@ -118,7 +123,7 @@
                     <a href="ind.php?mth=nav">report</a>
                 </td>
             </tr>
-<!--            <tr>
+            <!--            <tr>
                 <td>
                     <a href="mc.php?mth=test1&amp;mc_id=1">mc_test1</a>
                 </td>
