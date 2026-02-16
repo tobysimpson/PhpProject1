@@ -11,25 +11,6 @@ $func = "mc_" . $mth;
 $func();
 
 
-function mc_test1() {
-    $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
-    $db = new cls_db();
-    $db->conn->multi_query("CALL sp_mc_test1({$mc_id});");
-    $dom = cls_xml::mul2dom($db->conn, "mc/mc_test1.xsl");
-    header('Content-Type: text/xml');
-    echo $dom->saveXML();
-}
-
-
-function mc_test2() {
-    $db = new cls_db();
-    $db->conn->multi_query("CALL sp_mc_test2();");
-    $dom = cls_xml::mul2dom($db->conn, "mc/mc_test2.xsl");
-    header('Content-Type: text/xml');
-    echo $dom->saveXML();
-}
-
-
 function mc_lst() {
     $db = new cls_db();
     $db->conn->multi_query("SELECT * FROM mc");
@@ -43,6 +24,15 @@ function mc_prm() {
     $db = new cls_db();
     $db->conn->multi_query("CALL sp_mc_prm({$mc_id});");
     $dom = cls_xml::mul2dom($db->conn, "mc/mc_prm.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
+
+function mc_dat() {
+    $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
+    $db = new cls_db();
+    $db->conn->multi_query("CALL sp_mc_dat({$mc_id});");
+    $dom = cls_xml::mul2dom($db->conn, "mc/mc_dat.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
@@ -117,4 +107,35 @@ function mc_prf1() {
     echo cls_xml::xsltrans($xml, $xsl);
 //    header('Content-Type: text/xml');
 //    echo $xml->saveXML();
+}
+
+
+function mc_htm1() {
+    $db = new cls_db();
+    $mc_id      = filter_input(INPUT_GET, "mc_id",      FILTER_VALIDATE_INT);
+    $shk_id     = filter_input(INPUT_GET, "shk_id",     FILTER_VALIDATE_INT);
+    $shk_lvl    = filter_input(INPUT_GET, "shk_lvl",    FILTER_VALIDATE_INT);
+    $yr         = filter_input(INPUT_GET, "yr",         FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_mc_rpt1({$mc_id},{$shk_id},{$shk_lvl},{$yr});");
+    $dom = cls_xml::mul2dom($db->conn, "mc/mc_htm1.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
+
+function mc_csv1() {
+    $db = new cls_db();
+    $mc_id      = filter_input(INPUT_GET, "mc_id",      FILTER_VALIDATE_INT);
+    $shk_id     = filter_input(INPUT_GET, "shk_id",     FILTER_VALIDATE_INT);
+    $shk_lvl    = filter_input(INPUT_GET, "shk_lvl",    FILTER_VALIDATE_INT);
+    $yr         = filter_input(INPUT_GET, "yr",         FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_mc_rpt1({$mc_id},{$shk_id},{$shk_lvl},{$yr});");
+    $xml = cls_xml::mul2dom($db->conn);
+    $fname = sprintf("shk%d_lvl%d_%4d", $shk_id, $shk_lvl, $yr);
+//    header ('Content-Type: text/plain'); //display in browser
+    header("Content-type: text/csv");
+    header("Content-Disposition: attachment; filename={$fname}.csv");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+    $xsl = cls_xml::file2dom("mc/mc_csv1.xsl");
+    echo cls_xml::xsltrans($xml, $xsl);
 }

@@ -15,7 +15,7 @@
             <tr>
                 <th>mc_id</th>
                 <th>mc_name</th>
-                <th colspan="7"></th>
+                <th colspan="8"></th>
             </tr>
             <xsl:apply-templates select="row"/>
         </table>
@@ -33,10 +33,13 @@
                 <xsl:value-of select="@mc_name"/>
             </td>
             <td>
-                <a href="mc.php?mth=prm&amp;mc_id={@mc_id}">prm</a>
+                <a href="mc.php?mth=prm&amp;mc_id={@mc_id}">parameter</a>
             </td>
             <td>
-                <a href="mc.php?mth=scn&amp;mc_id={@mc_id}">scn</a>
+                <a href="mc.php?mth=dat&amp;mc_id={@mc_id}">data</a>
+            </td>
+            <td>
+                <a href="mc.php?mth=scn&amp;mc_id={@mc_id}">scnenario</a>
             </td>            
             <td>
                 <a href="mc.php?mth=cal1&amp;mc_id={@mc_id}">cal1</a>
