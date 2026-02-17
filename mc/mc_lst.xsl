@@ -15,7 +15,7 @@
             <tr>
                 <th>mc_id</th>
                 <th>mc_name</th>
-                <th colspan="8"></th>
+                <th colspan="9"></th>
             </tr>
             <xsl:apply-templates select="row"/>
         </table>
@@ -39,8 +39,11 @@
                 <a href="mc.php?mth=dat&amp;mc_id={@mc_id}">data</a>
             </td>
             <td>
-                <a href="mc.php?mth=scn&amp;mc_id={@mc_id}">scnenario</a>
-            </td>            
+                <a href="mc.php?mth=scn&amp;mc_id={@mc_id}">scenario</a>
+            </td>
+            <td>
+                <a href="mc.php?mth=rpt2&amp;mc_id={@mc_id}">report</a>
+            </td>              
             <td>
                 <a href="mc.php?mth=cal1&amp;mc_id={@mc_id}">cal1</a>
             </td>

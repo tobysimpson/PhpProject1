@@ -139,3 +139,12 @@ function mc_csv1() {
     $xsl = cls_xml::file2dom("mc/mc_csv1.xsl");
     echo cls_xml::xsltrans($xml, $xsl);
 }
+
+function mc_rpt2() {
+    $db = new cls_db();
+    $mc_id      = filter_input(INPUT_GET, "mc_id",      FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_mc_rpt2({$mc_id});");
+    $dom = cls_xml::mul2dom($db->conn, "mc/mc_rpt2.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
