@@ -10,7 +10,6 @@ $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 $func = "raw_" . $mth;
 $func();
 
-
 function raw_lst() {
     $db = new cls_db();
     $db->conn->multi_query("SELECT * FROM rpt ORDER BY rpt_name; SELECT * FROM scn ORDER BY sps_id, shk_id, shk_lvl;");
@@ -18,7 +17,6 @@ function raw_lst() {
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
-
 
 function raw_htm() {
     $db = new cls_db();
@@ -30,7 +28,6 @@ function raw_htm() {
     cls_xml::procxsl($xml, "raw/raw_htm.xsl");
     echo $xml->saveXML();
 }
-
 
 function raw_csv() {
     $db = new cls_db();
@@ -47,8 +44,6 @@ function raw_csv() {
     echo cls_xml::xsltrans($xml, $xsl);
 }
 
-
-
 function raw_nav() {
     $db = new cls_db();
     $db->conn->multi_query("SELECT 1 as txt;");
@@ -57,7 +52,6 @@ function raw_nav() {
     echo $dom->saveXML();
 }
 
-
 function raw_upl() {
     $db = new cls_db();
     print_r($_FILES);
@@ -65,7 +59,6 @@ function raw_upl() {
     $dir = "/var/lib/mysql-files/";
     $name1 = $_FILES["upload_file"]["tmp_name"];
     $name2 = basename($name1);
-
 
     echo $name1;
     echo '<br/>';
@@ -81,23 +74,36 @@ function raw_upl() {
     $files1 = scandir("/tmp");
     print_r($files1);
 
-        
-    $sql1 = "LOAD DATA INFILE '" . $dir.$name2 . "' INTO TABLE db2.cub1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
-    echo $sql1 . PHP_EOL;
+//    $sql1 = "LOAD DATA INFILE '" . $dir.$name2 . "' INTO TABLE db2.in_raw1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
+//    echo $sql1 . PHP_EOL;
+//
+//    try {
+//        $res1 = $db->conn->query($sql1);
+//        print_r($res1);
+//    } catch (Exception $e) {
+//        echo $e->getMessage();
+//    }
+
+
+    $sql1 = "TRUNCATE TABLE db2.in_raw1";
+    $sql2 = "LOAD DATA INFILE '" . $dir . $name2 . "' IGNORE INTO TABLE db2.in_raw1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
+    $sql3 = "CALL db2.sp_ins_raw1()";
 
     try {
-        $res1 = $db->conn->query($sql1);
-        print_r($res1);
+        $db->conn->query($sql1);
+        $db->conn->query($sql2);
+        $db->conn->query($sql3);
     } catch (Exception $e) {
-        echo $e->getMessage();
+        echo $e->getMessage() . PHP_EOL;
     }
-    
-    unlink($dir.$name1);
-    unlink($dir.$name2);
-    
+
+
+    unlink($dir . $name1);
+    unlink($dir . $name2);
+
     echo '<br/>';
     $files2 = scandir($dir);
     print_r($files2);
-    
+
     header("Location: upl.php?mth=hst");
 }

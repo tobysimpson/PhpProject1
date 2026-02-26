@@ -76,8 +76,8 @@
                         <line x1="{$x}" y1="{$y0}" x2="{$x}" y2="{$y1}" stroke="#ffb000" stroke-width="{0.7 * $bw}"/>
                         <line x1="{$x}" y1="{$y0}" x2="{$x}" y2="{$y2}" stroke="#fe6100"   stroke-width="{0.7 * $bw}"/>
                         
-                        <line x1="{$x}" y1="{$y3}" x2="{$pw}" y2="{$y3}" stroke="#cccccc" stroke-width="1" stroke-dasharray="1,2" stroke-dashoffset="0" stroke-linecap="round"/>
-                        <line x1="{$pw+37}" y1="{$y4}" x2="{$pw}" y2="{$y3}" stroke="#cccccc" stroke-width="1" stroke-dasharray="1,2" stroke-dashoffset="0" stroke-linecap="round"/>
+                        <line x1="{$x}" y1="{$y3}" x2="{$pw}" y2="{$y3}" stroke="#cccccc" stroke-width="1" stroke-dasharray="0,2"  stroke-linecap="round"/>
+                        <line x1="{$pw+37}" y1="{$y4}" x2="{$pw}" y2="{$y3}" stroke="#cccccc" stroke-width="1" stroke-dasharray="0,2"  stroke-linecap="round"/>
                         <text x="{$pw+40}" y="{$y4}" alignment-baseline="middle">
                             <xsl:value-of select="//root/tbl[1]/row[@prm_id = $prm_id]/@prm_name"/>
                             <!--<xsl:value-of select="position()"/>/<xsl:value-of select="$ny"/>,<xsl:value-of select="$y4"/>-->
