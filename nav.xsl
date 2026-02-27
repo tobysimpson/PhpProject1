@@ -108,7 +108,7 @@
                     <xsl:text>)</xsl:text>
                 </td>
             </tr>
-<!--            <tr>
+            <!--            <tr>
                 <td>
                     <a href="ind.php?mth=lst">indicator</a>
                 </td>
@@ -118,7 +118,7 @@
                     <a href="ind.php?mth=scn">indicator/scenario</a>
                 </td>
             </tr>-->
-<!--            <tr>
+            <!--            <tr>
                 <td>
                     <a href="ind.php?mth=nav">report</a>
                 </td>
@@ -159,7 +159,24 @@
                     <a href="upl.php?mth=hst">history</a>
                 </td>
             </tr>
-
+            <tr>
+                <th style="text-align:left">afr</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="afr.php?mth=prm">afr_prm</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="afr.php?mth=cal1">afr_cal1</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="afr.php?mth=cal2">afr_cal2</a>
+                </td>
+            </tr>
             <tr>
                 <th style="text-align:left">test</th>
             </tr>
