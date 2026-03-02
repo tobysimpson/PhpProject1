@@ -367,8 +367,6 @@
             <tr>
                 <th>prm_id</th>
                 <th>ts</th>
-                <th>scn</th>
-                <th>yr</th>
                 <th>n</th>
             </tr>
             <xsl:for-each select="tbl[7]/row">
@@ -377,15 +375,9 @@
                         <xsl:value-of select="@prm_id"/>
                     </td>
                     <td>
-                        <a href="upl.php?mth=dsp&amp;prm_id={@prm_id}&amp;ts={@ts}">
+                        <a href="upl.php?mth=prm&amp;prm_id={@prm_id}&amp;ts={@ts}">
                             <xsl:value-of select="@ts"/>
                         </a>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@scn_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@yr"/>
                     </td>
                     <td>
                         <xsl:value-of select="@n"/>

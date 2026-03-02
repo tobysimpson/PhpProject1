@@ -31,6 +31,17 @@ function upl_dsp() {
     echo $dom->saveXML();
 }
 
+function upl_prm() {
+    $db = new cls_db();
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $ts = filter_input(INPUT_GET, "ts", FILTER_SANITIZE_STRING);
+    $db->conn->multi_query("SELECT * FROM cub1 WHERE ts = '{$ts}' AND prm_id = {$prm_id};");
+    $dom = cls_xml::mul2dom($db->conn, "upl/upl_dsp.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
+
+
 function upl_nav() {
     $db = new cls_db();
     $db->conn->multi_query("SELECT 1 as txt;");
