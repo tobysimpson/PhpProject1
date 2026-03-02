@@ -25,7 +25,9 @@
                         <xsl:value-of select="@ts"/>
                     </td>
                     <td>
-                        <xsl:value-of select="@prm_id"/>
+                        <a href="prm.php?mth=brw&amp;prm_id={@prm_id}">
+                            <xsl:value-of select="@prm_id"/>
+                        </a>
                     </td>
                     <td>
                         <xsl:value-of select="@scn_id"/>

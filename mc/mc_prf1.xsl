@@ -12,8 +12,6 @@
     <xsl:variable name="pw" select="600"/>
     <xsl:variable name="ph" select="400"/>
     
-
-    
     <xsl:variable name="u_min" select="root/tbl[4]/row/@u_min" />
     <xsl:variable name="u_max" select="root/tbl[4]/row/@u_max" />
     <xsl:variable name="u_rng" select="root/tbl[4]/row/@u_rng" />
@@ -34,7 +32,7 @@
    
     <xsl:template match="root">
         <svg viewBox="0 0 {$w} {$h}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <style>* { font-size: 8pt; font-family: sans-serif; font-weight: 300; }</style> 
+            <style>* { font-size: 7pt; font-family: sans-serif; font-weight: 300; }</style> 
             
             <!--<rect width="{$w}" height="{$h}" x="0" y="0" stroke="#DDDDDD" fill="none" />-->
             

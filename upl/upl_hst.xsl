@@ -16,10 +16,7 @@
         <table class="table1">
             <tr>
                 <th>ts</th>
-                <th>rows</th>
-                <th>prm_ids</th>
-                <th>scn_ids</th>
-                <th>yrs</th>
+                <th>n</th>
             </tr>
             <xsl:for-each select="tbl[1]/row">
                 <tr>
@@ -30,15 +27,6 @@
                     </td>
                     <td>
                         <xsl:value-of select="@n"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@prm_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@scn_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@yr"/>
                     </td>
                 </tr>
             </xsl:for-each>
