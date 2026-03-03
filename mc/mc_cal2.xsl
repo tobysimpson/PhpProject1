@@ -16,8 +16,6 @@
             <tr>
                 <th>mc_id</th>
                 <th>prm_id</th>
-                <th>yr</th>         
-                <th>n</th>
                 <th>u_avg</th>
                 <th>u_std</th>
 
@@ -32,12 +30,6 @@
                         <a href= "prm.php?mth=brw&amp;prm_id={@prm_id}">
                             <xsl:value-of select="@prm_id"/>
                         </a>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@yr"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@n"/>
                     </td>
                     <td style="text-align:right">
                         <xsl:value-of select="format-number(@u_avg,'#,##0.0000','fmt1')"/>

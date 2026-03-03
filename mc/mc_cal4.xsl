@@ -17,7 +17,7 @@
                 <th>mc_id</th>
                 <th>yr</th>
                 <th>prm_id</th>
-                <th>mc_w</th>
+                <th>mc_w1</th>
                 <th>scn_id</th>
                 <th>pos</th>
                 <th>neg</th>
@@ -38,7 +38,7 @@
                         </a>
                     </td>
                     <td>
-                        <xsl:value-of select="format-number(@mc_w,'#,##0.00000','fmt1')"/>
+                        <xsl:value-of select="format-number(@mc_w1,'#,##0.00000','fmt1')"/>
                     </td>
                     <td>
                         <xsl:value-of select="@scn_id"/>

@@ -25,7 +25,6 @@
                 <th>yr</th>
                 <th>scn_id</th>
                 <th>u</th>
-                <th>n</th>
                 <th>u_avg</th>
                 <th>u_std</th>
                 <th>z</th>
@@ -65,9 +64,6 @@
                     </td>
                     <td style="text-align:right">
                         <xsl:value-of select="format-number(@u,'#,##0.0000','fmt1')"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@n"/>
                     </td>
                     <td style="text-align:right">
                         <xsl:value-of select="format-number(@u_avg,'#,##0.0000','fmt1')"/>
