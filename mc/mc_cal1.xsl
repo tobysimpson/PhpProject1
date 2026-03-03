@@ -19,7 +19,7 @@
                 <th>prm_id</th>
                 <th>mc_sgn</th>
                 <th>mc_pref</th>
-                <th>mc_w</th>
+                <th>mc_w1</th>
                 <th>mc_p</th>
                 <th>mc_q</th>
                 <th>yr</th>
@@ -49,7 +49,7 @@
                         <xsl:value-of select="@mc_pref"/>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="format-number(@mc_w,'#,##0.0000','fmt1')"/>
+                        <xsl:value-of select="format-number(@mc_w1,'#,##0.0000','fmt1')"/>
                     </td>
                     <td style="text-align:right">
                         <xsl:value-of select="format-number(@mc_p,'#,##0.0000','fmt1')"/>
