@@ -23,14 +23,14 @@
                 <th>unit</th>
                 
                 <th>u</th>
-                <th>u_tot</th>
+                <th>u_sum</th>
                 <th>w</th>
                 <th>r</th>
                 
-                <th>wr_gwh</th>
+                <th>wr_gweyr</th>
                 <th>wr_twh</th>
                 
-                <th>u_gwh</th>
+                <th>u_twh</th>
                 <th>f</th>
             </tr>
             <xsl:for-each select="//root/tbl[1]/row">
@@ -64,7 +64,7 @@
                         <xsl:value-of select="format-number(@u,'#,##0.0000','fmt1')"/>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="format-number(@u_tot,'#,##0.0000','fmt1')"/>
+                        <xsl:value-of select="format-number(@u_sum,'#,##0.0000','fmt1')"/>
                     </td>
                     <td style="text-align:right">
                         <xsl:value-of select="format-number(@w,'#,##0.00%','fmt1')"/>
@@ -73,13 +73,13 @@
                         <xsl:value-of select="format-number(@r,'#,##0.00000000','fmt1')"/>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="format-number(@wr_gwh,'#,##0.000000','fmt1')"/>
+                        <xsl:value-of select="format-number(@wr_gweyr,'#,##0.000000','fmt1')"/>
                     </td>
                     <td style="text-align:right">
                         <xsl:value-of select="format-number(@wr_twh,'#,##0.000000','fmt1')"/>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="format-number(@u_gwh,'#,##0.00','fmt1')"/>
+                        <xsl:value-of select="format-number(@u_twh,'#,##0.00','fmt1')"/>
                     </td>
                     <td style="text-align:right">
                         <xsl:value-of select="format-number(@f,'#,##0.00','fmt1')"/>
