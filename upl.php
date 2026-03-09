@@ -376,7 +376,7 @@ function upl_xpn1() {
 
 
     $sql1 = "TRUNCATE TABLE db2.in_xpn1";
-    $sql2 = "LOAD DATA INFILE '" . $name2 . "' INTO TABLE db2.in_xpn1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (sps_code, shk_code, shk_lvl, prm_id, yr, u);"; 
+    $sql2 = "LOAD DATA INFILE '" . $name2 . "' IGNORE INTO TABLE db2.in_xpn1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (sps_code, shk_code, shk_lvl, prm_id, yr, u);"; 
     $sql3 = "CALL db2.sp_ins_xpn1()";
 
     try {

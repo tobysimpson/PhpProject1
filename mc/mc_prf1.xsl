@@ -69,18 +69,19 @@
                         <xsl:variable name="y1" select="$ph * ($u_max - @p1) div $u_rng"/>
                         <xsl:variable name="y2" select="$ph * ($u_max + @p2) div $u_rng"/>
                         <xsl:variable name="y3" select="$ph * ($u_max - @phi) div $u_rng"/>
-                        <xsl:variable name="y4" select="$ph * (position() - 1) div ($x_rng -1)"/>
-                        
+                        <xsl:variable name="y4" select="$ph * (position()) div ($x_rng + 1)"/>
+                        <!-- bars -->
                         <line x1="{$x}" y1="{$y0}" x2="{$x}" y2="{$y1}" stroke="#ffb000" stroke-width="{0.7 * $bw}"/>
                         <line x1="{$x}" y1="{$y0}" x2="{$x}" y2="{$y2}" stroke="#fe6100"   stroke-width="{0.7 * $bw}"/>
-                        
+                        <!-- dotted lines -->
                         <line x1="{$x}" y1="{$y3}" x2="{$pw}" y2="{$y3}" stroke="#cccccc" stroke-width="1" stroke-dasharray="0,2"  stroke-linecap="round"/>
-                        <line x1="{$pw+37}" y1="{$y4}" x2="{$pw}" y2="{$y3}" stroke="#cccccc" stroke-width="1" stroke-dasharray="0,2"  stroke-linecap="round"/>
-                        <text x="{$pw+40}" y="{$y4}" alignment-baseline="middle">
+                        <line x1="{$pw+35}" y1="{$y4}" x2="{$pw}" y2="{$y3}" stroke="#cccccc" stroke-width="1" stroke-dasharray="0,2"  stroke-linecap="round"/>
+                        <!-- names -->
+                        <text x="{$pw+38}" y="{$y4}" alignment-baseline="middle">
                             <xsl:value-of select="//root/tbl[1]/row[@prm_id = $prm_id]/@prm_name"/>
                             <!--<xsl:value-of select="position()"/>/<xsl:value-of select="$ny"/>,<xsl:value-of select="$y4"/>-->
                         </text>
-                        
+                        <!-- circles/values -->
                         <circle cx="{$x}" cy="{$y3}" r="2" stroke-width="1" stroke="#333333" fill="none"/>
                         <text x="{$x}" y="{$y3 - 8}" alignment-baseline="middle" text-anchor="middle">
                             <xsl:value-of select="format-number(@phi,'#,##0.000','fmt1')"/>

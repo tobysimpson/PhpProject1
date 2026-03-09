@@ -137,7 +137,7 @@
             </a>-->
             
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=1,2,3,4">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=1,2,3,4"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=1,2,3,4"/>
             </a>
             
             <p class="h1">shocks</p>
@@ -145,89 +145,89 @@
             <p class="h1">SPS1</p>
             
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=1,5,6,7">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=1,5,6,7"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=1,5,6,7"/>
             </a>
             
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=1,29,30,31">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=1,29,30,31"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=1,29,30,31"/>
             </a>
         
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=1,41,42,43">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=1,41,42,43"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=1,41,42,43"/>
             </a>
         
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=1,53,54,55">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=1,53,54,55"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=1,53,54,55"/>
             </a>
             
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=1,65,66,67">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=1,65,66,67"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=1,65,66,67"/>
             </a>
             
             <p class="h1">SPS2</p>
             
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=2,8,9,10">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=2,8,9,10"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=2,8,9,10"/>
             </a>
             
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=2,32,33,34">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=2,32,33,34"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=2,32,33,34"/>
             </a>
         
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=2,44,45,46">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=2,44,45,46"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=2,44,45,46"/>
             </a>
         
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=2,56,57,58">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=2,56,57,58"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=2,56,57,58"/>
             </a>
             
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=2,68,69,70">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=2,68,69,70"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=2,68,69,70"/>
             </a>
         
             <p class="h1">SPS3</p>
             
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=3,11,12,13">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=3,11,12,13"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=3,11,12,13"/>
             </a>
             
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=3,35,36,37">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=3,35,36,37"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=3,35,36,37"/>
             </a>
         
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=3,47,48,49">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=3,47,48,49"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=3,47,48,49"/>
             </a>
         
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=3,59,60,61">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=3,59,60,61"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=3,59,60,61"/>
             </a>
             
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=3,71,72,73">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=3,71,72,73"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=3,71,72,73"/>
             </a>
             
             <p class="h1">SPS4</p>
             
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=4,14,15,16">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=4,14,15,16"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=4,14,15,16"/>
             </a>
             
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=4,38,39,40">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=4,38,39,40"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=4,38,39,40"/>
             </a>
         
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=4,50,51,52">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=4,50,51,52"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=4,50,51,52"/>
             </a>
         
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=4,62,63,64">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=4,62,63,64"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=4,62,63,64"/>
             </a>
             
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=4,74,75,76">
-                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=4,74,75,76"/>
+                <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=4,74,75,76"/>
             </a>
            
             <!--<p class="h1">pivot</p>-->
@@ -361,7 +361,7 @@
         
         
      
-        <p class="h1">upload</p>
+        <p class="h1">uploads</p>
         
         <table class="table1">
             <tr>

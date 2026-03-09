@@ -18,7 +18,6 @@ function prm_lst() {
     echo $dom->saveXML();
 }
 
-
 function prm_brw() {
     $db = new cls_db();
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
