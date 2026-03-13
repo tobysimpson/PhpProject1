@@ -12,7 +12,7 @@
     <xsl:decimal-format name="fmt1" NaN=""/>
     
     <xsl:template match="root">
-        <table class="table1">
+        <table class="table1" style="font-size:80%;">
             <tr>
                 <td colspan="3"></td>
                 <xsl:for-each select="//tbl[2]/row">
@@ -25,7 +25,7 @@
             <tr>
                 <td colspan="3"></td>
                 <xsl:for-each select="//tbl[2]/row">
-                    <th style="font-size:8pt;">
+                    <th>
                         <xsl:value-of select="@prm_name"/>
                     </th>
                 </xsl:for-each>
@@ -34,15 +34,15 @@
             <xsl:for-each select="//tbl[1]/row">
                 <xsl:variable name="scn_id" select= "@scn_id"/>
                 <tr>
-                    <td>
+                    <th>
                         <xsl:value-of select="@sps_code"/>
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                         <xsl:value-of select="@shk_code"/>
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                         <xsl:value-of select="@shk_lvl"/>
-                    </td>
+                    </th>
                     <xsl:for-each select="//tbl[2]/row">
                         <xsl:variable name="prm_id" select= "@prm_id"/>
                         <xsl:variable name="row" select= "//tbl[3]/row[@prm_id = $prm_id and @scn_id = $scn_id]"/>
