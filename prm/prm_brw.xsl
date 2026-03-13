@@ -334,7 +334,7 @@
             
             
             
-            <p class="h1">uploads (30 days)</p>
+            <p class="h1">uploads (last 30 days)</p>
         
             <table class="table1">
                 <tr>

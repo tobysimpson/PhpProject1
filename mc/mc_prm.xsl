@@ -26,7 +26,7 @@
                 <th>mc_id</th>
                 <th>prm_id</th>
                 <th>mc_grp</th>
-                <th>mc_cod</th>
+                <th>mc_code</th>
                 
                 <th>prm_name</th>
                 <th>prm_src</th>
@@ -69,7 +69,7 @@
                 <xsl:value-of select="@mc_grp"/>
             </td>
             <td>
-                <xsl:value-of select="@mc_cod"/>
+                <xsl:value-of select="@mc_code"/>
             </td>
             <td style="text-align:left;">
                 <xsl:value-of select="@prm_name"/>

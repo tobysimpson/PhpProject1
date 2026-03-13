@@ -31,3 +31,12 @@ function cmp_shk2() {
 }
 
 
+function cmp_vlm1() {
+    $db = new cls_db();
+//    $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_cmp_vlm1();");
+    $dom = cls_xml::mul2dom($db->conn, "cmp/cmp_vlm1.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
+

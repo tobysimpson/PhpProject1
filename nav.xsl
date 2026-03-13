@@ -192,6 +192,11 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <a href="cmp.php?mth=vlm1">vlm1</a>
+                </td>
+            </tr>
+            <tr>
                 <th style="text-align:left">test</th>
             </tr>
             <tr>
