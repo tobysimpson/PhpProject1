@@ -24,18 +24,20 @@
         <table class="table1">
             <tr>
                 <th>mc_id</th>
-                
                 <th>prm_id</th>
+                <th>mc_grp</th>
+                <th>mc_cod</th>
+                
                 <th>prm_name</th>
                 <th>prm_src</th>
-                
+                <th>prm_unit</th>
                 <th>mc_sgn</th>
                 <th>mc_pref</th>
                 <th>mc_p</th>
                 <th>mc_q</th>
                 <th>mc_w0</th>
                 <th>mc_w1</th>
-
+                <th>prm_desc</th>
             </tr>
             <xsl:apply-templates select="tbl[2]/row"/>
         </table>
@@ -64,10 +66,19 @@
                 </a>
             </td>
             <td style="text-align:left;">
+                <xsl:value-of select="@mc_grp"/>
+            </td>
+            <td>
+                <xsl:value-of select="@mc_cod"/>
+            </td>
+            <td style="text-align:left;">
                 <xsl:value-of select="@prm_name"/>
             </td>
             <td>
                 <xsl:value-of select="@prm_src"/>
+            </td>
+            <td>
+                <xsl:value-of select="@unit"/>
             </td>
             <td>
                 <xsl:choose>
@@ -95,7 +106,9 @@
             <td>
                 <xsl:value-of select="format-number(@mc_w1, '#,##0.0000', 'fmt1')"/>
             </td>
-
+            <td>
+                <xsl:value-of select="@prm_desc"/>
+            </td>
 
         </tr>
     </xsl:template>

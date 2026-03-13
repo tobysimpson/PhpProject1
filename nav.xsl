@@ -177,6 +177,20 @@
                     <a href="afr.php?mth=cal2">afr_cal2</a>
                 </td>
             </tr>
+           
+            <tr>
+                <th style="text-align:left">compare</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="cmp.php?mth=shk1&amp;prm_id=19988">shk1</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="cmp.php?mth=shk2&amp;mc_id=2">shk2</a>
+                </td>
+            </tr>
             <tr>
                 <th style="text-align:left">test</th>
             </tr>
@@ -185,11 +199,6 @@
                     <a href="itm.php?mth=lst">list</a>
                 </td>
             </tr>
-            <!--            <tr>
-                <td>
-                    <a href="itm.php?mth=tst">test</a>
-                </td>
-            </tr>-->
         </table>
     </xsl:template>
 </xsl:stylesheet>
