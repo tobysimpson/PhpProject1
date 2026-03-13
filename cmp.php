@@ -12,6 +12,15 @@ $func();
 
 
 
+function cmp_vlm1() {
+    $db = new cls_db();
+    $db->conn->multi_query("CALL sp_cmp_vlm1();");
+    $dom = cls_xml::mul2dom($db->conn, "cmp/cmp_vlm1.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
+
+
 function cmp_shk1() {
     $db = new cls_db();
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
@@ -23,20 +32,18 @@ function cmp_shk1() {
 
 function cmp_shk2() {
     $db = new cls_db();
-//    $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_cmp_shk2();");
     $dom = cls_xml::mul2dom($db->conn, "cmp/cmp_shk2.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
 
-
-function cmp_vlm1() {
+function cmp_bas1() {
     $db = new cls_db();
-//    $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_cmp_vlm1();");
-    $dom = cls_xml::mul2dom($db->conn, "cmp/cmp_vlm1.xsl");
+    $db->conn->multi_query("CALL sp_cmp_bas1();");
+    $dom = cls_xml::mul2dom($db->conn, "cmp/cmp_bas1.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
+
 

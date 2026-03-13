@@ -181,19 +181,25 @@
             <tr>
                 <th style="text-align:left">compare</th>
             </tr>
-            <tr>
+<!--            <tr>
                 <td>
                     <a href="cmp.php?mth=shk1&amp;prm_id=19988">shk1</a>
                 </td>
-            </tr>
+            </tr>-->
+
             <tr>
                 <td>
-                    <a href="cmp.php?mth=shk2&amp;mc_id=2">shk2</a>
+                    <a href="cmp.php?mth=vlm1">vlm1</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="cmp.php?mth=vlm1">vlm1</a>
+                    <a href="cmp.php?mth=shk2">shk2</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="cmp.php?mth=bas1">bas1</a>
                 </td>
             </tr>
             <tr>

@@ -26,7 +26,9 @@
                 <td colspan="3"></td>
                 <xsl:for-each select="//tbl[2]/row">
                     <th>
-                        <xsl:value-of select="@prm_name"/>
+                        <a href="https://toby.euler.usi.ch/prm.php?mth=brw&amp;prm_id={@prm_id}">
+                            <xsl:value-of select="@prm_name"/>
+                        </a>
                     </th>
                 </xsl:for-each>
             </tr>
