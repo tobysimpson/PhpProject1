@@ -13,20 +13,20 @@
 
    
     <xsl:template match="root">
-        <table class="table1">
+        <table class="table1" style="table-layout: fixed ; width: 100%;">
             <tr>
-                <td colspan="3"></td>
+                <td></td>
                 <xsl:for-each select="//tbl[2]/row">
-                    <th style="font-size:8pt;">
+                    <th>
                         <xsl:value-of select="@mc_grp"/>
                     </th>
                 </xsl:for-each>
             </tr>
             
             <tr>
-                <td colspan="3"></td>
+                <td></td>
                 <xsl:for-each select="//tbl[2]/row">
-                    <th style="font-size:8pt;">
+                    <th>
                         <a href="https://toby.euler.usi.ch/prm.php?mth=brw&amp;prm_id={@prm_id}">
                             <xsl:value-of select="@prm_name"/>
                         </a>
@@ -37,13 +37,10 @@
             <xsl:for-each select="//tbl[1]/row">
                 <xsl:variable name="scn_id" select= "@scn_id"/>
                 <tr>
-                    <th style="font-size:8pt;">
+                    <th>
                         <xsl:value-of select="@sps_code"/>
-                    </th>
-                    <th style="font-size:8pt;">
+                        <xsl:text>_</xsl:text>
                         <xsl:value-of select="@shk_code"/>
-                    </th>
-                    <th style="font-size:8pt;">
                         <xsl:value-of select="@shk_lvl"/>
                     </th>
                     <xsl:for-each select="//tbl[2]/row">

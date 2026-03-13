@@ -41,9 +41,9 @@ th, td{
 }
 
 th{
-    font-weight: 600;
+    font-weight: 400;
     background-color: #eeeeee;
-    color:#555555;
+    color:#666666;
     /* white-space: nowrap; */
 }
 
