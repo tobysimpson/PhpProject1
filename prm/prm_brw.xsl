@@ -123,13 +123,10 @@
         </table>
         
         
-        <!--<xsl:if test="not(count(tbl[9]/row) = 0)">-->
+        <xsl:if test="not(count(tbl[11]/row) = 0)">
             
             <p class="h1">pathways</p>
             
-            <!--            <a href="plt.php?mth=lin1&amp;prm_id={tbl[3]/row/@prm_id}&amp;fmt=3">
-                <img width="450px" src="plt.php?mth=lin1&amp;prm_id={tbl[3]/row/@prm_id}&amp;fmt=2"/>
-            </a>-->
             
             <a href="plt.php?mth=lin2&amp;prm_id={tbl[3]/row/@prm_id}&amp;scn_ids=1,2,3,4">
                 <img width="450px" src="plt.php?mth=lin2&amp;prm_id={$prm_id}&amp;scn_ids=1,2,3,4"/>
@@ -226,7 +223,7 @@
             </a>
            
            
-            <p class="h1">comparison (shock vs. base)</p>
+            <p class="h1">comparison (shock vs. sps base)</p>
             
 
             <table class="table1">
@@ -293,12 +290,11 @@
             </table>
 
             
-            <!--<p class="h1">data</p>-->
+            <p class="h1">data</p>
             
             
-            <!--            <table class="table1">
+            <table class="table1">
                 <tr>
-                    <th>prm_id</th>
                     <th>scn_id</th>
                     <th>sps_code</th>
                     <th>shk_code</th>
@@ -310,12 +306,9 @@
                         </th>
                     </xsl:for-each>
                 </tr>
-                <xsl:for-each select="//root/tbl[9]/row">
+                <xsl:for-each select="//root/tbl[10]/row">
                     <xsl:variable name="scn_id" select="@scn_id"/>
                     <tr>
-                        <td>
-                            <xsl:value-of select="$prm_id"/>
-                        </td>
                         <td>
                             <xsl:value-of select="$scn_id"/>
                         </td>
@@ -328,21 +321,20 @@
                         <td>
                             <xsl:value-of select="@shk_lvl"/>
                         </td>
-                        
                         <xsl:for-each select="//root/tbl[7]/row">
                             <xsl:variable name="yr" select="@yr"/>
+                            <xsl:variable name="row" select="//root/tbl[11]/row[@scn_id = $scn_id and @yr = $yr]"/>
                             <td style="text-align:right;">
-                                <xsl:value-of select="$scn_id"/>,<xsl:value-of select="$yr"/>,
-                                <xsl:value-of select="//root/tbl[9]/row[@scn_id = $scn_id and @yr = $yr]/@u"/>
+                                <xsl:value-of select="$row/@u"/>
                             </td>
                         </xsl:for-each>
                     </tr>
                 </xsl:for-each>
-            </table>-->
+            </table>
             
             
             
-            <p class="h1">uploads</p>
+            <p class="h1">uploads (30 days)</p>
         
             <table class="table1">
                 <tr>
@@ -350,7 +342,7 @@
                     <th>ts</th>
                     <th>n</th>
                 </tr>
-                <xsl:for-each select="tbl[10]/row">
+                <xsl:for-each select="tbl[12]/row">
                     <tr>
                         <td>
                             <xsl:value-of select="@prm_id"/>
@@ -368,7 +360,7 @@
             </table>
             
  
-        <!--</xsl:if>-->
+        </xsl:if>
         
 
         
