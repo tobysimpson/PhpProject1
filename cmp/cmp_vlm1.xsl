@@ -12,7 +12,13 @@
     <xsl:decimal-format name="fmt1" NaN=""/>
     
     <xsl:template match="root">
-        <table class="table1" style="table-layout: fixed ; width: 100%;">
+        <table class="table1">
+            <colgroup>
+                <col width="100px"/>
+                <xsl:for-each select="//tbl[2]/row">
+                    <col width="100px"/>
+                </xsl:for-each>
+            </colgroup>
             <tr>
                 <td></td>
                 <xsl:for-each select="//tbl[2]/row">
@@ -45,38 +51,14 @@
                     <xsl:for-each select="//tbl[2]/row">
                         <xsl:variable name="prm_id" select= "@prm_id"/>
                         <xsl:variable name="row" select= "//tbl[3]/row[@prm_id = $prm_id and @scn_id = $scn_id]"/>
-                        <!--                        <td style="text-align:right;">
-                            <xsl:value-of select="$row/@u"/>
-                        </td>-->
-                        
-                       
                         <xsl:variable name="u" select= "$row/@u"/>
                         <xsl:variable name="u_max" select= "$row/@u_max"/>
                         <xsl:variable name="u_min" select= "$row/@u_min"/>
-
-<!--                        <xsl:choose>
-                            <xsl:when test="$u &gt; 0">-->
-                                <xsl:variable name="a" select="format-number(($u - $u_min) div ($u_max - $u_min),'0.000')"/>
-                                <xsl:variable name="b" select="255 * $a"/>
-                                <td style="text-align:right;background-color:rgba(0,0,255,{$a});color:rgb({$b},{$b},{$b});">
-                                    <xsl:value-of select="$u"/>
-                                </td>
-<!--                            </xsl:when>
-                            <xsl:when test="$u &lt; 0">
-                                <xsl:variable name="a" select="format-number($u div $u_min,'0.000')"/>
-                                <xsl:variable name="b" select="255 * $a"/>
-                                <td style="text-align:right;background-color:rgba(255,0,0,{$a});color:rgb({$b},{$b},{$b});">
-                                    <xsl:value-of select="$u"/>
-                                </td>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <td style="text-align:right;color:#CCCCCC;">
-                                    <xsl:value-of select="$u"/>
-                                </td>
-                            </xsl:otherwise>
-                        </xsl:choose>-->
-                        
-                        
+                        <xsl:variable name="a" select="format-number(($u - $u_min) div ($u_max - $u_min),'0.000')"/>
+                        <xsl:variable name="b" select="255 * $a"/>
+                        <td style="text-align:right;background-color:rgba(100,143,255,{$a});color:rgb({$b},{$b},{$b});">
+                            <xsl:value-of select="$u"/>
+                        </td>
                     </xsl:for-each>
                 </tr>
             </xsl:for-each>

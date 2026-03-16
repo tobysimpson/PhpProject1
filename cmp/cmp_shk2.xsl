@@ -13,7 +13,13 @@
 
    
     <xsl:template match="root">
-        <table class="table1" style="table-layout: fixed ; width: 100%;">
+        <table class="table1" style="table-layout:fixed;">
+            <colgroup>
+                <col width="100px"/>
+                <xsl:for-each select="//tbl[2]/row">
+                    <col width="100px"/>
+                </xsl:for-each>
+            </colgroup>
             <tr>
                 <td></td>
                 <xsl:for-each select="//tbl[2]/row">
