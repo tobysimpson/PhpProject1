@@ -203,6 +203,14 @@
                 </td>
             </tr>
             <tr>
+                <th style="text-align:left">grid</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="grd.php?mth=plt1">plot1</a>
+                </td>
+            </tr>
+            <tr>
                 <th style="text-align:left">test</th>
             </tr>
             <tr>

@@ -111,8 +111,7 @@ function upl_rpt1() {
 
 //premise
 function upl_prem1() {
-//    header('Content-Type: text/plain');
-//    echo 'upl_prem1' . PHP_EOL;
+
 //    echo 'post_max_size = ' . ini_get('post_max_size') . PHP_EOL;
 //    echo 'upload_max_filesize = ' . ini_get('upload_max_filesize') . PHP_EOL;
 
@@ -123,34 +122,15 @@ function upl_prem1() {
     $name1 = $_FILES["upfile"]["tmp_name"];
     $name2 = $dir . basename($name1);
 
-//    //read
-//    $file1 = fopen($name1, "r");
-//    $data = [];
-//    while (($row1 = fgetcsv($file1)) !== FALSE) {
-//        if (count($row1) > 1) {           //avoid double line break
-//            $data[] = $row1;
-//        }
-//    }
-//    fclose($file1);
-//
-//    //write
-//    $n = count($data);
-//    $file2 = fopen($name1, "w");
-//    for ($i = 0; $i < $n; $i++) {
-//        fputcsv($file2, $data[$i]);
-//    }
-//    fclose($file2);
-
     try {
         move_uploaded_file($name1, $name2);
     } catch (Exception $e) {
         echo $e->getMessage() . PHP_EOL;
     }
 
-
     $sql1 = "TRUNCATE TABLE db2.in_prem1";
-    $sql2 = "LOAD DATA INFILE '" . $name2 . "' IGNORE INTO TABLE db2.in_prem1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' (sector,variable,year,region,model,scenario,impact,location,value,unit);";
-//    $sql2 = "LOAD DATA INFILE '" . $name2 . "' IGNORE INTO TABLE db2.in_prem1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' IGNORE 1 LINES (sector,variable,year,region,model,scenario,impact,location,value,unit);";
+    $sql2 = "LOAD DATA INFILE '" . $name2 . "' IGNORE INTO TABLE db2.in_prem1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (sector,variable,year,region,model,scenario,impact,location,value,unit);";
+    //LINES TERMINATED BY '\r\n'
     $sql3 = "CALL db2.sp_ins_prem1()";
 
     try {
@@ -163,8 +143,6 @@ function upl_prem1() {
 
     unlink($name2);
 
-//    $files2 = scandir($dir);
-//    print_r($files2);
     header("Location: upl.php?mth=hst");
 }
 
