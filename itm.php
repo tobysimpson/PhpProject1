@@ -11,6 +11,10 @@ $func = "itm_" . $mth;
 $func();
 
 function itm_lst() {
+    
+//    echo 'post_max_size = ' . ini_get('post_max_size') . PHP_EOL;
+//    echo 'upload_max_filesize = ' . ini_get('upload_max_filesize') . PHP_EOL;
+    
     $db = new cls_db();
 //    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
 //    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
