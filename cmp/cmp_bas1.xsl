@@ -53,19 +53,18 @@
                         <xsl:variable name="prm_id" select= "@prm_id"/>
                         <xsl:variable name="row" select= "//tbl[3]/row[@prm_id = $prm_id and @scn_id = $scn_id]"/>
                         <xsl:variable name="u" select= "$row/@u"/>
-                        <xsl:variable name="u_max" select= "$row/@u_max"/>
-                        <xsl:variable name="u_min" select= "$row/@u_min"/>
-
+                        <xsl:variable name="z" select= "$row/@mc_sgn * $row/@u div $row/@u_std"/> <!-- signed z-score -->
+                        
                         <xsl:choose>
-                            <xsl:when test="$u &gt; 0">
-                                <xsl:variable name="a" select="format-number($u div $u_max,'0.000')"/>
+                            <xsl:when test="$z &gt; 0">
+                                <xsl:variable name="a" select="$z div 3"/> <!-- 3 std devs -->
                                 <xsl:variable name="b" select="255 * $a"/>
                                 <td style="text-align:right;background-color:rgba(0,125,0,{$a});color:rgb({$b},{$b},{$b});">
                                     <xsl:value-of select="format-number($u,'0.00%','fmt1')"/>
                                 </td>
                             </xsl:when>
-                            <xsl:when test="$u &lt; 0">
-                                <xsl:variable name="a" select="format-number($u div $u_min,'0.000')"/>
+                            <xsl:when test="$z &lt; 0">
+                                <xsl:variable name="a" select="-$z div 3"/> <!-- 3 std devs -->
                                 <xsl:variable name="b" select="255 * $a"/>
                                 <td style="text-align:right;background-color:rgba(255,0,0,{$a});color:rgb({$b},{$b},{$b});">
                                     <xsl:value-of select="format-number($u,'0.00%','fmt1')"/>
@@ -77,8 +76,6 @@
                                 </td>
                             </xsl:otherwise>
                         </xsl:choose>
-                        
-                        
                         
                     </xsl:for-each>
                 </tr>
