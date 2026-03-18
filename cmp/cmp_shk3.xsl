@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" 
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:output method="html" encoding="utf-8"/>
+    
+    <xsl:include href="../nav.xsl"/>
+    
+    <xsl:template match="/">
+        <xsl:call-template name="page"/> 
+    </xsl:template>
+    
+    <xsl:decimal-format name="fmt1" NaN=""/>
+
+   
+    <xsl:template match="root">
+        <table class="table1" style="table-layout:fixed;">
+            <colgroup>
+                <col width="100px"/>
+                <xsl:for-each select="//tbl[2]/row">
+                    <col width="100px"/>
+                </xsl:for-each>
+            </colgroup>
+            <tr>
+                <td></td>
+                <xsl:for-each select="//tbl[2]/row">
+                    <th>
+                        <xsl:value-of select="@mc_grp"/>
+                    </th>
+                </xsl:for-each>
+            </tr>
+            
+            <tr>
+                <td></td>
+                <xsl:for-each select="//tbl[2]/row">
+                    <th>
+                        <a href="https://toby.euler.usi.ch/prm.php?mth=brw&amp;prm_id={@prm_id}">
+                            <xsl:value-of select="@prm_name"/> / 
+                            <xsl:value-of select="@prm_id"/>
+                        </a>
+                    </th>
+                </xsl:for-each>
+            </tr>
+            
+            <xsl:for-each select="//tbl[1]/row">
+                <xsl:variable name="scn_id" select= "@scn_id"/>
+                <tr>
+                    <th>
+                        <xsl:value-of select="@sps_code"/>
+                        <xsl:text>_</xsl:text>
+                        <xsl:value-of select="@shk_code"/>
+                        <xsl:value-of select="@shk_lvl"/>
+                    </th>
+                    <xsl:for-each select="//tbl[2]/row">
+                        <xsl:variable name="prm_id" select= "@prm_id"/>
+                        <xsl:variable name="row" select= "//tbl[3]/row[@prm_id = $prm_id and @scn_id = $scn_id]"/>
+                        <xsl:variable name="u" select= "$row/@u"/>
+                        <xsl:variable name="z" select= "$row/@z"/>
+                        <xsl:variable name="s" select= "$row/@mc_sgn * $row/@z"/> <!-- signed z-score -->
+                        
+                        <xsl:choose>
+                            <xsl:when test="$s &gt; 0">
+                                <xsl:variable name="a" select="$s div 3"/> <!-- 3 std devs -->
+                                <xsl:variable name="b" select="255 * $a"/>
+                                <td style="text-align:right;background-color:rgba(0,125,0,{$a});color:rgb({$b},{$b},{$b});">
+                                    <xsl:value-of select="format-number($z,'0.000','fmt1')"/>
+                                </td>
+                            </xsl:when>
+                            <xsl:when test="$s &lt; 0">
+                                <xsl:variable name="a" select="-$s div 3"/> <!-- 3 std devs -->
+                                <xsl:variable name="b" select="255 * $a"/>
+                                <td style="text-align:right;background-color:rgba(255,0,0,{$a});color:rgb({$b},{$b},{$b});">
+                                    <xsl:value-of select="format-number($z,'0.000','fmt1')"/>
+                                </td>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <td style="text-align:right;color:#CCCCCC;">
+                                    <xsl:value-of select="format-number($z,'0.000','fmt1')"/>
+                                </td>
+                            </xsl:otherwise>
+                        </xsl:choose>
+
+                    </xsl:for-each>
+                </tr>
+            </xsl:for-each>
+        </table>
+    </xsl:template>
+</xsl:stylesheet>

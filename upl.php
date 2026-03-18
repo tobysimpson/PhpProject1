@@ -282,6 +282,42 @@ function upl_flex1() {
 
 
 
+//flexeco
+function upl_flex2() {
+    $db = new cls_db();
+    $dir = "/var/lib/mysql-files/";
+    $name1 = $_FILES["upfile"]["tmp_name"];
+    $name2 = $dir . basename($name1);
+
+    try {
+        move_uploaded_file($name1, $name2);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+    $sql1 = "TRUNCATE TABLE db2.in_flex2";
+    $sql2 = "LOAD DATA INFILE '" . $name2 . "' IGNORE INTO TABLE db2.in_flex2 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' IGNORE 1 LINES (scenario, pathway, shock, intensity, model, yr, ele1, ele2, gas1, gas2);";
+    $sql3 = "CALL db2.sp_ins_flex2()"; 
+    
+//    echo $sql2 . PHP_EOL;
+
+    try {
+        $db->conn->query($sql1);
+        $db->conn->query($sql2);
+        $db->conn->query($sql3);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+    unlink($name1);
+    unlink($name2);
+
+    header("Location: upl.php?mth=hst");
+}
+
+
+
+
 
 
 //stem cli sheet

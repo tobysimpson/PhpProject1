@@ -181,7 +181,7 @@
             <tr>
                 <th style="text-align:left">compare</th>
             </tr>
-<!--            <tr>
+            <!--            <tr>
                 <td>
                     <a href="cmp.php?mth=shk1&amp;prm_id=19988">shk1</a>
                 </td>
@@ -195,6 +195,11 @@
             <tr>
                 <td>
                     <a href="cmp.php?mth=shk2">shk2</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="cmp.php?mth=shk3">shk3</a>
                 </td>
             </tr>
             <tr>

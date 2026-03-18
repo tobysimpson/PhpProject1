@@ -164,6 +164,46 @@
             </tr>
             
             <tr>
+                <th>flex2</th>
+                <td>
+                    Flexeco grid indicators.
+                    <p/>
+                 
+                    <table class="table1">
+                        <tr>
+                            <th>Scenario Key</th>
+                            <th>Pathway	Shock</th>
+                            <th>Intensity</th>
+                            <th>Prior model</th>
+                            <th>Year</th>
+                            <th>Electricity (violations per hour)</th>
+                            <th>Electricity (violations per hour per line)</th>
+                            <th>Gas (violations per hour)</th>
+                            <th>Gas (violations per hour per line)</th>
+                        </tr> 
+                        <tr>
+                            <td>VARCHAR</td>
+                            <td>VARCHAR</td>
+                            <td>VARCHAR</td>
+                            <td>VARCHAR</td>
+                            <td>INT</td>
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
+                        </tr>
+                    </table>
+                    <p/>
+                    <p>Please submit *.csv file in Latin1 encoding (not utf-8)</p>
+                    <p/>
+                    <form action="upl.php?mth=flex2" method="post" enctype="multipart/form-data">
+                        <input type="file" name="upfile"></input>
+                        <input type="submit" value="upload" name="submit"></input>
+                    </form>
+                </td>
+            </tr>
+            
+            <tr>
                 <th>stem1</th>
                 <td>
                     stem1

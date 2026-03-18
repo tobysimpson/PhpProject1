@@ -38,6 +38,14 @@ function cmp_shk2() {
     echo $dom->saveXML();
 }
 
+function cmp_shk3() {
+    $db = new cls_db();
+    $db->conn->multi_query("CALL sp_cmp_shk3();");
+    $dom = cls_xml::mul2dom($db->conn, "cmp/cmp_shk3.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
+
 function cmp_bas1() {
     $db = new cls_db();
     $db->conn->multi_query("CALL sp_cmp_bas1();");
