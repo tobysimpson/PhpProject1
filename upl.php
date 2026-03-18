@@ -486,3 +486,39 @@ function upl_stem1() {
 
     header("Location: upl.php?mth=hst");
 }
+
+
+
+
+//mcda prm
+function upl_mc1() {
+    $db = new cls_db();
+    $dir = "/var/lib/mysql-files/";
+    $name1 = $_FILES["upfile"]["tmp_name"];
+    $name2 = $dir . basename($name1);
+
+    try {
+        move_uploaded_file($name1, $name2);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+    $sql1 = "TRUNCATE TABLE db2.in_mc1";
+    $sql2 = "LOAD DATA INFILE '" . $name2 . "' IGNORE INTO TABLE db2.in_mc1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' IGNORE 1 LINES (mc_id,prm_id,prm_name,mc_grp,mc_code,mc_sgn,mc_pref,mc_w0,mc_w1,mc_p,mc_q,prm_src,prm_desc);";
+    $sql3 = "CALL db2.sp_ins_mc1()"; 
+    
+//    echo $sql2 . PHP_EOL;
+
+    try {
+        $db->conn->query($sql1);
+        $db->conn->query($sql2);
+        $db->conn->query($sql3);
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+    unlink($name1);
+    unlink($name2);
+
+    header("Location: mc.php?mth=prm&mc_id=3");
+}

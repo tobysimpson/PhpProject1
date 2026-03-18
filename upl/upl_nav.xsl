@@ -362,6 +362,51 @@
                 </td>
             </tr>
             
+            <tr>
+                <th>mc1</th>
+                <td>
+                    MCDA parameters - only mc_id = 3 for testing
+                    <p/>
+                    <table class="table1">
+                        <tr>
+                            <th>mc_id</th>
+                            <th>prm_id</th>
+                            <th>prm_name</th>
+                            <th>mc_grp</th>
+                            <th>mc_code</th>
+                            <th>mc_sgn</th>
+                            <th>mc_pref</th>
+                            <th>mc_w0</th>
+                            <th>mc_w1</th>
+                            <th>mc_p</th>
+                            <th>mc_q</th>
+                            <th>prm_src</th>
+                            <th>prm_desc</th>
+                        </tr> 
+                        <tr>
+                            <td>INT</td>
+                            <td>INT</td>
+                            <td>VARCHAR(100)</td>
+                            <td>ENUM('Socio-Political', 'Environment', 'Economy', 'Resilience')</td>
+                            <td>VARCHAR(4)</td>
+                            <td>DOUBLE</td>
+                            <td>INT</td>
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
+                            <td>DOUBLE</td>
+                            <td>VARCHAR(45)</td>
+                            <td>VARCHAR(200)</td>
+                        </tr>
+                    </table>
+                    <p/>
+                    <form action="upl.php?mth=mc1" method="post" enctype="multipart/form-data">
+                        <input type="file" name="upfile"></input>
+                        <input type="submit" value="upload" name="submit"></input>
+                    </form>
+                </td>
+            </tr>
+            
         </table>
     </xsl:template>
 </xsl:stylesheet>
