@@ -72,22 +72,11 @@ function raw_upl() {
     }
 
     $files1 = scandir("/tmp");
-    print_r($files1);
+    print_r($files1) . PHP_EOL;
 
-//    $sql1 = "LOAD DATA INFILE '" . $dir.$name2 . "' INTO TABLE db2.in_raw1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
-//    echo $sql1 . PHP_EOL;
-//
-//    try {
-//        $res1 = $db->conn->query($sql1);
-//        print_r($res1);
-//    } catch (Exception $e) {
-//        echo $e->getMessage();
-//    }
-
-
-    $sql1 = "TRUNCATE TABLE db2.in_raw1";
-    $sql2 = "LOAD DATA INFILE '" . $dir . $name2 . "' IGNORE INTO TABLE db2.in_raw1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
-    $sql3 = "CALL db2.sp_ins_raw1()";
+    $sql1 = "TRUNCATE TABLE db2.in_raw1;";
+    $sql2 = "LOAD DATA INFILE '" . $dir . $name2 . "' IGNORE INTO TABLE db2.in_raw1 FIELDS TERMINATED BY ',' (prm_id,scn_id,yr,u);";
+    $sql3 = "CALL db2.sp_ins_raw1();";
 
     try {
         $db->conn->query($sql1);
@@ -97,13 +86,11 @@ function raw_upl() {
         echo $e->getMessage() . PHP_EOL;
     }
 
-
     unlink($dir . $name1);
     unlink($dir . $name2);
 
-    echo '<br/>';
     $files2 = scandir($dir);
-    print_r($files2);
+    print_r($files2) . PHP_EOL;
 
     header("Location: upl.php?mth=hst");
 }
