@@ -34,8 +34,8 @@
                 <xsl:for-each select="//tbl[2]/row">
                     <th>
                         <a href="https://toby.euler.usi.ch/prm.php?mth=brw&amp;prm_id={@prm_id}">
-                            <xsl:value-of select="@prm_name"/> / 
-                            <xsl:value-of select="@prm_id"/>
+                            <xsl:value-of select="@prm_name"/>
+                            <!--<xsl:value-of select="@prm_id"/>-->
                         </a>
                     </th>
                 </xsl:for-each>

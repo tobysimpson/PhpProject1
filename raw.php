@@ -86,7 +86,7 @@ function raw_upl() {
 
 
     $sql1 = "TRUNCATE TABLE db2.in_raw1";
-    $sql2 = "LOAD DATA INFILE '" . $dir . $name2 . "' IGNORE INTO TABLE db2.in_raw1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
+    $sql2 = "LOAD DATA INFILE '" . $dir . $name2 . "' IGNORE INTO TABLE db2.in_raw1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' (prm_id,scn_id,yr,u);";
     $sql3 = "CALL db2.sp_ins_raw1()";
 
     try {

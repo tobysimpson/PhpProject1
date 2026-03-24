@@ -52,7 +52,7 @@
     <xsl:template name="menu">
         <table width="100%" class="table2">
             <tr>
-                <th style="text-align:left">series</th>
+                <th style="text-align:left">parameter</th>
             </tr>
             <tr>
                 <td>
@@ -70,18 +70,18 @@
                 </td>
             </tr>
             <tr>
-                <th style="text-align:left">exchange</th>
+                <th style="text-align:left">report</th>
             </tr>
             <tr>
                 <td>
-                    <a href="rpt.php?mth=lst">report</a>
+                    <a href="rpt.php?mth=lst">download</a>
                 </td>
             </tr>
-            <tr>
+<!--            <tr>
                 <td>
                     <a href="tpl.php?mth=lst">template</a>
                 </td>
-            </tr>
+            </tr>-->
             <tr>
                 <td>
                     <a href="upl.php?mth=nav">upload</a>
@@ -223,6 +223,25 @@
                     <a href="itm.php?mth=lst">list</a>
                 </td>
             </tr>
+            
+            <tr>
+                <th style="text-align:left">documentation</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://www.overleaf.com/read/mxwmyndymmcc#5a1ecb">specification</a>
+                </td>
+            </tr>
+<!--            <tr>
+                <td>
+                    <a href="https://github.com/tobysimpson/PhpProject1">website source</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="db2.sql">database source</a>
+                </td>
+            </tr>-->
         </table>
     </xsl:template>
 </xsl:stylesheet>

@@ -15,8 +15,8 @@
     <xsl:template match="root">
         
         
-        <p>Please submit *.csv files in Latin1 encoding (not utf-8)</p>
-        <p>No headers please, just values</p>
+        <p>Please submit *.csv files</p>
+        <!--<p>No headers please, just values</p>-->
         <p>Scientific format with many decimals will preserve numerical precision</p>
         
         <table class="table1">
