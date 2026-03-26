@@ -36,7 +36,9 @@
             <xsl:for-each select="tbl[1]/row">
                 <tr>
                     <td>
-                        <xsl:value-of select="@prm_id"/>
+                        <a href="prm.php?mth=brw&amp;prm_id={@prm_id}">
+                            <xsl:value-of select="@prm_id"/>
+                        </a>
                     </td>
                     <td>
                         <xsl:value-of select="@scn_id"/>

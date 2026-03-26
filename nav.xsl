@@ -77,7 +77,7 @@
                     <a href="rpt.php?mth=lst">download</a>
                 </td>
             </tr>
-<!--            <tr>
+            <!--            <tr>
                 <td>
                     <a href="tpl.php?mth=lst">template</a>
                 </td>
@@ -85,6 +85,29 @@
             <tr>
                 <td>
                     <a href="upl.php?mth=nav">upload</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="upl.php?mth=hst">history</a>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:left">raw data</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="raw.php?mth=lst">download</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="raw.php?mth=nav">upload</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="upl.php?mth=hst">history</a>
                 </td>
             </tr>
             <tr>
@@ -138,27 +161,7 @@
                     <a href="mc.php?mth=lst">analysis</a>
                 </td>
             </tr>
-            <tr>
-                <th style="text-align:left">raw data</th>
-            </tr>
-            <tr>
-                <td>
-                    <a href="raw.php?mth=lst">download</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="raw.php?mth=nav">upload</a>
-                </td>
-            </tr>
-            <tr>
-                <th style="text-align:left">upload</th>
-            </tr>
-            <tr>
-                <td>
-                    <a href="upl.php?mth=hst">history</a>
-                </td>
-            </tr>
+           
             <tr>
                 <th style="text-align:left">afr</th>
             </tr>

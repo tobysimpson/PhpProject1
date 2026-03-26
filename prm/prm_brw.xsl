@@ -11,8 +11,8 @@
     
     <xsl:decimal-format name="fmt1" NaN=""/>
     
-    <xsl:variable name="rel_max" select="//tbl[8]/row/@rel_max"/>
-    <xsl:variable name="rel_min" select="//tbl[8]/row/@rel_min"/>
+<!--    <xsl:variable name="rel_max" select="//tbl[8]/row/@rel_max"/>
+    <xsl:variable name="rel_min" select="//tbl[8]/row/@rel_min"/>-->
     
     <xsl:template match="root">
         <xsl:variable name="prm_id" select="tbl[3]/row/@prm_id"/>
@@ -123,7 +123,7 @@
         </table>
         
         
-        <xsl:if test="not(count(tbl[8]/row) = 0)">
+        <xsl:if test="not(count(tbl[9]/row) = 0)">
             
             <p class="h1">pathways</p>
             
@@ -364,8 +364,6 @@
             
  
         </xsl:if>
-        
-
         
         
     </xsl:template>

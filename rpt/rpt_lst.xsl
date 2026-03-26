@@ -15,7 +15,6 @@
             <tr>
                 <th>rpt_id</th>
                 <th>rpt_name</th>
-                <th>rpt_typ</th>
             </tr>
             <xsl:for-each select="tbl[1]/row">
                 <!--                <xsl:variable name="rpt" select="."/>-->
@@ -27,9 +26,6 @@
                         <a href="rpt.php?mth=sps&amp;rpt_id={@rpt_id}">
                             <xsl:value-of select="@rpt_name"/>
                         </a>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@rpt_typ"/>
                     </td>
                 </tr>
             </xsl:for-each>
