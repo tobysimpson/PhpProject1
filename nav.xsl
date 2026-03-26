@@ -113,7 +113,7 @@
             <tr>
                 <th style="text-align:left">mcda</th>
             </tr> 
-            <!--            <tr>
+            <tr>
                 <td>
                     <a href="scn.php?mth=sps">pathway</a>
                 </td>
@@ -122,7 +122,7 @@
                 <td>
                     <a href="shk.php?mth=lst">shock</a>
                 </td>
-            </tr>-->
+            </tr>
             <tr>
                 <td>
                     <a href="scn.php?mth=htm">scenario</a>
