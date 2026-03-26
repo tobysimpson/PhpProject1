@@ -64,7 +64,9 @@
                 <th>shk_code</th>
                 <th>shk_lvl</th>
                 <th>htm</th>
-                <th colspan="2">download</th>
+                <th>csv</th>
+                <th>xls</th>
+                <th>raw</th>
             </tr>
             <xsl:for-each select="tbl[3]/row">
                 <tr>
@@ -109,9 +111,16 @@
                             <xsl:text>.xls</xsl:text>
                         </a>
                     </td>
-<!--                    <td>
-                        <a href="rpt.php?mth=xml&amp;rpt_id={$rpt/@rpt_id}&amp;scn_id={@scn_id}">xml</a>
-                    </td>-->
+                    <td style="text-align:left;">
+                        <!--<a href="rpt.php?mth=csv&amp;rpt_id={$rpt/@rpt_id}&amp;scn_id={@scn_id}">-->
+                        <a href="https://toby.euler.usi.ch/raw.php?mth=csv&amp;rpt_id={$rpt/@rpt_id}&amp;scn_id={@scn_id}">
+                            <xsl:text>raw</xsl:text>
+                            <xsl:value-of select="format-number($rpt/@rpt_id,'00')"/>
+                            <xsl:text>_scn</xsl:text>
+                            <xsl:value-of select="format-number(@scn_id,'00')"/>
+                            <xsl:text>.csv</xsl:text>
+                        </a>
+                    </td>
                 </tr>
             </xsl:for-each>
         </table>

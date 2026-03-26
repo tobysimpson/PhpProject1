@@ -92,7 +92,7 @@
                     <a href="upl.php?mth=hst">history</a>
                 </td>
             </tr>
-            <tr>
+<!--            <tr>
                 <th style="text-align:left">raw data</th>
             </tr>
             <tr>
@@ -109,7 +109,7 @@
                 <td>
                     <a href="upl.php?mth=hst">history</a>
                 </td>
-            </tr>
+            </tr>-->
             <tr>
                 <th style="text-align:left">mcda</th>
             </tr> 
