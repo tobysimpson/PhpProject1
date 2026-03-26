@@ -11,7 +11,7 @@
     
     <xsl:decimal-format name="fmt1" NaN=""/>
     
-<!--    <xsl:variable name="rel_max" select="//tbl[8]/row/@rel_max"/>
+    <!--    <xsl:variable name="rel_max" select="//tbl[8]/row/@rel_max"/>
     <xsl:variable name="rel_min" select="//tbl[8]/row/@rel_min"/>-->
     
     <xsl:template match="root">
@@ -88,20 +88,28 @@
         <table class="table1">
             <tr>
                 <th>prm_id</th>
-                <th>prm_name</th>
+                <!--<th>name</th>-->
+                <th>path</th>
+                <th>unit</th>
                 <th>lvl</th>
                 <th>leaf</th>
                 <th>calc</th>
-                <th>unit</th>
-                <th>path</th>
+                
+                
             </tr>
             <xsl:for-each select="tbl[3]/row">
                 <tr>
                     <td>
                         <xsl:value-of select="@prm_id"/>
                     </td>
-                    <td style="text-align:left;">
+<!--                    <td style="text-align:left;">
                         <xsl:value-of select="@name"/>
+                    </td>-->
+                    <td style="text-align:left;">
+                        <xsl:value-of select="@path"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@unit"/>
                     </td>
                     <td>
                         <xsl:value-of select="@lvl"/>
@@ -112,12 +120,8 @@
                     <td>
                         <xsl:value-of select="@calc"/>
                     </td>
-                    <td>
-                        <xsl:value-of select="@unit"/>
-                    </td>
-                    <td style="text-align:left;">
-                        <xsl:value-of select="@path"/>
-                    </td>
+                    
+
                 </tr>
             </xsl:for-each>
         </table>
@@ -223,75 +227,75 @@
             </a>
            
            
-           <!-- 
-           
-            <p class="h1">comparison (shock vs. sps base)</p>
-            
-
-            <table class="table1">
-                <tr>
-                    
-                    <th>sps_code</th>
-                    <th>shk_code</th>
-                    <th>shk_lvl</th>
-                    <xsl:for-each select="//tbl[7]/row">
-                        <th>
-                            <xsl:value-of select="@yr"/>
-                        </th>
-                    </xsl:for-each>
-                </tr>
-                <xsl:for-each select="//tbl[5]/row">
-                    <xsl:variable name="shk_id" select= "@shk_id"/>
-                    <xsl:variable name="shk_code" select= "@shk_code"/>
-                    <xsl:for-each select="//tbl[4]/row">
+            <!-- 
+                       
+                        <p class="h1">comparison (shock vs. sps base)</p>
                         
-                        <xsl:variable name="sps_id" select= "@sps_id"/>
-                        <xsl:variable name="sps_code" select= "@sps_code"/>
-                    
-                        <xsl:for-each select="//tbl[6]/row">
-                            <xsl:variable name="shk_lvl" select= "@shk_lvl"/>
+            
+                        <table class="table1">
                             <tr>
-                                <td>
-                                    <xsl:value-of select="$sps_code"/>
-                                </td>
-                                <td>
-                                    <xsl:value-of select="$shk_code"/>
-                                </td>
-                                <td>
-                                    <xsl:value-of select="$shk_lvl"/>
-                                </td>
+                                
+                                <th>sps_code</th>
+                                <th>shk_code</th>
+                                <th>shk_lvl</th>
                                 <xsl:for-each select="//tbl[7]/row">
-                                    <xsl:variable name="yr" select= "@yr"/>
-                                    <xsl:variable name="u_rel" select="//tbl[9]/row[@yr = $yr and @sps_id = $sps_id and @shk_id = $shk_id and @shk_lvl = $shk_lvl]/@u_rel"/>  
-                                    <xsl:choose>
-                                        <xsl:when test="$u_rel &gt; 0">
-                                            <xsl:variable name="a" select="format-number($u_rel div $rel_max,'0.000')"/>
-                                            <xsl:variable name="b" select="255 * $a"/>
-                                            <td style="text-align:right;background-color:rgba(0,125,0,{$a});color:rgb({$b},{$b},{$b});">
-                                                <xsl:value-of select="format-number($u_rel,'0.00%','fmt1')"/>
-                                            </td>
-                                        </xsl:when>
-                                        <xsl:when test="$u_rel &lt; 0">
-                                            <xsl:variable name="a" select="format-number($u_rel div $rel_min,'0.000')"/>
-                                            <xsl:variable name="b" select="255 * $a"/>
-                                            <td style="text-align:right;background-color:rgba(255,0,0,{$a});color:rgb({$b},{$b},{$b});">
-                                                <xsl:value-of select="format-number($u_rel,'0.00%','fmt1')"/>
-                                            </td>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <td style="text-align:right;color:#CCCCCC;">
-                                                <xsl:value-of select="format-number($u_rel,'0.00%','fmt1')"/>
-                                            </td>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
+                                    <th>
+                                        <xsl:value-of select="@yr"/>
+                                    </th>
                                 </xsl:for-each>
                             </tr>
-                        </xsl:for-each>
-                    </xsl:for-each>
-                </xsl:for-each>
-            </table>
-
--->
+                            <xsl:for-each select="//tbl[5]/row">
+                                <xsl:variable name="shk_id" select= "@shk_id"/>
+                                <xsl:variable name="shk_code" select= "@shk_code"/>
+                                <xsl:for-each select="//tbl[4]/row">
+                                    
+                                    <xsl:variable name="sps_id" select= "@sps_id"/>
+                                    <xsl:variable name="sps_code" select= "@sps_code"/>
+                                
+                                    <xsl:for-each select="//tbl[6]/row">
+                                        <xsl:variable name="shk_lvl" select= "@shk_lvl"/>
+                                        <tr>
+                                            <td>
+                                                <xsl:value-of select="$sps_code"/>
+                                            </td>
+                                            <td>
+                                                <xsl:value-of select="$shk_code"/>
+                                            </td>
+                                            <td>
+                                                <xsl:value-of select="$shk_lvl"/>
+                                            </td>
+                                            <xsl:for-each select="//tbl[7]/row">
+                                                <xsl:variable name="yr" select= "@yr"/>
+                                                <xsl:variable name="u_rel" select="//tbl[9]/row[@yr = $yr and @sps_id = $sps_id and @shk_id = $shk_id and @shk_lvl = $shk_lvl]/@u_rel"/>  
+                                                <xsl:choose>
+                                                    <xsl:when test="$u_rel &gt; 0">
+                                                        <xsl:variable name="a" select="format-number($u_rel div $rel_max,'0.000')"/>
+                                                        <xsl:variable name="b" select="255 * $a"/>
+                                                        <td style="text-align:right;background-color:rgba(0,125,0,{$a});color:rgb({$b},{$b},{$b});">
+                                                            <xsl:value-of select="format-number($u_rel,'0.00%','fmt1')"/>
+                                                        </td>
+                                                    </xsl:when>
+                                                    <xsl:when test="$u_rel &lt; 0">
+                                                        <xsl:variable name="a" select="format-number($u_rel div $rel_min,'0.000')"/>
+                                                        <xsl:variable name="b" select="255 * $a"/>
+                                                        <td style="text-align:right;background-color:rgba(255,0,0,{$a});color:rgb({$b},{$b},{$b});">
+                                                            <xsl:value-of select="format-number($u_rel,'0.00%','fmt1')"/>
+                                                        </td>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <td style="text-align:right;color:#CCCCCC;">
+                                                            <xsl:value-of select="format-number($u_rel,'0.00%','fmt1')"/>
+                                                        </td>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
+                                            </xsl:for-each>
+                                        </tr>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                            </xsl:for-each>
+                        </table>
+            
+            -->
             
             <p class="h1">data</p>
             

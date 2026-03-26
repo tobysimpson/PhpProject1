@@ -59,18 +59,23 @@
                     <a href="prm.php?mth=brw&amp;prm_id=2423">browse</a>
                 </td>
             </tr>
-            <tr>
+<!--            <tr>
                 <td>
                     <a href="prm.php?mth=lst">list</a>
                 </td>
-            </tr>
+            </tr>-->
             <tr>
                 <td>
                     <a href="prm.php?mth=pth">path</a>
                 </td>
             </tr>
+<!--            <tr>
+                <td>
+                    <a href="prm.php?mth=tre">tree</a>
+                </td>
+            </tr>-->
             <tr>
-                <th style="text-align:left">report</th>
+                <th style="text-align:left">data</th>
             </tr>
             <tr>
                 <td>
@@ -92,7 +97,7 @@
                     <a href="upl.php?mth=hst">history</a>
                 </td>
             </tr>
-<!--            <tr>
+            <!--            <tr>
                 <th style="text-align:left">raw data</th>
             </tr>
             <tr>

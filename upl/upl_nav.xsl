@@ -57,6 +57,39 @@
                 </td>
             </tr>
             <tr>
+                <th>raw1</th>
+                <td>
+                    <p>De-normalised data as per the storage format.</p>
+                    <p>Please submit *.csv files</p>
+                    <!--<p>No headers please, just values</p>-->
+                    <p>Scientific format with many decimals will preserve numerical precision</p>
+        
+                    <table class="table1">
+                        <tr>
+                            <th>prm_id</th>
+                            <th>scn_id</th>
+                            <th>yr</th>
+                            <th>u</th>
+                        </tr>
+                        <tr>
+                            <td>INT</td>
+                            <td>INT</td>
+                            <td>INT</td>
+                            <td>DOUBLE</td>
+                        </tr>
+                    </table>
+        
+                    <p/>
+
+        
+                    <form action="raw.php?mth=upl" method="post" enctype="multipart/form-data">
+                        <input type="file" name="upload_file" prm_id="fileToUpload"></input>
+                        <input type="submit" value="Upload" name="submit"></input>
+                    </form>
+                    
+                </td>
+            </tr>
+            <tr>
                 <th>prem1</th>
                 <td>
                     Premise model output.
