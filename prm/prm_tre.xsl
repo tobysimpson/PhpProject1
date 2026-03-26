@@ -10,7 +10,7 @@
     </xsl:template>
     
 
-    <xsl:variable name="w" select="10"/>
+    <xsl:variable name="w" select="9"/>
 
     <xsl:template match="root/tbl[1]">
         <table class="table1">
@@ -24,7 +24,7 @@
                 <col width="25px"/>
                 <col width="25px"/>
                 <col width="25px"/>
-                <col width="25px"/>
+                
             </colgroup>
             <tr>
                 <th colspan="{$w+1}"></th>
