@@ -123,7 +123,7 @@
         </table>
         
         
-        <xsl:if test="not(count(tbl[11]/row) = 0)">
+        <xsl:if test="not(count(tbl[8]/row) = 0)">
             
             <p class="h1">pathways</p>
             
@@ -223,6 +223,8 @@
             </a>
            
            
+           <!-- 
+           
             <p class="h1">comparison (shock vs. sps base)</p>
             
 
@@ -289,6 +291,7 @@
                 </xsl:for-each>
             </table>
 
+-->
             
             <p class="h1">data</p>
             
@@ -306,7 +309,7 @@
                         </th>
                     </xsl:for-each>
                 </tr>
-                <xsl:for-each select="//root/tbl[10]/row">
+                <xsl:for-each select="//root/tbl[8]/row">
                     <xsl:variable name="scn_id" select="@scn_id"/>
                     <tr>
                         <td>
@@ -323,7 +326,7 @@
                         </td>
                         <xsl:for-each select="//root/tbl[7]/row">
                             <xsl:variable name="yr" select="@yr"/>
-                            <xsl:variable name="row" select="//root/tbl[11]/row[@scn_id = $scn_id and @yr = $yr]"/>
+                            <xsl:variable name="row" select="//root/tbl[9]/row[@scn_id = $scn_id and @yr = $yr]"/>
                             <td style="text-align:right;">
                                 <xsl:value-of select="$row/@u"/>
                             </td>
@@ -334,7 +337,7 @@
             
             
             
-            <p class="h1">uploads (last 30 days)</p>
+            <p class="h1">uploads</p>
         
             <table class="table1">
                 <tr>
@@ -342,7 +345,7 @@
                     <th>ts</th>
                     <th>n</th>
                 </tr>
-                <xsl:for-each select="tbl[12]/row">
+                <xsl:for-each select="tbl[10]/row">
                     <tr>
                         <td>
                             <xsl:value-of select="@prm_id"/>

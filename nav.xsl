@@ -223,25 +223,6 @@
                     <a href="itm.php?mth=lst">list</a>
                 </td>
             </tr>
-            
-            <tr>
-                <th style="text-align:left">documentation</th>
-            </tr>
-            <tr>
-                <td>
-                    <a href="https://www.overleaf.com/read/mxwmyndymmcc#5a1ecb">specification</a>
-                </td>
-            </tr>
-<!--            <tr>
-                <td>
-                    <a href="https://github.com/tobysimpson/PhpProject1">website source</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="db2.sql">database source</a>
-                </td>
-            </tr>-->
         </table>
     </xsl:template>
 </xsl:stylesheet>
