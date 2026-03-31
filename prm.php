@@ -37,7 +37,7 @@ function prm_pth() {
 
 function prm_tre() {
     $db = new cls_db();
-    $db->conn->multi_query("SELECT lvl,leaf,prm_id,name FROM vw_prm_path ORDER BY path;");
+    $db->conn->multi_query("SELECT lvl,leaf,prm_id,name FROM vw_prm_path ORDER BY name0,name1,name2,name3,name4,name5,name6,name7,name8,name9,name10;");
     $dom = cls_xml::mul2dom($db->conn, "prm/prm_tre.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();

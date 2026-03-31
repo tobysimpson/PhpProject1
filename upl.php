@@ -25,7 +25,7 @@ function upl_hst() {
 function upl_dsp() {
     $db = new cls_db();
     $ts = filter_input(INPUT_GET, "ts", FILTER_SANITIZE_STRING);
-    $db->conn->multi_query("SELECT * FROM cub1 WHERE ts = '{$ts}';");
+    $db->conn->multi_query("SELECT * FROM cub1_last WHERE ts = '{$ts}';");
     $dom = cls_xml::mul2dom($db->conn, "upl/upl_dsp.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
@@ -35,7 +35,7 @@ function upl_prm() {
     $db = new cls_db();
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
     $ts = filter_input(INPUT_GET, "ts", FILTER_SANITIZE_STRING);
-    $db->conn->multi_query("SELECT * FROM cub1 WHERE ts = '{$ts}' AND prm_id = {$prm_id};");
+    $db->conn->multi_query("SELECT * FROM cub1_last WHERE ts = '{$ts}' AND prm_id = {$prm_id};");
     $dom = cls_xml::mul2dom($db->conn, "upl/upl_dsp.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();
@@ -387,7 +387,7 @@ function upl_xpn1() {
 
 
     $sql1 = "TRUNCATE TABLE db2.in_xpn1";
-    $sql2 = "LOAD DATA INFILE '" . $name2 . "' IGNORE INTO TABLE db2.in_xpn1 CHARACTER SET latin1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (sps_code, shk_code, shk_lvl, prm_id, yr, u);"; 
+    $sql2 = "LOAD DATA INFILE '" . $name2 . "' IGNORE INTO TABLE db2.in_xpn1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (sps_code, shk_code, shk_lvl, prm_id, yr, u);"; 
     $sql3 = "CALL db2.sp_ins_xpn1()";
 
     try {
