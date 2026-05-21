@@ -34,3 +34,9 @@ function afr_cal2() {
     header('Content-Type: text/xml');
     echo $dom->saveXML();
 }
+
+function afr_upd() {
+    $db = new cls_db();
+    $db->conn->multi_query("CALL sp_afr_upd();");
+    header("Location: https://toby.euler.usi.ch/prm.php?mth=brw&prm_id=32499");
+}
