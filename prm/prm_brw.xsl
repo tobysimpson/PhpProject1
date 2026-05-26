@@ -102,7 +102,7 @@
                     <td>
                         <xsl:value-of select="@prm_id"/>
                     </td>
-<!--                    <td style="text-align:left;">
+                    <!--                    <td style="text-align:left;">
                         <xsl:value-of select="@name"/>
                     </td>-->
                     <td style="text-align:left;">
@@ -308,10 +308,11 @@
                     <th>shk_lvl</th>
 
                     <xsl:for-each select="//root/tbl[7]/row">
-                        <th>
+                        <th colspan="2">
                             <xsl:value-of select="@yr"/>
                         </th>
                     </xsl:for-each>
+
                 </tr>
                 <xsl:for-each select="//root/tbl[8]/row">
                     <xsl:variable name="scn_id" select="@scn_id"/>
@@ -334,7 +335,11 @@
                             <td style="text-align:right;">
                                 <xsl:value-of select="$row/@u"/>
                             </td>
+                            <td style="text-align:right;">
+                                <xsl:value-of select="$row/@ts"/>
+                            </td>
                         </xsl:for-each>
+
                     </tr>
                 </xsl:for-each>
             </table>
