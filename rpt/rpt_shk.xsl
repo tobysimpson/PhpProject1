@@ -64,7 +64,7 @@
                 <th>shk_code</th>
                 <th>shk_lvl</th>
                 <th>htm</th>
-                <th>csv</th>
+                <th>piv</th>
                 <th>xls</th>
                 <th>raw</th>
             </tr>
