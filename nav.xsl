@@ -98,7 +98,7 @@
                     <a href="upl.php?mth=hst">history</a>
                 </td>
             </tr>
-            <!--            <tr>
+            <tr>
                 <th style="text-align:left">raw data</th>
             </tr>
             <tr>
@@ -115,7 +115,7 @@
                 <td>
                     <a href="upl.php?mth=hst">history</a>
                 </td>
-            </tr>-->
+            </tr>
             <tr>
                 <th style="text-align:left">mcda</th>
             </tr> 
@@ -186,7 +186,11 @@
                     <a href="afr.php?mth=cal2">afr_cal2</a>
                 </td>
             </tr>
-           
+            <tr>
+                <td>
+                    <a href="afr.php?mth=upd">afr_upd</a>
+                </td>
+            </tr>
             <tr>
                 <th style="text-align:left">compare</th>
             </tr>
