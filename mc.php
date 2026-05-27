@@ -149,4 +149,38 @@ function mc_rpt2() {
     echo $dom->saveXML();
 }
 
+function mc_rpt3_htm() {
+    $db = new cls_db();
+    $mc_id      = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_mc_rpt3({$mc_id});");
+    $dom = cls_xml::mul2dom($db->conn, "mc/mc_rpt3_htm.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
 
+function mc_rpt3_csv() {
+    $db = new cls_db();
+    $mc_id      = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_mc_rpt3({$mc_id});");
+    $xml = cls_xml::mul2dom($db->conn);
+    $xsl = cls_xml::file2dom("mc/mc_rpt3_csv.xsl");
+//    header ('Content-Type: text/plain'); //display in browser  
+    header("Content-type: text/csv");
+    $fname = sprintf("mc%d_rpt3.csv", $mc_id);
+    header("Content-Disposition: attachment; filename={$fname}");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+    echo cls_xml::xsltrans($xml, $xsl);
+}
+
+function mc_rpt3_xls() {
+    $db = new cls_db();
+    $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_mc_rpt3({$mc_id});");
+    $xml = cls_xml::mul2dom($db->conn);
+    $xsl = cls_xml::file2dom("mc/mc_rpt3_xls.xsl");
+    $fname = sprintf("mc%d_rpt3.xls", $mc_id);
+    header('Content-Type: application/vnd.ms-excel');
+    header("Content-Disposition: attachment; filename={$fname}");
+    echo cls_xml::xsltrans($xml, $xsl);
+}

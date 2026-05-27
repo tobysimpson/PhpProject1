@@ -10,6 +10,14 @@ $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 $func = "itm_" . $mth;
 $func();
 
+
+function itm_dsp() {
+    
+    echo 'post_max_size = ' . ini_get('post_max_size') . PHP_EOL;
+    echo 'upload_max_filesize = ' . ini_get('upload_max_filesize') . PHP_EOL;
+    
+}
+
 function itm_lst() {
     
 //    echo 'post_max_size = ' . ini_get('post_max_size') . PHP_EOL;

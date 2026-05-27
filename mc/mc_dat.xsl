@@ -14,9 +14,25 @@
         <xsl:variable name="mc" select="tbl[1]/row"/>
         
         <p class="h1">
-            <xsl:value-of select="tbl[1]/row/@mc_name"/>
+            <xsl:value-of select="$mc/@mc_name"/>
         </p>
         
+        <table class="table1">
+            <tr>
+                <th>all data</th>
+                <td>
+                    <a href="mc.php?mth=rpt3_htm&amp;mc_id={$mc/@mc_id}">htm</a>
+                </td>
+                <td>
+                    <a href="mc.php?mth=rpt3_csv&amp;mc_id={$mc/@mc_id}">csv</a>
+                </td>
+                <td>
+                    <a href="mc.php?mth=rpt3_xls&amp;mc_id={$mc/@mc_id}">xls</a>
+                </td>
+            </tr>
+        </table>
+        
+        <p/>
         
         <table class="table1">
             <tr>
