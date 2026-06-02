@@ -62,59 +62,6 @@
                     </Table>
                 </Worksheet>
             </xsl:for-each>
-            
-            
-            <Worksheet ss:Name="Table1">
-                <Table>
-                    <Row>
-                        <Cell>
-                            <Data ss:Type="String">prm_id</Data>
-                        </Cell>
-                        <Cell>
-                            <Data ss:Type="String">scn_id</Data>
-                        </Cell>
-                        <Cell>
-                            <Data ss:Type="String">yr</Data>
-                        </Cell>
-                        <Cell>
-                            <Data ss:Type="String">ts</Data>
-                        </Cell>
-                        <Cell>
-                            <Data ss:Type="String">u</Data>
-                        </Cell>
-                    </Row>
-                    <xsl:for-each select="tbl[5]/row">
-                        <Row>
-                            <Cell>
-                                <Data ss:Type="Number">
-                                    <xsl:value-of select="@prm_id"/>
-                                </Data>
-                            </Cell>
-                            <Cell>
-                                <Data ss:Type="Number">
-                                    <xsl:value-of select="@scn_id"/>
-                                </Data>
-                            </Cell>
-                            <Cell>
-                                <Data ss:Type="Number">
-                                    <xsl:value-of select="@yr"/>
-                                </Data>
-                            </Cell>
-                            <Cell>
-                                <Data ss:Type="String">
-                                    <xsl:value-of select="@ts"/>
-                                </Data>
-                            </Cell>
-                            <Cell>
-                                <Data ss:Type="Number">
-                                    <xsl:value-of select="@u"/>
-                                </Data>
-                            </Cell>
-                        </Row>
-                          
-                    </xsl:for-each>
-                </Table>
-            </Worksheet>
         </Workbook>
     </xsl:template>
 </xsl:stylesheet>
