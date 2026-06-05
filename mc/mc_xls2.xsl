@@ -10,10 +10,10 @@
                   xmlns:html="http://www.w3.org/TR/REC-html40">
             
             <xsl:for-each select="//tbl[2]/row">
-                <xsl:variable name="sps_code" select="@sps_code"/>
+                <xsl:variable name="shk" select="."/>
                 <xsl:for-each select="//tbl[3]/row">
                     <xsl:variable name="yr" select="@yr"/>
-                    <Worksheet ss:Name="{$sps_code}_{$yr}">
+                    <Worksheet ss:Name="{$shk/@shk_code}{$shk/@shk_lvl}_{$yr}">
                         <Table>
                             <Row>
                                 <Cell>
@@ -36,14 +36,9 @@
                                     </Cell>
                                 </xsl:for-each>
                             </Row>
-                            <xsl:for-each select="//root/tbl[4]/row[@sps_code = $sps_code]">
-                                <xsl:variable name="scn_id" select="@scn_id"/>
+                            <xsl:for-each select="//tbl[4]/row[@shk_id = $shk/@shk_id and @shk_lvl = $shk/@shk_lvl]">
+                                <xsl:variable name="scn" select="."/>
                                 <Row>
-                                    <Cell>
-                                        <Data ss:Type="String">
-                                            <xsl:value-of select="$sps_code"/>
-                                        </Data>
-                                    </Cell>
                                     <Cell>
                                         <Data ss:Type="String">
                                             <xsl:value-of select="$yr"/>
@@ -51,16 +46,22 @@
                                     </Cell>
                                     <Cell>
                                         <Data ss:Type="String">
-                                            <xsl:value-of select="@shk_code"/>
+                                            <xsl:value-of select="$scn/@sps_code"/>
                                         </Data>
                                     </Cell>
                                     <Cell>
                                         <Data ss:Type="String">
-                                            <xsl:value-of select="@shk_lvl"/>
+                                            <xsl:value-of select="$shk/@shk_code"/>
                                         </Data>
                                     </Cell>
-                                    <xsl:variable name="rows" select="//root/tbl[6]/row[@scn_id = $scn_id and @yr = $yr]"/>
-                                    <xsl:for-each select="//root/tbl[5]/row">
+                                    <Cell>
+                                        <Data ss:Type="String">
+                                            <xsl:value-of select="$shk/@shk_lvl"/>
+                                        </Data>
+                                    </Cell>
+                                    
+                                    <xsl:variable name="rows" select="//tbl[6]/row[@scn_id = $scn/@scn_id and @yr = $yr]"/>
+                                    <xsl:for-each select="//tbl[5]/row">
                                         <xsl:variable name="prm_id" select="@prm_id"/>
                                         <Cell>
                                             <Data ss:Type="Number">
@@ -75,39 +76,5 @@
                 </xsl:for-each>
             </xsl:for-each>
         </Workbook>
-    </xsl:template>
-    <xsl:template match="root2">
-        <table class="table1" style="table-layout:fixed;">
-            <xsl:for-each select="//root/tbl[2]/row">
-                <xsl:variable name="sps_code" select="@sps_code"/>
-                <xsl:for-each select="//root/tbl[3]/row">
-                    <xsl:variable name="yr" select="@yr"/>
-                    <xsl:for-each select="//root/tbl[4]/row[@sps_code = $sps_code]">
-                        <xsl:variable name="scn_id" select="@scn_id"/>
-                        <tr>
-                            <th>
-                                <xsl:value-of select="$sps_code"/>
-                            </th>
-                            <th>
-                                <xsl:value-of select="$yr"/>
-                            </th>
-                            <th>
-                                <xsl:value-of select="@shk_code"/>
-                            </th>
-                            <th>
-                                <xsl:value-of select="@shk_lvl"/>
-                            </th>
-                            <xsl:variable name="rows" select="//root/tbl[6]/row[@scn_id = $scn_id and @yr = $yr]"/>
-                            <xsl:for-each select="//root/tbl[5]/row">
-                                <xsl:variable name="prm_id" select="@prm_id"/>
-                                <td>
-                                    <xsl:value-of select="$rows[@prm_id = $prm_id]/@u"/>
-                                </td>
-                            </xsl:for-each>
-                        </tr>
-                    </xsl:for-each>
-                </xsl:for-each>
-            </xsl:for-each>
-        </table>
     </xsl:template>
 </xsl:stylesheet>

@@ -27,10 +27,10 @@
                     <a href="mc.php?mth=rpt3_csv&amp;mc_id={$mc/@mc_id}">csv</a>
                 </td>
                 <td>
-                    <a href="mc.php?mth=rpt3_xls1&amp;mc_id={$mc/@mc_id}">xls1</a>
+                    <a href="mc.php?mth=xls1&amp;mc_id={$mc/@mc_id}">xls1</a>
                 </td>
                 <td>
-                    <a href="mc.php?mth=rpt3_xls2&amp;mc_id={$mc/@mc_id}">xls2</a>
+                    <a href="mc.php?mth=xls2&amp;mc_id={$mc/@mc_id}">xls2</a>
                 </td>
             </tr>
         </table>

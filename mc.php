@@ -168,28 +168,28 @@ function mc_rpt3_csv() {
     echo cls_xml::xsltrans($xml, $xsl);
 }
 
-function mc_rpt3_xls1() {
+function mc_xls1() {
     $db = new cls_db();
     $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_mc_rpt3({$mc_id});");
+    $db->conn->multi_query("CALL sp_mc_xls1({$mc_id});");
     $xml = cls_xml::mul2dom($db->conn);
-    $xsl = cls_xml::file2dom("mc/mc_rpt3_xls1.xsl");
-    header("Content-type: text/xml");
-//    header('Content-Type: application/vnd.ms-excel');
-//    $fname = sprintf("mc%d_xls1_%s.xls", $mc_id,date("Ymd-His"));
-//    header("Content-Disposition: attachment; filename={$fname}");
+    $xsl = cls_xml::file2dom("mc/mc_xls1.xsl");
+//    header("Content-type: text/xml");
+    header('Content-Type: application/vnd.ms-excel');
+    $fname = sprintf("mc%d_xls1_%s.xls", $mc_id,date("Ymd-His"));
+    header("Content-Disposition: attachment; filename={$fname}");
     echo cls_xml::xsltrans($xml, $xsl);
 }
 
-function mc_rpt3_xls2() {
+function mc_xls2() {
     $db = new cls_db();
     $mc_id = filter_input(INPUT_GET, "mc_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_mc_rpt3({$mc_id});");
+    $db->conn->multi_query("CALL sp_mc_xls2({$mc_id});");
     $xml = cls_xml::mul2dom($db->conn);
-    $xsl = cls_xml::file2dom("mc/mc_rpt3_xls2.xsl");
-    header("Content-type: text/xml");
-//    header('Content-Type: application/vnd.ms-excel');
-//    $fname = sprintf("mc%d_xls2_%s.xls", $mc_id,date("Ymd-His"));
-//    header("Content-Disposition: attachment; filename={$fname}");
+    $xsl = cls_xml::file2dom("mc/mc_xls2.xsl");
+//    header("Content-type: text/xml");
+    header('Content-Type: application/vnd.ms-excel');
+    $fname = sprintf("mc%d_xls2_%s.xls", $mc_id,date("Ymd-His"));
+    header("Content-Disposition: attachment; filename={$fname}");
     echo cls_xml::xsltrans($xml, $xsl);
 }
