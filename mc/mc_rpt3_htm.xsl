@@ -11,37 +11,59 @@
     
 
     <xsl:template match="root">
-        <table class="table1">
+        <table class="table1" style="table-layout:fixed;">
+            <colgroup>
+                <col width="20px"/>
+                <col width="20px"/>
+                <col width="20px"/>
+                <col width="20px"/>
+                <xsl:for-each select="//tbl[5]/row">
+                    <col width="100px"/>
+                </xsl:for-each>
+            </colgroup>
             <tr>
-                <th>mc_id</th>
-                <th>prm_id</th>
-                <th>scn_id</th>
-                <th>yr</th>
-                <th>ts</th>
-                <th>u</th>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <xsl:for-each select="//root/tbl[5]/row">
+                    <th>
+                        <xsl:value-of select="@prm_name"/>
+                    </th>
+                </xsl:for-each>
             </tr>
-            <xsl:for-each select="tbl[5]/row">
-                <tr>
-                    <td>
-                        <xsl:value-of select="@mc_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@prm_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@scn_id"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@yr"/>
-                    </td>
-                    <td>
-                        <xsl:value-of select="@ts"/> 
-                    </td>
-                    <td style="text-align:right;">
-                        <xsl:value-of select="@u"/> 
-                    </td>
-                </tr>
+            <xsl:for-each select="//root/tbl[2]/row">
+                <xsl:variable name="sps_code" select="@sps_code"/>
+                <xsl:for-each select="//root/tbl[3]/row">
+                    <xsl:variable name="yr" select="@yr"/>
+                    <xsl:for-each select="//root/tbl[4]/row[@sps_code = $sps_code]">
+                        <xsl:variable name="scn_id" select="@scn_id"/>
+                        <tr>
+                            <th>
+                                <xsl:value-of select="$sps_code"/>
+                            </th>
+                            <th>
+                                <xsl:value-of select="$yr"/>
+                            </th>
+                            <th>
+                                <xsl:value-of select="@shk_code"/>
+                            </th>
+                            <th>
+                                <xsl:value-of select="@shk_lvl"/>
+                            </th>
+                            <xsl:variable name="rows" select="//root/tbl[6]/row[@scn_id = $scn_id and @yr = $yr]"/>
+                            <xsl:for-each select="//root/tbl[5]/row">
+                                <xsl:variable name="prm_id" select="@prm_id"/>
+                                <td>
+                                    <xsl:value-of select="$rows[@prm_id = $prm_id]/@u"/>
+                                </td>
+                            </xsl:for-each>
+                        </tr>
+                    </xsl:for-each>
+                </xsl:for-each>
             </xsl:for-each>
         </table>
     </xsl:template>
 </xsl:stylesheet>
+
+
