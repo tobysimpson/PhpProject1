@@ -43,13 +43,6 @@
                             <xsl:apply-templates/>
                         </td>
                     </tr>
-                    <!-- foot -->
-                    <!--                    <tr>
-                        <td></td>
-                        <td>
-                            
-                        </td>
-                    </tr>-->
                 </table>
             </body>
         </html>
@@ -243,6 +236,7 @@
                     <a href="itm.php?mth=lst">list</a>
                 </td>
             </tr>
+            
         </table>
         <p>SWEET-SURE a consortium funded by the Swiss Federal Office of Energy's SWEET programme and coordinated by l'Università della Svizzera italiana.</p>
         <p>The authors bear sole responsibility for the conclusions and the results presented in this publication.</p>    
