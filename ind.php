@@ -12,7 +12,7 @@ $func();
 
 function ind_lst() {
     $db = new cls_db();
-    $db->conn->multi_query("CALL sp_ind_lst();");
+    $db->conn->multi_query("SELECT * FROM ind ORDER BY ind_pos;");
     $dom = cls_xml::mul2dom($db->conn, "ind/ind_lst.xsl");
     header('Content-Type: text/xml');
     echo $dom->saveXML();

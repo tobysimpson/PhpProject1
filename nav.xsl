@@ -23,7 +23,7 @@
                 <table width="100%">
                     <tr>
                         <!--logo--> 
-                        <td>
+                        <td style="width:120px;">
                             <a href="https://toby.euler.usi.ch/index.php">
                                 <img style="width:100px; height:auto;" src="https://toby.euler.usi.ch/img/logo_usi1.svg"/>
                             </a>
@@ -43,6 +43,13 @@
                             <xsl:apply-templates/>
                         </td>
                     </tr>
+                    <!-- foot -->
+                    <!--                    <tr>
+                        <td></td>
+                        <td>
+                            
+                        </td>
+                    </tr>-->
                 </table>
             </body>
         </html>
@@ -237,5 +244,7 @@
                 </td>
             </tr>
         </table>
+        <p>SWEET-SURE a consortium funded by the Swiss Federal Office of Energy's SWEET programme and coordinated by l'Università della Svizzera italiana.</p>
+        <p>The authors bear sole responsibility for the conclusions and the results presented in this publication.</p>    
     </xsl:template>
 </xsl:stylesheet>
