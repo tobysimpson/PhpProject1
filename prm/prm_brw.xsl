@@ -308,7 +308,7 @@
                     <th>shk_lvl</th>
 
                     <xsl:for-each select="//root/tbl[7]/row">
-                        <th colspan="2">
+                        <th> <!-- colspan="2" -->
                             <xsl:value-of select="@yr"/>
                         </th>
                     </xsl:for-each>
@@ -335,9 +335,9 @@
                             <td style="text-align:right;">
                                 <xsl:value-of select="$row/@u"/>
                             </td>
-                            <td style="text-align:right;">
+<!--                            <td style="text-align:right;">
                                 <xsl:value-of select="$row/@ts"/>
-                            </td>
+                            </td>-->
                         </xsl:for-each>
 
                     </tr>

@@ -18,6 +18,15 @@ function afr_prm() {
     echo $dom->saveXML();
 }
 
+
+function afr_cal() {
+    $db = new cls_db();
+    $db->conn->multi_query("SELECT prm_id,scn_id,yr,pos,scn_code,u,w,r,u_sum,name,unit, fn_sci(wr_gweyr) AS wr_gweyr,fn_sci(wr_twh) AS wr_twh FROM vw_afr_cal;");
+    $dom = cls_xml::mul2dom($db->conn, "afr/afr_cal.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}
+
 function afr_cal1() {
     $db = new cls_db();
     $db->conn->multi_query("SELECT * FROM vw_afr_cal1;");

@@ -178,65 +178,59 @@
             </tr>
             <tr>
                 <td>
-                    <a href="afr.php?mth=cal1">afr_cal1</a>
+                    <a href="afr.php?mth=cal">afr_cal</a>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <a href="afr.php?mth=cal2">afr_cal2</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="afr.php?mth=upd">afr_upd</a>
-                </td>
-            </tr>
-            <tr>
-                <th style="text-align:left">compare</th>
-            </tr>
-            <!--            <tr>
-                <td>
-                    <a href="cmp.php?mth=shk1&amp;prm_id=19988">shk1</a>
-                </td>
-            </tr>-->
+        <tr>
+            <td>
+                <a href="afr.php?mth=upd">afr_upd</a>
+            </td>
+        </tr>
+        <tr>
+            <th style="text-align:left">compare</th>
+        </tr>
+        <!--            <tr>
+            <td>
+                <a href="cmp.php?mth=shk1&amp;prm_id=19988">shk1</a>
+            </td>
+        </tr>-->
 
-            <tr>
-                <td>
-                    <a href="cmp.php?mth=vlm1">vlm1</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="cmp.php?mth=shk2">shk2</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="cmp.php?mth=shk3">shk3</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="cmp.php?mth=bas1">bas1</a>
-                </td>
-            </tr>
-            <tr>
-                <th style="text-align:left">grid</th>
-            </tr>
-            <tr>
-                <td>
-                    <a href="grd.php?mth=plt1">plot1</a>
-                </td>
-            </tr>
-            <tr>
-                <th style="text-align:left">test</th>
-            </tr>
-            <tr>
-                <td>
-                    <a href="itm.php?mth=lst">list</a>
-                </td>
-            </tr>
-            
+        <tr>
+            <td>
+                <a href="cmp.php?mth=vlm1">vlm1</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="cmp.php?mth=shk2">shk2</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="cmp.php?mth=shk3">shk3</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="cmp.php?mth=bas1">bas1</a>
+            </td>
+        </tr>
+        <tr>
+            <th style="text-align:left">grid</th>
+        </tr>
+        <tr>
+            <td>
+                <a href="grd.php?mth=plt1">plot1</a>
+            </td>
+        </tr>
+        <tr>
+            <th style="text-align:left">test</th>
+        </tr>
+        <tr>
+            <td>
+                <a href="itm.php?mth=lst">list</a>
+            </td>
+        </tr>
         </table>
         <p>SWEET-SURE a consortium funded by the Swiss Federal Office of Energy's SWEET programme and coordinated by l'Università della Svizzera italiana.</p>
         <p>The authors bear sole responsibility for the conclusions and the results presented in this publication.</p>    

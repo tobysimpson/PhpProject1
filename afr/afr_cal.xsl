@@ -29,9 +29,6 @@
                 
                 <th>wr_gweyr</th>
                 <th>wr_twh</th>
-                
-                <th>u_twh</th>
-                <th>f</th>
             </tr>
             <xsl:for-each select="//root/tbl[1]/row">
                 <tr>
@@ -70,19 +67,13 @@
                         <xsl:value-of select="format-number(@w,'#,##0.000%','fmt1')"/>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="format-number(@r,'#,##0.00000000','fmt1')"/>
+                        <xsl:value-of select="format-number(@r,'#,##0.0000000','fmt1')"/>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="format-number(@wr_gweyr,'#,##0.000000','fmt1')"/>
+                        <xsl:value-of select="@wr_gweyr"/>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="format-number(@wr_twh,'#,##0.000000','fmt1')"/>
-                    </td>
-                    <td style="text-align:right">
-                        <xsl:value-of select="format-number(@u_twh,'#,##0.00','fmt1')"/>
-                    </td>
-                    <td style="text-align:right">
-                        <xsl:value-of select="format-number(@f,'#,##0.00','fmt1')"/>
+                        <xsl:value-of select="@wr_twh"/>
                     </td>
                 </tr>
             </xsl:for-each>
