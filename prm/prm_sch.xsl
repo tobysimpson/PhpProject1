@@ -16,6 +16,7 @@
         <form action="prm.php" method="GET">
             <input type="hidden" name="mth" value="sch"/>
             <input type="text" name="txt"></input>
+            <xsl:text> </xsl:text>
             <input type="submit" value="search"/>
         </form>
         

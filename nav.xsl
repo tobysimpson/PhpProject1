@@ -52,18 +52,18 @@
     <xsl:template name="menu">
         <table width="100%" class="table2">
             <tr>
-                <th style="text-align:left">parameter</th>
+                <th style="text-align:left">series</th>
             </tr>
             <tr>
                 <td>
                     <a href="prm.php?mth=brw&amp;prm_id=2423">browse</a>
                 </td>
             </tr>
-            <!--            <tr>
+            <tr>
                 <td>
-                    <a href="prm.php?mth=lst">list</a>
+                    <a href="prm.php?mth=sch">search</a>
                 </td>
-            </tr>-->
+            </tr>
             <tr>
                 <td>
                     <a href="prm.php?mth=tre">tree</a>
@@ -75,11 +75,7 @@
                     <a href="prm.php?mth=pth">path</a>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <a href="prm.php?mth=sch">search</a>
-                </td>
-            </tr>
+
             <tr>
                 <th style="text-align:left">data</th>
             </tr>
