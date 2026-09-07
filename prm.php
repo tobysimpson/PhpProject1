@@ -7,7 +7,7 @@ require_once "cls_xml.php";
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 
 //call
-$func = "prm_".$mth;
+$func = "prm_" . $mth;
 $func();
 
 function prm_lst() {
@@ -43,4 +43,18 @@ function prm_tre() {
     echo $dom->saveXML();
 }
 
-
+function prm_sch() {
+    $db = new cls_db();
+    $txt = filter_input(INPUT_GET, "txt", FILTER_SANITIZE_STRING);
+    $stmt = $db->conn->prepare("CALL sp_prm_sch(?);");
+    $stmt->bind_param("s", $txt);
+    try {
+        $stmt->execute();
+    } catch (Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+    $res = $stmt->get_result();     
+    $dom = cls_xml::prp2dom($res, "prm/prm_sch.xsl");
+    header('Content-Type: text/xml');
+    echo $dom->saveXML();
+}

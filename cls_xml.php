@@ -80,5 +80,21 @@ class cls_xml {
         } while ($conn->next_result());
         return $dom;
     }
+    
+    
+        public static function prp2dom($res, $xsl = "") {
+        $dom = new DOMDocument('1.0', 'utf-8');
+        $dom->formatOutput = true;
+        //root
+        $root = $dom->createElement('root');
+        $dom->appendChild($root);
+        //xsl (after root)
+        if (strlen($xsl) > 0) {
+            self::procxsl($dom, $xsl);
+        }
+        //table
+        cls_xml::res2tbl($dom, $root, $res);
+        return $dom;
+    }
 
 }
