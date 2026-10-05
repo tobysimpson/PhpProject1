@@ -233,7 +233,7 @@
                 </td>
             </tr>
         </table>
-        <p>SWEET-SURE a consortium funded by the Swiss Federal Office of Energy's SWEET programme and coordinated by l'Università della Svizzera italiana.</p>
+        <p>SWEET-SURE a consortium funded by the Swiss Federal Office of Energy's SWEET programme and coordinated by the Paul Scherrer Institute (PSI).</p>
         <p>The authors bear sole responsibility for the conclusions and the results presented in this publication.</p>    
     </xsl:template>
 </xsl:stylesheet>
